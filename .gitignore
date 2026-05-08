@@ -1,0 +1,52 @@
+# Secrets — NEVER commit
+.env
+.env.*
+!.env.example
+!.env.testing.example
+.env.deploy
+
+# Laravel
+api/vendor/
+api/node_modules/
+api/storage/*.key
+api/storage/logs/*
+!api/storage/logs/.gitkeep
+api/storage/framework/cache/*
+api/storage/framework/sessions/*
+api/storage/framework/views/*
+api/storage/framework/testing/*
+api/storage/app/*
+!api/storage/app/.gitkeep
+api/storage/app/public/*
+!api/storage/app/public/.gitkeep
+api/bootstrap/cache/*
+!api/bootstrap/cache/.gitkeep
+api/.phpunit.result.cache
+api/.phpunit.cache/
+api/.php-cs-fixer.cache
+api/coverage.xml
+api/Homestead.json
+api/Homestead.yaml
+api/auth.json
+api/_ide_helper.php
+api/_ide_helper_models.php
+api/.phpstorm.meta.php
+
+# PWA / marketing (when added)
+pwa/node_modules/
+pwa/dist/
+pwa/.vite/
+marketing/node_modules/
+marketing/dist/
+marketing/.astro/
+
+# OS / IDE
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Build artefacts
+*.log
+*.cache

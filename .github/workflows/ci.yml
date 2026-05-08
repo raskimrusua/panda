@@ -1,0 +1,122 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  api-lint:
+    name: API Lint (Pint + PHPStan)
+    runs-on: ubuntu-latest
+    if: hashFiles('api/composer.json') != ''
+    defaults:
+      run:
+        working-directory: api
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          extensions: pdo_pgsql, redis, bcmath, intl
+          coverage: pcov
+      - name: Cache Composer
+        uses: actions/cache@v4
+        with:
+          path: api/vendor
+          key: composer-${{ runner.os }}-${{ hashFiles('api/composer.lock') }}
+      - run: composer install --prefer-dist --no-interaction --no-progress
+      - run: ./vendor/bin/pint --test
+      - run: ./vendor/bin/phpstan analyse --memory-limit=2G
+
+  api-test:
+    name: API Tests (Pest + coverage)
+    runs-on: ubuntu-latest
+    if: hashFiles('api/composer.json') != ''
+    defaults:
+      run:
+        working-directory: api
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_DB: panda_test
+          POSTGRES_USER: panda
+          POSTGRES_PASSWORD: panda_test_pw
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U panda"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+      redis:
+        image: redis:7-alpine
+        ports:
+          - 6379:6379
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    env:
+      DB_CONNECTION: pgsql
+      DB_HOST: 127.0.0.1
+      DB_PORT: 5432
+      DB_DATABASE: panda_test
+      DB_USERNAME: panda
+      DB_PASSWORD: panda_test_pw
+      REDIS_HOST: 127.0.0.1
+      REDIS_PORT: 6379
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          extensions: pdo_pgsql, redis, bcmath, intl
+          coverage: pcov
+      - name: Cache Composer
+        uses: actions/cache@v4
+        with:
+          path: api/vendor
+          key: composer-${{ runner.os }}-${{ hashFiles('api/composer.lock') }}
+      - run: composer install --prefer-dist --no-interaction --no-progress
+      - run: cp .env.example .env && php artisan key:generate
+      - run: php artisan migrate --force
+      - run: ./vendor/bin/pest --coverage --min=70
+
+  pwa-typecheck:
+    name: PWA Typecheck + Build
+    runs-on: ubuntu-latest
+    if: hashFiles('pwa/package.json') != ''
+    defaults:
+      run:
+        working-directory: pwa
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: pwa/package-lock.json
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm run build
+
+  marketing-build:
+    name: Marketing Build (Astro)
+    runs-on: ubuntu-latest
+    if: hashFiles('marketing/package.json') != ''
+    defaults:
+      run:
+        working-directory: marketing
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: marketing/package-lock.json
+      - run: npm ci
+      - run: npm run build
