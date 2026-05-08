@@ -1,0 +1,114 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "panda://content/schema/crop.schema.json",
+    "title": "Crop content file",
+    "description": "Per-crop agronomic content. Authored by KALRO-credentialed agronomist via Filament editor (P1+) or hand-edited JSON. Validated at load time by ContentLoader. Source of truth for season engine inputs.",
+    "type": "object",
+    "required": ["slug", "name_en", "name_sw", "category", "harvest_type", "ecological_requirements", "varieties", "timeline_template", "inputs_per_acre", "yield_per_acre"],
+    "additionalProperties": false,
+    "properties": {
+        "slug": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]{1,62}[a-z0-9]$" },
+        "name_en": { "type": "string", "minLength": 1, "maxLength": 120 },
+        "name_sw": { "type": "string", "minLength": 1, "maxLength": 120 },
+        "category": { "type": "string", "enum": ["vegetable", "fruit", "leafy_green", "legume", "staple", "tuber"] },
+        "harvest_type": { "type": "string", "enum": ["single", "multi"] },
+        "jica_manual_ref": { "type": "string", "maxLength": 500 },
+        "kalro_guide_ref": { "type": "string", "maxLength": 500 },
+        "ecological_requirements": {
+            "type": "object",
+            "required": ["altitude_min_m", "altitude_max_m", "rainfall_min_mm", "rainfall_max_mm", "temperature_min_c", "temperature_max_c", "soil_types", "soil_ph_min", "soil_ph_max"],
+            "additionalProperties": false,
+            "properties": {
+                "altitude_min_m": { "type": "integer", "minimum": 0, "maximum": 5000 },
+                "altitude_max_m": { "type": "integer", "minimum": 0, "maximum": 5000 },
+                "rainfall_min_mm": { "type": "integer", "minimum": 0, "maximum": 5000 },
+                "rainfall_max_mm": { "type": "integer", "minimum": 0, "maximum": 5000 },
+                "temperature_min_c": { "type": "integer", "minimum": -10, "maximum": 50 },
+                "temperature_max_c": { "type": "integer", "minimum": -10, "maximum": 50 },
+                "soil_types": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+                "soil_ph_min": { "type": "number", "minimum": 0, "maximum": 14 },
+                "soil_ph_max": { "type": "number", "minimum": 0, "maximum": 14 }
+            }
+        },
+        "varieties": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+                "type": "object",
+                "required": ["name", "type", "days_to_maturity", "yield_kg_per_acre"],
+                "additionalProperties": false,
+                "properties": {
+                    "name": { "type": "string", "minLength": 1, "maxLength": 120 },
+                    "type": { "type": "string" },
+                    "days_to_maturity": { "type": "integer", "minimum": 1, "maximum": 730 },
+                    "yield_kg_per_acre": { "type": "integer", "minimum": 1 },
+                    "disease_resistance": { "type": "array", "items": { "type": "string" } },
+                    "supplier_notes": { "type": "string", "maxLength": 500 }
+                }
+            }
+        },
+        "timeline_template": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+                "type": "object",
+                "required": ["activity_type", "phase", "week_from_planting", "description_en", "description_sw"],
+                "additionalProperties": false,
+                "properties": {
+                    "activity_type": { "type": "string" },
+                    "phase": { "type": "string", "enum": ["land_prep", "nursery", "transplanting", "growth", "harvest", "post_harvest"] },
+                    "week_from_planting": { "type": "integer", "minimum": -8, "maximum": 104 },
+                    "day_window": { "type": "integer", "minimum": 0, "maximum": 30 },
+                    "description_en": { "type": "string", "minLength": 1 },
+                    "description_sw": { "type": "string", "minLength": 1 },
+                    "tip_en": { "type": "string" },
+                    "tip_sw": { "type": "string" },
+                    "is_critical": { "type": "boolean" }
+                }
+            }
+        },
+        "inputs_per_acre": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+                "type": "object",
+                "required": ["input_type", "product_name", "quantity", "unit", "week_from_planting", "benchmark_price_kes"],
+                "additionalProperties": false,
+                "properties": {
+                    "input_type": { "type": "string", "enum": ["seed", "fertiliser", "chemical", "equipment", "other"] },
+                    "product_name": { "type": "string", "minLength": 1, "maxLength": 120 },
+                    "quantity": { "type": "number", "minimum": 0 },
+                    "unit": { "type": "string", "enum": ["kg", "g", "l", "ml", "pieces", "crates"] },
+                    "week_from_planting": { "type": "integer", "minimum": -8, "maximum": 104 },
+                    "benchmark_price_kes": { "type": "integer", "minimum": 0 },
+                    "pcpb_registered": { "type": "boolean" },
+                    "alternatives": { "type": "array", "items": { "type": "string" } }
+                }
+            }
+        },
+        "yield_per_acre": {
+            "type": "object",
+            "required": ["expected_kg"],
+            "additionalProperties": false,
+            "properties": {
+                "expected_kg": { "type": "integer", "minimum": 1 },
+                "min_kg": { "type": "integer", "minimum": 1 },
+                "max_kg": { "type": "integer", "minimum": 1 },
+                "number_of_picks": { "type": "integer", "minimum": 1 },
+                "pick_interval_days": { "type": "integer", "minimum": 1, "maximum": 365 }
+            }
+        },
+        "post_harvest": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "shelf_life_days": { "type": "integer", "minimum": 1 },
+                "grading_criteria": { "type": "string" },
+                "packaging_standard": { "type": "string" },
+                "storage_tips_en": { "type": "string" },
+                "storage_tips_sw": { "type": "string" }
+            }
+        },
+        "diseases": { "type": "array", "items": { "type": "string" } }
+    }
+}
