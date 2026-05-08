@@ -1,0 +1,7 @@
+includes:
+    - ./vendor/larastan/larastan/extension.neon
+parameters:
+    paths: [app, config, routes, tests]
+    level: 6
+    ignoreErrors: []
+    excludePaths: [./bootstrap/cache/*]

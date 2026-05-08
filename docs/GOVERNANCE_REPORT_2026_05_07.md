@@ -520,3 +520,92 @@ Pipeline begins. UWC's Claude Code agent (in a new session at `~/Desktop/panda/`
 ---
 
 *Addendum v1.3 issued 2026-05-07 — Panda standalone rebrand. Next governance pass: weekly from P8 (pilot launch) onwards.*
+## Addendum v1.4 — Independent second-opinion review (2026-05-07)
+
+This addendum is an *external* read of v1.0–v1.3, written by a different evaluator (Claude Opus 4.7 [1M], invoked from the Shira session, not the Panda session). It does not own a decision; it surfaces what I think is mispriced or unaddressed in the existing scoring, and what I would want answered before sustained capital is committed to Panda.
+
+### What v1.0–v1.3 got right
+
+- **Engineering plan is solid.** Laravel + Filament + Horizon is a defensible stack for this domain. The 14 skill files are real and competent. The "Inspired by SHEP PLUS" framing is the right de-risking move once partnership signing turned uncertain.
+- **20% timeline padding** on P1–P3 is honest. First Laravel project at 14-week scope without padding would have been the silent killer.
+- **Filament editor + sign-off workflow** lift on Ghost Creator (5.5 → 7.0) is correctly priced. Forcing agronomists to write JSON PRs would have been the brittle path.
+- **Honest self-criticism** of the score in v1.2 ("calling it 8.0/10 before any farmer touches the product would be theatre") is exactly the kind of self-awareness that distinguishes a real governance pass from a ratification ceremony.
+
+### What I think is mispriced
+
+#### 1. v1.3 standalone rebrand — Ghost User and Investor drops should be larger
+
+v1.3 took **-0.5 on Ghost User** (loss of cross-sell discovery) and **-0.5 on Investor** (loss of Shira distribution). I think both should be at least -1.0.
+
+The v1.0–v1.2 scoring assumed Mwende-the-dairy-farmer sees a sidebar entry the day Shira flips `crops_enabled`. That is a near-zero-CAC discovery channel. Standalone Panda has to acquire Mwende from cold — county officer training material, KALRO partnership conversations, paid acquisition, or word-of-mouth that doesn't exist yet. The CAC delta between "existing farmer sees a new tab" and "smallholder farmer hears about a new app for the first time" is not 0.5 points of Ghost User score; it is closer to a full point.
+
+Conservative re-score on v1.3:
+
+| Dimension | v1.3 | Conservative | Reason |
+|---|---|---|---|
+| Ghost User | 6.5 | **5.5** | Cold-start discovery is materially harder, not slightly harder. Independent installation, independent registration, independent learning curve all add friction. |
+| Investor | 5.5 | **4.5** | CAC is the single biggest risk to a farmer-app's unit economics. Without a named distribution channel, the path to LTV > 3× CAC is conjecture. |
+
+If those two re-scores hold, **revised combined = ~6.30/10 — *just below* the 6.5 gate**.
+
+This does not necessarily mean "don't kick off." It means the kick-off justification rests on the engineering side (Stack Optimiser 8.5, Admin 7.5) carrying the product side (User 5.5, Investor 4.5). That is a reasonable bet for a build-first founder, but the scoring should make the bet visible rather than smooth it over with smaller deltas.
+
+#### 2. The score-gate became decorative on v1.3
+
+Reading v1.3 chronologically: Joshua's directive ("Kick off") arrives as the *premise* of v1.3, and v1.3's score then arrives at 6.97 — comfortably above the gate. There is no version of this report where v1.3 scored below 6.5 and the kick-off was rolled back. The gate did its job from v1.0 (held the line at 6.0/10 → forced remediation) through v1.2 (cleared at 7.05). On v1.3 it became a justification engine.
+
+This isn't unique to Panda — every multi-iteration governance pass on the same day with the same evaluator drifts toward this. The remediation is procedural: **the v1.3 score should have been computed and signed off by a different evaluator** (or at least at a different sitting, with an explicit "what would push this below the gate?" pre-mortem). Going forward, the *next* governance pass — weekly during pilot — should be done in a fresh session against the live system and live numbers, not against the plan as remembered.
+
+#### 3. Path to first 200 pilot farmers is unaddressed
+
+The pilot success thresholds are well-defined (NPS > 40, daily active > 50%, willingness to pay > 30%). The path to *recruiting* the 200 farmers who will produce those numbers is not in the plan. v1.3 mentions "county extension officers + KALRO + paid acquisition" as a comma-separated list, not a plan.
+
+Specific questions Joshua should answer in the first 4 weeks of P1 (parallel to engineering work, before P5 frontend builds the upgrade modal):
+
+- **Who is the named distribution partner?** "County officers in Meru" is not a name. "Mr. X, sub-county agricultural officer in Buuri ward, has agreed to convene 30 farmers for an introductory session on date Y" is a name.
+- **What is the cost per pilot farmer acquired?** Even a rough "we expect KES Z per farmer" is enough to size whether the pilot is fundable. KES 0 (pure word of mouth) is not realistic for cold-start.
+- **What is the gating event for "kill the pilot"?** The thresholds say <30% logging > 3 activities in 60 days = stop. Who decides? Who is empowered to call it? On which date?
+
+These are not P1 engineering blockers. They are P1 founder-attention blockers — work Joshua should be doing while the agent builds.
+
+### What I do not push back on
+
+- **The Laravel rebuild from scratch.** Yes, "rewrite Shira's logic in Laravel" is duplicate work, but the deliberate skill investment + Filament + standalone-product reasoning hold up.
+- **Deferring agronomist + pricing.** Reasonable for P1 backend skeleton. Becomes critical at P5/P7.
+- **Deferring the JICA partnership.** "Inspired by SHEP PLUS" is the right framing if the partnership is ≥ 6 weeks away.
+- **Same-day rebrand of Crops → Panda.** The integration-cost-vs-distribution-cost trade is real; choosing the trade you can attack with engineering (cleaner standalone) over the trade you cannot (forced-marriage UX) is correct.
+
+### What I would want answered before sustained capital is committed
+
+| # | Question | Latest answer can land |
+|---|---|---|
+| 1 | Named distribution partner (e.g. specific county officer, specific KALRO contact, or budgeted paid-acquisition channel)? | End of P1 (week 2) |
+| 2 | Cost per pilot farmer estimate + total pilot acquisition budget? | End of P1 (week 2) |
+| 3 | Who has authority to kill the pilot, on which date, against which thresholds? | Before P8 starts (week 12) |
+| 4 | If the JICA / KALRO partnership lands during P3–P5, what changes in the plan? (Dependency injection point, not just re-marketing) | When/if partnership signs |
+| 5 | What is the explicit relationship between Shira and Panda — separate companies, sister products under UWC, future merger? | Before P6 marketing site goes public |
+
+### Revised independent score (for the record)
+
+| Dimension | v1.3 | v1.4 (this) | Reason |
+|---|---|---|---|
+| Ghost User | 6.5 | **5.5** | Cold-start discovery materially under-priced |
+| Ghost Creator | 7.0 | **7.0** | Unchanged — Filament workflow holds up |
+| Stack Optimiser | 8.5 | **8.5** | Unchanged — engineering plan is solid |
+| Admin | 7.5 | **7.5** | Unchanged — runbooks named, thresholds quoted |
+| Investor | 5.5 | **4.5** | No named distribution partner = CAC risk under-priced |
+| Public | 6.8 | **6.8** | Unchanged — image retention deferred, working assumption acceptable |
+
+### **Independent revised combined: 6.63/10**
+
+Still clears the 6.5 gate, but only by 0.13. This is much closer to the wire than v1.3 suggested. The kick-off recommendation holds, but the slack is thinner than the v1.3 score implies.
+
+### Independent verdict
+
+**Kick-off is defensible** because the engineering plan is solid and the build is independent of the unresolved business questions for at least the first 4 weeks. **The kick-off is not "comfortable"** — Investor 4.5 / Ghost User 5.5 are the worst dimensions and they are the dimensions that determine whether Panda is a product or a hobby. Joshua's founder-attention bandwidth in the first 4 weeks should split: roughly 30% engineering review of agent output, 70% on questions #1, #2, and #5 above. If the answers to #1 and #2 are still "TBD" 4 weeks in, pause P5.
+
+The score gate is now under suspicion. I would **not** trust an internal v1.5 produced in this same session at this same date as governing P5 launch. The next gate should be a fresh-session governance pass against the working P1+P2+P3 codebase, with Joshua answering questions #1–#5 at the same sitting, before P5 frontend work begins.
+
+---
+
+*Addendum v1.4 issued 2026-05-07 — independent second-opinion review from the Shira session. This addendum does not change the kick-off decision; it surfaces what was mispriced or unaddressed and lists the 5 questions to answer in the first 4 weeks.*

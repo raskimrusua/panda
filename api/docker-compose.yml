@@ -1,0 +1,43 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    volumes:
+      - .:/var/www/html
+    environment:
+      - APP_ENV=local
+    depends_on: [db, redis]
+
+  nginx:
+    image: nginx:alpine
+    ports: ["8000:80"]
+    volumes:
+      - .:/var/www/html
+      - ./docker/nginx.conf:/etc/nginx/conf.d/default.conf
+    depends_on: [app]
+
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: panda_local
+      POSTGRES_USER: panda
+      POSTGRES_PASSWORD: changeme
+    ports: ["5432:5432"]
+    volumes: [db_data:/var/lib/postgresql/data]
+
+  redis:
+    image: redis:7-alpine
+    ports: ["6379:6379"]
+
+  horizon:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    command: php artisan horizon
+    volumes:
+      - .:/var/www/html
+    depends_on: [redis, db]
+
+volumes:
+  db_data:
