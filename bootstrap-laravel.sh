@@ -51,7 +51,6 @@ composer require \
     laravel/horizon:^5.30 \
     laravel/sanctum:^4.0 \
     brick/money:^0.10 \
-    firebase/php-jwt:^6.10 \
     spatie/laravel-activitylog:^4.8 \
     sentry/sentry-laravel:^4.6 \
     league/flysystem-aws-s3-v3:^3.0 \
@@ -59,11 +58,15 @@ composer require \
     barryvdh/laravel-dompdf:^3.0 \
     predis/predis:^2.2 \
     --no-interaction
+# NOTE: firebase/php-jwt removed — Panda is standalone, uses Sanctum's own token system,
+# does NOT use the shared-JWT pattern from skill-laravel-sanctum-shared-jwt.
+# (Future projects with shared-Shira-JWT auth need firebase/php-jwt; PKSA-y2cr-5h3j-g3ys
+# advisory affects v6.10–v6.11.1 — pin to safer version when re-introducing.)
 
 log "Installing dev composer packages..."
 composer require --dev \
-    pestphp/pest:^3.0 \
-    pestphp/pest-plugin-laravel:^3.0 \
+    pestphp/pest:^4.0 \
+    pestphp/pest-plugin-laravel:^4.0 \
     larastan/larastan:^2.9 \
     laravel/pint:^1.18 \
     --no-interaction
