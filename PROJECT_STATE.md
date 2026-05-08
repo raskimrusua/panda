@@ -17,7 +17,7 @@
 | **Backend** | Not yet scaffolded — P1 starts here |
 | **Frontend (PWA)** | Not yet scaffolded — P5 |
 | **Marketing site** | Not yet scaffolded — P6 |
-| **Repo** | Local only (`~/Desktop/panda/`) — push to GitHub when P1 first commit lands |
+| **Repo** | **`raskimrusua/panda`** (private, GH) — initial commit pushed 2026-05-07 |
 | **Domain** | `panda.farm` placeholder — confirm during P1 |
 
 ---
@@ -101,6 +101,8 @@ The pipeline reads `~/Desktop/panda/CLAUDE.md` for architecture rules + the 14 L
 | 2026-05-07 | Governance report v1.0 → v1.1 → v1.2 (combined 7.05/10) |
 | 2026-05-07 | 14 Laravel skill files authored in UWC skill portfolio |
 | 2026-05-07 | Panda project skeleton (`~/Desktop/panda/{README,CLAUDE,PROJECT_STATE,docs/MASTER_PROMPT}.md`) |
+| 2026-05-07 | GH repo `raskimrusua/panda` created (private), initial commit pushed: docs + CI workflow + .gitignore + bootstrap script |
+| 2026-05-07 | `bootstrap-laravel.sh` written — runs `composer create-project` + UWC standard packages + Pest/PHPStan/Pint config + Docker scaffold. Run after PHP 8.3 + Composer install completes. |
 
 ---
 
