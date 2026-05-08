@@ -12,8 +12,12 @@ class CreateActivityLogTable extends Migration
             $table->bigIncrements('id');
             $table->string('log_name')->nullable();
             $table->text('description');
-            $table->nullableMorphs('subject', 'subject');
-            $table->nullableMorphs('causer', 'causer');
+            // Panda models use ULIDs (skill-laravel-eloquent-model §1). Switch from
+            // the default bigint morphs to string-compatible nullableUlidMorphs.
+            // Postgres is strict about bigint vs string; SQLite is typeless (which is
+            // why local tests passed but CI exposed it on PR #2).
+            $table->nullableUlidMorphs('subject', 'subject');
+            $table->nullableUlidMorphs('causer', 'causer');
             $table->json('properties')->nullable();
             $table->timestamps();
             $table->index('log_name');
