@@ -28,7 +28,7 @@
 |---|---|---|---|---|
 | P0 | Governance feasibility report | ✅ Done (7.05/10) | UWC governance | 2026-05-07 |
 | P0.5 | Laravel skill bootstrap (14 files) | ✅ Done | Claude (this session) | 2026-05-07 |
-| P1 | Laravel backend skeleton + content + monitoring + agronomist editor | 🟡 In progress (scaffold landed, PR #1 awaiting merge; first model + content loader + monitoring next) | Pipeline | 2 weeks from kickoff |
+| P1 | Laravel backend skeleton + content + monitoring + agronomist editor | 🟡 In progress (scaffolded PR #1, Crop+ContentLoader PR #2, multitenancy+auth+Season PR #3; remaining: Filament admin + Sentry wiring + health endpoint) | Pipeline | 2 weeks from kickoff |
 | P2 | Season Engine service | ⏳ Pending P1 | Pipeline | +1.2 weeks |
 | P3 | Season + Cost + Harvest API | ⏳ Pending P2 | Pipeline | +1.2 weeks |
 | P4 | Disease detection (mock) + dealer directory + market prices | ⏳ Pending P3 | Pipeline | +1.5 weeks |
@@ -106,6 +106,9 @@ The pipeline reads `~/Desktop/panda/CLAUDE.md` for architecture rules + the 14 L
 | 2026-05-08 | **PHP 8.3.31 + Composer 2.9.7 installed via brew** (compiled from source on Intel Mac, ~2 hr). Laravel 11.51 scaffolded in `api/` via bootstrap script. 114 packages installed total (12 main UWC + 4 dev + Laravel transitive). Filament + Horizon + Sentry vendor:publish run. UWC config files applied (pint.json + phpstan.neon + .env.example + config/panda.php + config/filesystems.php R2/S3 toggle + Dockerfile + docker-compose.yml). Pest 2/2 passing, Pint --test pass, PHPStan level 6 no errors. Two security adjustments: `firebase/php-jwt` removed (PKSA-y2cr-5h3j-g3ys advisory; not needed for Panda's standalone Sanctum auth), PHPUnit bumped from `^11.0.1` to `^12.0` to satisfy Pest 4. Pushed to feature branch `add-governance-v1-4-second-opinion` (Joshua's parallel governance v1.4 commit landed there too). PR #1 opened — both governance v1.4 + Laravel scaffold reviewed together. CI green: api-lint pass, api-test pass. **Merged to main (a7a03a4) on 2026-05-08.** |
 | 2026-05-08 | **UWC Laravel skill drift fixed** (commit `dd94b89` on `upstate-web-co/uwc-ops` main): skill-laravel-pest-test bumped Pest 3 → Pest 4 + PHPUnit 12; skill-laravel-project-bootstrap made firebase/php-jwt conditional with PKSA-y2cr-5h3j-g3ys note; README + version bumps to v1.1. All 14 Laravel skill files + index README committed (15 files total — first time landing in repo). |
 | 2026-05-08 | **PR #2 — first model (Crop) on `feat/p1-crop-model`**: 25 files, +1476 lines. Crop model (ULID + soft-delete + activity log + 2 scopes) + migration + 5 named-state factory (tomato/kale/cabbage/bulb-onion/french-beans). API surface: CropResource (single, shared catalogue) + IndexCropRequest (allowlisted filters: category/harvest_type/phase/active_only/q/per_page) + CropController (read-only index + slug-bound show) + routes/api.php. Content system: crop.schema.json (full JAICA spec) + tomato.json (12 timeline activities + 8 inputs + Tylka F1 / Cal-J varieties + EN/SW bilingual) + ContentLoader service (validates against schema, caches in Redis, ~1ms p99 reads) + `crops:content:reload` artisan command. Tests: 38/38 passing, 136 assertions across CropModelTest (9), CropApiTest (14), ContentLoaderTest (9), ReloadContentCommandTest (4) + 2 Laravel defaults. Pint pass, PHPStan level 6 no errors. **Coverage gate reinstated at --min=70** (Laravel boilerplate excluded via phpunit.xml). Activity log migrations published. install:api ran (Sanctum scaffold). |
+| 2026-05-08 | **CI on PR #2 caught a real Postgres-vs-SQLite drift** (commit `a7ae69c`): Spatie ActivityLog's published migration uses `nullableMorphs()` → bigint subject_id; Crop's ULID PK insert fails with `SQLSTATE[22P02]: invalid input syntax for type bigint`. SQLite is typeless, accepted silently (local pest passed). Fix: `nullableMorphs()` → `nullableUlidMorphs()`. CI green after fix. **Lesson captured into UWC `skill-laravel-eloquent-model` v1.1** (Edge Case + Changelog), shipped via UWC PR #4 (commit `a9cb094`). General principle now in skill: "always run CI on Postgres before merging any PR that adds models with vendor packages." |
+| 2026-05-09 | **PR #2 merged → main** (`e0a2cf2`). UWC PR #4 (skill v1.1 lesson) merged → upstate-web-co/uwc-ops main. |
+| 2026-05-09 | **PR #3 — multitenancy + auth + Season on `feat/p3-tenant-multitenancy`**: ULID conversion of users + personal_access_tokens migrations (greenfield-edit, ulidMorphs lesson re-applied); Tenant model extending Spatie `SpatieTenant` + Kenyan-county TenantFactory + customised `config/multitenancy.php` for single-DB row mode (tenant_finder = UserTenantFinder; switch_tenant_tasks = PrefixCacheTask only); BelongsToTenant trait (global scope + creating event auto-attach); UserTenantFinder + SetTenantFromUser middleware (registered in priority list BEFORE SubstituteBindings — critical: route-model-binding fires before custom middleware otherwise, leaking foreign tenants as 200 instead of 404); AuthController (register transactional Tenant+User+token, login, logout, me) + Register/Login FormRequests; UserResource + TenantResource. **First tenant-scoped model — Season** (status enum, irrigation enum, engine_metadata JSON, client_id offline-sync key, tenant-scoped unique constraint) + factory (5 named states) + SeasonController (apiResource) + SeasonListResource + SeasonDetailResource + StoreSeason/UpdateSeason FormRequests. Tests: 75 total, all green — TenantTest (7), UserTenantFinderTest (3), AuthApiTest (8), SeasonModelTest (7), SeasonApiTest (12 inc. **5 mandatory cross-tenant isolation tests** — list/show/update/destroy/store-with-hijack-payload all 404 or auto-coerce). Pint + PHPStan level 6 clean (3 ignore patterns added: Pest expectation chain template, Carbon date cast through resources). **CI coverage gate raised from 70% → 75%.** |
 
 ---
 
@@ -115,3 +118,28 @@ The pipeline reads `~/Desktop/panda/CLAUDE.md` for architecture rules + the 14 L
 - **Content authoring is the long pole** — 17 crops × ~6 hours agronomist time + ~3 hours translation each = ~150 person-hours. Realistic: 6–10 weeks part-time. Joshua to source contractor before P7 starts.
 - **Disease AI cost unknown until pilot** — at 200 farmers × estimated 5 scans/month × KES 3 ≈ KES 3,000/month. Acceptable. Cost guard envoirned in `CROP_HEALTH_MAX_MONTHLY_KES`.
 - **Distribution risk** — standalone Panda has no built-in farmer pipeline (would have inherited Shira's farmers as a Shira module). Need explicit go-to-market in P8: county extension officers, KALRO partnerships, paid acquisition.
+
+---
+
+## Next up — PR #4 (still P1)
+
+PR #3 closed out tenancy + auth + first business model. Remaining P1 surface:
+
+- **Filament admin panel** scaffold (CropResource read-mostly + ContentReview model for agronomist sign-off workflow)
+- **Sentry wiring** (config already published; needs DSN + a smoke-test exception path)
+- **Health endpoint** at `/api/v1/health/` returning DB + Redis + Crop.health-API status
+- **Internal `/api/v1/internal/farms/sync/`** — receives farm-cache deltas (deferred from spec; only relevant once Shira pushes anything)
+
+P2 (Season Engine service) follows P1 close-out. P2 will turn `Season::created` into a generated activity timeline + input list — pure-class engine, observer fires on Season creation, all writes inside one `DB::transaction()`.
+
+### Lessons captured during PR #3 (worth eventually backporting to UWC skills)
+
+1. **Spatie multitenancy + custom middleware ordering** — `tenant_finder`'s `findForRequest` runs in `MultitenancyServiceProvider::packageBooted()`, BEFORE auth middleware fires. Standalone Sanctum guards that depend on a hydrated request user will get null on that pass. Solution applied: keep the finder for compatibility (returns null pre-auth), and add a `SetTenantFromUser` middleware that runs AFTER `auth:sanctum`. **Critical**: this middleware must be inserted into the priority list BEFORE `SubstituteBindings::class`, otherwise route-model-binding queries fire without a current tenant set and cross-tenant URLs leak as 200 instead of 404. Add to `skill-laravel-multitenancy` v1.1 Edge Cases.
+
+2. **Greenfield ULID migration of users table** — Sanctum's published `personal_access_tokens` migration uses `morphs('tokenable')` (bigint). For ULID user PKs, edit in place (greenfield) to `ulidMorphs('tokenable')`. Same lesson as PR #2's `nullableMorphs` on activity_log; reinforces "always run CI on Postgres" rule.
+
+3. **`withoutGlobalScopes()` removes SoftDeletingScope too** — using it to test soft-delete behaviour is a footgun. Use `Model::find($id)` (no current tenant → tenant scope no-op) and `Model::withTrashed()->find($id)` instead.
+
+4. **PHPStan + Pest expectation chains** — `$x->and(...)` triggers "unable to resolve template type TAndValue". Add a global `ignoreErrors` pattern scoped to `tests/*` or break chains into separate `expect()` calls.
+
+5. **Larastan + Eloquent date casts** — Larastan can't infer `Carbon` from `'date'` cast through resource accessors; calling `->toDateString()` errors as "Cannot call method on string". Either add `@property \Illuminate\Support\Carbon $field` docblocks on the model, or globally ignore the message. Chose ignore-pattern for now.

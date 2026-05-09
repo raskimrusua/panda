@@ -1,8 +1,23 @@
 <?php
 
+use App\Http\Middleware\SetTenantFromUser;
+use Illuminate\Auth\Middleware\Authenticate;
+use Illuminate\Auth\Middleware\AuthenticateWithBasicAuth;
+use Illuminate\Auth\Middleware\Authorize;
+use Illuminate\Contracts\Auth\Middleware\AuthenticatesRequests;
+use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
+use Illuminate\Cookie\Middleware\EncryptCookies;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
+use Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull;
+use Illuminate\Foundation\Http\Middleware\HandlePrecognitiveRequests;
+use Illuminate\Foundation\Http\Middleware\TrimStrings;
+use Illuminate\Routing\Middleware\SubstituteBindings;
+use Illuminate\Routing\Middleware\ThrottleRequests;
+use Illuminate\Routing\Middleware\ThrottleRequestsWithRedis;
+use Illuminate\Session\Middleware\StartSession;
+use Illuminate\View\Middleware\ShareErrorsFromSession;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -12,7 +27,30 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
-        //
+        $middleware->alias([
+            'tenant' => SetTenantFromUser::class,
+        ]);
+
+        // SetTenantFromUser MUST run BEFORE SubstituteBindings so the global
+        // tenant scope is active when route-model-binding queries fire.
+        // Otherwise foreign-tenant URLs leak as 200 instead of 404.
+        $middleware->priority([
+            HandlePrecognitiveRequests::class,
+            EncryptCookies::class,
+            AddQueuedCookiesToResponse::class,
+            StartSession::class,
+            ShareErrorsFromSession::class,
+            ConvertEmptyStringsToNull::class,
+            TrimStrings::class,
+            Authenticate::class,
+            AuthenticateWithBasicAuth::class,
+            SetTenantFromUser::class,
+            ThrottleRequests::class,
+            ThrottleRequestsWithRedis::class,
+            SubstituteBindings::class,
+            AuthenticatesRequests::class,
+            Authorize::class,
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //
