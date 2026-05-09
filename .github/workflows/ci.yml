@@ -82,8 +82,9 @@ jobs:
       - run: composer install --prefer-dist --no-interaction --no-progress
       - run: cp .env.example .env && php artisan key:generate
       - run: php artisan migrate --force
-      # Coverage gate raised to 70% in the first model PR (P1 Crop). For now, just verify tests pass.
-      - run: ./vendor/bin/pest
+      # Coverage scope = app/ (excluding Laravel scaffold boilerplate via phpunit.xml).
+      # Gate climbs as more code lands; 70% on PR #2 (Crop). Target 80% by P3 (Season + Cost + Harvest).
+      - run: ./vendor/bin/pest --coverage --min=70
 
 # pwa-typecheck + marketing-build jobs intentionally omitted until P5/P6 land their respective directories.
 # Add back when pwa/package.json and marketing/package.json exist.

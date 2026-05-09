@@ -3,5 +3,12 @@ includes:
 parameters:
     paths: [app, config, routes, tests]
     level: 6
-    ignoreErrors: []
     excludePaths: [./bootstrap/cache/*]
+    ignoreErrors:
+        # Pest's TestCall macros (getJson, postJson, etc.) and $this->property in
+        # beforeEach blocks aren't statically resolvable — standard Pest+PHPStan
+        # friction. Scoped to tests/ only.
+        - identifier: method.notFound
+          path: tests/*
+        - identifier: property.notFound
+          path: tests/*

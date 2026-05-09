@@ -16,6 +16,12 @@
         <include>
             <directory>app</directory>
         </include>
+        <exclude>
+            <!-- Laravel scaffold boilerplate — no Panda logic, not test-worthy -->
+            <file>app/Models/User.php</file>
+            <file>app/Http/Controllers/Controller.php</file>
+            <directory>app/Providers</directory>
+        </exclude>
     </source>
     <php>
         <env name="APP_ENV" value="testing"/>
