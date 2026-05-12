@@ -7,6 +7,9 @@ import { DashboardPage } from './pages/DashboardPage';
 import { SeasonListPage } from './pages/SeasonListPage';
 import { NewSeasonPage } from './pages/NewSeasonPage';
 import { SeasonDetailPage } from './pages/SeasonDetailPage';
+import { DiseaseScanPage } from './pages/DiseaseScanPage';
+import { DealerMapPage } from './pages/DealerMapPage';
+import { PricesPage } from './pages/PricesPage';
 
 export function App() {
   const { user, isLoading } = useAuth();
@@ -36,6 +39,9 @@ export function App() {
         <Route path="/seasons" element={<SeasonListPage />} />
         <Route path="/seasons/new" element={<NewSeasonPage />} />
         <Route path="/seasons/:id" element={<SeasonDetailPage />} />
+        <Route path="/disease" element={<DiseaseScanPage />} />
+        <Route path="/dealers" element={<DealerMapPage />} />
+        <Route path="/prices" element={<PricesPage />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </AppShell>
