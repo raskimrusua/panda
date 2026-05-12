@@ -16,5 +16,18 @@ parameters:
         - message: '#Unable to resolve the template type TAndValue in call to method Pest\\Expectation#'
           path: tests/*
         # Eloquent date casts return Carbon — Larastan can't infer through accessor.
-        # Resources call ->toDateString() on cast date; safe at runtime.
+        # Resources call ->toDateString() / ->toIso8601String() on cast date or
+        # datetime; safe at runtime.
         - message: '#Cannot call method toDateString\(\) on string#'
+        - message: '#Cannot call method toIso8601String\(\) on string#'
+        # Same root cause for ?->toDateString() / ?->toIso8601String() — Larastan
+        # types cast columns as string|null even though they're Carbon at runtime.
+        - message: '#Using nullsafe method call on non-nullable type string#'
+        # Pest helper functions return tuples that PHPStan flags as untyped iterable.
+        # Adding return-type-tuple annotations is noisy; ignore in tests/ only.
+        - message: '#Function actingAs.* return type has no value type specified in iterable type array#'
+          path: tests/*
+        # collect() on a list of arbitrary mixed (e.g. JSON-decoded path values)
+        # can't infer template types. Acceptable in test assertions.
+        - message: '#Unable to resolve the template type T(Key|Value) in call to function collect#'
+          path: tests/*
