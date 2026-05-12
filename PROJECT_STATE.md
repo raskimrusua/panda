@@ -43,15 +43,16 @@
 
 | Item | Status | When it bites |
 |---|---|---|
-| Agronomist named (paid freelance, KALRO-credentialed) | Not named | P7 content authoring start |
+| Agronomist named (paid freelance, KALRO-credentialed) | **✅ Silas** (named 2026-05-11; last name + email + KALRO doc still TBC) | P7 content authoring start |
 | Native Swahili translator | Not named | P7 content authoring start (also P5 for UI strings) |
 | Pricing tier model (Free / Plus / Pro at KES X / Y) | Not decided | P5 upgrade-modal design |
 | Crop.health Kindwise account + monthly cost ceiling | Not signed up | P5 (mocked through P4) |
 | Image data retention period | Working assumption: 24 months | P4 disease detection persistence |
 | Disease photos for training data — opt-in/opt-out | Working assumption: opt-in default | P4 consent UI |
 | Image consent UI text + DPA 2019 wording | TBD | P5 (review with lawyer alongside Shira's ToS work) |
-| Domain — `panda.farm` vs alternatives | Working assumption: `panda.farm` | P6 marketing launch |
-| GitHub repo — public or private | Working assumption: private | P1 first push |
+| Domain — `panda.shira.farm` vs alternatives | Working assumption: `panda.shira.farm` | P6 marketing launch |
+| Hetzner provisioning timing | **✅ Now** (no longer deferred to P8) — provision in parallel with build, gives PWA a real endpoint to point at | Loops back to "deploy to live API" task |
+| GitHub repo — public or private | **✅ Private** (locked 2026-05-11) | — |
 | Marketing framing tone — bold vs reserved | TBD | P6 |
 | Brand identity (logo, colours, font) | TBD | P5/P6 — not blocking |
 
@@ -108,7 +109,7 @@ The pipeline reads `~/Desktop/panda/CLAUDE.md` for architecture rules + the 14 L
 | 2026-05-08 | **PR #2 — first model (Crop) on `feat/p1-crop-model`**: 25 files, +1476 lines. Crop model (ULID + soft-delete + activity log + 2 scopes) + migration + 5 named-state factory (tomato/kale/cabbage/bulb-onion/french-beans). API surface: CropResource (single, shared catalogue) + IndexCropRequest (allowlisted filters: category/harvest_type/phase/active_only/q/per_page) + CropController (read-only index + slug-bound show) + routes/api.php. Content system: crop.schema.json (full JAICA spec) + tomato.json (12 timeline activities + 8 inputs + Tylka F1 / Cal-J varieties + EN/SW bilingual) + ContentLoader service (validates against schema, caches in Redis, ~1ms p99 reads) + `crops:content:reload` artisan command. Tests: 38/38 passing, 136 assertions across CropModelTest (9), CropApiTest (14), ContentLoaderTest (9), ReloadContentCommandTest (4) + 2 Laravel defaults. Pint pass, PHPStan level 6 no errors. **Coverage gate reinstated at --min=70** (Laravel boilerplate excluded via phpunit.xml). Activity log migrations published. install:api ran (Sanctum scaffold). |
 | 2026-05-08 | **CI on PR #2 caught a real Postgres-vs-SQLite drift** (commit `a7ae69c`): Spatie ActivityLog's published migration uses `nullableMorphs()` → bigint subject_id; Crop's ULID PK insert fails with `SQLSTATE[22P02]: invalid input syntax for type bigint`. SQLite is typeless, accepted silently (local pest passed). Fix: `nullableMorphs()` → `nullableUlidMorphs()`. CI green after fix. **Lesson captured into UWC `skill-laravel-eloquent-model` v1.1** (Edge Case + Changelog), shipped via UWC PR #4 (commit `a9cb094`). General principle now in skill: "always run CI on Postgres before merging any PR that adds models with vendor packages." |
 | 2026-05-09 | **PR #2 merged → main** (`e0a2cf2`). UWC PR #4 (skill v1.1 lesson) merged → upstate-web-co/uwc-ops main. |
-| 2026-05-09 | **PR #3 — multitenancy + auth + Season on `feat/p3-tenant-multitenancy`**: ULID conversion of users + personal_access_tokens migrations (greenfield-edit, ulidMorphs lesson re-applied); Tenant model extending Spatie `SpatieTenant` + Kenyan-county TenantFactory + customised `config/multitenancy.php` for single-DB row mode (tenant_finder = UserTenantFinder; switch_tenant_tasks = PrefixCacheTask only); BelongsToTenant trait (global scope + creating event auto-attach); UserTenantFinder + SetTenantFromUser middleware (registered in priority list BEFORE SubstituteBindings — critical: route-model-binding fires before custom middleware otherwise, leaking foreign tenants as 200 instead of 404); AuthController (register transactional Tenant+User+token, login, logout, me) + Register/Login FormRequests; UserResource + TenantResource. **First tenant-scoped model — Season** (status enum, irrigation enum, engine_metadata JSON, client_id offline-sync key, tenant-scoped unique constraint) + factory (5 named states) + SeasonController (apiResource) + SeasonListResource + SeasonDetailResource + StoreSeason/UpdateSeason FormRequests. Tests: 75 total, all green — TenantTest (7), UserTenantFinderTest (3), AuthApiTest (8), SeasonModelTest (7), SeasonApiTest (12 inc. **5 mandatory cross-tenant isolation tests** — list/show/update/destroy/store-with-hijack-payload all 404 or auto-coerce). Pint + PHPStan level 6 clean (3 ignore patterns added: Pest expectation chain template, Carbon date cast through resources). **CI coverage gate raised from 70% → 75%.** |
+| 2026-05-09 | **PR #3 — multitenancy + auth + Season on `feat/p3-tenant-multitenancy`** ([panda#3](https://github.com/raskimrusua/panda/pull/3)): ULID conversion of users + personal_access_tokens migrations (greenfield-edit, ulidMorphs lesson re-applied); Tenant model extending Spatie `SpatieTenant` + Kenyan-county TenantFactory + customised `config/multitenancy.php` for single-DB row mode (tenant_finder = UserTenantFinder; switch_tenant_tasks = PrefixCacheTask only); BelongsToTenant trait (global scope + creating event auto-attach); UserTenantFinder + SetTenantFromUser middleware (registered in priority list BEFORE SubstituteBindings — critical: route-model-binding fires before custom middleware otherwise, leaking foreign tenants as 200 instead of 404); AuthController (register transactional Tenant+User+token, login, logout, me) + Register/Login FormRequests; UserResource + TenantResource. **First tenant-scoped model — Season** (status enum, irrigation enum, engine_metadata JSON, client_id offline-sync key, tenant-scoped unique constraint) + factory (5 named states) + SeasonController (apiResource) + SeasonListResource + SeasonDetailResource + StoreSeason/UpdateSeason FormRequests. Tests: 75 total, all green locally — TenantTest (7), UserTenantFinderTest (3), AuthApiTest (8), SeasonModelTest (7), SeasonApiTest (12 inc. **5 mandatory cross-tenant isolation tests** — list/show/update/destroy/store-with-hijack-payload all 404 or auto-coerce). Pint + PHPStan level 6 clean (3 ignore patterns added: Pest expectation chain template, Carbon date cast through resources). **CI coverage gate raised from 70% → 75%.** **CI status: BLOCKED** — both jobs (api-lint + api-test) failing at runner-pickup phase (6–13s, zero steps execute, runner_id=0). Workflow YAML valid, same file passed for PR #2 two days earlier. Pattern matches GitHub-hosted runner pool issue (likely transient OR account quota). Needs Joshua to check raskimrusua Actions billing/usage page in browser. Code itself verified green locally; PR is otherwise mergeable. |
 
 ---
 
@@ -121,16 +122,48 @@ The pipeline reads `~/Desktop/panda/CLAUDE.md` for architecture rules + the 14 L
 
 ---
 
-## Next up — PR #4 (still P1)
+## Next up — PR #4 (P1 close-out) — confirmed direction (2026-05-11)
 
-PR #3 closed out tenancy + auth + first business model. Remaining P1 surface:
+User picked: **finish P1 first** (Filament + Sentry + health), then Hetzner provisioning in a focused session, then P2 Season Engine. Standalone Sanctum stays — no JWT sharing with Shira.
 
-- **Filament admin panel** scaffold (CropResource read-mostly + ContentReview model for agronomist sign-off workflow)
-- **Sentry wiring** (config already published; needs DSN + a smoke-test exception path)
-- **Health endpoint** at `/api/v1/health/` returning DB + Redis + Crop.health-API status
-- **Internal `/api/v1/internal/farms/sync/`** — receives farm-cache deltas (deferred from spec; only relevant once Shira pushes anything)
+Branch from `main` (not `feat/p3-tenant-multitenancy`) so PR #4 is independent of PR #3's CI hold. Filament panel doesn't touch the User changes in PR #3, so no merge conflict.
 
-P2 (Season Engine service) follows P1 close-out. P2 will turn `Season::created` into a generated activity timeline + input list — pure-class engine, observer fires on Season creation, all writes inside one `DB::transaction()`.
+### PR #4 scope
+
+1. **Filament admin panel**
+   - `php artisan filament:install --panels` to create `app/Providers/Filament/AdminPanelProvider.php`
+   - Panel mounted at `/admin`, gated by `User::canAccessPanel()` returning `is_superuser` (new boolean column on users — admin-only, default false; note this is one more migration to land before Filament is usable)
+   - **CropResource** — Form (slug readonly + name_en/sw + category + harvest_type + image_url + is_active + phase_added) + Table (with status badge + active filter). Ops can edit Crop catalogue rows, but the JSON content file is the source of truth — Crop rows mirror metadata only.
+   - **ContentReview** model (new) — `crop_slug`, `submitted_by` (FK users), `reviewer_id` nullable FK, `status` enum (`draft|submitted|approved|changes_requested`), `reviewer_notes` text, timestamps. Soft-delete + activity log. Migration + factory + 3-4 model tests.
+   - **ContentReviewResource** — Filament form + table for Silas to submit + ops to approve. Approve action triggers a placeholder `ExportContentJob` (artisan command stub) — actual content-export-to-git wiring deferred to a later PR.
+
+2. **Sentry wiring**
+   - `php artisan sentry:publish --dsn=https://example@sentry.io/0` (placeholder; user provides real DSN later via `.env`)
+   - Add Sentry handler to `bootstrap/app.php` exceptions block per skill-laravel-sentry.md (if it exists; otherwise per Sentry-Laravel docs)
+   - `routes/web.php` smoke-test route `/sentry-smoke-test` (superuser-only) that throws an unhandled exception to verify wiring
+   - Document in README how to set the DSN
+
+3. **Health endpoint**
+   - `GET /api/v1/health/` (public, no auth — needed for uptime monitoring)
+   - Service: `App\Services\HealthCheck` returning `['status' => 'ok'|'degraded', 'checks' => ['db' => '…', 'redis' => '…', 'queue' => '…', 'crop_health' => 'skipped'], 'time' => …]`
+   - DB check: `DB::connection()->getPdo()->query('SELECT 1')`
+   - Redis check: `Redis::ping()`
+   - Queue check: count of failed_jobs in last hour (warn if > 5)
+   - Crop.health: `'skipped'` until P5 wires the real client (mock through P4)
+   - Returns 200 if all `ok`; 503 if any check fails (so uptime monitors fire)
+   - 4-5 Pest tests (each check, all-good, one-broken)
+
+4. **Coverage gate** climbs to 78% (from 75%) since Filament + ContentReview + HealthCheck add a lot of well-tested code.
+
+5. **CI infra**: PR #4 needs the runner-pickup issue resolved before it can merge. Joshua to check `https://github.com/settings/billing/summary` → Actions usage. If quota's the problem, switching `raskimrusua/panda` to public restores free unlimited (acceptable per "let it stay private for now" only if quota isn't blocking — otherwise revisit).
+
+### Deferred to later PR (don't sneak in)
+- Internal `/api/v1/internal/farms/sync/` (only matters if Shira ever pushes to Panda; standalone product, low priority)
+- Real Sentry alerts wiring (email + SMS) — needs DSN + Sentry project setup first
+- Filament agronomist editor for the JSON content files themselves (full structured form per crop) — large surface; better as its own PR after the basic Filament + ContentReview foundation is in
+- Hetzner provisioning + nginx vhost + DNS + Origin Cert — separate session per user direction
+
+P2 (Season Engine service) follows PR #4. P2 will turn `Season::created` into a generated activity timeline + input list — pure-class engine, observer fires on creation, all writes inside one `DB::transaction()`.
 
 ### Lessons captured during PR #3 (worth eventually backporting to UWC skills)
 
