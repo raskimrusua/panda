@@ -4,6 +4,8 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { BrowserRouter } from 'react-router-dom';
 import { App } from './App';
 import { AuthProvider } from './auth/AuthProvider';
+import { OfflineQueueProvider } from './offline/OfflineQueueProvider';
+import './i18n';
 import './index.css';
 
 const queryClient = new QueryClient({
@@ -24,7 +26,9 @@ createRoot(rootEl).render(
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
         <AuthProvider>
-          <App />
+          <OfflineQueueProvider>
+            <App />
+          </OfflineQueueProvider>
         </AuthProvider>
       </BrowserRouter>
     </QueryClientProvider>

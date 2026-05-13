@@ -2,20 +2,39 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useTranslation } from 'react-i18next';
 import { harvestsApi } from '@/api/harvests';
 import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
 import { Label, FieldError } from '@/components/ui/Label';
 import { newHarvestSchema, type NewHarvestValues } from '@/lib/zodSchemas';
+import { offlineQueue } from '@/offline/queue';
+import { useOfflineQueue } from '@/offline/useOfflineQueue';
+import { isNetworkError } from './LogActivityDoneForm';
 
 export interface NewHarvestFormProps {
   seasonId: string;
   onDone: () => void;
 }
 
+function buildPayload(seasonId: string, v: NewHarvestValues): Record<string, unknown> {
+  return {
+    season_id: seasonId,
+    harvested_at: v.harvested_at,
+    quantity_kg: v.quantity_kg,
+    ...(v.sold_quantity_kg !== undefined && { sold_quantity_kg: v.sold_quantity_kg }),
+    ...(v.unit_price_kes !== undefined && { unit_price_kes: v.unit_price_kes }),
+    ...(v.buyer_name && { buyer_name: v.buyer_name }),
+    ...(v.notes && { notes: v.notes }),
+  };
+}
+
 export function NewHarvestForm({ seasonId, onDone }: NewHarvestFormProps) {
+  const { t } = useTranslation();
   const qc = useQueryClient();
+  const { online, refresh } = useOfflineQueue();
   const [submitError, setSubmitError] = useState<string | null>(null);
+  const [savedOffline, setSavedOffline] = useState(false);
 
   const {
     register,
@@ -33,25 +52,41 @@ export function NewHarvestForm({ seasonId, onDone }: NewHarvestFormProps) {
     },
   });
 
+  const enqueueOffline = async (values: NewHarvestValues) => {
+    await offlineQueue.enqueue({
+      type: 'log_harvest',
+      url: '/harvests',
+      method: 'POST',
+      payload: buildPayload(seasonId, values),
+      invalidate_keys: [
+        ['seasons', seasonId, 'harvests'],
+        ['seasons', seasonId],
+      ],
+    });
+    await refresh();
+    setSavedOffline(true);
+    setTimeout(onDone, 1200);
+  };
+
   const mutation = useMutation({
-    mutationFn: (values: NewHarvestValues) =>
-      harvestsApi.create({
-        season_id: seasonId,
-        harvested_at: values.harvested_at,
-        quantity_kg: values.quantity_kg,
-        ...(values.sold_quantity_kg !== undefined && {
-          sold_quantity_kg: values.sold_quantity_kg,
-        }),
-        ...(values.unit_price_kes !== undefined && { unit_price_kes: values.unit_price_kes }),
-        ...(values.buyer_name && { buyer_name: values.buyer_name }),
-        ...(values.notes && { notes: values.notes }),
-      }),
-    onSuccess: () => {
+    mutationFn: async (values: NewHarvestValues) => {
+      if (!online) {
+        await enqueueOffline(values);
+        return null;
+      }
+      return harvestsApi.create(buildPayload(seasonId, values) as unknown as Parameters<typeof harvestsApi.create>[0]);
+    },
+    onSuccess: (res) => {
+      if (res === null) return;
       qc.invalidateQueries({ queryKey: ['seasons', seasonId, 'harvests'] });
       qc.invalidateQueries({ queryKey: ['seasons', seasonId] });
       onDone();
     },
-    onError: (err: unknown) => {
+    onError: async (err: unknown, values) => {
+      if (isNetworkError(err)) {
+        await enqueueOffline(values);
+        return;
+      }
       const message =
         (err as { response?: { data?: { message?: string } } })?.response?.data?.message ??
         'Could not save the harvest.';
@@ -62,7 +97,7 @@ export function NewHarvestForm({ seasonId, onDone }: NewHarvestFormProps) {
   return (
     <form onSubmit={handleSubmit((v) => mutation.mutate(v))} className="space-y-3">
       <div>
-        <Label htmlFor="harvested_at">Date</Label>
+        <Label htmlFor="harvested_at">{t('log_forms.date')}</Label>
         <Input
           id="harvested_at"
           type="date"
@@ -75,7 +110,7 @@ export function NewHarvestForm({ seasonId, onDone }: NewHarvestFormProps) {
 
       <div className="grid grid-cols-2 gap-3">
         <div>
-          <Label htmlFor="quantity_kg">Picked (kg)</Label>
+          <Label htmlFor="quantity_kg">{t('log_forms.picked_kg')}</Label>
           <Input
             id="quantity_kg"
             type="number"
@@ -87,7 +122,7 @@ export function NewHarvestForm({ seasonId, onDone }: NewHarvestFormProps) {
           <FieldError message={errors.quantity_kg?.message} />
         </div>
         <div>
-          <Label htmlFor="sold_quantity_kg">Sold (kg)</Label>
+          <Label htmlFor="sold_quantity_kg">{t('log_forms.sold_kg')}</Label>
           <Input
             id="sold_quantity_kg"
             type="number"
@@ -102,7 +137,7 @@ export function NewHarvestForm({ seasonId, onDone }: NewHarvestFormProps) {
 
       <div className="grid grid-cols-2 gap-3">
         <div>
-          <Label htmlFor="unit_price_kes">Price/kg (KES)</Label>
+          <Label htmlFor="unit_price_kes">{t('log_forms.price_per_kg')}</Label>
           <Input
             id="unit_price_kes"
             type="number"
@@ -114,7 +149,7 @@ export function NewHarvestForm({ seasonId, onDone }: NewHarvestFormProps) {
           <FieldError message={errors.unit_price_kes?.message} />
         </div>
         <div>
-          <Label htmlFor="buyer_name">Buyer (optional)</Label>
+          <Label htmlFor="buyer_name">{t('log_forms.buyer_optional')}</Label>
           <Input
             id="buyer_name"
             placeholder="e.g. Marikiti broker"
@@ -124,7 +159,7 @@ export function NewHarvestForm({ seasonId, onDone }: NewHarvestFormProps) {
       </div>
 
       <div>
-        <Label htmlFor="notes">Notes (optional)</Label>
+        <Label htmlFor="notes">{t('log_forms.notes_optional')}</Label>
         <textarea
           id="notes"
           rows={2}
@@ -134,10 +169,13 @@ export function NewHarvestForm({ seasonId, onDone }: NewHarvestFormProps) {
       </div>
 
       {submitError && <p className="text-sm text-danger-600" role="alert">{submitError}</p>}
+      {savedOffline && (
+        <p className="text-sm text-warn-600" role="status">{t('log_forms.saved_offline')}</p>
+      )}
 
       <div className="flex justify-end gap-2 pt-1">
-        <Button type="button" variant="secondary" onClick={onDone}>Cancel</Button>
-        <Button type="submit" loading={mutation.isPending}>Save harvest</Button>
+        <Button type="button" variant="secondary" onClick={onDone}>{t('common.cancel')}</Button>
+        <Button type="submit" loading={mutation.isPending}>{t('log_forms.save_harvest')}</Button>
       </div>
     </form>
   );

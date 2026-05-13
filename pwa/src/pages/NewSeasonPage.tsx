@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useTranslation } from 'react-i18next';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
@@ -12,6 +13,7 @@ import { seasonsApi } from '@/api/seasons';
 import { newSeasonSchema, type NewSeasonValues } from '@/lib/zodSchemas';
 
 export function NewSeasonPage() {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   const [submitError, setSubmitError] = useState<string | null>(null);
@@ -58,18 +60,15 @@ export function NewSeasonPage() {
   return (
     <div className="max-w-2xl space-y-4">
       <header>
-        <h1 className="text-2xl font-semibold">Plan a season</h1>
-        <p className="text-gray-600">
-          Pick a crop, your acreage, and a planting date. Panda will generate the
-          activity timeline + scaled input list automatically.
-        </p>
+        <h1 className="text-2xl font-semibold">{t('seasons.new_title')}</h1>
+        <p className="text-gray-600">{t('seasons.new_subtitle')}</p>
       </header>
 
       <Card>
         <CardBody>
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
             <div>
-              <Label htmlFor="crop_id">Crop</Label>
+              <Label htmlFor="crop_id">{t('seasons.crop')}</Label>
               <select
                 id="crop_id"
                 className="flex h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600"
@@ -77,7 +76,7 @@ export function NewSeasonPage() {
                 {...register('crop_id')}
               >
                 <option value="">
-                  {cropsQuery.isLoading ? 'Loading…' : 'Choose…'}
+                  {cropsQuery.isLoading ? t('common.loading') : t('auth.choose')}
                 </option>
                 {cropsQuery.data?.data.map((c) => (
                   <option key={c.id} value={c.id}>
@@ -90,7 +89,7 @@ export function NewSeasonPage() {
 
             <div className="grid grid-cols-2 gap-3">
               <div>
-                <Label htmlFor="acreage">Acreage</Label>
+                <Label htmlFor="acreage">{t('seasons.acreage')}</Label>
                 <Input
                   id="acreage"
                   type="number"
@@ -102,7 +101,7 @@ export function NewSeasonPage() {
                 <FieldError message={errors.acreage?.message} />
               </div>
               <div>
-                <Label htmlFor="planting_date">Planting date</Label>
+                <Label htmlFor="planting_date">{t('seasons.planting_date')}</Label>
                 <Input
                   id="planting_date"
                   type="date"
@@ -114,16 +113,16 @@ export function NewSeasonPage() {
             </div>
 
             <div>
-              <Label htmlFor="irrigation_type">Irrigation</Label>
+              <Label htmlFor="irrigation_type">{t('seasons.irrigation')}</Label>
               <select
                 id="irrigation_type"
                 className="flex h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm"
                 {...register('irrigation_type')}
               >
-                <option value="rainfed">Rainfed</option>
-                <option value="drip">Drip irrigation</option>
-                <option value="furrow">Furrow</option>
-                <option value="greenhouse">Greenhouse</option>
+                <option value="rainfed">{t('seasons.rainfed')}</option>
+                <option value="drip">{t('seasons.drip')}</option>
+                <option value="furrow">{t('seasons.furrow')}</option>
+                <option value="greenhouse">{t('seasons.greenhouse')}</option>
               </select>
             </div>
 
@@ -135,10 +134,10 @@ export function NewSeasonPage() {
 
             <div className="flex justify-end gap-2 pt-2">
               <Button type="button" variant="secondary" onClick={() => navigate('/seasons')}>
-                Cancel
+                {t('common.cancel')}
               </Button>
               <Button type="submit" loading={createMutation.isPending}>
-                Create season
+                {t('seasons.create_season')}
               </Button>
             </div>
           </form>
