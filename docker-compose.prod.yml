@@ -1,0 +1,99 @@
+# =============================================================================
+# Panda PWA — Production Docker Compose
+# Co-located on Shira's Hetzner CX22; shares Postgres, Redis, nginx, Origin Cert.
+# =============================================================================
+# Usage (on the server, from /srv/panda):
+#   docker compose -f docker-compose.prod.yml up -d
+#
+# Requires: .env file with all production variables (see .env.example)
+# Requires: external network `farmcore_network` already exists (created by
+#           Shira's docker-compose.prod.yml). Do NOT recreate it here.
+
+services:
+  # ---------------------------------------------------------------------------
+  # PHP-FPM 8.3 — Laravel app
+  # ---------------------------------------------------------------------------
+  app:
+    build:
+      context: ./api
+      dockerfile: docker/Dockerfile
+    container_name: panda_app
+    expose:
+      - "9000"
+    env_file:
+      - .env
+    environment:
+      - APP_ENV=production
+      - DB_CONNECTION=pgsql
+      - DB_HOST=farmcore_db
+      - DB_PORT=5432
+      - DB_DATABASE=panda_production
+      - DB_USERNAME=panda
+      # DB_PASSWORD comes from .env (set by ops)
+      - REDIS_HOST=farmcore_redis
+      - REDIS_PORT=6379
+      # REDIS_PASSWORD comes from .env (must match Shira's REDIS_PASSWORD)
+      - REDIS_DB=5         # Panda cache (Shira uses 0 + 1)
+      - QUEUE_CONNECTION=redis
+      - REDIS_QUEUE_DB=6   # Panda Horizon queue
+    volumes:
+      - panda_storage:/var/www/html/storage
+    networks:
+      - farmcore_network
+    restart: unless-stopped
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "5"
+
+  # ---------------------------------------------------------------------------
+  # Horizon — queue worker (same image as app, different command)
+  # ---------------------------------------------------------------------------
+  horizon:
+    build:
+      context: ./api
+      dockerfile: docker/Dockerfile
+    container_name: panda_horizon
+    command: php artisan horizon
+    env_file:
+      - .env
+    environment:
+      - APP_ENV=production
+      - DB_CONNECTION=pgsql
+      - DB_HOST=farmcore_db
+      - DB_PORT=5432
+      - DB_DATABASE=panda_production
+      - DB_USERNAME=panda
+      - REDIS_HOST=farmcore_redis
+      - REDIS_PORT=6379
+      - REDIS_DB=5
+      - QUEUE_CONNECTION=redis
+      - REDIS_QUEUE_DB=6
+    volumes:
+      - panda_storage:/var/www/html/storage
+    depends_on:
+      - app
+    networks:
+      - farmcore_network
+    restart: unless-stopped
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "5"
+
+# =============================================================================
+# Volumes
+# =============================================================================
+volumes:
+  panda_storage:
+    name: panda_storage
+
+# =============================================================================
+# Networks (joined as external — Shira owns the lifecycle)
+# =============================================================================
+networks:
+  farmcore_network:
+    external: true
+    name: farmcore_network
