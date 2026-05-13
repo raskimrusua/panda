@@ -21,3 +21,4 @@ dist-ssr
 dev-dist
 .cache
 coverage
+*.tsbuildinfo
