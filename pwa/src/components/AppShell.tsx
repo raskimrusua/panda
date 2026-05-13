@@ -5,6 +5,7 @@ import { useAuth } from '@/auth/useAuth';
 import { Button } from './ui/Button';
 import { LanguageSwitcher } from './LanguageSwitcher';
 import { OnlineIndicator } from './OnlineIndicator';
+import { WelcomeModal } from './WelcomeModal';
 import { cn } from '@/lib/utils';
 import type { ReactNode } from 'react';
 
@@ -78,6 +79,7 @@ export function AppShell({ children }: { children: ReactNode }) {
         </div>
       </aside>
       <main className="flex-1 p-4 md:p-8 max-w-5xl mx-auto w-full">{children}</main>
+      <WelcomeModal />
     </div>
   );
 }

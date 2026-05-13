@@ -7,6 +7,7 @@ import { harvestsApi } from '@/api/harvests';
 import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
 import { Label, FieldError } from '@/components/ui/Label';
+import { HelpTooltip } from '@/components/ui/HelpTooltip';
 import { newHarvestSchema, type NewHarvestValues } from '@/lib/zodSchemas';
 import { offlineQueue } from '@/offline/queue';
 import { useOfflineQueue } from '@/offline/useOfflineQueue';
@@ -110,7 +111,10 @@ export function NewHarvestForm({ seasonId, onDone }: NewHarvestFormProps) {
 
       <div className="grid grid-cols-2 gap-3">
         <div>
-          <Label htmlFor="quantity_kg">{t('log_forms.picked_kg')}</Label>
+          <div className="flex items-center gap-1">
+            <Label htmlFor="quantity_kg">{t('log_forms.picked_kg')}</Label>
+            <HelpTooltip title={t('help.harvest_picked_title')} body={t('help.harvest_picked_body')} />
+          </div>
           <Input
             id="quantity_kg"
             type="number"
@@ -137,7 +141,10 @@ export function NewHarvestForm({ seasonId, onDone }: NewHarvestFormProps) {
 
       <div className="grid grid-cols-2 gap-3">
         <div>
-          <Label htmlFor="unit_price_kes">{t('log_forms.price_per_kg')}</Label>
+          <div className="flex items-center gap-1">
+            <Label htmlFor="unit_price_kes">{t('log_forms.price_per_kg')}</Label>
+            <HelpTooltip title={t('help.harvest_price_title')} body={t('help.harvest_price_body')} />
+          </div>
           <Input
             id="unit_price_kes"
             type="number"

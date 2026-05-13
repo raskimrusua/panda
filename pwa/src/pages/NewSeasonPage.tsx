@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
 import { Label, FieldError } from '@/components/ui/Label';
 import { Card, CardBody } from '@/components/ui/Card';
+import { HelpTooltip } from '@/components/ui/HelpTooltip';
 import { cropsApi } from '@/api/crops';
 import { seasonsApi } from '@/api/seasons';
 import { newSeasonSchema, type NewSeasonValues } from '@/lib/zodSchemas';
@@ -89,7 +90,10 @@ export function NewSeasonPage() {
 
             <div className="grid grid-cols-2 gap-3">
               <div>
-                <Label htmlFor="acreage">{t('seasons.acreage')}</Label>
+                <div className="flex items-center gap-1">
+                  <Label htmlFor="acreage">{t('seasons.acreage')}</Label>
+                  <HelpTooltip title={t('help.acreage_title')} body={t('help.acreage_body')} />
+                </div>
                 <Input
                   id="acreage"
                   type="number"
@@ -101,7 +105,10 @@ export function NewSeasonPage() {
                 <FieldError message={errors.acreage?.message} />
               </div>
               <div>
-                <Label htmlFor="planting_date">{t('seasons.planting_date')}</Label>
+                <div className="flex items-center gap-1">
+                  <Label htmlFor="planting_date">{t('seasons.planting_date')}</Label>
+                  <HelpTooltip title={t('help.planting_date_title')} body={t('help.planting_date_body')} />
+                </div>
                 <Input
                   id="planting_date"
                   type="date"
@@ -113,7 +120,10 @@ export function NewSeasonPage() {
             </div>
 
             <div>
-              <Label htmlFor="irrigation_type">{t('seasons.irrigation')}</Label>
+              <div className="flex items-center gap-1">
+                <Label htmlFor="irrigation_type">{t('seasons.irrigation')}</Label>
+                <HelpTooltip title={t('help.irrigation_title')} body={t('help.irrigation_body')} />
+              </div>
               <select
                 id="irrigation_type"
                 className="flex h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm"
