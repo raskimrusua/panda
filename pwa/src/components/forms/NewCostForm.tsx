@@ -2,11 +2,15 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useTranslation } from 'react-i18next';
 import { costsApi } from '@/api/costs';
 import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
 import { Label, FieldError } from '@/components/ui/Label';
 import { newCostSchema, type NewCostValues } from '@/lib/zodSchemas';
+import { offlineQueue } from '@/offline/queue';
+import { useOfflineQueue } from '@/offline/useOfflineQueue';
+import { isNetworkError } from './LogActivityDoneForm';
 
 export interface NewCostFormProps {
   seasonId: string;
@@ -14,8 +18,11 @@ export interface NewCostFormProps {
 }
 
 export function NewCostForm({ seasonId, onDone }: NewCostFormProps) {
+  const { t } = useTranslation();
   const qc = useQueryClient();
+  const { online, refresh } = useOfflineQueue();
   const [submitError, setSubmitError] = useState<string | null>(null);
+  const [savedOffline, setSavedOffline] = useState(false);
 
   const {
     register,
@@ -32,14 +39,37 @@ export function NewCostForm({ seasonId, onDone }: NewCostFormProps) {
     },
   });
 
+  const enqueueOffline = async (values: NewCostValues) => {
+    await offlineQueue.enqueue({
+      type: 'log_cost',
+      url: '/costs',
+      method: 'POST',
+      payload: { season_id: seasonId, ...values },
+      invalidate_keys: [['seasons', seasonId, 'costs']],
+    });
+    await refresh();
+    setSavedOffline(true);
+    setTimeout(onDone, 1200);
+  };
+
   const mutation = useMutation({
-    mutationFn: (values: NewCostValues) =>
-      costsApi.create({ season_id: seasonId, ...values }),
-    onSuccess: () => {
+    mutationFn: async (values: NewCostValues) => {
+      if (!online) {
+        await enqueueOffline(values);
+        return null;
+      }
+      return costsApi.create({ season_id: seasonId, ...values });
+    },
+    onSuccess: (res) => {
+      if (res === null) return;
       qc.invalidateQueries({ queryKey: ['seasons', seasonId, 'costs'] });
       onDone();
     },
-    onError: (err: unknown) => {
+    onError: async (err: unknown, values) => {
+      if (isNetworkError(err)) {
+        await enqueueOffline(values);
+        return;
+      }
       const message =
         (err as { response?: { data?: { message?: string } } })?.response?.data?.message ??
         'Could not save the cost.';
@@ -50,7 +80,7 @@ export function NewCostForm({ seasonId, onDone }: NewCostFormProps) {
   return (
     <form onSubmit={handleSubmit((v) => mutation.mutate(v))} className="space-y-3">
       <div>
-        <Label htmlFor="category">Category</Label>
+        <Label htmlFor="category">{t('log_forms.category')}</Label>
         <select
           id="category"
           className="flex h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm"
@@ -67,7 +97,7 @@ export function NewCostForm({ seasonId, onDone }: NewCostFormProps) {
       </div>
 
       <div>
-        <Label htmlFor="description">Description</Label>
+        <Label htmlFor="description">{t('log_forms.description')}</Label>
         <Input
           id="description"
           placeholder="e.g. Tylka F1 200g pack"
@@ -79,7 +109,7 @@ export function NewCostForm({ seasonId, onDone }: NewCostFormProps) {
 
       <div className="grid grid-cols-2 gap-3">
         <div>
-          <Label htmlFor="amount_kes">Amount (KES)</Label>
+          <Label htmlFor="amount_kes">{t('log_forms.amount_kes')}</Label>
           <Input
             id="amount_kes"
             type="number"
@@ -91,7 +121,7 @@ export function NewCostForm({ seasonId, onDone }: NewCostFormProps) {
           <FieldError message={errors.amount_kes?.message} />
         </div>
         <div>
-          <Label htmlFor="incurred_at">Date</Label>
+          <Label htmlFor="incurred_at">{t('log_forms.date')}</Label>
           <Input
             id="incurred_at"
             type="date"
@@ -104,7 +134,7 @@ export function NewCostForm({ seasonId, onDone }: NewCostFormProps) {
       </div>
 
       <div>
-        <Label htmlFor="supplier_name">Supplier (optional)</Label>
+        <Label htmlFor="supplier_name">{t('log_forms.supplier_optional')}</Label>
         <Input
           id="supplier_name"
           placeholder="e.g. Mwea Agrovet Centre"
@@ -113,10 +143,13 @@ export function NewCostForm({ seasonId, onDone }: NewCostFormProps) {
       </div>
 
       {submitError && <p className="text-sm text-danger-600" role="alert">{submitError}</p>}
+      {savedOffline && (
+        <p className="text-sm text-warn-600" role="status">{t('log_forms.saved_offline')}</p>
+      )}
 
       <div className="flex justify-end gap-2 pt-1">
-        <Button type="button" variant="secondary" onClick={onDone}>Cancel</Button>
-        <Button type="submit" loading={mutation.isPending}>Save cost</Button>
+        <Button type="button" variant="secondary" onClick={onDone}>{t('common.cancel')}</Button>
+        <Button type="submit" loading={mutation.isPending}>{t('log_forms.save_cost')}</Button>
       </div>
     </form>
   );

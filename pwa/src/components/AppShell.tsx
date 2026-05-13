@@ -1,26 +1,30 @@
 import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { Camera, LayoutDashboard, LineChart, LogOut, MapPin, Sprout } from 'lucide-react';
 import { useAuth } from '@/auth/useAuth';
 import { Button } from './ui/Button';
+import { LanguageSwitcher } from './LanguageSwitcher';
+import { OnlineIndicator } from './OnlineIndicator';
 import { cn } from '@/lib/utils';
 import type { ReactNode } from 'react';
 
 interface NavItem {
   to: string;
-  label: string;
+  labelKey: string;
   icon: ReactNode;
 }
 
 const NAV: NavItem[] = [
-  { to: '/', label: 'Dashboard', icon: <LayoutDashboard className="h-4 w-4" /> },
-  { to: '/seasons', label: 'Seasons', icon: <Sprout className="h-4 w-4" /> },
-  { to: '/disease', label: 'Disease scan', icon: <Camera className="h-4 w-4" /> },
-  { to: '/dealers', label: 'Dealers', icon: <MapPin className="h-4 w-4" /> },
-  { to: '/prices', label: 'Market prices', icon: <LineChart className="h-4 w-4" /> },
+  { to: '/', labelKey: 'nav.dashboard', icon: <LayoutDashboard className="h-4 w-4" /> },
+  { to: '/seasons', labelKey: 'nav.seasons', icon: <Sprout className="h-4 w-4" /> },
+  { to: '/disease', labelKey: 'nav.disease', icon: <Camera className="h-4 w-4" /> },
+  { to: '/dealers', labelKey: 'nav.dealers', icon: <MapPin className="h-4 w-4" /> },
+  { to: '/prices', labelKey: 'nav.prices', icon: <LineChart className="h-4 w-4" /> },
 ];
 
 export function AppShell({ children }: { children: ReactNode }) {
   const { user, logout } = useAuth();
+  const { t } = useTranslation();
   const navigate = useNavigate();
 
   const handleLogout = async () => {
@@ -36,6 +40,10 @@ export function AppShell({ children }: { children: ReactNode }) {
             Panda
           </Link>
           <p className="mt-1 text-xs text-gray-500">{user?.tenant?.name ?? user?.name}</p>
+        </div>
+        <div className="px-4 py-2 border-b border-gray-100 flex items-center justify-between">
+          <OnlineIndicator />
+          <LanguageSwitcher />
         </div>
         <nav className="p-2">
           {NAV.map((item) => (
@@ -53,11 +61,11 @@ export function AppShell({ children }: { children: ReactNode }) {
               }
             >
               {item.icon}
-              {item.label}
+              {t(item.labelKey)}
             </NavLink>
           ))}
         </nav>
-        <div className="p-2 mt-2 md:mt-0 md:absolute md:bottom-2 md:w-60">
+        <div className="p-2 mt-2">
           <Button
             variant="ghost"
             size="sm"
@@ -65,7 +73,7 @@ export function AppShell({ children }: { children: ReactNode }) {
             className="w-full justify-start"
           >
             <LogOut className="h-4 w-4 mr-2" />
-            Sign out
+            {t('nav.sign_out')}
           </Button>
         </div>
       </aside>

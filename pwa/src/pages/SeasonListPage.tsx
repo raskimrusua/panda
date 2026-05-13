@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
+import { useTranslation } from 'react-i18next';
 import { Plus } from 'lucide-react';
 import { buttonClasses } from '@/components/ui/Button';
 import { Card, CardBody } from '@/components/ui/Card';
@@ -16,6 +17,7 @@ const STATUS_BADGE: Record<Season['status'], string> = {
 };
 
 export function SeasonListPage() {
+  const { t } = useTranslation();
   const { data, isLoading, error } = useQuery({
     queryKey: ['seasons'],
     queryFn: () => seasonsApi.list(),
@@ -24,21 +26,19 @@ export function SeasonListPage() {
   return (
     <div className="space-y-4">
       <header className="flex items-center justify-between">
-        <h1 className="text-2xl font-semibold">Seasons</h1>
+        <h1 className="text-2xl font-semibold">{t('seasons.title')}</h1>
         <Link to="/seasons/new" className={`${buttonClasses('primary', 'md')} gap-1`}>
-          <Plus className="h-4 w-4" /> New season
+          <Plus className="h-4 w-4" /> {t('dashboard.new_season')}
         </Link>
       </header>
 
-      {isLoading && <p className="text-gray-500">Loading…</p>}
-      {error && (
-        <p className="text-danger-600">Could not load seasons. Try again later.</p>
-      )}
+      {isLoading && <p className="text-gray-500">{t('common.loading')}</p>}
+      {error && <p className="text-danger-600">{t('seasons.could_not_load')}</p>}
 
       {data && data.data.length === 0 && (
         <Card>
           <CardBody className="text-center py-12">
-            <p className="text-gray-600">No seasons yet. Plan your first one.</p>
+            <p className="text-gray-600">{t('seasons.none_yet')}</p>
           </CardBody>
         </Card>
       )}
@@ -55,16 +55,15 @@ export function SeasonListPage() {
                 <CardBody className="flex items-center justify-between">
                   <div>
                     <div className="font-medium">
-                      {season.crop_name ?? season.crop?.name_en ?? 'Crop'}
+                      {season.crop_name ?? season.crop?.name_en ?? t('seasons.crop')}
                     </div>
                     <div className="text-sm text-gray-600">
-                      {Number(season.acreage)} acres · planted {formatDate(season.planting_date)}
+                      {Number(season.acreage)} {t('seasons.acreage').toLowerCase()} ·{' '}
+                      {formatDate(season.planting_date)}
                     </div>
                   </div>
                   <span
-                    className={`text-xs px-2 py-1 rounded-full font-medium ${
-                      STATUS_BADGE[season.status]
-                    }`}
+                    className={`text-xs px-2 py-1 rounded-full font-medium ${STATUS_BADGE[season.status]}`}
                   >
                     {season.status}
                   </span>
