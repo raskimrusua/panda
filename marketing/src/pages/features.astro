@@ -1,0 +1,40 @@
+---
+import PublicLayout from '@/layouts/PublicLayout.astro'
+import Hero from '@/components/Hero.astro'
+import FeatureCard from '@/components/FeatureCard.astro'
+import { features } from '../../content/features'
+---
+
+<PublicLayout title="Features — Panda" description="Eight things Panda does for a Kenyan horticulture farmer.">
+  <Hero
+    eyebrow="Features"
+    title="Built around how a Kenyan horticulture farmer actually works."
+    subtitle="Eight things, no fluff. Each one is being battle-tested with the 200-farmer pilot in Meru and Kirinyaga before it ships nationally."
+  />
+
+  <section class="mx-auto max-w-6xl px-4 py-12 md:px-6 md:py-16">
+    <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+      {features.map((f) => <FeatureCard {...f} />)}
+    </div>
+  </section>
+
+  <section class="bg-sky-wash">
+    <div class="mx-auto max-w-4xl px-4 py-14 md:px-6 md:py-16">
+      <h2 class="text-2xl font-semibold text-rich-earth">
+        What's not built yet (we're honest about it)
+      </h2>
+      <ul class="mt-4 space-y-2 text-rich-earth/80">
+        <li>📷 Real Crop.health AI integration — wired but flag-gated; live at pilot launch</li>
+        <li>☁️ R2 photo storage — pending Cloudflare provisioning</li>
+        <li>📄 CSV exports for cost / harvest / disease history</li>
+        <li>📊 Yield trajectory, cost-by-category, and cumulative cost-vs-revenue charts</li>
+        <li>✏️ Edit / delete on costs + harvests (today: log-only — typos require admin)</li>
+        <li>🗣️ 16 more crops — content authoring takes 4–8 weeks per crop with agronomist sign-off</li>
+      </ul>
+      <p class="mt-4 text-sm text-rich-earth/60">
+        See <a href="https://github.com/raskimrusua/panda/blob/main/docs/GAP_REPORT_2026_05_13.md" class="underline hover:text-highland-green">the full gap report</a>
+        for prioritised punch list.
+      </p>
+    </div>
+  </section>
+</PublicLayout>

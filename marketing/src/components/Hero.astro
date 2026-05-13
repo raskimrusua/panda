@@ -1,0 +1,53 @@
+---
+export interface Props {
+  eyebrow?: string
+  title: string
+  subtitle: string
+  ctaPrimary?: { href: string; label: string }
+  ctaSecondary?: { href: string; label: string }
+}
+
+const {
+  eyebrow,
+  title,
+  subtitle,
+  ctaPrimary,
+  ctaSecondary,
+} = Astro.props
+---
+
+<section class="bg-panda-dawn">
+  <div class="mx-auto max-w-6xl px-4 py-16 md:px-6 md:py-24">
+    {eyebrow && (
+      <div class="mb-3 inline-flex items-center rounded-full border border-soft-green/40 bg-sky-wash px-3 py-1 text-xs font-semibold uppercase tracking-wide text-highland-green">
+        {eyebrow}
+      </div>
+    )}
+    <h1 class="max-w-3xl text-4xl font-semibold leading-tight text-rich-earth md:text-5xl">
+      {title}
+    </h1>
+    <p class="mt-4 max-w-2xl text-lg text-rich-earth/75">
+      {subtitle}
+    </p>
+    {(ctaPrimary || ctaSecondary) && (
+      <div class="mt-8 flex flex-wrap gap-3">
+        {ctaPrimary && (
+          <a
+            href={ctaPrimary.href}
+            class="rounded-md bg-highland-green px-5 py-3 text-sm font-semibold text-bone-white transition-colors hover:bg-deep-forest"
+          >
+            {ctaPrimary.label}
+          </a>
+        )}
+        {ctaSecondary && (
+          <a
+            href={ctaSecondary.href}
+            class="rounded-md border border-highland-green/30 bg-bone-white px-5 py-3 text-sm font-semibold text-highland-green transition-colors hover:bg-warm-cream/40"
+          >
+            {ctaSecondary.label}
+          </a>
+        )}
+      </div>
+    )}
+  </div>
+</section>

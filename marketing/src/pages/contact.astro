@@ -1,0 +1,35 @@
+---
+import PublicLayout from '@/layouts/PublicLayout.astro'
+import Hero from '@/components/Hero.astro'
+import ContactForm from '@/components/ContactForm'
+---
+
+<PublicLayout title="Contact — Panda" description="Get in touch. Pilot waitlist, partnerships, agronomy questions.">
+  <Hero
+    eyebrow="Contact"
+    title="Tell us about your farm."
+    subtitle="Pilot waitlist, partnership ideas, agronomy questions, or anything else. We respond within 1 working day from Nairobi."
+  />
+
+  <section class="mx-auto max-w-2xl px-4 py-12 md:px-6 md:py-16">
+    <ContactForm client:load />
+
+    <div class="mt-8 grid gap-4 text-sm text-rich-earth/70 md:grid-cols-2">
+      <div>
+        <h3 class="text-sm font-semibold text-rich-earth">Email</h3>
+        <a href="mailto:hello@panda.shira.farm" class="hover:text-highland-green">
+          hello@panda.shira.farm
+        </a>
+      </div>
+      <div>
+        <h3 class="text-sm font-semibold text-rich-earth">For developers</h3>
+        <a
+          href="https://github.com/raskimrusua/panda"
+          class="hover:text-highland-green"
+        >
+          github.com/raskimrusua/panda
+        </a>
+      </div>
+    </div>
+  </section>
+</PublicLayout>

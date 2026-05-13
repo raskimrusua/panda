@@ -1,0 +1,15 @@
+---
+export interface Props {
+  title: string
+  body: string
+  emoji?: string
+}
+
+const { title, body, emoji } = Astro.props
+---
+
+<article class="rounded-lg border border-warm-cream/60 bg-bone-white p-5 shadow-sm">
+  {emoji && <div class="mb-2 text-2xl">{emoji}</div>}
+  <h3 class="text-lg font-semibold text-rich-earth">{title}</h3>
+  <p class="mt-1 text-sm leading-relaxed text-rich-earth/75">{body}</p>
+</article>

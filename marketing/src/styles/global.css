@@ -1,0 +1,41 @@
+@import 'tailwindcss';
+
+/*
+ * Panda inherits Shira's brand palette + DM Sans typography.
+ * Two product-specific accents are layered on top so Panda's nav + CTA
+ * surfaces don't read identical to Shira's:
+ *   - panda-leaf  (a brighter green for "growing season" callouts)
+ *   - panda-dawn  (a warmer cream behind hero sections)
+ */
+@theme {
+  /* Inherited from Shira (https://shira.farm) */
+  --color-highland-green: #1B4332;
+  --color-deep-forest: #0D2818;
+  --color-soft-green: #52B788;
+  --color-savanna-sun: #E07A2F;
+  --color-terracotta: #C4652E;
+  --color-harvest-gold: #D4930D;
+  --color-bone-white: #FFF8F0;
+  --color-rich-earth: #2D2D2D;
+  --color-warm-cream: #F5E6D3;
+  --color-sky-wash: #E8F0E8;
+
+  /* Panda-specific accents */
+  --color-panda-leaf: #74C69D;
+  --color-panda-dawn: #FFF1E0;
+
+  /* Typography (matches Shira) */
+  --font-sans: 'DM Sans', system-ui, -apple-system, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  color: var(--color-rich-earth);
+  background: var(--color-bone-white);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

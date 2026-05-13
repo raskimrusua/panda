@@ -1,0 +1,65 @@
+---
+import PublicLayout from '@/layouts/PublicLayout.astro'
+import Hero from '@/components/Hero.astro'
+import { plans } from '../../content/pricing'
+---
+
+<PublicLayout title="Pricing — Panda" description="Mkulima (free) to Cooperative (custom). Provisional pricing pending pilot.">
+  <Hero
+    eyebrow="Pricing"
+    title="Free for solo farmers. KES 200/mo when you outgrow that."
+    subtitle="Final pricing lands after the Phase-8 pilot validates willingness to pay (target: 40% of pilot farmers say yes at KES 200/mo)."
+  />
+
+  <section class="mx-auto max-w-6xl px-4 py-12 md:px-6 md:py-16">
+    <div class="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+      {plans.map((plan) => (
+        <article
+          class={[
+            'flex flex-col rounded-lg border p-5 shadow-sm',
+            plan.highlight
+              ? 'border-highland-green bg-bone-white shadow-md ring-2 ring-soft-green/30'
+              : 'border-warm-cream/60 bg-bone-white',
+          ].join(' ')}
+        >
+          <div class="mb-1 flex items-baseline justify-between">
+            <h3 class="text-lg font-semibold text-rich-earth">{plan.name}</h3>
+            {plan.swahili && <span class="text-xs text-rich-earth/50">{plan.swahili}</span>}
+          </div>
+          <div class="mb-1 text-3xl font-semibold text-highland-green">
+            {plan.priceKES === 'Custom' ? 'Custom' : `KES ${plan.priceKES.toLocaleString()}`}
+            {plan.priceKES !== 'Custom' && (
+              <span class="text-sm font-normal text-rich-earth/60"> {plan.pricePeriod}</span>
+            )}
+          </div>
+          <p class="mb-4 text-sm text-rich-earth/70">{plan.audience}</p>
+
+          <ul class="mb-5 flex-1 space-y-1.5 text-sm">
+            {plan.features.map((f) => (
+              <li class={f.included ? 'text-rich-earth/80' : 'text-rich-earth/40 line-through'}>
+                {f.included ? '✓' : '–'} {f.text}
+              </li>
+            ))}
+          </ul>
+
+          <a
+            href={plan.cta.href}
+            class={[
+              'mt-auto block rounded-md px-3 py-2 text-center text-sm font-semibold transition-colors',
+              plan.highlight
+                ? 'bg-highland-green text-bone-white hover:bg-deep-forest'
+                : 'border border-highland-green/30 text-highland-green hover:bg-warm-cream/40',
+            ].join(' ')}
+          >
+            {plan.cta.label}
+          </a>
+        </article>
+      ))}
+    </div>
+
+    <p class="mt-6 max-w-3xl text-sm text-rich-earth/60">
+      All prices in KES. M-Pesa supported once we wire it. Pilot tier is free
+      with no time limit; we want farmers to outgrow it before we charge them.
+    </p>
+  </section>
+</PublicLayout>
