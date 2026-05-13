@@ -1,0 +1,80 @@
+---
+import PublicLayout from '@/layouts/PublicLayout.astro'
+import Hero from '@/components/Hero.astro'
+import FeatureCard from '@/components/FeatureCard.astro'
+import { features } from '../../content/features'
+---
+
+<PublicLayout
+  title="Panda — Plan, log, and grow your horticulture farm."
+  description="A Kenyan-built tool for tomato, kale, and 15 other crops. Inspired by SHEP PLUS. Offline-first. Bilingual EN / SW."
+>
+  <Hero
+    eyebrow="Pilot — Meru &amp; Kirinyaga, 2026"
+    title="Plan your season. Log every shilling. Walk into the bank with a real report."
+    subtitle="A Kenyan-built planning + logging tool for horticulture farms. Inspired by SHEP PLUS. Works offline. Bilingual English / Kiswahili. Sister product to Shira."
+    ctaPrimary={{ href: 'https://app.panda.shira.farm', label: 'Open the app' }}
+    ctaSecondary={{ href: '/features', label: 'See features' }}
+  />
+
+  <section class="mx-auto max-w-6xl px-4 py-16 md:px-6 md:py-20">
+    <div class="mb-10 max-w-2xl">
+      <h2 class="text-3xl font-semibold text-rich-earth md:text-4xl">
+        What Panda does for a horticulture farmer
+      </h2>
+      <p class="mt-3 text-lg text-rich-earth/70">
+        Eight things, all designed for the realities of farming in Kenya:
+        offline, bilingual, low-data, low-cost.
+      </p>
+    </div>
+    <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+      {features.map((f) => <FeatureCard {...f} />)}
+    </div>
+  </section>
+
+  <section class="bg-sky-wash">
+    <div class="mx-auto max-w-6xl px-4 py-14 md:px-6 md:py-16">
+      <div class="grid items-center gap-8 md:grid-cols-2">
+        <div>
+          <h2 class="text-3xl font-semibold text-rich-earth">
+            One season at a time. One crop at a time.
+          </h2>
+          <p class="mt-3 text-rich-earth/75">
+            Panda starts narrow on purpose: tomato in Meru and Kirinyaga, with
+            a single tested workflow — plan a season, follow the timeline, log
+            costs and harvests, walk away with a lender-ready PDF.
+          </p>
+          <p class="mt-3 text-rich-earth/75">
+            16 more crops follow, each with agronomist sign-off. We expand by
+            evidence, not by hype.
+          </p>
+        </div>
+        <ul class="space-y-3 text-rich-earth/80">
+          <li>✅ Tomato — full content (timeline, inputs, 6 diseases)</li>
+          <li>⏳ Kale, cabbage, onion, French beans — content drafted</li>
+          <li>⏳ Capsicum, chili, eggplant, potato, watermelon — outline</li>
+          <li>⏳ Amaranthus, managu, cowpea leaves — outline</li>
+          <li>⏳ Avocado, banana, mango, passion fruit — outline</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-3xl px-4 py-14 text-center md:px-6 md:py-20">
+    <h2 class="text-3xl font-semibold text-rich-earth">
+      Want to be among the first 200 farmers?
+    </h2>
+    <p class="mt-3 text-lg text-rich-earth/75">
+      The Meru &amp; Kirinyaga pilot starts in 2026. Tell us about your farm
+      and we'll be in touch when onboarding opens.
+    </p>
+    <div class="mt-6">
+      <a
+        href="/contact"
+        class="rounded-md bg-savanna-sun px-5 py-3 text-sm font-semibold text-bone-white transition-colors hover:bg-terracotta"
+      >
+        Join the pilot waitlist
+      </a>
+    </div>
+  </section>
+</PublicLayout>

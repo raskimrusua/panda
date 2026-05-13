@@ -1,0 +1,20 @@
+name = "panda-marketing"
+compatibility_date = "2024-11-01"
+pages_build_output_dir = "dist"
+
+# Bindings (resources are provisioned via wrangler CLI by ops; IDs filled in
+# after the resource is created — see DEPLOY_MARKETING.md).
+
+[[r2_buckets]]
+binding = "MEDIA"
+bucket_name = "panda-marketing-media"
+
+[[kv_namespaces]]
+binding = "RATE_LIMIT"
+id = "TODO_AFTER_NAMESPACE_CREATE"
+
+[vars]
+ENVIRONMENT = "production"
+SITE_URL = "https://panda.shira.farm"
+APP_URL = "https://app.panda.shira.farm"
+API_URL = "https://api.panda.shira.farm"
