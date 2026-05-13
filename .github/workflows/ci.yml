@@ -87,5 +87,37 @@ jobs:
       # → 78% (PR #4 Filament+health). Target 80% by end of P3 once Cost + Harvest land.
       - run: ./vendor/bin/pest --coverage --min=78
 
-# pwa-typecheck + marketing-build jobs intentionally omitted until P5/P6 land their respective directories.
-# Add back when pwa/package.json and marketing/package.json exist.
+  pwa-typecheck:
+    name: PWA Typecheck + Build
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: pwa
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: pwa/package-lock.json
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm run build
+
+  pwa-test:
+    name: PWA Tests (Vitest)
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: pwa
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: pwa/package-lock.json
+      - run: npm ci
+      - run: npm test
+
+# marketing-build job intentionally omitted until P6 lands marketing/package.json.
