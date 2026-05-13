@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Activitylog\LogOptions;
 use Spatie\Activitylog\Traits\LogsActivity;
@@ -79,6 +80,18 @@ class Season extends Model
     public function crop(): BelongsTo
     {
         return $this->belongsTo(Crop::class);
+    }
+
+    /** @return HasMany<SeasonActivity, $this> */
+    public function activities(): HasMany
+    {
+        return $this->hasMany(SeasonActivity::class)->orderBy('ideal_date');
+    }
+
+    /** @return HasMany<InputListItem, $this> */
+    public function inputListItems(): HasMany
+    {
+        return $this->hasMany(InputListItem::class)->orderBy('week_from_planting');
     }
 
     /**
