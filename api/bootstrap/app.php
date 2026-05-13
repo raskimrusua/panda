@@ -18,6 +18,7 @@ use Illuminate\Routing\Middleware\ThrottleRequests;
 use Illuminate\Routing\Middleware\ThrottleRequestsWithRedis;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
+use Sentry\Laravel\Integration as SentryIntegration;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -53,5 +54,8 @@ return Application::configure(basePath: dirname(__DIR__))
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
-        //
+        // Sentry: only forwards if SENTRY_LARAVEL_DSN is set in .env (no-op
+        // in local dev / CI without DSN). Won't double-report — Laravel's
+        // default reporter handles the local log; Sentry handles the wire.
+        SentryIntegration::handles($exceptions);
     })->create();

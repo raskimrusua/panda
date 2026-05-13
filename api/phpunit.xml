@@ -21,6 +21,11 @@
             <file>app/Models/User.php</file>
             <file>app/Http/Controllers/Controller.php</file>
             <directory>app/Providers</directory>
+            <!-- Filament resources are declarative DSL (form()/table()/infolist()
+                 closures) — they get integration coverage from Filament's panel
+                 rendering, not unit tests. Excluding them keeps the coverage gate
+                 honest about what business logic is actually tested. -->
+            <directory>app/Filament</directory>
         </exclude>
     </source>
     <php>
