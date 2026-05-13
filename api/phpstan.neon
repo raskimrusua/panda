@@ -12,3 +12,9 @@ parameters:
           path: tests/*
         - identifier: property.notFound
           path: tests/*
+        # Pest's expectation chain ($x->and(...)) uses an unresolvable template.
+        - message: '#Unable to resolve the template type TAndValue in call to method Pest\\Expectation#'
+          path: tests/*
+        # Eloquent date casts return Carbon — Larastan can't infer through accessor.
+        # Resources call ->toDateString() on cast date; safe at runtime.
+        - message: '#Cannot call method toDateString\(\) on string#'

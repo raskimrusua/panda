@@ -83,8 +83,9 @@ jobs:
       - run: cp .env.example .env && php artisan key:generate
       - run: php artisan migrate --force
       # Coverage scope = app/ (excluding Laravel scaffold boilerplate via phpunit.xml).
-      # Gate climbs as more code lands; 70% on PR #2 (Crop). Target 80% by P3 (Season + Cost + Harvest).
-      - run: ./vendor/bin/pest --coverage --min=70
+      # Gate climbs as more code lands; 70% (PR #2 Crop) → 75% (PR #3 Tenant+Season).
+      # Target 80% by end of P3 once Cost + Harvest land.
+      - run: ./vendor/bin/pest --coverage --min=75
 
 # pwa-typecheck + marketing-build jobs intentionally omitted until P5/P6 land their respective directories.
 # Add back when pwa/package.json and marketing/package.json exist.
