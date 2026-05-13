@@ -94,6 +94,18 @@ class Season extends Model
         return $this->hasMany(InputListItem::class)->orderBy('week_from_planting');
     }
 
+    /** @return HasMany<CostEntry, $this> */
+    public function costEntries(): HasMany
+    {
+        return $this->hasMany(CostEntry::class)->orderBy('incurred_at');
+    }
+
+    /** @return HasMany<HarvestLog, $this> */
+    public function harvestLogs(): HasMany
+    {
+        return $this->hasMany(HarvestLog::class)->orderBy('harvested_at');
+    }
+
     /**
      * @param  Builder<self>  $query
      * @return Builder<self>
