@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
+import { useTranslation } from 'react-i18next';
 import { ArrowLeft, CheckCircle2, Plus } from 'lucide-react';
 import { Button, buttonClasses } from '@/components/ui/Button';
 import { Card, CardBody, CardHeader } from '@/components/ui/Card';
@@ -16,6 +17,7 @@ import { formatDate, formatKes } from '@/lib/utils';
 type Tab = 'timeline' | 'inputs' | 'costs' | 'harvests';
 
 export function SeasonDetailPage() {
+  const { t } = useTranslation();
   const { id = '' } = useParams<{ id: string }>();
   const [tab, setTab] = useState<Tab>('timeline');
   const [logActivityId, setLogActivityId] = useState<string | null>(null);
@@ -48,11 +50,14 @@ export function SeasonDetailPage() {
     enabled: !!id && tab === 'harvests',
   });
 
-  if (seasonQuery.isLoading) return <p className="text-gray-500">Loading…</p>;
-  if (seasonQuery.error) return <p className="text-danger-600">Could not load this season.</p>;
+  if (seasonQuery.isLoading) return <p className="text-gray-500">{t('seasons.loading_season')}</p>;
+  if (seasonQuery.error) return <p className="text-danger-600">{t('seasons.could_not_load_season')}</p>;
   if (!seasonQuery.data) return null;
 
   const season = seasonQuery.data.data;
+
+  const irrigationLabel = t(`seasons.${season.irrigation_type}`, { defaultValue: season.irrigation_type });
+  const statusLabel = t(`seasons.status_${season.status}`, { defaultValue: season.status });
 
   return (
     <div className="space-y-4">
@@ -60,24 +65,24 @@ export function SeasonDetailPage() {
         to="/seasons"
         className="inline-flex items-center gap-1 text-sm text-gray-600 hover:text-gray-900"
       >
-        <ArrowLeft className="h-4 w-4" /> All seasons
+        <ArrowLeft className="h-4 w-4" /> {t('common.all_seasons')}
       </Link>
 
       <header>
         <h1 className="text-2xl font-semibold">
-          {season.crop?.name_en ?? 'Crop'} · {Number(season.acreage)} acres
+          {season.crop?.name_en ?? t('seasons.crop_fallback')} · {Number(season.acreage)} {t('seasons.acres_unit')}
         </h1>
         <p className="text-gray-600">
-          Planted {formatDate(season.planting_date)} · {season.irrigation_type} · {season.status}
+          {t('seasons.planted_on', { date: formatDate(season.planting_date) })} · {irrigationLabel} · {statusLabel}
         </p>
       </header>
 
       <div className="border-b border-gray-200 flex gap-6 overflow-x-auto">
         {([
-          ['timeline', 'Timeline'],
-          ['inputs', 'Inputs'],
-          ['costs', 'Costs'],
-          ['harvests', 'Harvests'],
+          ['timeline', t('seasons.tab_timeline')],
+          ['inputs', t('seasons.tab_inputs')],
+          ['costs', t('seasons.tab_costs')],
+          ['harvests', t('seasons.tab_harvests')],
         ] as const).map(([key, label]) => (
           <button
             key={key}
@@ -96,13 +101,13 @@ export function SeasonDetailPage() {
 
       {tab === 'timeline' && (
         <div className="space-y-2">
-          {timelineQuery.isLoading && <p className="text-gray-500">Loading timeline…</p>}
+          {timelineQuery.isLoading && <p className="text-gray-500">{t('seasons.loading_timeline')}</p>}
           {timelineQuery.data?.data.map((a) => (
             <Card key={a.id}>
               <CardBody className="flex items-start justify-between gap-3">
                 <div className="flex-1">
                   <div className="text-sm text-gray-500">
-                    {formatDate(a.ideal_date)} · week {a.week_from_planting} · {a.phase}
+                    {formatDate(a.ideal_date)} · {t('seasons.week_phase', { week: a.week_from_planting, phase: a.phase })}
                   </div>
                   <div className="font-medium">{a.description_en}</div>
                   {a.tip_en && (
@@ -112,16 +117,16 @@ export function SeasonDetailPage() {
                 <div className="flex flex-col items-end gap-2 shrink-0">
                   {a.is_critical && (
                     <span className="text-xs bg-warn-500/10 text-warn-600 px-2 py-1 rounded-full font-medium">
-                      critical
+                      {t('seasons.critical')}
                     </span>
                   )}
                   {a.status === 'done' ? (
                     <span className="inline-flex items-center gap-1 text-xs text-brand-700 font-medium">
-                      <CheckCircle2 className="h-4 w-4" /> done
+                      <CheckCircle2 className="h-4 w-4" /> {t('seasons.done').toLowerCase()}
                     </span>
                   ) : (
                     <Button size="sm" variant="secondary" onClick={() => setLogActivityId(a.id)}>
-                      Mark done
+                      {t('seasons.mark_done')}
                     </Button>
                   )}
                 </div>
@@ -129,7 +134,7 @@ export function SeasonDetailPage() {
             </Card>
           ))}
           {timelineQuery.data && timelineQuery.data.data.length === 0 && (
-            <p className="text-gray-500">No activities yet.</p>
+            <p className="text-gray-500">{t('seasons.no_activities')}</p>
           )}
         </div>
       )}
@@ -138,19 +143,19 @@ export function SeasonDetailPage() {
         <Card>
           <CardHeader>
             <div className="text-sm text-gray-600">
-              Quantities scaled to your acreage. Tick off as you procure.
+              {t('seasons.inputs_explainer')}
             </div>
           </CardHeader>
           <CardBody className="p-0 overflow-x-auto">
-            {inputsQuery.isLoading && <p className="text-gray-500 p-4">Loading inputs…</p>}
+            {inputsQuery.isLoading && <p className="text-gray-500 p-4">{t('seasons.loading_inputs')}</p>}
             {inputsQuery.data && (
               <table className="w-full text-sm">
                 <thead className="bg-gray-50 text-left">
                   <tr>
-                    <th className="px-4 py-2">Product</th>
-                    <th className="px-4 py-2">Type</th>
-                    <th className="px-4 py-2 text-right">Qty</th>
-                    <th className="px-4 py-2 text-right">Est. cost</th>
+                    <th className="px-4 py-2">{t('seasons.col_product')}</th>
+                    <th className="px-4 py-2">{t('seasons.col_type')}</th>
+                    <th className="px-4 py-2 text-right">{t('seasons.col_qty')}</th>
+                    <th className="px-4 py-2 text-right">{t('seasons.col_est_cost')}</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -183,16 +188,16 @@ export function SeasonDetailPage() {
           <div className="flex items-center justify-between">
             <div className="text-sm text-gray-600">
               {costsQuery.data && (
-                <>Total spent: <strong>{formatKes(costsQuery.data.totals.all_kes)}</strong></>
+                <>{t('seasons.total_spent')}: <strong>{formatKes(costsQuery.data.totals.all_kes)}</strong></>
               )}
             </div>
             <Button onClick={() => setShowCostForm(true)} size="sm">
-              <Plus className="h-4 w-4 mr-1" /> Log cost
+              <Plus className="h-4 w-4 mr-1" /> {t('seasons.log_cost')}
             </Button>
           </div>
-          {costsQuery.isLoading && <p className="text-gray-500">Loading costs…</p>}
+          {costsQuery.isLoading && <p className="text-gray-500">{t('seasons.loading_costs')}</p>}
           {costsQuery.data && costsQuery.data.data.length === 0 && (
-            <Card><CardBody className="text-center text-gray-600">No costs logged yet.</CardBody></Card>
+            <Card><CardBody className="text-center text-gray-600">{t('seasons.no_costs')}</CardBody></Card>
           )}
           {costsQuery.data?.data.map((c) => (
             <Card key={c.id}>
@@ -217,31 +222,31 @@ export function SeasonDetailPage() {
             <div className="text-sm text-gray-600">
               {harvestsQuery.data && (
                 <>
-                  Picked: <strong>{harvestsQuery.data.totals.quantity_kg} kg</strong>
+                  {t('seasons.picked')}: <strong>{harvestsQuery.data.totals.quantity_kg} kg</strong>
                   {' · '}
-                  Sold: <strong>{harvestsQuery.data.totals.sold_quantity_kg} kg</strong>
+                  {t('seasons.sold')}: <strong>{harvestsQuery.data.totals.sold_quantity_kg} kg</strong>
                   {' · '}
-                  Revenue: <strong>{formatKes(harvestsQuery.data.totals.revenue_kes)}</strong>
+                  {t('seasons.revenue')}: <strong>{formatKes(harvestsQuery.data.totals.revenue_kes)}</strong>
                 </>
               )}
             </div>
             <Button onClick={() => setShowHarvestForm(true)} size="sm">
-              <Plus className="h-4 w-4 mr-1" /> Log harvest
+              <Plus className="h-4 w-4 mr-1" /> {t('seasons.log_harvest')}
             </Button>
           </div>
-          {harvestsQuery.isLoading && <p className="text-gray-500">Loading harvests…</p>}
+          {harvestsQuery.isLoading && <p className="text-gray-500">{t('seasons.loading_harvests')}</p>}
           {harvestsQuery.data && harvestsQuery.data.data.length === 0 && (
-            <Card><CardBody className="text-center text-gray-600">No harvests yet.</CardBody></Card>
+            <Card><CardBody className="text-center text-gray-600">{t('seasons.no_harvests')}</CardBody></Card>
           )}
           {harvestsQuery.data?.data.map((h) => (
             <Card key={h.id}>
               <CardBody className="flex items-center justify-between">
                 <div>
-                  <div className="font-medium">{Number(h.quantity_kg)} kg picked</div>
+                  <div className="font-medium">{t('seasons.kg_picked_short', { n: Number(h.quantity_kg) })}</div>
                   <div className="text-sm text-gray-600">
                     {formatDate(h.harvested_at)}
                     {Number(h.sold_quantity_kg) > 0 && (
-                      <> · sold {Number(h.sold_quantity_kg)} kg @ {formatKes(h.unit_price_kes)}/kg</>
+                      <> · {t('seasons.sold_at_price', { kg: Number(h.sold_quantity_kg), price: formatKes(h.unit_price_kes) })}</>
                     )}
                     {h.buyer_name && ` · ${h.buyer_name}`}
                   </div>
@@ -260,14 +265,14 @@ export function SeasonDetailPage() {
           rel="noreferrer"
           className={buttonClasses('secondary', 'md')}
         >
-          Download PDF report
+          {t('seasons.download_pdf')}
         </a>
       </div>
 
       <Modal
         open={!!logActivityId}
         onClose={() => setLogActivityId(null)}
-        title="Mark activity done"
+        title={t('seasons.modal_mark_done')}
       >
         {logActivityId && (
           <LogActivityDoneForm
@@ -278,11 +283,11 @@ export function SeasonDetailPage() {
         )}
       </Modal>
 
-      <Modal open={showCostForm} onClose={() => setShowCostForm(false)} title="Log a cost">
+      <Modal open={showCostForm} onClose={() => setShowCostForm(false)} title={t('seasons.modal_log_cost')}>
         <NewCostForm seasonId={id} onDone={() => setShowCostForm(false)} />
       </Modal>
 
-      <Modal open={showHarvestForm} onClose={() => setShowHarvestForm(false)} title="Log a harvest">
+      <Modal open={showHarvestForm} onClose={() => setShowHarvestForm(false)} title={t('seasons.modal_log_harvest')}>
         <NewHarvestForm seasonId={id} onDone={() => setShowHarvestForm(false)} />
       </Modal>
     </div>

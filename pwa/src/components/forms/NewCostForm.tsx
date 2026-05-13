@@ -7,6 +7,7 @@ import { costsApi } from '@/api/costs';
 import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
 import { Label, FieldError } from '@/components/ui/Label';
+import { HelpTooltip } from '@/components/ui/HelpTooltip';
 import { newCostSchema, type NewCostValues } from '@/lib/zodSchemas';
 import { offlineQueue } from '@/offline/queue';
 import { useOfflineQueue } from '@/offline/useOfflineQueue';
@@ -109,7 +110,10 @@ export function NewCostForm({ seasonId, onDone }: NewCostFormProps) {
 
       <div className="grid grid-cols-2 gap-3">
         <div>
-          <Label htmlFor="amount_kes">{t('log_forms.amount_kes')}</Label>
+          <div className="flex items-center gap-1">
+            <Label htmlFor="amount_kes">{t('log_forms.amount_kes')}</Label>
+            <HelpTooltip title={t('help.cost_amount_title')} body={t('help.cost_amount_body')} />
+          </div>
           <Input
             id="amount_kes"
             type="number"
