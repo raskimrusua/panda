@@ -109,7 +109,16 @@ The pipeline reads `~/Desktop/panda/CLAUDE.md` for architecture rules + the 14 L
 | 2026-05-08 | **PR #2 — first model (Crop) on `feat/p1-crop-model`**: 25 files, +1476 lines. Crop model (ULID + soft-delete + activity log + 2 scopes) + migration + 5 named-state factory (tomato/kale/cabbage/bulb-onion/french-beans). API surface: CropResource (single, shared catalogue) + IndexCropRequest (allowlisted filters: category/harvest_type/phase/active_only/q/per_page) + CropController (read-only index + slug-bound show) + routes/api.php. Content system: crop.schema.json (full JAICA spec) + tomato.json (12 timeline activities + 8 inputs + Tylka F1 / Cal-J varieties + EN/SW bilingual) + ContentLoader service (validates against schema, caches in Redis, ~1ms p99 reads) + `crops:content:reload` artisan command. Tests: 38/38 passing, 136 assertions across CropModelTest (9), CropApiTest (14), ContentLoaderTest (9), ReloadContentCommandTest (4) + 2 Laravel defaults. Pint pass, PHPStan level 6 no errors. **Coverage gate reinstated at --min=70** (Laravel boilerplate excluded via phpunit.xml). Activity log migrations published. install:api ran (Sanctum scaffold). |
 | 2026-05-08 | **CI on PR #2 caught a real Postgres-vs-SQLite drift** (commit `a7ae69c`): Spatie ActivityLog's published migration uses `nullableMorphs()` → bigint subject_id; Crop's ULID PK insert fails with `SQLSTATE[22P02]: invalid input syntax for type bigint`. SQLite is typeless, accepted silently (local pest passed). Fix: `nullableMorphs()` → `nullableUlidMorphs()`. CI green after fix. **Lesson captured into UWC `skill-laravel-eloquent-model` v1.1** (Edge Case + Changelog), shipped via UWC PR #4 (commit `a9cb094`). General principle now in skill: "always run CI on Postgres before merging any PR that adds models with vendor packages." |
 | 2026-05-09 | **PR #2 merged → main** (`e0a2cf2`). UWC PR #4 (skill v1.1 lesson) merged → upstate-web-co/uwc-ops main. |
-| 2026-05-09 | **PR #3 — multitenancy + auth + Season on `feat/p3-tenant-multitenancy`** ([panda#3](https://github.com/raskimrusua/panda/pull/3)): ULID conversion of users + personal_access_tokens migrations (greenfield-edit, ulidMorphs lesson re-applied); Tenant model extending Spatie `SpatieTenant` + Kenyan-county TenantFactory + customised `config/multitenancy.php` for single-DB row mode (tenant_finder = UserTenantFinder; switch_tenant_tasks = PrefixCacheTask only); BelongsToTenant trait (global scope + creating event auto-attach); UserTenantFinder + SetTenantFromUser middleware (registered in priority list BEFORE SubstituteBindings — critical: route-model-binding fires before custom middleware otherwise, leaking foreign tenants as 200 instead of 404); AuthController (register transactional Tenant+User+token, login, logout, me) + Register/Login FormRequests; UserResource + TenantResource. **First tenant-scoped model — Season** (status enum, irrigation enum, engine_metadata JSON, client_id offline-sync key, tenant-scoped unique constraint) + factory (5 named states) + SeasonController (apiResource) + SeasonListResource + SeasonDetailResource + StoreSeason/UpdateSeason FormRequests. Tests: 75 total, all green locally — TenantTest (7), UserTenantFinderTest (3), AuthApiTest (8), SeasonModelTest (7), SeasonApiTest (12 inc. **5 mandatory cross-tenant isolation tests** — list/show/update/destroy/store-with-hijack-payload all 404 or auto-coerce). Pint + PHPStan level 6 clean (3 ignore patterns added: Pest expectation chain template, Carbon date cast through resources). **CI coverage gate raised from 70% → 75%.** **CI status: BLOCKED** — both jobs (api-lint + api-test) failing at runner-pickup phase (6–13s, zero steps execute, runner_id=0). Workflow YAML valid, same file passed for PR #2 two days earlier. Pattern matches GitHub-hosted runner pool issue (likely transient OR account quota). Needs Joshua to check raskimrusua Actions billing/usage page in browser. Code itself verified green locally; PR is otherwise mergeable. |
+| 2026-05-09 | **PR #3 — multitenancy + auth + Season** ([panda#3](https://github.com/raskimrusua/panda/pull/3)). 75 tests. CI status: **BLOCKED** — runner-pickup phase, 6-13s zero-step failures. Needs Joshua to check raskimrusua Actions billing/usage. Code verified green locally. |
+| 2026-05-11 | **PR #4 — Filament + Sentry + health endpoint** ([panda#4](https://github.com/raskimrusua/panda/pull/4)). Independent of PR #3 chain. 17 tests, coverage gate 75 → 78. CI BLOCKED (same infra issue). |
+| 2026-05-12 | **PR #5 — P2 Season Engine + SeasonActivity + InputListItem** ([panda#5](https://github.com/raskimrusua/panda/pull/5)). Pure-class engine + observer + atomic persist. 18 tests. Branched from PR #3. CI BLOCKED. |
+| 2026-05-12 | **PR #6 — P3 finish: CostEntry + HarvestLog + log-done + procurement + PDF report** ([panda#6](https://github.com/raskimrusua/panda/pull/6)). 14 new endpoints, HarvestLog observer, dompdf report. 28 tests. Branched from PR #5. CI BLOCKED. |
+| 2026-05-12 | **PR #7 — P4: Disease (mock CropHealthClient) + Dealer (30 real Kenyan agro-dealers + haversine search) + MarketPrice (~1560-row 12mo seed + latest/history/forecast)** ([panda#7](https://github.com/raskimrusua/panda/pull/7)). 25 tests. Branched from PR #6. CI BLOCKED. |
+| 2026-05-12 | **TanStack supply-chain CVE-2026-45321** discovered (Mini Shai-Hulud, CVSS 9.6, 84 malicious @tanstack/router\* package versions on 2026-05-11). Audit captured at `docs/audits/2026-05-12-tanstack-cve-2026-45321.md`. **Verdict: Panda + Shira BOTH not exposed** — both only install `@tanstack/react-query` family which is in the maintainer's confirmed-clean list. UWC `skill-ci-github-actions` v1.1 also bumped earlier with two debug recipes (D1 runner-pickup, D2 hashFiles antipattern). |
+| 2026-05-12 | **PR #8 — P5 PWA scaffold (Vite + React 19 + TS strict + Tailwind 4 + Workbox PWA)** ([panda#8](https://github.com/raskimrusua/panda/pull/8)). Auth + season CRUD + PWA install. 22 PWA tests. axios bumped 1.7→1.16 to skip SSRF range. New CI jobs: pwa-typecheck + pwa-test. Branched from PR #7. |
+| 2026-05-12 | **PR #9 — P5 PWA log forms (mark-done, log cost, log harvest)** ([panda#9](https://github.com/raskimrusua/panda/pull/9)). Modal primitive + 3 forms + Costs/Harvests tabs. 13 new tests (35 PWA total). Branched from PR #8. |
+| 2026-05-12 | **PR #10 — P5 PWA disease scan + dealer map (Leaflet) + price chart (hand-rolled SVG)** ([panda#10](https://github.com/raskimrusua/panda/pull/10)). Camera capture + geolocation. 3 new tests (38 PWA total). +185 KiB precache for leaflet. Branched from PR #9. |
+| 2026-05-12 | **PR #11 — P5 PWA offline write queue (idb-keyval + replay) + i18n with full Swahili translation** ([panda#11](https://github.com/raskimrusua/panda/pull/11)). 100+ string keys translated en/sw. OnlineIndicator + LanguageSwitcher in sidebar. 14 new tests (49 PWA total). +73 KiB precache. Branched from PR #10. |
 
 ---
 
@@ -122,7 +131,63 @@ The pipeline reads `~/Desktop/panda/CLAUDE.md` for architecture rules + the 14 L
 
 ---
 
-## Next up — PR #4 (P1 close-out) — confirmed direction (2026-05-11)
+## Resume point — 2026-05-12 (compaction marker)
+
+**Where we are:** 9 PRs open in chain, all CI-blocked on the same runner-pickup infra issue. **No new code is needed for backend (P1-P4) or PWA core (P5 #8-#11) — all feature-complete.** The remaining engineering surfaces are PR #12 (small) and P6 marketing site (medium), then P8 pilot setup.
+
+### PR queue (open against the chain — every one verified green locally)
+
+```
+main (last merge: PR #2 = Crop catalogue + ContentLoader)
+ ├── PR #3   feat/p3-tenant-multitenancy           multitenancy + Sanctum + Season              [75 tests]
+ │    └── PR #5  feat/p2-season-engine             Season Engine + activities + inputs          [+18 → 93]
+ │         └── PR #6  feat/p3-finish-costs-harvests   costs + harvests + log-done + PDF         [+28 → 121]
+ │              └── PR #7  feat/p4-disease-dealers-prices   disease + dealers + prices           [+25 → 146]
+ │                   └── PR #8  feat/p5-pwa-scaffold        PWA + auth + season CRUD             [22 PWA]
+ │                        └── PR #9  feat/p5-pwa-log-forms        log forms (cost/harvest/done)  [+13 → 35 PWA]
+ │                             └── PR #10  feat/p5-pwa-disease-dealers-prices  disease scan + dealer map + price chart  [+3 → 38 PWA]
+ │                                  └── PR #11  feat/p5-pwa-offline-i18n  offline queue + i18n + Swahili  [+14 → 49 PWA]  ← TIP
+ └── PR #4  feat/p1-filament-sentry-health  (independent of chain)  Filament + Sentry + health  [+17]
+```
+
+**Test counts (all locally green):** 163 backend Pest + 49 PWA Vitest = **212 total tests**.
+
+### CI-infrastructure blocker (carried over from 2026-05-09)
+
+Both `api-lint` + `api-test` jobs fail at runner-pickup phase: 6-13 seconds total, zero steps execute, `runner_id=0`, `system.txt` log ends at "Job is about to start running on the hosted runner". Same pattern across all 9 PRs since 2026-05-09. PR #2's earlier successful CI run on identical YAML proves it isn't the workflow file. Likely cause: **raskimrusua Actions free-minute quota exhausted** (or repo-level Actions disabled). Joshua to check `https://github.com/settings/billing/summary` → Actions usage in browser. UWC skill `skill-ci-github-actions` v1.1 captured this as D1 + the gh-API triage commands.
+
+### What a farmer can do today (against a running local backend)
+
+**Plan a season → see engine timeline + scaled inputs (12 + 8 for tomato) → mark activities done → log every cost → log every harvest pick + sale → see rolling totals → diagnose a leaf photo (mock returning deterministic results) → find the nearest dealer that stocks what they need (haversine search + Leaflet map) → see 12-month price history + 3-mo forecast for any of 5 crops at 6 markets → download a one-page lender-ready PDF report. Works offline (writes queue + replay on reconnect). Bilingual EN/SW.**
+
+### Resume sequence (next session, in priority order)
+
+1. **Joshua unblocks GHA** — flip repo to public (free unlimited minutes) OR check billing. Once green CI fires, **merge PR #3 first** (it's the foundation; everything else auto-rebases). Then #4 (independent). Then PRs #5 → #6 → #7 → #8 → #9 → #10 → #11 in chain order. Each rebases the next automatically once the parent merges.
+2. **PR #12** (small, ~1 day): Translate SeasonDetail Costs/Harvests panels (still English) + add HelpTooltip + WelcomeModal first-run onboarding.
+3. **Hetzner provisioning session** (2-3 hours, no code): provision panda_app + panda_horizon containers + panda_production DB + Redis idx 5/6 + nginx vhost api.panda.shira.farm + CF Origin Cert reissue + DNS records. Get a real `https://api.panda.shira.farm` endpoint live so the PWA can demo against it.
+4. **P6 marketing site** (~3-5 days): Astro 5 scaffold under `marketing/` at `panda.shira.farm`. Mirrors Shira's website pattern.
+5. **P8 pilot setup** (~1 week): 200 farmer seed for Meru + Kirinyaga + 6 runbooks + weekly survey.
+
+### Decisions still open
+- Silas's last name + email + KALRO credential doc (saved in memory: `project_panda_team.md`). Needed before P7 content authoring + before Filament agronomist editor seeds his login.
+- Native Swahili translator (separate person from Silas). Needed for P7 + for translator pass on remaining PWA strings.
+- Crop.health Kindwise account + monthly KES ceiling. Mock works through P5; real wiring deferred.
+
+### Resume-friendly commands
+
+```bash
+cd ~/Desktop/panda
+git checkout feat/p5-pwa-offline-i18n  # tip of the chain
+git log --oneline -5                    # last commits
+gh auth switch -u raskimrusua           # before any panda gh ops
+gh pr list                              # see all 9 open PRs
+cd pwa && npm test && npm run build     # verify still green
+cd ../api && ./vendor/bin/pest --no-coverage  # 163 tests
+```
+
+---
+
+## Original Next-up — PR #4 (P1 close-out) — confirmed direction (2026-05-11)
 
 User picked: **finish P1 first** (Filament + Sentry + health), then Hetzner provisioning in a focused session, then P2 Season Engine. Standalone Sanctum stays — no JWT sharing with Shira.
 
