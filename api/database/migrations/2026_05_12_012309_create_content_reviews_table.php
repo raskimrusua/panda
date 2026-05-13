@@ -25,11 +25,13 @@ use Illuminate\Support\Facades\Schema;
  * NOT tenant-scoped: this is an ops/agronomist surface across the whole
  * Panda content library, not per-farm.
  *
- * `submitted_by` / `reviewer_id` are nullable bigint FKs to users — kept as
- * `unsignedBigInteger` (not `foreignId`) so they survive a future ULID
- * conversion of the users table without a schema rewrite (the FK target
- * stays `users.id` either way; SQLite is typeless and Postgres compares the
- * stringified ULID against bigint loosely enough during the transition PR).
+ * `submitted_by` / `reviewer_id` are nullable ULID FKs to `users.id`
+ * (PR #3 made users.id a ULID). SQLite is typeless and silently accepts a
+ * `bigint`-typed column receiving a ULID string; Postgres rejects it
+ * (`SQLSTATE[22P02]`). Same family as the `ulidMorphs()` lesson —
+ * always match the FK target type explicitly.
+ *
+ * Greenfield, no production data yet — edit in place.
  */
 return new class extends Migration
 {
@@ -42,8 +44,8 @@ return new class extends Migration
             $table->string('status', 32)->default('draft');
             $table->json('content_payload')->nullable();
             $table->text('reviewer_notes')->nullable();
-            $table->unsignedBigInteger('submitted_by')->nullable();
-            $table->unsignedBigInteger('reviewer_id')->nullable();
+            $table->ulid('submitted_by')->nullable();
+            $table->ulid('reviewer_id')->nullable();
             $table->timestamp('submitted_at')->nullable();
             $table->timestamp('decided_at')->nullable();
             $table->timestamps();
@@ -51,6 +53,9 @@ return new class extends Migration
 
             $table->index(['target_type', 'target_slug']);
             $table->index('status');
+
+            $table->foreign('submitted_by')->references('id')->on('users')->nullOnDelete();
+            $table->foreign('reviewer_id')->references('id')->on('users')->nullOnDelete();
         });
     }
 
