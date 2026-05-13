@@ -1,5 +1,5 @@
 import { Link, NavLink, useNavigate } from 'react-router-dom';
-import { LayoutDashboard, LogOut, Sprout } from 'lucide-react';
+import { Camera, LayoutDashboard, LineChart, LogOut, MapPin, Sprout } from 'lucide-react';
 import { useAuth } from '@/auth/useAuth';
 import { Button } from './ui/Button';
 import { cn } from '@/lib/utils';
@@ -14,6 +14,9 @@ interface NavItem {
 const NAV: NavItem[] = [
   { to: '/', label: 'Dashboard', icon: <LayoutDashboard className="h-4 w-4" /> },
   { to: '/seasons', label: 'Seasons', icon: <Sprout className="h-4 w-4" /> },
+  { to: '/disease', label: 'Disease scan', icon: <Camera className="h-4 w-4" /> },
+  { to: '/dealers', label: 'Dealers', icon: <MapPin className="h-4 w-4" /> },
+  { to: '/prices', label: 'Market prices', icon: <LineChart className="h-4 w-4" /> },
 ];
 
 export function AppShell({ children }: { children: ReactNode }) {
