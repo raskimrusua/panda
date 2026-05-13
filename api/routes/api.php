@@ -5,6 +5,7 @@ use App\Http\Controllers\Api\V1\Auth\AuthController;
 use App\Http\Controllers\Api\V1\Costs\CostEntryController;
 use App\Http\Controllers\Api\V1\Crops\CropController;
 use App\Http\Controllers\Api\V1\Harvests\HarvestLogController;
+use App\Http\Controllers\Api\V1\HealthController;
 use App\Http\Controllers\Api\V1\InputListItems\InputListItemController;
 use App\Http\Controllers\Api\V1\Seasons\SeasonController;
 use App\Http\Controllers\Api\V1\Seasons\SeasonNestedController;
@@ -21,6 +22,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::prefix('v1')->group(function () {
+    Route::get('health', HealthController::class);
+
+    // Public — shared catalogue
     Route::apiResource('crops', CropController::class)
         ->only(['index', 'show'])
         ->parameters(['crops' => 'crop:slug']);
