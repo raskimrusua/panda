@@ -106,7 +106,14 @@
     "modal_mark_done": "Mark activity done",
     "modal_log_cost": "Log a cost",
     "modal_log_harvest": "Log a harvest",
-    "acres_unit": "acres"
+    "acres_unit": "acres",
+    "summary_cost": "Total cost",
+    "summary_revenue": "Revenue",
+    "summary_profit": "Profit",
+    "summary_loss": "Loss",
+    "cost_by_category_title": "Cost by category",
+    "cost_revenue_chart_title": "Cost vs revenue (cumulative)",
+    "cost_revenue_chart_subtitle": "Where the lender-grade PDF gets its profit number from."
   },
   "onboarding": {
     "welcome_title": "Karibu Panda.",
@@ -131,7 +138,13 @@
     "harvest_picked_title": "Picked (kg)",
     "harvest_picked_body": "Total kilogrammes you harvested in this pick — include unsold + spoilage. “Sold” (next field) is what actually left the farm.",
     "harvest_price_title": "Price per kg",
-    "harvest_price_body": "What the buyer paid you per kilogramme. Use the actual price, not the market rate — brokers often pay below market. Panda compares your price against the local benchmark."
+    "harvest_price_body": "What the buyer paid you per kilogramme. Use the actual price, not the market rate — brokers often pay below market. Panda compares your price against the local benchmark.",
+    "summary_cost_title": "Total cost",
+    "summary_cost_body": "Sum of every cost entry you've logged in this season — seed, fertiliser, sprays, labour, equipment, transport. Doesn't include land rent or your own time (those are usually treated as fixed costs at the farm level, not the season level).",
+    "summary_revenue_title": "Revenue",
+    "summary_revenue_body": "Σ (sold_kg × price_per_kg) for every harvest pick logged. Excludes unsold or spoiled kilos — you only count what actually left the farm at a paid price.",
+    "summary_profit_title": "Profit / Loss",
+    "summary_profit_body": "Revenue − Total cost. Green if positive, red if negative. This is the same number that appears on the lender PDF report — banks and SACCOs use it to score loan applications. If the season isn't finished yet, the profit number is still preliminary."
   },
   "log_forms": {
     "log_activity_done": "Mark activity done",

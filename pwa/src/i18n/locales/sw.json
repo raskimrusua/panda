@@ -106,7 +106,14 @@
     "modal_mark_done": "Andika kuwa shughuli imefanyika",
     "modal_log_cost": "Andika gharama",
     "modal_log_harvest": "Andika mavuno",
-    "acres_unit": "ekari"
+    "acres_unit": "ekari",
+    "summary_cost": "Jumla ya gharama",
+    "summary_revenue": "Mapato",
+    "summary_profit": "Faida",
+    "summary_loss": "Hasara",
+    "cost_by_category_title": "Gharama kwa aina",
+    "cost_revenue_chart_title": "Gharama dhidi ya mapato (jumla)",
+    "cost_revenue_chart_subtitle": "Hapa ndipo nambari ya faida ya ripoti ya benki inatoka."
   },
   "onboarding": {
     "welcome_title": "Karibu Panda.",
@@ -131,7 +138,13 @@
     "harvest_picked_title": "Yaliyovunwa (kg)",
     "harvest_picked_body": "Kilo zote ulizovuna katika kuvuna huku — pamoja na ambayo hayajauzwa + yaliyoharibika. “Yaliyouzwa” (sehemu inayofuata) ndiyo yaliyotoka shambani.",
     "harvest_price_title": "Bei kwa kg",
-    "harvest_price_body": "Bei mnunuzi alikulipa kwa kilo. Tumia bei halisi, si ya soko — madalali mara nyingi hulipa chini ya soko. Panda italinganisha bei yako na kiwango cha eneo lako."
+    "harvest_price_body": "Bei mnunuzi alikulipa kwa kilo. Tumia bei halisi, si ya soko — madalali mara nyingi hulipa chini ya soko. Panda italinganisha bei yako na kiwango cha eneo lako.",
+    "summary_cost_title": "Jumla ya gharama",
+    "summary_cost_body": "Jumla ya gharama zote ulizoandika kwa msimu huu — mbegu, mbolea, dawa, kazi, vifaa, usafiri. Haijumuishi kodi ya ardhi au muda wako mwenyewe (hizo huhesabiwa kama gharama zisizobadilika kwa shamba zima, si msimu mmoja).",
+    "summary_revenue_title": "Mapato",
+    "summary_revenue_body": "Σ (kg yaliyouzwa × bei kwa kg) kwa kila mavuno yaliyoandikwa. Haijumuishi kilo ambazo hazijauzwa au zilizoharibika — unahesabu tu yaliyotoka shambani kwa bei iliyolipwa.",
+    "summary_profit_title": "Faida / Hasara",
+    "summary_profit_body": "Mapato − Jumla ya gharama. Kijani ukiwa na ziada, nyekundu ukiwa na hasara. Hii ndiyo nambari kwenye ripoti ya PDF ya benki — benki na SACCO huitumia kupima maombi ya mkopo. Iwapo msimu haujamalizika, nambari ya faida bado inaweza kubadilika."
   },
   "log_forms": {
     "log_activity_done": "Andika kuwa imefanyika",
