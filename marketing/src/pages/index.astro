@@ -2,6 +2,7 @@
 import PublicLayout from '@/layouts/PublicLayout.astro'
 import Hero from '@/components/Hero.astro'
 import FeatureCard from '@/components/FeatureCard.astro'
+import WaitlistForm from '@/components/WaitlistForm'
 import { features } from '../../content/features'
 ---
 
@@ -13,7 +14,7 @@ import { features } from '../../content/features'
     eyebrow="Pilot — Meru &amp; Kirinyaga, 2026"
     title="Plan your season. Log every shilling. Walk into the bank with a real report."
     subtitle="A Kenyan-built planning + logging tool for horticulture farms. Inspired by SHEP PLUS. Works offline. Bilingual English / Kiswahili. Sister product to Shira."
-    ctaPrimary={{ href: 'https://app.panda.shira.farm', label: 'Open the app' }}
+    ctaPrimary={{ href: '#waitlist', label: 'Join the pilot waitlist' }}
     ctaSecondary={{ href: '/features', label: 'See features' }}
   />
 
@@ -60,21 +61,16 @@ import { features } from '../../content/features'
     </div>
   </section>
 
-  <section class="mx-auto max-w-3xl px-4 py-14 text-center md:px-6 md:py-20">
-    <h2 class="text-3xl font-semibold text-rich-earth">
-      Want to be among the first 200 farmers?
-    </h2>
-    <p class="mt-3 text-lg text-rich-earth/75">
-      The Meru &amp; Kirinyaga pilot starts in 2026. Tell us about your farm
-      and we'll be in touch when onboarding opens.
-    </p>
-    <div class="mt-6">
-      <a
-        href="/contact"
-        class="rounded-md bg-savanna-sun px-5 py-3 text-sm font-semibold text-bone-white transition-colors hover:bg-terracotta"
-      >
-        Join the pilot waitlist
-      </a>
+  <section id="waitlist" class="mx-auto max-w-2xl px-4 py-14 md:px-6 md:py-20">
+    <div class="mb-6 text-center">
+      <h2 class="text-3xl font-semibold text-rich-earth">
+        Want to be among the first 200 farmers?
+      </h2>
+      <p class="mt-3 text-lg text-rich-earth/75">
+        The Meru &amp; Kirinyaga pilot starts in 2026. Tell us about your farm
+        and we'll email you when onboarding opens for your county.
+      </p>
     </div>
+    <WaitlistForm client:load />
   </section>
 </PublicLayout>
