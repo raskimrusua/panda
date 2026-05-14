@@ -3,7 +3,7 @@ FROM php:8.3-fpm-alpine
 RUN apk add --no-cache \
         postgresql-dev libpng-dev oniguruma-dev libzip-dev linux-headers icu-dev \
         $PHPIZE_DEPS \
- && docker-php-ext-install pdo pdo_pgsql gd mbstring zip bcmath intl \
+ && docker-php-ext-install pdo pdo_pgsql gd mbstring zip bcmath intl pcntl \
  && pecl install redis && docker-php-ext-enable redis \
  && apk del $PHPIZE_DEPS
 
