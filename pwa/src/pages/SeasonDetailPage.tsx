@@ -3,7 +3,8 @@ import { Link, useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 import { ArrowLeft, CheckCircle2, Plus } from 'lucide-react';
-import { Button, buttonClasses } from '@/components/ui/Button';
+import { Button } from '@/components/ui/Button';
+import { apiClient } from '@/api/client';
 import { Card, CardBody, CardHeader } from '@/components/ui/Card';
 import { Modal } from '@/components/ui/Modal';
 import { LogActivityDoneForm } from '@/components/forms/LogActivityDoneForm';
@@ -23,6 +24,25 @@ export function SeasonDetailPage() {
   const [logActivityId, setLogActivityId] = useState<string | null>(null);
   const [showCostForm, setShowCostForm] = useState(false);
   const [showHarvestForm, setShowHarvestForm] = useState(false);
+  const [downloadingPdf, setDownloadingPdf] = useState(false);
+
+  const handleDownloadPdf = async () => {
+    setDownloadingPdf(true);
+    try {
+      const res = await apiClient.get(`/seasons/${id}/report`, { responseType: 'blob' });
+      const blob = new Blob([res.data], { type: 'application/pdf' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `panda-season-${id}.pdf`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    } finally {
+      setDownloadingPdf(false);
+    }
+  };
 
   const seasonQuery = useQuery({
     queryKey: ['seasons', id],
@@ -259,14 +279,13 @@ export function SeasonDetailPage() {
       )}
 
       <div className="pt-4">
-        <a
-          href={`${import.meta.env.VITE_API_URL ?? ''}/api/v1/seasons/${season.id}/report`}
-          target="_blank"
-          rel="noreferrer"
-          className={buttonClasses('secondary', 'md')}
+        <Button
+          variant="secondary"
+          onClick={handleDownloadPdf}
+          loading={downloadingPdf}
         >
           {t('seasons.download_pdf')}
-        </a>
+        </Button>
       </div>
 
       <Modal

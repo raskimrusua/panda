@@ -13,6 +13,7 @@ use Illuminate\Foundation\Configuration\Middleware;
 use Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull;
 use Illuminate\Foundation\Http\Middleware\HandlePrecognitiveRequests;
 use Illuminate\Foundation\Http\Middleware\TrimStrings;
+use Illuminate\Http\Request;
 use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Routing\Middleware\ThrottleRequests;
 use Illuminate\Routing\Middleware\ThrottleRequestsWithRedis;
@@ -54,6 +55,15 @@ return Application::configure(basePath: dirname(__DIR__))
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
+        // API-only app: never try to render the HTML 'login' redirect for
+        // unauthenticated requests. Default Laravel 11 behaviour calls
+        // route('login') from Authenticate::redirectTo() which 500s here
+        // because no such named route exists. Force JSON 401 instead for
+        // anything that came in via /api/* or that explicitly accepts JSON.
+        $exceptions->shouldRenderJsonWhen(
+            fn (Request $request) => $request->is('api/*') || $request->expectsJson(),
+        );
+
         // Sentry: only forwards if SENTRY_LARAVEL_DSN is set in .env (no-op
         // in local dev / CI without DSN). Won't double-report — Laravel's
         // default reporter handles the local log; Sentry handles the wire.
