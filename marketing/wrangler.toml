@@ -2,16 +2,17 @@ name = "panda-marketing"
 compatibility_date = "2024-11-01"
 pages_build_output_dir = "dist"
 
-# Bindings (resources are provisioned via wrangler CLI by ops; IDs filled in
-# after the resource is created — see DEPLOY_MARKETING.md).
+# D1 — pilot waitlist + (later) lead CRM. Provisioned via:
+#   wrangler d1 create panda-marketing-db
+# then paste the printed `database_id` into the line below.
+[[d1_databases]]
+binding = "DB"
+database_name = "panda-marketing-db"
+database_id = "TODO_AFTER_D1_CREATE"
 
-[[r2_buckets]]
-binding = "MEDIA"
-bucket_name = "panda-marketing-media"
-
-[[kv_namespaces]]
-binding = "RATE_LIMIT"
-id = "TODO_AFTER_NAMESPACE_CREATE"
+# R2 + KV bindings deferred until lead-CRM + rate-limiting actually need
+# them (Phase-8 marketing-admin work). Until then the contact + waitlist
+# forms log to the Worker console + write to D1 directly.
 
 [vars]
 ENVIRONMENT = "production"
