@@ -1,10 +1,13 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 import { ArrowLeft, CheckCircle2, Plus } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 import { apiClient } from '@/api/client';
+import { CostByCategoryBar } from '@/components/charts/CostByCategoryBar';
+import { CumulativeCostRevenueChart, type CumulativePoint } from '@/components/charts/CumulativeCostRevenueChart';
+import { ProfitSummaryCard } from '@/components/ProfitSummaryCard';
 import { Card, CardBody, CardHeader } from '@/components/ui/Card';
 import { Modal } from '@/components/ui/Modal';
 import { LogActivityDoneForm } from '@/components/forms/LogActivityDoneForm';
@@ -59,16 +62,59 @@ export function SeasonDetailPage() {
     queryFn: () => seasonsApi.inputList(id),
     enabled: !!id && tab === 'inputs',
   });
+  // Costs + harvests are loaded regardless of active tab so the summary
+  // card + cost/revenue chart at the top of the page always have data.
+  // Both endpoints are small (a handful of KB) — total page weight is
+  // unaffected.
   const costsQuery = useQuery({
     queryKey: ['seasons', id, 'costs'],
     queryFn: () => costsApi.forSeason(id),
-    enabled: !!id && tab === 'costs',
+    enabled: !!id,
   });
   const harvestsQuery = useQuery({
     queryKey: ['seasons', id, 'harvests'],
     queryFn: () => harvestsApi.forSeason(id),
-    enabled: !!id && tab === 'harvests',
+    enabled: !!id,
   });
+
+  // Derived totals + chart points (memoised so the chart doesn't re-render
+  // on every tab click).
+  const totals = useMemo(() => {
+    const totalCost = Number(costsQuery.data?.totals.all_kes ?? 0);
+    const totalRevenue = Number(harvestsQuery.data?.totals.revenue_kes ?? 0);
+    return { totalCost, totalRevenue };
+  }, [costsQuery.data, harvestsQuery.data]);
+
+  const cumulativePoints = useMemo<CumulativePoint[]>(() => {
+    const events: { date: string; deltaCost: number; deltaRevenue: number }[] = [];
+    for (const c of costsQuery.data?.data ?? []) {
+      events.push({ date: String(c.incurred_at), deltaCost: Number(c.amount_kes), deltaRevenue: 0 });
+    }
+    for (const h of harvestsQuery.data?.data ?? []) {
+      const rev = Number(h.sold_quantity_kg ?? 0) * Number(h.unit_price_kes ?? 0);
+      events.push({ date: String(h.harvested_at), deltaCost: 0, deltaRevenue: rev });
+    }
+    events.sort((a, b) => a.date.localeCompare(b.date));
+    let runCost = 0;
+    let runRev = 0;
+    return events.map((e) => {
+      runCost += e.deltaCost;
+      runRev += e.deltaRevenue;
+      return {
+        label: e.date.slice(5), // mm-dd is enough for x-axis
+        cumulativeCost: runCost,
+        cumulativeRevenue: runRev,
+      };
+    });
+  }, [costsQuery.data, harvestsQuery.data]);
+
+  const costByCategory = useMemo(() => {
+    const m = new Map<string, number>();
+    for (const c of costsQuery.data?.data ?? []) {
+      m.set(c.category, (m.get(c.category) ?? 0) + Number(c.amount_kes));
+    }
+    return Array.from(m.entries()).map(([category, total]) => ({ category, total }));
+  }, [costsQuery.data]);
 
   if (seasonQuery.isLoading) return <p className="text-gray-500">{t('seasons.loading_season')}</p>;
   if (seasonQuery.error) return <p className="text-danger-600">{t('seasons.could_not_load_season')}</p>;
@@ -96,6 +142,24 @@ export function SeasonDetailPage() {
           {t('seasons.planted_on', { date: formatDate(season.planting_date) })} · {irrigationLabel} · {statusLabel}
         </p>
       </header>
+
+      <ProfitSummaryCard totalCost={totals.totalCost} totalRevenue={totals.totalRevenue} />
+
+      {cumulativePoints.length >= 2 && (
+        <Card>
+          <CardHeader>
+            <div className="flex items-baseline justify-between gap-2">
+              <h2 className="text-base font-semibold text-gray-900">
+                {t('seasons.cost_revenue_chart_title')}
+              </h2>
+              <span className="text-xs text-gray-500">{t('seasons.cost_revenue_chart_subtitle')}</span>
+            </div>
+          </CardHeader>
+          <CardBody>
+            <CumulativeCostRevenueChart points={cumulativePoints} />
+          </CardBody>
+        </Card>
+      )}
 
       <div className="border-b border-gray-200 flex gap-6 overflow-x-auto">
         {([
@@ -205,6 +269,21 @@ export function SeasonDetailPage() {
 
       {tab === 'costs' && (
         <div className="space-y-3">
+          {costByCategory.length > 0 && (
+            <Card>
+              <CardHeader>
+                <h3 className="text-sm font-semibold text-gray-900">
+                  {t('seasons.cost_by_category_title')}
+                </h3>
+              </CardHeader>
+              <CardBody>
+                <CostByCategoryBar
+                  data={costByCategory}
+                  labelFor={(c) => t(`log_forms.category_${c}`, { defaultValue: c })}
+                />
+              </CardBody>
+            </Card>
+          )}
           <div className="flex items-center justify-between">
             <div className="text-sm text-gray-600">
               {costsQuery.data && (
