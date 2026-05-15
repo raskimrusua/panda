@@ -52,8 +52,13 @@ it('logs activity on create + update', function () {
     $season = Season::factory()->create(['status' => Season::STATUS_PLANNING]);
     $season->update(['status' => Season::STATUS_ACTIVE]);
 
+    // Order by `id` explicitly: Postgres has no implicit insertion order,
+    // and ULIDs generated within the same ms can sort either way. Without
+    // an explicit orderBy, this assertion was flaky (same family as the
+    // ContentReviewModelTest fix shipped in PR #17).
     $logs = Activity::where('subject_type', Season::class)
         ->where('subject_id', $season->id)
+        ->orderBy('id')
         ->get();
 
     expect($logs)->toHaveCount(2)
