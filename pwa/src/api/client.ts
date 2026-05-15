@@ -19,6 +19,19 @@ apiClient.interceptors.request.use((config) => {
 apiClient.interceptors.response.use(
   (response) => response,
   (error) => {
+    // 409 + code=TERMS_VERSION_OUTDATED — server bumped the legal version.
+    // Redirect into /accept-terms (preserving the current location as `next`)
+    // unless we're already there, in which case let the page handle it.
+    if (
+      error?.response?.status === 409 &&
+      error?.response?.data?.code === 'TERMS_VERSION_OUTDATED' &&
+      typeof window !== 'undefined' &&
+      !window.location.pathname.startsWith('/accept-terms')
+    ) {
+      const next = encodeURIComponent(window.location.pathname + window.location.search);
+      window.location.href = `/accept-terms?next=${next}`;
+    }
+
     // 401 = expired/invalid token. Strip it and let the auth provider
     // re-render the login surface; we don't redirect here so tests stay
     // controllable and the consumer can show a toast.

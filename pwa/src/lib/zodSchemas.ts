@@ -21,6 +21,15 @@ export const registerSchema = z
       .regex(/[A-Za-z]/, 'Must include a letter')
       .regex(/[0-9]/, 'Must include a number'),
     password_confirmation: z.string(),
+    // Kenya DPA 2019 §30 — informed + specific consent. The backend enforces
+    // both flags on the RegisterRequest; the schema mirrors the wire shape so
+    // a `false` value blocks submit before the network call.
+    terms_accepted: z.literal(true, {
+      errorMap: () => ({ message: 'You must accept the Terms of Service to continue.' }),
+    }),
+    privacy_accepted: z.literal(true, {
+      errorMap: () => ({ message: 'You must accept the Privacy Policy to continue.' }),
+    }),
   })
   .refine((d) => d.password === d.password_confirmation, {
     path: ['password_confirmation'],

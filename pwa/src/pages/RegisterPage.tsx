@@ -33,6 +33,10 @@ export function RegisterPage() {
       email: '',
       password: '',
       password_confirmation: '',
+      // Required true via z.literal(true); start unchecked so the user has
+      // to actively accept (DPA 2019 §30: consent must be unambiguous).
+      terms_accepted: false as unknown as true,
+      privacy_accepted: false as unknown as true,
     },
   });
 
@@ -138,6 +142,50 @@ export function RegisterPage() {
               />
               <FieldError message={errors.password_confirmation?.message} />
             </div>
+          </div>
+
+          <div className="pt-2 space-y-2 border-t border-gray-100">
+            <label className="flex items-start gap-2 text-sm text-gray-700">
+              <input
+                type="checkbox"
+                className="mt-1 h-4 w-4 rounded border-gray-300 text-brand-600 focus:ring-brand-600"
+                {...register('terms_accepted')}
+              />
+              <span>
+                I accept the{' '}
+                <a
+                  href="https://panda.shira.farm/terms"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-brand-700 font-medium underline"
+                >
+                  Terms of Service
+                </a>
+                .
+              </span>
+            </label>
+            <FieldError message={errors.terms_accepted?.message} />
+
+            <label className="flex items-start gap-2 text-sm text-gray-700">
+              <input
+                type="checkbox"
+                className="mt-1 h-4 w-4 rounded border-gray-300 text-brand-600 focus:ring-brand-600"
+                {...register('privacy_accepted')}
+              />
+              <span>
+                I accept the{' '}
+                <a
+                  href="https://panda.shira.farm/privacy"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-brand-700 font-medium underline"
+                >
+                  Privacy Policy
+                </a>{' '}
+                (Kenya DPA 2019).
+              </span>
+            </label>
+            <FieldError message={errors.privacy_accepted?.message} />
           </div>
 
           {submitError && (

@@ -15,6 +15,26 @@ export interface RegisterPayload {
   email: string;
   password: string;
   password_confirmation: string;
+  terms_accepted: boolean;
+  privacy_accepted: boolean;
+}
+
+export interface ActivePolicies {
+  terms: { version: string; url: string };
+  privacy: { version: string; url: string };
+}
+
+export interface AcceptPoliciesPayload {
+  terms_version: string;
+  privacy_version: string;
+  terms_accepted: boolean;
+  privacy_accepted: boolean;
+}
+
+export interface AcceptPoliciesResponse {
+  terms_version: string;
+  privacy_version: string;
+  accepted_at: string;
 }
 
 export interface AuthResponse {
@@ -39,6 +59,16 @@ export const authApi = {
 
   async me(): Promise<{ data: User }> {
     const { data } = await apiClient.get<{ data: User }>('/auth/me');
+    return data;
+  },
+
+  async activePolicies(): Promise<ActivePolicies> {
+    const { data } = await apiClient.get<ActivePolicies>('/policies/active');
+    return data;
+  },
+
+  async acceptPolicies(payload: AcceptPoliciesPayload): Promise<AcceptPoliciesResponse> {
+    const { data } = await apiClient.post<AcceptPoliciesResponse>('/policies/accept', payload);
     return data;
   },
 };
