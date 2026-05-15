@@ -3,6 +3,9 @@ import { AppShell } from './components/AppShell';
 import { useAuth } from './auth/useAuth';
 import { LoginPage } from './pages/LoginPage';
 import { RegisterPage } from './pages/RegisterPage';
+import { ForgotPasswordPage } from './pages/ForgotPasswordPage';
+import { ResetPasswordPage } from './pages/ResetPasswordPage';
+import { VerifiedPage } from './pages/VerifiedPage';
 import { DashboardPage } from './pages/DashboardPage';
 import { SeasonListPage } from './pages/SeasonListPage';
 import { NewSeasonPage } from './pages/NewSeasonPage';
@@ -27,6 +30,9 @@ export function App() {
       <Routes>
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
+        <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+        <Route path="/reset-password" element={<ResetPasswordPage />} />
+        <Route path="/verified" element={<VerifiedPage />} />
         <Route path="*" element={<Navigate to="/login" replace />} />
       </Routes>
     );
