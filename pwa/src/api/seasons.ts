@@ -15,6 +15,13 @@ export interface CreateSeasonPayload {
   client_id?: string;
 }
 
+export interface UpdateSeasonPayload {
+  acreage?: number;
+  planting_date?: string;
+  status?: Season['status'];
+  irrigation_type?: Season['irrigation_type'];
+}
+
 export const seasonsApi = {
   async list(): Promise<PaginatedResponse<Season>> {
     const { data } = await apiClient.get<PaginatedResponse<Season>>('/seasons');
@@ -29,6 +36,15 @@ export const seasonsApi = {
   async create(payload: CreateSeasonPayload): Promise<{ data: Season }> {
     const { data } = await apiClient.post<{ data: Season }>('/seasons', payload);
     return data;
+  },
+
+  async update(id: string, payload: UpdateSeasonPayload): Promise<{ data: Season }> {
+    const { data } = await apiClient.patch<{ data: Season }>(`/seasons/${id}`, payload);
+    return data;
+  },
+
+  async destroy(id: string): Promise<void> {
+    await apiClient.delete(`/seasons/${id}`);
   },
 
   async timeline(id: string): Promise<{ data: SeasonActivity[] }> {

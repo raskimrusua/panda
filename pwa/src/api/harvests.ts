@@ -25,6 +25,8 @@ export interface CreateHarvestPayload {
   client_id?: string;
 }
 
+export type UpdateHarvestPayload = Partial<Omit<CreateHarvestPayload, 'season_id' | 'client_id'>>;
+
 export interface SeasonHarvestsResponse {
   data: HarvestLog[];
   totals: {
@@ -44,6 +46,11 @@ export const harvestsApi = {
 
   async create(payload: CreateHarvestPayload): Promise<{ data: HarvestLog }> {
     const { data } = await apiClient.post<{ data: HarvestLog }>('/harvests', payload);
+    return data;
+  },
+
+  async update(id: string, payload: UpdateHarvestPayload): Promise<{ data: HarvestLog }> {
+    const { data } = await apiClient.patch<{ data: HarvestLog }>(`/harvests/${id}`, payload);
     return data;
   },
 

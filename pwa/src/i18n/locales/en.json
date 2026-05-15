@@ -4,6 +4,8 @@
     "save": "Save",
     "cancel": "Cancel",
     "delete": "Delete",
+    "edit": "Edit",
+    "row_actions": "Row actions",
     "back": "Back",
     "all_seasons": "All seasons",
     "online": "Online",
@@ -113,7 +115,16 @@
     "summary_loss": "Loss",
     "cost_by_category_title": "Cost by category",
     "cost_revenue_chart_title": "Cost vs revenue (cumulative)",
-    "cost_revenue_chart_subtitle": "Where the lender-grade PDF gets its profit number from."
+    "cost_revenue_chart_subtitle": "Where the lender-grade PDF gets its profit number from.",
+    "modal_edit_cost": "Edit cost",
+    "modal_edit_harvest": "Edit harvest",
+    "delete_cost_title": "Delete this cost?",
+    "delete_cost_body": "Removes this cost entry from the season. The total spent + cost-by-category chart update immediately. Soft-deleted — recoverable by an admin within 30 days.",
+    "delete_harvest_title": "Delete this harvest?",
+    "delete_harvest_body": "Removes this harvest pick from the season. Picked / sold / revenue totals update immediately. Soft-deleted — recoverable by an admin within 30 days.",
+    "abandon_button": "Abandon season",
+    "abandon_title": "Abandon this season?",
+    "abandon_body": "Marks the season as abandoned (status → abandoned). The data stays intact for record-keeping; you'll see it in the list with an 'abandoned' badge but no new activities will be generated. Use this when a planting failed before harvest. To completely undo a mistaken season, contact support."
   },
   "onboarding": {
     "welcome_title": "Karibu Panda.",

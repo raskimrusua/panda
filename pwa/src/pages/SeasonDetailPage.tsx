@@ -13,9 +13,15 @@ import { Modal } from '@/components/ui/Modal';
 import { LogActivityDoneForm } from '@/components/forms/LogActivityDoneForm';
 import { NewCostForm } from '@/components/forms/NewCostForm';
 import { NewHarvestForm } from '@/components/forms/NewHarvestForm';
+import { EditCostForm } from '@/components/forms/EditCostForm';
+import { EditHarvestForm } from '@/components/forms/EditHarvestForm';
+import { ConfirmDeleteModal } from '@/components/ui/ConfirmDeleteModal';
+import { RowActions } from '@/components/ui/RowActions';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useNavigate } from 'react-router-dom';
 import { seasonsApi } from '@/api/seasons';
-import { costsApi } from '@/api/costs';
-import { harvestsApi } from '@/api/harvests';
+import { costsApi, type CostEntry } from '@/api/costs';
+import { harvestsApi, type HarvestLog } from '@/api/harvests';
 import { formatDate, formatKes } from '@/lib/utils';
 
 type Tab = 'timeline' | 'inputs' | 'costs' | 'harvests';
@@ -28,6 +34,34 @@ export function SeasonDetailPage() {
   const [showCostForm, setShowCostForm] = useState(false);
   const [showHarvestForm, setShowHarvestForm] = useState(false);
   const [downloadingPdf, setDownloadingPdf] = useState(false);
+  const [editingCost, setEditingCost] = useState<CostEntry | null>(null);
+  const [deletingCost, setDeletingCost] = useState<CostEntry | null>(null);
+  const [editingHarvest, setEditingHarvest] = useState<HarvestLog | null>(null);
+  const [deletingHarvest, setDeletingHarvest] = useState<HarvestLog | null>(null);
+  const [showAbandonConfirm, setShowAbandonConfirm] = useState(false);
+  const navigate = useNavigate();
+  const queryClient = useQueryClient();
+
+  const abandonMutation = useMutation({
+    mutationFn: () => seasonsApi.update(id, { status: 'abandoned' }),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['seasons'] });
+      queryClient.invalidateQueries({ queryKey: ['seasons', id] });
+      navigate('/seasons');
+    },
+  });
+
+  const deleteCostFn = async () => {
+    if (!deletingCost) return;
+    await costsApi.destroy(deletingCost.id);
+    queryClient.invalidateQueries({ queryKey: ['seasons', id, 'costs'] });
+  };
+
+  const deleteHarvestFn = async () => {
+    if (!deletingHarvest) return;
+    await harvestsApi.destroy(deletingHarvest.id);
+    queryClient.invalidateQueries({ queryKey: ['seasons', id, 'harvests'] });
+  };
 
   const handleDownloadPdf = async () => {
     setDownloadingPdf(true);
@@ -134,13 +168,20 @@ export function SeasonDetailPage() {
         <ArrowLeft className="h-4 w-4" /> {t('common.all_seasons')}
       </Link>
 
-      <header>
-        <h1 className="text-2xl font-semibold">
-          {season.crop?.name_en ?? t('seasons.crop_fallback')} · {Number(season.acreage)} {t('seasons.acres_unit')}
-        </h1>
-        <p className="text-gray-600">
-          {t('seasons.planted_on', { date: formatDate(season.planting_date) })} · {irrigationLabel} · {statusLabel}
-        </p>
+      <header className="flex items-start justify-between gap-3">
+        <div>
+          <h1 className="text-2xl font-semibold">
+            {season.crop?.name_en ?? t('seasons.crop_fallback')} · {Number(season.acreage)} {t('seasons.acres_unit')}
+          </h1>
+          <p className="text-gray-600">
+            {t('seasons.planted_on', { date: formatDate(season.planting_date) })} · {irrigationLabel} · {statusLabel}
+          </p>
+        </div>
+        {season.status !== 'abandoned' && season.status !== 'complete' && (
+          <Button variant="ghost" size="sm" onClick={() => setShowAbandonConfirm(true)}>
+            {t('seasons.abandon_button')}
+          </Button>
+        )}
       </header>
 
       <ProfitSummaryCard totalCost={totals.totalCost} totalRevenue={totals.totalRevenue} />
@@ -308,7 +349,10 @@ export function SeasonDetailPage() {
                     {c.supplier_name && ` · ${c.supplier_name}`}
                   </div>
                 </div>
-                <div className="font-semibold">{formatKes(c.amount_kes)}</div>
+                <div className="flex items-center gap-2">
+                  <div className="font-semibold">{formatKes(c.amount_kes)}</div>
+                  <RowActions onEdit={() => setEditingCost(c)} onDelete={() => setDeletingCost(c)} />
+                </div>
               </CardBody>
             </Card>
           ))}
@@ -350,7 +394,10 @@ export function SeasonDetailPage() {
                     {h.buyer_name && ` · ${h.buyer_name}`}
                   </div>
                 </div>
-                <div className="font-semibold">{formatKes(h.revenue_kes)}</div>
+                <div className="flex items-center gap-2">
+                  <div className="font-semibold">{formatKes(h.revenue_kes)}</div>
+                  <RowActions onEdit={() => setEditingHarvest(h)} onDelete={() => setDeletingHarvest(h)} />
+                </div>
               </CardBody>
             </Card>
           ))}
@@ -388,6 +435,45 @@ export function SeasonDetailPage() {
       <Modal open={showHarvestForm} onClose={() => setShowHarvestForm(false)} title={t('seasons.modal_log_harvest')}>
         <NewHarvestForm seasonId={id} onDone={() => setShowHarvestForm(false)} />
       </Modal>
+
+      <Modal open={!!editingCost} onClose={() => setEditingCost(null)} title={t('seasons.modal_edit_cost')}>
+        {editingCost && (
+          <EditCostForm cost={editingCost} seasonId={id} onDone={() => setEditingCost(null)} />
+        )}
+      </Modal>
+
+      <Modal open={!!editingHarvest} onClose={() => setEditingHarvest(null)} title={t('seasons.modal_edit_harvest')}>
+        {editingHarvest && (
+          <EditHarvestForm harvest={editingHarvest} seasonId={id} onDone={() => setEditingHarvest(null)} />
+        )}
+      </Modal>
+
+      <ConfirmDeleteModal
+        open={!!deletingCost}
+        onClose={() => setDeletingCost(null)}
+        onConfirm={deleteCostFn}
+        title={t('seasons.delete_cost_title')}
+        body={t('seasons.delete_cost_body')}
+      />
+
+      <ConfirmDeleteModal
+        open={!!deletingHarvest}
+        onClose={() => setDeletingHarvest(null)}
+        onConfirm={deleteHarvestFn}
+        title={t('seasons.delete_harvest_title')}
+        body={t('seasons.delete_harvest_body')}
+      />
+
+      <ConfirmDeleteModal
+        open={showAbandonConfirm}
+        onClose={() => setShowAbandonConfirm(false)}
+        onConfirm={async () => {
+          await abandonMutation.mutateAsync();
+        }}
+        title={t('seasons.abandon_title')}
+        body={t('seasons.abandon_body')}
+        confirmLabel={t('seasons.abandon_button')}
+      />
     </div>
   );
 }

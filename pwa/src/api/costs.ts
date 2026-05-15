@@ -33,6 +33,8 @@ export interface CreateCostPayload {
   supplier_name?: string;
 }
 
+export type UpdateCostPayload = Partial<Omit<CreateCostPayload, 'season_id'>>;
+
 export interface SeasonCostsResponse {
   data: CostEntry[];
   totals: {
@@ -54,6 +56,11 @@ export const costsApi = {
 
   async create(payload: CreateCostPayload): Promise<{ data: CostEntry }> {
     const { data } = await apiClient.post<{ data: CostEntry }>('/costs', payload);
+    return data;
+  },
+
+  async update(id: string, payload: UpdateCostPayload): Promise<{ data: CostEntry }> {
+    const { data } = await apiClient.patch<{ data: CostEntry }>(`/costs/${id}`, payload);
     return data;
   },
 
