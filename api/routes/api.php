@@ -42,10 +42,22 @@ Route::prefix('v1')->group(function () {
     /* Auth */
     Route::post('auth/register', [AuthController::class, 'register']);
     Route::post('auth/login', [AuthController::class, 'login']);
+    Route::post('auth/password/forgot', [AuthController::class, 'forgotPassword'])
+        ->middleware('throttle:6,1');
+    Route::post('auth/password/reset', [AuthController::class, 'resetPassword'])
+        ->middleware('throttle:6,1');
+
+    // Verification link signed at email-send time; signed middleware
+    // validates the URL signature without requiring authentication.
+    Route::get('auth/email/verify/{id}/{hash}', [AuthController::class, 'verifyEmail'])
+        ->middleware(['signed', 'throttle:6,1'])
+        ->name('verification.verify');
 
     Route::middleware(['auth:sanctum', 'tenant'])->group(function () {
         Route::post('auth/logout', [AuthController::class, 'logout']);
         Route::get('auth/me', [AuthController::class, 'me']);
+        Route::post('auth/email/verification-notification', [AuthController::class, 'sendVerification'])
+            ->middleware('throttle:6,1');
 
         /* Tenant-scoped resources */
         Route::apiResource('seasons', SeasonController::class);
