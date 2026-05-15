@@ -1,8 +1,8 @@
 # Panda — PROJECT_STATE
 
-**Last updated:** 2026-05-14
+**Last updated:** 2026-05-15
 **Phase:** P5 PWA polish + P6 marketing live; P7 content authoring + P8 pilot still pending
-**Status:** **MVP-grade.** Backend live on Hetzner; marketing + PWA on CF Pages preview URLs; pilot waitlist endpoint shipped; weekend ops queue documented for flip-to-live at panda.shira.farm. **17 PRs merged 2026-05-13/14.**
+**Status:** **MVP-grade with edit/delete recovery paths shipped.** Backend live on Hetzner; marketing + PWA on CF Pages preview URLs; pilot waitlist endpoint shipped; weekend ops queue documented for flip-to-live at panda.shira.farm. **21 PRs merged 2026-05-13/14/15.**
 
 ---
 
@@ -22,8 +22,9 @@
 | **Demo data (`panda:seed-demo --months=12`)** | 1 tenant (Demo Farm in Meru), 1 user (`demo@panda.shira.farm` / `demo-panda`), 5 crops, 3 seasons, 33 activities, 24 inputs, 34 costs, 19 harvests, 3 disease detections, 30 dealers, 1560 prices. |
 | **Resend** | shira.farm domain verified 2026-05-14 (DKIM + SPF + DMARC on CF). API key in both Shira + Panda `.env` on Hetzner; rotation deferred per Joshua. |
 
-## Today's PRs merged (17)
+## PRs merged (21 total across 2026-05-13/14/15)
 
+**Day 1 (2026-05-13/14):**
 `#3-#11` chain — backend + PWA scaffold (P1-P5)
 `#12` — translations + onboarding (HelpTooltip + WelcomeModal)
 `#13` — Hetzner prod compose + nginx vhost + DEPLOY_HETZNER.md runbook
@@ -33,6 +34,11 @@
 `#17` — PDF download auth fix (JSON 401 + token-bearing PWA download)
 `#18` — Pilot waitlist (D1 table + endpoint + WaitlistForm + Resend confirmation)
 `#19` — Profit summary card + cumulative C-vs-R chart + cost-by-category bar + formula tooltips
+
+**Day 2 (2026-05-15):**
+`#20` — PROJECT_STATE.md update (17-PR recap + weekend ops queue)
+`#21` — **GAP report's #1 must-fix shipped.** EditCostForm + EditHarvestForm + ConfirmDeleteModal + RowActions 3-dot menu + Abandon Season button. Backend was already done (PR #6); whole gap was PWA UI.
+`#22` — Two more flaky ActivityLog assertions hardened with `->orderBy('id')` (SeasonModelTest + TenantTest). Same family as PR #17 fix.
 
 ## Open
 
