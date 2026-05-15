@@ -33,10 +33,10 @@ export function RegisterPage() {
       email: '',
       password: '',
       password_confirmation: '',
-      // Required true via z.literal(true); start unchecked so the user has
-      // to actively accept (DPA 2019 §30: consent must be unambiguous).
-      terms_accepted: false as unknown as true,
-      privacy_accepted: false as unknown as true,
+      // Start unchecked — DPA 2019 §30 requires unambiguous consent, so the
+      // user must actively tick. Schema refines enforce true at submit time.
+      terms_accepted: false,
+      privacy_accepted: false,
     },
   });
 

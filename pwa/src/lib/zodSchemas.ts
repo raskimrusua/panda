@@ -21,19 +21,24 @@ export const registerSchema = z
       .regex(/[A-Za-z]/, 'Must include a letter')
       .regex(/[0-9]/, 'Must include a number'),
     password_confirmation: z.string(),
-    // Kenya DPA 2019 §30 — informed + specific consent. The backend enforces
-    // both flags on the RegisterRequest; the schema mirrors the wire shape so
-    // a `false` value blocks submit before the network call.
-    terms_accepted: z.literal(true, {
-      errorMap: () => ({ message: 'You must accept the Terms of Service to continue.' }),
-    }),
-    privacy_accepted: z.literal(true, {
-      errorMap: () => ({ message: 'You must accept the Privacy Policy to continue.' }),
-    }),
+    // Kenya DPA 2019 §30 — informed + specific consent. Schema mirrors
+    // the wire shape so a false value blocks submit before the network
+    // call. Booleans (not z.literal(true)) so defaultValues can start
+    // unchecked without a type cast; the .refine() below enforces true.
+    terms_accepted: z.boolean(),
+    privacy_accepted: z.boolean(),
   })
   .refine((d) => d.password === d.password_confirmation, {
     path: ['password_confirmation'],
     message: 'Passwords do not match',
+  })
+  .refine((d) => d.terms_accepted === true, {
+    path: ['terms_accepted'],
+    message: 'You must accept the Terms of Service to continue.',
+  })
+  .refine((d) => d.privacy_accepted === true, {
+    path: ['privacy_accepted'],
+    message: 'You must accept the Privacy Policy to continue.',
   });
 
 export const newSeasonSchema = z.object({
