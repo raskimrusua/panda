@@ -66,6 +66,26 @@
     "verify_sent": "Barua pepe ya uthibitisho imetumwa. Angalia inbox.",
     "resend_email": "Tuma tena"
   },
+  "profile": {
+    "title": "Akaunti yako",
+    "subtitle": "Sasisha jina, barua pepe, au nenosiri.",
+    "section_account": "Akaunti",
+    "section_password": "Nenosiri",
+    "field_name": "Jina lako",
+    "field_email": "Barua pepe",
+    "email_change_warning": "Ukibadilisha barua pepe, tutatuma kiungo kipya cha uthibitisho kwa anwani mpya. Ya zamani itaacha kufanya kazi.",
+    "save_account": "Hifadhi mabadiliko",
+    "saved": "Imehifadhiwa.",
+    "saved_email_reverify": "Imehifadhiwa. Angalia inbox yako mpya kupata kiungo cha uthibitisho.",
+    "no_changes": "Hakuna la kuhifadhi — taarifa zako ni zilezile.",
+    "save_failed": "Imeshindikana kuhifadhi. Jaribu tena.",
+    "current_password": "Nenosiri la sasa",
+    "new_password": "Nenosiri jipya",
+    "confirm_password": "Thibitisha nenosiri jipya",
+    "save_password": "Badilisha nenosiri",
+    "password_changed": "Nenosiri limesasishwa.",
+    "password_change_failed": "Imeshindikana. Hakikisha nenosiri la sasa ni sahihi."
+  },
   "dashboard": {
     "welcome": "Karibu, {{name}}.",
     "subtitle": "Hii ndiyo hali ya shamba lako leo.",

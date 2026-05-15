@@ -13,6 +13,7 @@ import { SeasonDetailPage } from './pages/SeasonDetailPage';
 import { DiseaseScanPage } from './pages/DiseaseScanPage';
 import { DealerMapPage } from './pages/DealerMapPage';
 import { PricesPage } from './pages/PricesPage';
+import { ProfilePage } from './pages/ProfilePage';
 
 export function App() {
   const { user, isLoading } = useAuth();
@@ -48,6 +49,7 @@ export function App() {
         <Route path="/disease" element={<DiseaseScanPage />} />
         <Route path="/dealers" element={<DealerMapPage />} />
         <Route path="/prices" element={<PricesPage />} />
+        <Route path="/profile" element={<ProfilePage />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </AppShell>

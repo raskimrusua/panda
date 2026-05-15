@@ -47,6 +47,30 @@ export const resetPasswordSchema = z
     message: 'Passwords do not match',
   });
 
+export const updateProfileSchema = z.object({
+  name: z.string().min(2, 'Your name is too short').max(120),
+  email: z.string().email('Enter a valid email'),
+});
+
+export const changePasswordSchema = z
+  .object({
+    current_password: z.string().min(1, 'Current password is required'),
+    password: z
+      .string()
+      .min(8, 'At least 8 characters')
+      .regex(/[A-Za-z]/, 'Must include a letter')
+      .regex(/[0-9]/, 'Must include a number'),
+    password_confirmation: z.string(),
+  })
+  .refine((d) => d.password === d.password_confirmation, {
+    path: ['password_confirmation'],
+    message: 'Passwords do not match',
+  })
+  .refine((d) => d.password !== d.current_password, {
+    path: ['password'],
+    message: 'New password must be different',
+  });
+
 export const newSeasonSchema = z.object({
   crop_id: z.string().min(1, 'Choose a crop'),
   acreage: z.coerce
@@ -113,6 +137,8 @@ export type LoginValues = z.infer<typeof loginSchema>;
 export type RegisterValues = z.infer<typeof registerSchema>;
 export type ForgotPasswordValues = z.infer<typeof forgotPasswordSchema>;
 export type ResetPasswordValues = z.infer<typeof resetPasswordSchema>;
+export type UpdateProfileValues = z.infer<typeof updateProfileSchema>;
+export type ChangePasswordValues = z.infer<typeof changePasswordSchema>;
 export type NewSeasonValues = z.infer<typeof newSeasonSchema>;
 export type LogActivityDoneValues = z.infer<typeof logActivityDoneSchema>;
 export type NewCostValues = z.infer<typeof newCostSchema>;
