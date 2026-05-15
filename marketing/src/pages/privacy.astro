@@ -1,0 +1,145 @@
+---
+import PublicLayout from '@/layouts/PublicLayout.astro'
+
+const version = 'v1_2026-05-15'
+const lastUpdated = '15 May 2026'
+---
+
+<PublicLayout
+  title="Privacy Policy — Panda"
+  description="How Panda collects, uses, and protects your data. Kenya DPA 2019 compliant."
+>
+  <article class="mx-auto max-w-3xl px-4 py-12 md:px-6 md:py-16 prose prose-stone">
+    <h1>Privacy Policy</h1>
+    <p class="text-sm text-rich-earth/60">
+      Version <strong>{version}</strong> &middot; Last updated {lastUpdated}
+    </p>
+
+    <div class="rounded-md border border-amber-200 bg-amber-50 p-4 text-sm text-amber-900 not-prose mb-8">
+      <strong>Draft pending Kenyan legal review.</strong>
+      This Policy is in effect for the pilot launch in Meru and Kirinyaga
+      counties. The text will be re-versioned (and you will be asked to
+      re-accept) once it has been reviewed by Kenyan legal counsel and Panda
+      has been registered with the Office of the Data Protection Commissioner
+      (ODPC) under §18 of the Data Protection Act 2019.
+    </div>
+
+    <h2>1. Who we are &amp; the law that applies</h2>
+    <p>
+      Panda is a horticulture planning and logging tool operated by
+      <strong>Upstate Web Co.</strong>, acting in Kenya under its sister-brand
+      <strong>Shira</strong>. We are the data controller for personal data
+      processed through Panda. This Policy describes the personal data we
+      collect, why we collect it, how we share it, how long we keep it, and
+      the rights you have under the
+      <strong>Kenya Data Protection Act 2019</strong> ("DPA 2019"). If any
+      part of this Policy conflicts with a non-waivable right you have under
+      that Act, the Act prevails.
+    </p>
+
+    <h2>2. What we collect</h2>
+    <ul>
+      <li><strong>Account data</strong> — your name, email, phone (optional), county, sub-county, farm name. Required to operate your account.</li>
+      <li><strong>Farm records</strong> — crop, season, acreage, planting / harvest dates, costs, yields, supplier and buyer names. These are your records; we host them so you can access them across devices.</li>
+      <li><strong>Disease detection</strong> — photographs you upload, the model's diagnosis, your opt-in flag for training. Photographs are stored on Cloudflare R2.</li>
+      <li><strong>Technical data</strong> — IP address, browser / device, language, timezone, when you logged in, when you accepted these policies. Captured for security and for the DPA 2019 §30 burden of proof on consent.</li>
+      <li><strong>Communications</strong> — messages you send to support, including attachments.</li>
+    </ul>
+
+    <h2>3. Lawful basis (DPA 2019 §30)</h2>
+    <ul>
+      <li><strong>Performance of a contract.</strong> Account and farm-record processing is necessary to deliver the service you signed up for.</li>
+      <li><strong>Consent.</strong> Disease-photo training, marketing email, and analytics cookies (when introduced) rely on your specific opt-in. You can withdraw at any time.</li>
+      <li><strong>Legal obligation.</strong> Tax-relevant records (cost and revenue entries) are retained for the period required by the Income Tax Act §23 (currently five years).</li>
+      <li><strong>Legitimate interest.</strong> Fraud prevention, error logging, and aggregate analytics for product improvement, balanced against your rights.</li>
+    </ul>
+
+    <h2>4. How we share data</h2>
+    <p>We do not sell your data. We share with the following processors, each only to the extent strictly necessary:</p>
+    <ul>
+      <li><strong>Hetzner Online GmbH</strong> (Germany) — primary hosting for the API and database.</li>
+      <li><strong>Cloudflare, Inc.</strong> (USA / global edge) — DNS, edge caching, R2 object storage for disease photographs.</li>
+      <li><strong>Resend, Inc.</strong> (USA) — transactional email (verification, password reset, receipts).</li>
+      <li><strong>Sentry</strong> (USA) — error monitoring; we do not send identifiable personal data to Sentry, only error stack traces and an opaque user identifier.</li>
+      <li><strong>Plant disease AI provider (planned, not yet active)</strong> — once activated, photographs flagged for training will be sent to a third-party plant-pathology model provider. We will re-version this Policy and re-prompt for consent before any data leaves Panda for this purpose.</li>
+      <li><strong>Mobile-money providers</strong> — when paid tiers launch, transactional data will pass through Safaricom Daraja for M-Pesa. Safaricom's own privacy notice applies to that processing.</li>
+    </ul>
+
+    <h2>5. Cross-border transfers (DPA 2019 §49)</h2>
+    <p>
+      Hetzner stores your data primarily in Germany (EU); Cloudflare's edge
+      network and Resend operate from multiple jurisdictions including the
+      USA. Where data is transferred outside Kenya, we rely on adequacy
+      regimes (EU GDPR) or contractual safeguards. You may request the
+      specific safeguards in place by writing to
+      <a href="mailto:dpo@shira.farm">dpo@shira.farm</a>.
+    </p>
+
+    <h2>6. Retention</h2>
+    <ul>
+      <li>Account &amp; farm records: while your account is active, plus 5 years for tax-relevant records.</li>
+      <li>Disease photographs: 30 days after deletion request; opted-in photographs retained while opt-in remains in force.</li>
+      <li>Server logs (IP, request paths): 30 days.</li>
+      <li>Backup snapshots: 30 days rolling.</li>
+    </ul>
+
+    <h2>7. Your rights (DPA 2019 §§26–35)</h2>
+    <p>You have the right to:</p>
+    <ul>
+      <li>access the personal data we hold about you;</li>
+      <li>request correction of inaccurate data;</li>
+      <li>request deletion of your data (subject to legal-retention exceptions);</li>
+      <li>object to processing based on legitimate interest;</li>
+      <li>withdraw consent (e.g. for disease-photo training) at any time;</li>
+      <li>data portability (export your records in a structured format);</li>
+      <li>lodge a complaint with the Office of the Data Protection Commissioner.</li>
+    </ul>
+    <p>
+      To exercise any of these rights, write to
+      <a href="mailto:dpo@shira.farm">dpo@shira.farm</a>. We will respond
+      within 30 days (DPA 2019 §29).
+    </p>
+
+    <h2>8. Complaints &amp; the regulator</h2>
+    <p>
+      If you are not satisfied with our handling of your data, you may
+      complain to the Office of the Data Protection Commissioner:
+    </p>
+    <ul>
+      <li><strong>Office of the Data Protection Commissioner</strong></li>
+      <li>P.O. Box 30920–00100, Nairobi, Kenya</li>
+      <li>Phone: +254 20 4900800</li>
+      <li>Email: <a href="mailto:info@odpc.go.ke">info@odpc.go.ke</a></li>
+      <li>Website: <a href="https://www.odpc.go.ke">odpc.go.ke</a></li>
+    </ul>
+
+    <h2>9. Breach notification (DPA 2019 §43)</h2>
+    <p>
+      If we discover a personal-data breach likely to result in risk to you,
+      we will notify the ODPC within 72 hours of becoming aware of it, and
+      notify affected users without undue delay where high risk is involved.
+      Suspected breaches: <a href="mailto:security@shira.farm">security@shira.farm</a>.
+    </p>
+
+    <h2>10. Children</h2>
+    <p>
+      Panda is not directed at users under 18. We do not knowingly collect
+      data from children. If you believe a child has provided personal data,
+      contact us and we will delete it.
+    </p>
+
+    <h2>11. Changes</h2>
+    <p>
+      We re-version this Policy when our practices or the law change. The
+      version above is canonical; the application will prompt you to re-accept
+      the updated Policy before continuing if the version changes.
+    </p>
+
+    <h2>12. Contact</h2>
+    <ul>
+      <li>Data Protection Officer: <a href="mailto:dpo@shira.farm">dpo@shira.farm</a></li>
+      <li>Security incidents: <a href="mailto:security@shira.farm">security@shira.farm</a></li>
+      <li>General: <a href="mailto:support@shira.farm">support@shira.farm</a></li>
+    </ul>
+  </article>
+</PublicLayout>
