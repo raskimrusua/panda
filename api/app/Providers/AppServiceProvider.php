@@ -7,6 +7,7 @@ use App\Models\Season;
 use App\Observers\HarvestLogObserver;
 use App\Observers\SeasonObserver;
 use App\Services\Crops\Disease\CropHealthClient;
+use App\Services\Crops\Disease\KindwiseCropHealthClient;
 use App\Services\Crops\Disease\MockCropHealthClient;
 use Illuminate\Support\ServiceProvider;
 
@@ -14,9 +15,16 @@ class AppServiceProvider extends ServiceProvider
 {
     public function register(): void
     {
-        // P1-P4 ships with the mock. P5 swap: bind to KindwiseCropHealthClient
-        // when CROP_HEALTH_PROVIDER=crop_health AND a real DSN is set.
-        $this->app->bind(CropHealthClient::class, MockCropHealthClient::class);
+        // Disease-detection provider is env-driven. `kindwise` swaps in
+        // the real Crop.health API; anything else (default `mock`) keeps
+        // the deterministic offline mock — zero cost, no network. See
+        // config/services.php `crop_health.provider`.
+        $this->app->bind(CropHealthClient::class, function () {
+            return match (config('services.crop_health.provider')) {
+                'kindwise' => $this->app->make(KindwiseCropHealthClient::class),
+                default => $this->app->make(MockCropHealthClient::class),
+            };
+        });
     }
 
     public function boot(): void
