@@ -1,8 +1,8 @@
 # Panda — PROJECT_STATE
 
-**Last updated:** 2026-05-07
-**Phase:** P1 (ready to start)
-**Status:** Pre-build complete. Pipeline kickoff pending.
+**Last updated:** 2026-05-14
+**Phase:** P5 PWA polish + P6 marketing live; P7 content authoring + P8 pilot still pending
+**Status:** **MVP-grade.** Backend live on Hetzner; marketing + PWA on CF Pages preview URLs; pilot waitlist endpoint shipped; weekend ops queue documented for flip-to-live at panda.shira.farm. **17 PRs merged 2026-05-13/14.**
 
 ---
 
@@ -10,15 +10,34 @@
 
 | Layer | State |
 |---|---|
-| **Spec** | JAICA FarmTrack doc (`~/Downloads/JAICA_FarmTrack_Build_Documentation.docx`) — read, adapted to Laravel + standalone (Panda) shape |
-| **Plan** | `~/.claude/plans/piped-knitting-blum.md` — 9 phases, ~12–14 weeks engineering + parallel content authoring |
-| **Governance** | `docs/GOVERNANCE_REPORT_2026_05_07.md` — combined 7.05/10 (clears 6.5 gate) |
-| **Skills** | 14 Laravel skill files in `~/Desktop/uwc-web-co/00-skills/app-build/laravel/` (P0.5 complete) |
-| **Backend** | Not yet scaffolded — P1 starts here |
-| **Frontend (PWA)** | Not yet scaffolded — P5 |
-| **Marketing site** | Not yet scaffolded — P6 |
-| **Repo** | **`raskimrusua/panda`** (private, GH) — initial commit pushed 2026-05-07 |
-| **Domain** | `panda.farm` placeholder — confirm during P1 |
+| **Spec** | JAICA FarmTrack doc — read, adapted to Laravel + standalone (Panda) shape |
+| **Plan** | `~/.claude/plans/piped-knitting-blum.md` — 9 phases |
+| **Governance** | `docs/GOVERNANCE_REPORT_2026_05_07.md` — combined 7.05/10 |
+| **Skills (UWC)** | 14 Laravel skill files + new `skill-laravel-github-actions-ci.md`. 4 lessons backported in PR `uwc-ops#5` (awaiting review). |
+| **Backend** | ✅ Built + deployed. `panda_app` + `panda_horizon` on Hetzner shared CX22. Filament admin + Sentry + /up + Sanctum + multi-tenancy + Season Engine + Cost/Harvest/Disease/Dealer/Price endpoints + lender PDF. Reachable via `panda_test_nginx` on host port 8090 (NOT public DNS yet). |
+| **PWA** | ✅ Built + deployed. Auth + Season list/detail/new + log forms + Disease scan + Dealer map + Price chart + offline write queue + i18n EN/SW + onboarding modal + HelpTooltips + profit summary + cumulative cost-vs-revenue chart + cost-by-category bar. Live at `panda-pwa.pages.dev` (cloud, baked for prod URL) + `localhost:5173` (local dev against Hetzner backend). |
+| **Marketing site** | ✅ Built + deployed. Astro 5 + Tailwind 4 inheriting Shira theme. 5 pages + pilot waitlist form (D1 + Resend confirmation). Live at `panda-marketing.pages.dev`. |
+| **Repo** | **`raskimrusua/panda`** — flipped to **PUBLIC** 2026-05-13 to unblock GHA Actions billing. |
+| **Domain** | `panda.shira.farm` — DNS not yet wired (weekend work). |
+| **Demo data (`panda:seed-demo --months=12`)** | 1 tenant (Demo Farm in Meru), 1 user (`demo@panda.shira.farm` / `demo-panda`), 5 crops, 3 seasons, 33 activities, 24 inputs, 34 costs, 19 harvests, 3 disease detections, 30 dealers, 1560 prices. |
+| **Resend** | shira.farm domain verified 2026-05-14 (DKIM + SPF + DMARC on CF). API key in both Shira + Panda `.env` on Hetzner; rotation deferred per Joshua. |
+
+## Today's PRs merged (17)
+
+`#3-#11` chain — backend + PWA scaffold (P1-P5)
+`#12` — translations + onboarding (HelpTooltip + WelcomeModal)
+`#13` — Hetzner prod compose + nginx vhost + DEPLOY_HETZNER.md runbook
+`#14` — `panda:seed-demo --months=3|6|12` + GAP_REPORT_2026_05_13.md
+`#15` — Astro marketing scaffold inheriting Shira theme
+`#16` — Dockerfile pcntl fix (Horizon needs it)
+`#17` — PDF download auth fix (JSON 401 + token-bearing PWA download)
+`#18` — Pilot waitlist (D1 table + endpoint + WaitlistForm + Resend confirmation)
+`#19` — Profit summary card + cumulative C-vs-R chart + cost-by-category bar + formula tooltips
+
+## Open
+
+- **`farmcore#15`** (Shira) — sister-product card on shira.farm linking to panda.shira.farm/#waitlist. CI red on shared GHA billing block (same issue panda hit before flipping public). Needs Joshua to flip Shira public OR resolve raskimrusua billing OR `--admin` merge.
+- **`uwc-ops#5`** — Laravel skill backports (4 lessons from today). Awaiting Joshua review.
 
 ---
 
