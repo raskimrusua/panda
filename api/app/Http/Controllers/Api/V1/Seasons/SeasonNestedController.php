@@ -12,6 +12,7 @@ use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 
 /**
  * Tenant-scoped — every fetch passes through the Season's global scope so
@@ -104,5 +105,93 @@ class SeasonNestedController extends Controller
         );
 
         return $pdf->download($filename);
+    }
+
+    /**
+     * CSV export of cost entries for a season. Streamed so large seasons
+     * don't buffer the full file in memory before send.
+     */
+    public function costsCsv(Season $season): StreamedResponse
+    {
+        $entries = $season->costEntries()->latest('incurred_at')->get();
+        $filename = $this->csvFilename($season, 'costs');
+
+        return response()->streamDownload(function () use ($entries) {
+            $out = fopen('php://output', 'w');
+            fputcsv($out, ['incurred_at', 'category', 'description', 'amount_kes', 'supplier_name']);
+            foreach ($entries as $entry) {
+                fputcsv($out, [
+                    $entry->incurred_at?->toDateString(),
+                    $entry->category,
+                    $entry->description,
+                    (string) $entry->amount_kes,
+                    $entry->supplier_name,
+                ]);
+            }
+            fclose($out);
+        }, $filename, [
+            'Content-Type' => 'text/csv; charset=UTF-8',
+        ]);
+    }
+
+    public function harvestsCsv(Season $season): StreamedResponse
+    {
+        $logs = $season->harvestLogs()->latest('harvested_at')->get();
+        $filename = $this->csvFilename($season, 'harvests');
+
+        return response()->streamDownload(function () use ($logs) {
+            $out = fopen('php://output', 'w');
+            fputcsv($out, ['harvested_at', 'quantity_kg', 'sold_quantity_kg', 'unit_price_kes', 'revenue_kes', 'buyer_name']);
+            foreach ($logs as $log) {
+                fputcsv($out, [
+                    $log->harvested_at?->toDateString(),
+                    (string) $log->quantity_kg,
+                    (string) $log->sold_quantity_kg,
+                    $log->unit_price_kes !== null ? (string) $log->unit_price_kes : '',
+                    number_format($log->revenueKes(), 2, '.', ''),
+                    $log->buyer_name,
+                ]);
+            }
+            fclose($out);
+        }, $filename, [
+            'Content-Type' => 'text/csv; charset=UTF-8',
+        ]);
+    }
+
+    public function activitiesCsv(Season $season): StreamedResponse
+    {
+        $activities = $season->activities()->orderBy('ideal_date')->get();
+        $filename = $this->csvFilename($season, 'activities');
+
+        return response()->streamDownload(function () use ($activities) {
+            $out = fopen('php://output', 'w');
+            fputcsv($out, ['ideal_date', 'phase', 'activity_type', 'description_en', 'is_critical', 'status', 'completed_at']);
+            foreach ($activities as $activity) {
+                fputcsv($out, [
+                    $activity->ideal_date?->toDateString(),
+                    $activity->phase,
+                    $activity->activity_type,
+                    $activity->description_en,
+                    $activity->is_critical ? 'yes' : 'no',
+                    $activity->status,
+                    $activity->completed_at?->toDateString(),
+                ]);
+            }
+            fclose($out);
+        }, $filename, [
+            'Content-Type' => 'text/csv; charset=UTF-8',
+        ]);
+    }
+
+    private function csvFilename(Season $season, string $kind): string
+    {
+        $season->loadMissing('crop');
+
+        return sprintf(
+            'panda-season-%s-%s-%s.csv',
+            $season->crop?->slug ?? 'crop',
+            $kind,
+            $season->id
+        );
     }
 }

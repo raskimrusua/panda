@@ -55,6 +55,9 @@ Route::prefix('v1')->group(function () {
         Route::get('seasons/{season}/costs', [SeasonNestedController::class, 'costs']);
         Route::get('seasons/{season}/harvests', [SeasonNestedController::class, 'harvests']);
         Route::get('seasons/{season}/report', [SeasonNestedController::class, 'report']);
+        Route::get('seasons/{season}/costs.csv', [SeasonNestedController::class, 'costsCsv']);
+        Route::get('seasons/{season}/harvests.csv', [SeasonNestedController::class, 'harvestsCsv']);
+        Route::get('seasons/{season}/activities.csv', [SeasonNestedController::class, 'activitiesCsv']);
 
         Route::post('activities/{activity}/log-done', [SeasonActivityController::class, 'logDone']);
 
