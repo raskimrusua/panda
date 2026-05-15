@@ -56,6 +56,16 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | PWA Frontend URL
+    |--------------------------------------------------------------------------
+    | The URL the farmer-facing PWA is served from. Used to build email
+    | links (verification + password reset) that land in the PWA, not the
+    | API. Defaults to APP_URL for dev; in prod set explicitly via env.
+    */
+    'frontend_url' => env('FRONTEND_URL', env('APP_URL', 'http://localhost:5173')),
+
+    /*
+    |--------------------------------------------------------------------------
     | Application Timezone
     |--------------------------------------------------------------------------
     |
