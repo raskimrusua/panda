@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use App\Models\DiseaseDetection;
+use App\Services\Storage\ImageUploadService;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -20,7 +21,9 @@ class DiseaseDetectionResource extends JsonResource
             'id' => $this->id,
             'season_id' => $this->season_id,
             'crop_id' => $this->crop_id,
-            'image_url' => $this->image_url,
+            'image_url' => $this->image_path
+                ? app(ImageUploadService::class)->temporaryUrl($this->image_path, 15)
+                : null,
             'provider' => $this->provider,
             'top_diagnosis' => $this->top_diagnosis,
             'confidence' => $this->confidence !== null ? (float) $this->confidence : null,

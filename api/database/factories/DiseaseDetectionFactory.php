@@ -23,7 +23,7 @@ class DiseaseDetectionFactory extends Factory
             'tenant_id' => Tenant::factory(),
             'season_id' => null,
             'crop_id' => Crop::factory(),
-            'image_url' => 'https://example.com/disease/'.fake()->uuid().'.jpg',
+            'image_path' => 'tenants/'.fake()->uuid().'/disease/'.fake()->uuid().'.jpg',
             'provider' => DiseaseDetection::PROVIDER_MOCK,
             'top_diagnosis' => 'Early Blight',
             'confidence' => fake()->randomFloat(4, 0.6, 0.99),
