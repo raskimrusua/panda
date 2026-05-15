@@ -37,7 +37,7 @@ class DiseaseDetection extends Model
         'tenant_id',
         'season_id',
         'crop_id',
-        'image_url',
+        'image_path',
         'provider',
         'top_diagnosis',
         'confidence',

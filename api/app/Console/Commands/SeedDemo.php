@@ -388,7 +388,7 @@ class SeedDemo extends Command
             DiseaseDetection::create([
                 'tenant_id' => $tenant->id,
                 'crop_id' => $tomato->id,
-                'image_url' => 'https://images.example.com/panda/demo/leaf-'.($i + 1).'.jpg',
+                'image_path' => 'tenants/'.$tenant->id.'/disease/demo-leaf-'.($i + 1).'.jpg',
                 'provider' => DiseaseDetection::PROVIDER_MOCK,
                 'top_diagnosis' => $d['name'],
                 'confidence' => $d['confidence'],

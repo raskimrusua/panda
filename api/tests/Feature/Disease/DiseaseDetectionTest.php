@@ -13,7 +13,10 @@ use Illuminate\Support\Facades\Storage;
 uses(RefreshDatabase::class);
 
 beforeEach(function () {
-    Storage::fake('public');
+    // Fake the default disk (whatever STORAGE_BACKEND is set to). The
+    // production code goes through Storage::disk(config('filesystems.default'))
+    // via ImageUploadService so the test never names a specific disk.
+    Storage::fake(config('filesystems.default'));
     $this->tenant = Tenant::factory()->create();
     $this->user = User::factory()->create(['tenant_id' => $this->tenant->id]);
     $this->actingAs($this->user);
@@ -44,12 +47,18 @@ it('saves the uploaded image and returns a diagnosis', function () {
         ->and($response->json('data.top_diagnosis'))->not->toBeNull()
         ->and((float) $response->json('data.confidence'))->toBeBetween(0.7, 1.0);
 
-    Storage::disk('public')->assertExists(
-        str_replace(Storage::disk('public')->url(''), '', $response->json('data.image_url'))
-    );
+    // The DB row stores the relative path; the API response exposes a
+    // signed URL via ImageUploadService::temporaryUrl().
+    $detection = DiseaseDetection::withoutGlobalScopes()->sole();
+    expect($detection->tenant_id)->toBe($this->tenant->id)
+        ->and($detection->image_path)
+        ->toStartWith("tenants/{$this->tenant->id}/disease/{$detection->id}.");
 
-    expect(DiseaseDetection::withoutGlobalScopes()->count())->toBe(1)
-        ->and(DiseaseDetection::withoutGlobalScopes()->first()->tenant_id)->toBe($this->tenant->id);
+    Storage::disk(config('filesystems.default'))->assertExists($detection->image_path);
+    // image_url in the response is derived (signed/temporary) — it should
+    // exist and reference the underlying path.
+    expect($response->json('data.image_url'))->not->toBeNull()
+        ->and($response->json('data.image_url'))->toContain($detection->image_path);
 });
 
 it('rejects non-image upload', function () {
