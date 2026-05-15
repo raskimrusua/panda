@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
-import { ArrowLeft, CheckCircle2, Plus } from 'lucide-react';
+import { ArrowLeft, CheckCircle2, Download, Plus } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 import { apiClient } from '@/api/client';
 import { CostByCategoryBar } from '@/components/charts/CostByCategoryBar';
@@ -34,6 +34,7 @@ export function SeasonDetailPage() {
   const [showCostForm, setShowCostForm] = useState(false);
   const [showHarvestForm, setShowHarvestForm] = useState(false);
   const [downloadingPdf, setDownloadingPdf] = useState(false);
+  const [downloadingCsv, setDownloadingCsv] = useState<null | 'costs' | 'harvests' | 'activities'>(null);
   const [editingCost, setEditingCost] = useState<CostEntry | null>(null);
   const [deletingCost, setDeletingCost] = useState<CostEntry | null>(null);
   const [editingHarvest, setEditingHarvest] = useState<HarvestLog | null>(null);
@@ -63,21 +64,38 @@ export function SeasonDetailPage() {
     queryClient.invalidateQueries({ queryKey: ['seasons', id, 'harvests'] });
   };
 
+  const downloadBlob = async (path: string, filename: string, mimeType: string) => {
+    const res = await apiClient.get(path, { responseType: 'blob' });
+    const blob = new Blob([res.data], { type: mimeType });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  };
+
   const handleDownloadPdf = async () => {
     setDownloadingPdf(true);
     try {
-      const res = await apiClient.get(`/seasons/${id}/report`, { responseType: 'blob' });
-      const blob = new Blob([res.data], { type: 'application/pdf' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = `panda-season-${id}.pdf`;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      URL.revokeObjectURL(url);
+      await downloadBlob(`/seasons/${id}/report`, `panda-season-${id}.pdf`, 'application/pdf');
     } finally {
       setDownloadingPdf(false);
+    }
+  };
+
+  const handleDownloadCsv = async (kind: 'costs' | 'harvests' | 'activities') => {
+    setDownloadingCsv(kind);
+    try {
+      await downloadBlob(
+        `/seasons/${id}/${kind}.csv`,
+        `panda-season-${id}-${kind}.csv`,
+        'text/csv',
+      );
+    } finally {
+      setDownloadingCsv(null);
     }
   };
 
@@ -226,6 +244,16 @@ export function SeasonDetailPage() {
 
       {tab === 'timeline' && (
         <div className="space-y-2">
+          <div className="flex justify-end">
+            <Button
+              size="sm"
+              variant="secondary"
+              loading={downloadingCsv === 'activities'}
+              onClick={() => handleDownloadCsv('activities')}
+            >
+              <Download className="h-4 w-4 mr-1" /> {t('seasons.download_csv')}
+            </Button>
+          </div>
           {timelineQuery.isLoading && <p className="text-gray-500">{t('seasons.loading_timeline')}</p>}
           {timelineQuery.data?.data.map((a) => (
             <Card key={a.id}>
@@ -331,9 +359,19 @@ export function SeasonDetailPage() {
                 <>{t('seasons.total_spent')}: <strong>{formatKes(costsQuery.data.totals.all_kes)}</strong></>
               )}
             </div>
-            <Button onClick={() => setShowCostForm(true)} size="sm">
-              <Plus className="h-4 w-4 mr-1" /> {t('seasons.log_cost')}
-            </Button>
+            <div className="flex items-center gap-2">
+              <Button
+                size="sm"
+                variant="secondary"
+                loading={downloadingCsv === 'costs'}
+                onClick={() => handleDownloadCsv('costs')}
+              >
+                <Download className="h-4 w-4 mr-1" /> {t('seasons.download_csv')}
+              </Button>
+              <Button onClick={() => setShowCostForm(true)} size="sm">
+                <Plus className="h-4 w-4 mr-1" /> {t('seasons.log_cost')}
+              </Button>
+            </div>
           </div>
           {costsQuery.isLoading && <p className="text-gray-500">{t('seasons.loading_costs')}</p>}
           {costsQuery.data && costsQuery.data.data.length === 0 && (
@@ -373,9 +411,19 @@ export function SeasonDetailPage() {
                 </>
               )}
             </div>
-            <Button onClick={() => setShowHarvestForm(true)} size="sm">
-              <Plus className="h-4 w-4 mr-1" /> {t('seasons.log_harvest')}
-            </Button>
+            <div className="flex items-center gap-2">
+              <Button
+                size="sm"
+                variant="secondary"
+                loading={downloadingCsv === 'harvests'}
+                onClick={() => handleDownloadCsv('harvests')}
+              >
+                <Download className="h-4 w-4 mr-1" /> {t('seasons.download_csv')}
+              </Button>
+              <Button onClick={() => setShowHarvestForm(true)} size="sm">
+                <Plus className="h-4 w-4 mr-1" /> {t('seasons.log_harvest')}
+              </Button>
+            </div>
           </div>
           {harvestsQuery.isLoading && <p className="text-gray-500">{t('seasons.loading_harvests')}</p>}
           {harvestsQuery.data && harvestsQuery.data.data.length === 0 && (

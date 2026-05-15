@@ -85,6 +85,7 @@
     "no_costs": "No costs logged yet.",
     "no_harvests": "No harvests yet.",
     "download_pdf": "Download PDF report",
+    "download_csv": "Download CSV",
     "loading_season": "Loading season…",
     "could_not_load_season": "Could not load this season.",
     "crop_fallback": "Crop",
