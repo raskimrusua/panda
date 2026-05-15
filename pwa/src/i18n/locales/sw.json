@@ -4,6 +4,8 @@
     "save": "Hifadhi",
     "cancel": "Ghairi",
     "delete": "Futa",
+    "edit": "Hariri",
+    "row_actions": "Vitendo vya mstari",
     "back": "Rudi",
     "all_seasons": "Misimu yote",
     "online": "Mtandao upo",
@@ -113,7 +115,16 @@
     "summary_loss": "Hasara",
     "cost_by_category_title": "Gharama kwa aina",
     "cost_revenue_chart_title": "Gharama dhidi ya mapato (jumla)",
-    "cost_revenue_chart_subtitle": "Hapa ndipo nambari ya faida ya ripoti ya benki inatoka."
+    "cost_revenue_chart_subtitle": "Hapa ndipo nambari ya faida ya ripoti ya benki inatoka.",
+    "modal_edit_cost": "Hariri gharama",
+    "modal_edit_harvest": "Hariri mavuno",
+    "delete_cost_title": "Futa gharama hii?",
+    "delete_cost_body": "Ondoa kuingia kwa gharama hii kutoka kwa msimu. Jumla iliyotumika + chati ya aina ya gharama itasasishwa mara moja. Imefutwa kwa upole — inarejeshwa na msimamizi ndani ya siku 30.",
+    "delete_harvest_title": "Futa mavuno haya?",
+    "delete_harvest_body": "Ondoa mavuno haya kutoka kwa msimu. Kilo / kilo zilizouzwa / mapato hubadilika mara moja. Imefutwa kwa upole — inarejeshwa na msimamizi ndani ya siku 30.",
+    "abandon_button": "Achana na msimu",
+    "abandon_title": "Achana na msimu huu?",
+    "abandon_body": "Inaweka msimu kuwa umeachwa (hali → umeachwa). Data inabaki sawa kwa rekodi; utauona kwenye orodha na alama ya 'umeachwa' lakini hakuna shughuli mpya zitakazotengenezwa. Tumia hii ikiwa kupanda kulishindikana kabla ya mavuno. Kufuta kabisa msimu uliokosewa, wasiliana na msaada."
   },
   "onboarding": {
     "welcome_title": "Karibu Panda.",
