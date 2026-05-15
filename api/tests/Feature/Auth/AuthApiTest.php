@@ -16,6 +16,8 @@ it('registers a new farm + owner + token in one call', function () {
         'email' => 'joseph@example.com',
         'password' => 'kale-acres-99',
         'password_confirmation' => 'kale-acres-99',
+        'terms_accepted' => true,
+        'privacy_accepted' => true,
     ];
 
     $response = $this->postJson('/api/v1/auth/register', $payload);
@@ -41,6 +43,8 @@ it('rejects registration with duplicate email', function () {
         'email' => 'taken@example.com',
         'password' => 'strong-pass-1',
         'password_confirmation' => 'strong-pass-1',
+        'terms_accepted' => true,
+        'privacy_accepted' => true,
     ])->assertUnprocessable()->assertJsonValidationErrors(['email']);
 });
 
@@ -52,6 +56,8 @@ it('rejects registration with weak password', function () {
         'email' => 'someone@example.com',
         'password' => 'weak',
         'password_confirmation' => 'weak',
+        'terms_accepted' => true,
+        'privacy_accepted' => true,
     ])->assertUnprocessable()->assertJsonValidationErrors(['password']);
 });
 

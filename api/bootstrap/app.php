@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\ConsentGate;
 use App\Http\Middleware\SetTenantFromUser;
 use Illuminate\Auth\Middleware\Authenticate;
 use Illuminate\Auth\Middleware\AuthenticateWithBasicAuth;
@@ -31,6 +32,7 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->alias([
             'tenant' => SetTenantFromUser::class,
+            'consent' => ConsentGate::class,
         ]);
 
         // SetTenantFromUser MUST run BEFORE SubstituteBindings so the global

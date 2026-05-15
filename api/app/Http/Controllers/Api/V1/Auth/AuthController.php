@@ -10,6 +10,8 @@ use App\Http\Requests\Auth\ResetPasswordRequest;
 use App\Http\Resources\UserResource;
 use App\Models\Tenant;
 use App\Models\User;
+use App\Models\UserConsent;
+use Carbon\Carbon;
 use Illuminate\Auth\Events\Verified;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
@@ -33,7 +35,17 @@ class AuthController extends Controller
     {
         $data = $request->validated();
 
-        [$user, $tenant] = DB::transaction(function () use ($data) {
+        // Captured outside the transaction so Carbon::now() is single-valued
+        // across both UserConsent rows + the flat User columns. IP + UA come
+        // from the request — UA truncated to 2 KB so a malicious client can't
+        // bloat the row.
+        $now = Carbon::now();
+        $ip = $request->ip();
+        $ua = mb_substr((string) $request->userAgent(), 0, 2000);
+        $termsV = (string) config('legal.terms_version');
+        $privacyV = (string) config('legal.privacy_version');
+
+        [$user, $tenant] = DB::transaction(function () use ($data, $now, $ip, $ua, $termsV, $privacyV) {
             $tenant = Tenant::create([
                 'name' => $data['farm_name'],
                 'slug' => $this->uniqueSlug($data['farm_name']),
@@ -46,6 +58,31 @@ class AuthController extends Controller
                 'name' => $data['name'],
                 'email' => $data['email'],
                 'password' => $data['password'],
+                // Flat fast-check columns — ConsentGate reads these per-request.
+                'terms_accepted_at' => $now,
+                'terms_version' => $termsV,
+                'privacy_accepted_at' => $now,
+                'privacy_version' => $privacyV,
+            ]);
+
+            // DPA 2019 §30 audit trail. One row per policy; the unique
+            // constraint catches accidental double-submits from a flaky
+            // PWA connection without breaking the transaction.
+            UserConsent::create([
+                'user_id' => $user->id,
+                'policy_type' => UserConsent::POLICY_TERMS,
+                'version' => $termsV,
+                'ip_address' => $ip,
+                'user_agent' => $ua,
+                'accepted_at' => $now,
+            ]);
+            UserConsent::create([
+                'user_id' => $user->id,
+                'policy_type' => UserConsent::POLICY_PRIVACY,
+                'version' => $privacyV,
+                'ip_address' => $ip,
+                'user_agent' => $ua,
+                'accepted_at' => $now,
             ]);
 
             return [$user, $tenant];

@@ -25,6 +25,10 @@ class MarketPriceResource extends JsonResource
             'grade' => $this->grade,
             'price_per_kg_kes' => (float) $this->price_per_kg_kes,
             'source' => $this->source,
+            // Aggregated public-source prices lag the market by 1–3 days; the
+            // disclaimer ships in the payload so PWA-offline + any programmatic
+            // consumer sees it. Source of truth: config('legal.price_disclaimer').
+            'disclaimer' => (string) config('legal.price_disclaimer'),
         ];
     }
 }

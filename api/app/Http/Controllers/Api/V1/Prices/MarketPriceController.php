@@ -79,6 +79,7 @@ class MarketPriceController extends Controller
             return response()->json([
                 'data' => [],
                 'meta' => ['method' => 'monthly_average', 'note' => 'No history available.'],
+                'disclaimer' => (string) config('legal.price_disclaimer'),
             ]);
         }
 
@@ -107,6 +108,9 @@ class MarketPriceController extends Controller
                 'history_observations' => $rows->count(),
                 'note' => 'Trend signal only; not a guarantee. Will be replaced by a learned model in a later release.',
             ],
+            // Top-level disclaimer mirrors MarketPriceResource so every
+            // pricing surface ships the same advisory text.
+            'disclaimer' => (string) config('legal.price_disclaimer'),
         ]);
     }
 }

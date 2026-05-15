@@ -9,6 +9,7 @@ use App\Http\Controllers\Api\V1\Disease\DiseaseDetectionController;
 use App\Http\Controllers\Api\V1\Harvests\HarvestLogController;
 use App\Http\Controllers\Api\V1\HealthController;
 use App\Http\Controllers\Api\V1\InputListItems\InputListItemController;
+use App\Http\Controllers\Api\V1\PolicyController;
 use App\Http\Controllers\Api\V1\Prices\MarketPriceController;
 use App\Http\Controllers\Api\V1\Seasons\SeasonController;
 use App\Http\Controllers\Api\V1\Seasons\SeasonNestedController;
@@ -53,7 +54,17 @@ Route::prefix('v1')->group(function () {
         ->middleware(['signed', 'throttle:6,1'])
         ->name('verification.verify');
 
-    Route::middleware(['auth:sanctum', 'tenant'])->group(function () {
+    /* Legal — Kenya DPA 2019 reconsent. Active is public so the marketing
+     * flow + /accept-terms can read versions; accept is auth-only but NOT
+     * consent-gated (it's the escape hatch from the gate). Both whitelisted
+     * from ConsentGate by route-group construction below. */
+    Route::get('policies/active', [PolicyController::class, 'active']);
+
+    Route::middleware(['auth:sanctum'])->group(function () {
+        Route::post('policies/accept', [PolicyController::class, 'accept']);
+    });
+
+    Route::middleware(['auth:sanctum', 'tenant', 'consent'])->group(function () {
         Route::post('auth/logout', [AuthController::class, 'logout']);
         Route::get('auth/me', [AuthController::class, 'me']);
         Route::post('auth/email/verification-notification', [AuthController::class, 'sendVerification'])

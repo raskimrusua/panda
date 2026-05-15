@@ -41,11 +41,14 @@ it('saves the uploaded image and returns a diagnosis', function () {
         'crop_id' => $crop->id,
     ])
         ->assertCreated()
-        ->assertJsonStructure(['data' => ['id', 'image_url', 'provider', 'top_diagnosis', 'confidence', 'treatments']]);
+        ->assertJsonStructure(['data' => ['id', 'image_url', 'provider', 'top_diagnosis', 'confidence', 'treatments', 'disclaimer']]);
 
     expect($response->json('data.provider'))->toBe('mock')
         ->and($response->json('data.top_diagnosis'))->not->toBeNull()
-        ->and((float) $response->json('data.confidence'))->toBeBetween(0.7, 1.0);
+        ->and((float) $response->json('data.confidence'))->toBeBetween(0.7, 1.0)
+        // Advisory disclaimer must ride in the payload so offline-cached or
+        // programmatic API consumers cannot get a diagnosis without it.
+        ->and($response->json('data.disclaimer'))->toBe((string) config('legal.disease_disclaimer'));
 
     // The DB row stores the relative path; the API response exposes a
     // signed URL via ImageUploadService::temporaryUrl().

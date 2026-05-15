@@ -20,6 +20,9 @@ class UserFactory extends Factory
      */
     public function definition(): array
     {
+        // Factory-created users start already-consented to the current
+        // legal versions so tests aren't silently 409'd by ConsentGate.
+        // Use ->stale() to simulate a user with out-of-date versions.
         return [
             'tenant_id' => Tenant::factory(),
             'name' => fake()->name(),
@@ -28,6 +31,10 @@ class UserFactory extends Factory
             'password' => static::$password ??= Hash::make('password'),
             'remember_token' => Str::random(10),
             'is_superuser' => false,
+            'terms_accepted_at' => now(),
+            'terms_version' => (string) config('legal.terms_version'),
+            'privacy_accepted_at' => now(),
+            'privacy_version' => (string) config('legal.privacy_version'),
         ];
     }
 
@@ -48,5 +55,15 @@ class UserFactory extends Factory
     public function withoutTenant(): static
     {
         return $this->state(fn () => ['tenant_id' => null]);
+    }
+
+    public function stale(): static
+    {
+        return $this->state(fn () => [
+            'terms_accepted_at' => null,
+            'terms_version' => '',
+            'privacy_accepted_at' => null,
+            'privacy_version' => '',
+        ]);
     }
 }
