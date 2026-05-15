@@ -14,6 +14,8 @@ import { DiseaseScanPage } from './pages/DiseaseScanPage';
 import { DealerMapPage } from './pages/DealerMapPage';
 import { PricesPage } from './pages/PricesPage';
 import { ProfilePage } from './pages/ProfilePage';
+import { TeamPage } from './pages/TeamPage';
+import { AcceptInvitePage } from './pages/AcceptInvitePage';
 
 export function App() {
   const { user, isLoading } = useAuth();
@@ -34,6 +36,7 @@ export function App() {
         <Route path="/forgot-password" element={<ForgotPasswordPage />} />
         <Route path="/reset-password" element={<ResetPasswordPage />} />
         <Route path="/verified" element={<VerifiedPage />} />
+        <Route path="/accept-invite" element={<AcceptInvitePage />} />
         <Route path="*" element={<Navigate to="/login" replace />} />
       </Routes>
     );
@@ -50,6 +53,7 @@ export function App() {
         <Route path="/dealers" element={<DealerMapPage />} />
         <Route path="/prices" element={<PricesPage />} />
         <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/team" element={<TeamPage />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </AppShell>

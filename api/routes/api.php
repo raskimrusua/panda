@@ -12,6 +12,7 @@ use App\Http\Controllers\Api\V1\InputListItems\InputListItemController;
 use App\Http\Controllers\Api\V1\Prices\MarketPriceController;
 use App\Http\Controllers\Api\V1\Seasons\SeasonController;
 use App\Http\Controllers\Api\V1\Seasons\SeasonNestedController;
+use App\Http\Controllers\Api\V1\Team\TeamController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -53,6 +54,10 @@ Route::prefix('v1')->group(function () {
         ->middleware(['signed', 'throttle:6,1'])
         ->name('verification.verify');
 
+    // Team invite acceptance is public — the token IS the credential.
+    Route::post('team/accept/{token}', [TeamController::class, 'accept'])
+        ->middleware('throttle:6,1');
+
     Route::middleware(['auth:sanctum', 'tenant'])->group(function () {
         Route::post('auth/logout', [AuthController::class, 'logout']);
         Route::get('auth/me', [AuthController::class, 'me']);
@@ -60,6 +65,11 @@ Route::prefix('v1')->group(function () {
         Route::patch('auth/password', [AuthController::class, 'changePassword']);
         Route::post('auth/email/verification-notification', [AuthController::class, 'sendVerification'])
             ->middleware('throttle:6,1');
+
+        Route::get('team', [TeamController::class, 'index']);
+        Route::post('team/invite', [TeamController::class, 'invite']);
+        Route::delete('team/invitations/{invitation}', [TeamController::class, 'revokeInvitation']);
+        Route::delete('team/{user}', [TeamController::class, 'removeMember']);
 
         /* Tenant-scoped resources */
         Route::apiResource('seasons', SeasonController::class);

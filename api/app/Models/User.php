@@ -25,6 +25,10 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail
     use HasUlids;
     use Notifiable;
 
+    public const ROLE_OWNER = 'owner';
+
+    public const ROLE_MEMBER = 'member';
+
     /** @var list<string> */
     protected $fillable = [
         'tenant_id',
@@ -32,6 +36,7 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail
         'email',
         'password',
         'is_superuser',
+        'role',
     ];
 
     /** @var list<string> */
@@ -64,6 +69,11 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail
     public function tenant(): BelongsTo
     {
         return $this->belongsTo(Tenant::class);
+    }
+
+    public function isOwner(): bool
+    {
+        return $this->role === self::ROLE_OWNER;
     }
 
     /**
