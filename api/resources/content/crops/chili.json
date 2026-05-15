@@ -1,0 +1,46 @@
+{
+    "slug": "chili",
+    "name_en": "Chili",
+    "name_sw": "Pilipili",
+    "category": "vegetable",
+    "harvest_type": "multi",
+    "jica_manual_ref": "Inspired by JICA SHEP PLUS — Chili manual",
+    "kalro_guide_ref": "KALRO Chili (hot pepper) production guide",
+    "ecological_requirements": {
+        "altitude_min_m": 0,
+        "altitude_max_m": 2000,
+        "rainfall_min_mm": 600,
+        "rainfall_max_mm": 1400,
+        "temperature_min_c": 18,
+        "temperature_max_c": 32,
+        "soil_types": ["sandy_loam", "loam"],
+        "soil_ph_min": 5.5,
+        "soil_ph_max": 7.0
+    },
+    "varieties": [
+        {"name": "Demon F1", "type": "HYBRID", "days_to_maturity": 80, "yield_kg_per_acre": 6000, "supplier_notes": "Bird-eye type; high Scoville; strong export market."},
+        {"name": "Long Cayenne", "type": "OPEN_POLLINATED", "days_to_maturity": 90, "yield_kg_per_acre": 5000, "supplier_notes": "Local fresh market; lower input cost."}
+    ],
+    "timeline_template": [
+        {"activity_type": "nursery_seeding", "phase": "nursery", "week_from_planting": -6, "day_window": 3, "description_en": "Sow seed in nursery trays at 0.5cm depth. Slow germinator — 14-21 days.", "description_sw": "Panda mbegu trei kina 0.5cm. Inachelewa kuotesha siku 14-21.", "is_critical": true},
+        {"activity_type": "transplanting", "phase": "transplanting", "week_from_planting": 0, "day_window": 2, "description_en": "Transplant 6-week seedlings at 60cm x 45cm.", "description_sw": "Pandikiza miche wiki 6.", "is_critical": true},
+        {"activity_type": "basal_fertiliser", "phase": "transplanting", "week_from_planting": 0, "day_window": 1, "description_en": "Apply 50kg DAP in planting holes.", "description_sw": "Weka kilo 50 za DAP.", "is_critical": true},
+        {"activity_type": "first_weeding", "phase": "growth", "week_from_planting": 3, "day_window": 4, "description_en": "Hand-weed and mulch.", "description_sw": "Palia na funika.", "is_critical": false},
+        {"activity_type": "top_dress_1", "phase": "growth", "week_from_planting": 4, "day_window": 3, "description_en": "Apply 50kg CAN side-dressed.", "description_sw": "Weka kilo 50 za CAN.", "is_critical": true},
+        {"activity_type": "pest_spray", "phase": "growth", "week_from_planting": 6, "day_window": 7, "description_en": "Spray for thrips and aphids — chili attracts both heavily.", "description_sw": "Nyunyuza dawa ya thrips na vidudu.", "is_critical": true},
+        {"activity_type": "top_dress_2", "phase": "growth", "week_from_planting": 9, "day_window": 3, "description_en": "Second 50kg CAN at flowering.", "description_sw": "CAN ya pili wakati wa maua.", "is_critical": true},
+        {"activity_type": "first_harvest", "phase": "harvest", "week_from_planting": 12, "day_window": 7, "description_en": "Pick when fruits are firm and turning red. Wear gloves.", "description_sw": "Vuna pilipili zikiwa nyekundu. Vaa gloves.", "tip_en": "Pick every 5-7 days. Plant produces 6-9 months.", "tip_sw": "Vuna kila siku 5-7. Mmea hutoa miezi 6-9.", "is_critical": true}
+    ],
+    "inputs_per_acre": [
+        {"input_type": "seed", "product_name": "Demon F1 (50g)", "quantity": 50, "unit": "g", "week_from_planting": -6, "benchmark_price_kes": 4500, "pcpb_registered": false, "alternatives": ["Long Cayenne", "Habanero"]},
+        {"input_type": "fertiliser", "product_name": "DAP 50kg", "quantity": 50, "unit": "kg", "week_from_planting": 0, "benchmark_price_kes": 3500, "pcpb_registered": false},
+        {"input_type": "fertiliser", "product_name": "CAN 50kg (top-dress 1)", "quantity": 50, "unit": "kg", "week_from_planting": 4, "benchmark_price_kes": 2800, "pcpb_registered": false},
+        {"input_type": "fertiliser", "product_name": "CAN 50kg (top-dress 2)", "quantity": 50, "unit": "kg", "week_from_planting": 9, "benchmark_price_kes": 2800, "pcpb_registered": false},
+        {"input_type": "chemical", "product_name": "Karate 5EC (500ml)", "quantity": 500, "unit": "ml", "week_from_planting": 6, "benchmark_price_kes": 850, "pcpb_registered": true},
+        {"input_type": "chemical", "product_name": "Match 50EC (250ml)", "quantity": 250, "unit": "ml", "week_from_planting": 8, "benchmark_price_kes": 700, "pcpb_registered": true},
+        {"input_type": "other", "product_name": "Sacks 25kg (export)", "quantity": 240, "unit": "pieces", "week_from_planting": 12, "benchmark_price_kes": 7200, "pcpb_registered": false}
+    ],
+    "yield_per_acre": {"expected_kg": 6000, "min_kg": 4000, "max_kg": 8000, "number_of_picks": 15, "pick_interval_days": 6},
+    "post_harvest": {"shelf_life_days": 21, "grading_criteria": "Grade A: uniform color, no blemishes, 5-8cm length. Grade B: minor flaws.", "packaging_standard": "10kg crates for fresh; 25kg sacks for sun-dried export.", "storage_tips_en": "Sun-dry to 10% moisture for storage. Fresh: 5-7°C up to 3 weeks.", "storage_tips_sw": "Anika hadi 10% maji kwa kuhifadhi. Fresh: 5-7°C wiki 3."},
+    "diseases": ["thrips", "aphids", "anthracnose", "bacterial_wilt", "powdery_mildew"]
+}

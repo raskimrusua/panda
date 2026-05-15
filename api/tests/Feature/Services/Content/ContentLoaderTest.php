@@ -81,3 +81,29 @@ it('tomato.json contains the JAICA-spec timeline structure', function () {
         ->and(count($content['inputs_per_acre']))->toBeGreaterThan(3)
         ->and($content['yield_per_acre']['expected_kg'])->toBeGreaterThan(10000);
 });
+
+it('ships all 17 SHEP PLUS crops as schema-valid content files', function () {
+    $expected = [
+        'tomato', 'kale', 'cabbage', 'bulb-onion', 'french-beans',
+        'capsicum', 'chili', 'eggplant', 'potato', 'watermelon',
+        'amaranthus', 'black-nightshade', 'cowpea-leaves',
+        'avocado', 'banana', 'mango', 'passion-fruit',
+    ];
+
+    foreach ($expected as $slug) {
+        $content = $this->loader->loadCropFile($slug);
+        expect($content)->toBeArray()
+            ->and($content['slug'])->toBe($slug)
+            ->and($content['name_en'])->not->toBeEmpty()
+            ->and($content['name_sw'])->not->toBeEmpty()
+            ->and($content['varieties'])->toBeArray()->not->toBeEmpty()
+            ->and($content['timeline_template'])->toBeArray()->not->toBeEmpty()
+            ->and($content['inputs_per_acre'])->toBeArray()->not->toBeEmpty()
+            ->and($content['yield_per_acre']['expected_kg'])->toBeGreaterThan(0);
+    }
+
+    $slugs = $this->loader->availableCropSlugs();
+    foreach ($expected as $slug) {
+        expect($slugs)->toContain($slug);
+    }
+});

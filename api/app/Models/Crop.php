@@ -29,6 +29,7 @@ use Spatie\Activitylog\Traits\LogsActivity;
  * @property ?string $jica_manual_ref
  * @property int $phase_added
  * @property bool $is_active
+ * @property bool $has_full_content
  */
 class Crop extends Model
 {
@@ -49,6 +50,7 @@ class Crop extends Model
         'jica_manual_ref',
         'phase_added',
         'is_active',
+        'has_full_content',
     ];
 
     protected $hidden = ['deleted_at'];
@@ -58,6 +60,7 @@ class Crop extends Model
         return [
             'is_active' => 'boolean',
             'phase_added' => 'integer',
+            'has_full_content' => 'boolean',
         ];
     }
 
