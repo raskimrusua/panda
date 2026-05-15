@@ -71,6 +71,26 @@ export const changePasswordSchema = z
     message: 'New password must be different',
   });
 
+export const inviteMemberSchema = z.object({
+  email: z.string().email('Enter a valid email'),
+  name: z.string().max(120).optional(),
+});
+
+export const acceptInvitationSchema = z
+  .object({
+    name: z.string().min(2, 'Your name is too short').max(120),
+    password: z
+      .string()
+      .min(8, 'At least 8 characters')
+      .regex(/[A-Za-z]/, 'Must include a letter')
+      .regex(/[0-9]/, 'Must include a number'),
+    password_confirmation: z.string(),
+  })
+  .refine((d) => d.password === d.password_confirmation, {
+    path: ['password_confirmation'],
+    message: 'Passwords do not match',
+  });
+
 export const newSeasonSchema = z.object({
   crop_id: z.string().min(1, 'Choose a crop'),
   acreage: z.coerce
@@ -139,6 +159,8 @@ export type ForgotPasswordValues = z.infer<typeof forgotPasswordSchema>;
 export type ResetPasswordValues = z.infer<typeof resetPasswordSchema>;
 export type UpdateProfileValues = z.infer<typeof updateProfileSchema>;
 export type ChangePasswordValues = z.infer<typeof changePasswordSchema>;
+export type InviteMemberValues = z.infer<typeof inviteMemberSchema>;
+export type AcceptInvitationValues = z.infer<typeof acceptInvitationSchema>;
 export type NewSeasonValues = z.infer<typeof newSeasonSchema>;
 export type LogActivityDoneValues = z.infer<typeof logActivityDoneSchema>;
 export type NewCostValues = z.infer<typeof newCostSchema>;

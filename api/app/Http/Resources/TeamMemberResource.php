@@ -9,7 +9,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
 /**
  * @mixin User
  */
-class UserResource extends JsonResource
+class TeamMemberResource extends JsonResource
 {
     /**
      * @return array<string, mixed>
@@ -20,10 +20,9 @@ class UserResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'email' => $this->email,
-            'email_verified_at' => $this->email_verified_at?->toIso8601String(),
             'role' => $this->role,
-            'tenant_id' => $this->tenant_id,
-            'tenant' => new TenantResource($this->whenLoaded('tenant')),
+            'email_verified_at' => $this->email_verified_at?->toIso8601String(),
+            'joined_at' => $this->created_at?->toIso8601String(),
         ];
     }
 }

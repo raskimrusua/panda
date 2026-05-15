@@ -1,6 +1,6 @@
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { Camera, LayoutDashboard, LineChart, LogOut, MapPin, Sprout } from 'lucide-react';
+import { Camera, LayoutDashboard, LineChart, LogOut, MapPin, Sprout, Users } from 'lucide-react';
 import { useAuth } from '@/auth/useAuth';
 import { Button } from './ui/Button';
 import { LanguageSwitcher } from './LanguageSwitcher';
@@ -22,6 +22,7 @@ const NAV: NavItem[] = [
   { to: '/disease', labelKey: 'nav.disease', icon: <Camera className="h-4 w-4" /> },
   { to: '/dealers', labelKey: 'nav.dealers', icon: <MapPin className="h-4 w-4" /> },
   { to: '/prices', labelKey: 'nav.prices', icon: <LineChart className="h-4 w-4" /> },
+  { to: '/team', labelKey: 'nav.team', icon: <Users className="h-4 w-4" /> },
 ];
 
 export function AppShell({ children }: { children: ReactNode }) {
