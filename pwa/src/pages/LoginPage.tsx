@@ -89,6 +89,12 @@ export function LoginPage() {
             {t('auth.sign_in')}
           </Button>
 
+          <p className="text-center text-sm">
+            <Link to="/forgot-password" className="text-gray-600 hover:underline">
+              {t('auth.forgot_password_link')}
+            </Link>
+          </p>
+
           <p className="text-center text-sm text-gray-600">
             {t('auth.no_account_yet')}{' '}
             <Link to="/register" className="text-brand-700 font-medium hover:underline">

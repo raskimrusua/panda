@@ -41,4 +41,23 @@ export const authApi = {
     const { data } = await apiClient.get<{ data: User }>('/auth/me');
     return data;
   },
+
+  async forgotPassword(email: string): Promise<{ message: string }> {
+    const { data } = await apiClient.post<{ message: string }>('/auth/password/forgot', { email });
+    return data;
+  },
+
+  async resetPassword(payload: {
+    token: string;
+    email: string;
+    password: string;
+    password_confirmation: string;
+  }): Promise<{ message: string }> {
+    const { data } = await apiClient.post<{ message: string }>('/auth/password/reset', payload);
+    return data;
+  },
+
+  async sendVerification(): Promise<void> {
+    await apiClient.post('/auth/email/verification-notification');
+  },
 };

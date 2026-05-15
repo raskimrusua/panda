@@ -6,6 +6,7 @@ import { Button } from './ui/Button';
 import { LanguageSwitcher } from './LanguageSwitcher';
 import { OnlineIndicator } from './OnlineIndicator';
 import { WelcomeModal } from './WelcomeModal';
+import { EmailVerificationBanner } from './EmailVerificationBanner';
 import { cn } from '@/lib/utils';
 import type { ReactNode } from 'react';
 
@@ -78,7 +79,10 @@ export function AppShell({ children }: { children: ReactNode }) {
           </Button>
         </div>
       </aside>
-      <main className="flex-1 p-4 md:p-8 max-w-5xl mx-auto w-full">{children}</main>
+      <div className="flex-1 flex flex-col">
+        <EmailVerificationBanner />
+        <main className="flex-1 p-4 md:p-8 max-w-5xl mx-auto w-full">{children}</main>
+      </div>
       <WelcomeModal />
     </div>
   );
