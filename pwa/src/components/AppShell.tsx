@@ -41,7 +41,9 @@ export function AppShell({ children }: { children: ReactNode }) {
           <Link to="/" className="text-xl font-semibold text-brand-700">
             Panda
           </Link>
-          <p className="mt-1 text-xs text-gray-500">{user?.tenant?.name ?? user?.name}</p>
+          <Link to="/profile" className="mt-1 block text-xs text-gray-500 hover:text-brand-700 hover:underline">
+            {user?.tenant?.name ?? user?.name}
+          </Link>
         </div>
         <div className="px-4 py-2 border-b border-gray-100 flex items-center justify-between">
           <OnlineIndicator />

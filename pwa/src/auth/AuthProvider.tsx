@@ -43,6 +43,15 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     setUser(u);
   }, []);
 
+  const refreshUser = useCallback(async () => {
+    try {
+      const res = await authApi.me();
+      setUser(res.data);
+    } catch {
+      // 401 path is handled by the response interceptor; nothing to do here.
+    }
+  }, []);
+
   const logout = useCallback(async () => {
     try {
       await authApi.logout();
@@ -54,8 +63,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const value: AuthContextValue = useMemo(
-    () => ({ user, isLoading, login, register, logout }),
-    [user, isLoading, login, register, logout],
+    () => ({ user, isLoading, login, register, logout, refreshUser }),
+    [user, isLoading, login, register, logout, refreshUser],
   );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Api\V1\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Auth\ChangePasswordRequest;
 use App\Http\Requests\Auth\ForgotPasswordRequest;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Http\Requests\Auth\RegisterRequest;
 use App\Http\Requests\Auth\ResetPasswordRequest;
+use App\Http\Requests\Auth\UpdateProfileRequest;
 use App\Http\Resources\UserResource;
 use App\Models\Tenant;
 use App\Models\User;
@@ -96,6 +98,49 @@ class AuthController extends Controller
     public function me(Request $request): UserResource
     {
         return new UserResource($request->user()->load('tenant'));
+    }
+
+    /**
+     * Update the authenticated user's profile (name + email). Changing the
+     * email resets `email_verified_at` and dispatches a fresh verification
+     * email — the farmer keeps app access (banner reappears) but the new
+     * address has to be confirmed before any password-reset email can
+     * reach them.
+     */
+    public function updateProfile(UpdateProfileRequest $request): UserResource
+    {
+        $user = $request->user();
+        $data = $request->validated();
+
+        if (isset($data['email']) && $data['email'] !== $user->email) {
+            $user->email = $data['email'];
+            $user->email_verified_at = null;
+            $user->save();
+            try {
+                $user->sendEmailVerificationNotification();
+            } catch (\Throwable $e) {
+                report($e);
+            }
+        }
+
+        if (isset($data['name'])) {
+            $user->update(['name' => $data['name']]);
+        }
+
+        return new UserResource($user->fresh()->load('tenant'));
+    }
+
+    /**
+     * Change the authenticated user's password. Requires the current
+     * password (validated by the `current_password` rule). All other
+     * device sessions are kept alive — the user can revoke them
+     * explicitly via logout from each device.
+     */
+    public function changePassword(ChangePasswordRequest $request): JsonResponse
+    {
+        $request->user()->update(['password' => $request->validated()['password']]);
+
+        return response()->json(['message' => 'Password changed.']);
     }
 
     /**

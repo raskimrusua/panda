@@ -60,4 +60,18 @@ export const authApi = {
   async sendVerification(): Promise<void> {
     await apiClient.post('/auth/email/verification-notification');
   },
+
+  async updateProfile(payload: { name?: string; email?: string }): Promise<{ data: User }> {
+    const { data } = await apiClient.patch<{ data: User }>('/auth/profile', payload);
+    return data;
+  },
+
+  async changePassword(payload: {
+    current_password: string;
+    password: string;
+    password_confirmation: string;
+  }): Promise<{ message: string }> {
+    const { data } = await apiClient.patch<{ message: string }>('/auth/password', payload);
+    return data;
+  },
 };

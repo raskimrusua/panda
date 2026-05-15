@@ -66,6 +66,26 @@
     "verify_sent": "Verification email sent. Check your inbox.",
     "resend_email": "Resend email"
   },
+  "profile": {
+    "title": "Your account",
+    "subtitle": "Update your name, email, or password.",
+    "section_account": "Account",
+    "section_password": "Password",
+    "field_name": "Your name",
+    "field_email": "Email",
+    "email_change_warning": "If you change your email, we'll send a new verification link to the new address. The old one stops working.",
+    "save_account": "Save changes",
+    "saved": "Saved.",
+    "saved_email_reverify": "Saved. Check your new inbox for a verification link.",
+    "no_changes": "Nothing to save — your details are the same.",
+    "save_failed": "Could not save changes. Try again.",
+    "current_password": "Current password",
+    "new_password": "New password",
+    "confirm_password": "Confirm new password",
+    "save_password": "Change password",
+    "password_changed": "Password updated.",
+    "password_change_failed": "Could not change the password. Check your current password."
+  },
   "dashboard": {
     "welcome": "Karibu, {{name}}.",
     "subtitle": "Here's what's happening on the farm.",
