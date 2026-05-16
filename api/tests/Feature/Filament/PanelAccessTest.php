@@ -2,6 +2,8 @@
 
 use App\Filament\Resources\ContentReviewResource;
 use App\Filament\Resources\CropResource;
+use App\Filament\Resources\DealerResource;
+use App\Filament\Resources\MarketPriceResource;
 use App\Models\User;
 use Filament\Facades\Filament;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -38,6 +40,18 @@ it('ContentReviewResource is registered with the admin panel', function () {
     $resources = Filament::getPanel('admin')->getResources();
 
     expect($resources)->toContain(ContentReviewResource::class);
+});
+
+it('DealerResource is registered with the admin panel', function () {
+    $resources = Filament::getPanel('admin')->getResources();
+
+    expect($resources)->toContain(DealerResource::class);
+});
+
+it('MarketPriceResource is registered with the admin panel', function () {
+    $resources = Filament::getPanel('admin')->getResources();
+
+    expect($resources)->toContain(MarketPriceResource::class);
 });
 
 it('User::canAccessPanel returns true only for superusers', function () {
