@@ -181,16 +181,28 @@ NEVER hardcode business-logic thresholds. Centralised settings model with Redis 
 Object storage backend chosen via `STORAGE_BACKEND={r2,s3}` env var. Application code never names a specific disk. See `skill-laravel-storage-toggle.md`.
 
 ### L1. Disease AI — provider gate
-`DISEASE_AI_PROVIDER={mock,crop_health,tflite}`. Defaults to `mock` in P1–P4. Cost ceiling enforced via `CROP_HEALTH_MAX_MONTHLY_KES` env var; if exceeded, falls back to mock + raises alert.
+`CROP_HEALTH_PROVIDER={mock,kindwise}`. Defaults to `mock` in dev + early prod. Real provider is `KindwiseCropHealthClient` (shipped PR #31). Bind in `AppServiceProvider`. The provider field on `DiseaseDetection` (`mock` vs `crop_health`) is the **billing audit trail** — used to cap usage if needed. Each provider implementation reads the image from `Storage::disk(config('filesystems.default'))` so R2 paths from #26 work without exposing a public URL.
 
-### L2. Content system — JSON files, Redis cache, Filament editor
-Crops + diseases stored as JSON files in `resources/content/{crops,diseases}/*.json`. Loaded into Redis at startup. Cache-bust via `php artisan crops:content:reload`. Agronomist authors via Filament editor, admin approves, `php artisan crops:content:export` regenerates JSON + commits.
+### L2. Content system — JSON files, Redis cache, Filament editor + agronomist sign-off
+Crops stored as JSON files in `resources/content/crops/*.json` (17 SHEP PLUS crops shipped in #35). Loaded into Redis at startup. Schema-validated by `ContentLoader` against `resources/content/schema/crop.schema.json`. **`Crop.has_full_content` gates farmer-facing planting** — defaults false; flipped true via Filament admin only after a credentialed agronomist (Silas) reads the JSON and confirms the timeline + inputs + sprays are accurate for Kenyan field conditions. Unreviewed crops appear in the catalogue with a "Coming soon" badge but cannot be planted from the PWA. Farmers never see unreviewed agronomic advice.
 
 ### L3. Bilingual — i18next, no hardcoded strings
 Every user-facing string in PWA passes through `t('key')`. New keys land in `frontend/src/locales/{en,sw}/*.json`. CI runs `/lint:i18n` to catch hardcoded English strings in `features/crops/`.
 
 ### L4. Image consent + retention
 Disease photo uploads require farmer consent flag. Default retention 24 months (env-overridable). Opt-in (default) for use as Phase 2 custom-model training data.
+
+### L5. HasUlids overrides pre-computed IDs
+The `HasUlids` trait fires on `creating` and stamps a fresh ULID — **any `'id' => Str::ulid()` you pass to `create()` gets silently overwritten**. For flows that need to know the ID before any side-effect (e.g. uploading an image to a path that includes the detection ID), reserve the row first via `$model->save()`, then use `$model->id`. Wrap the whole thing in `DB::transaction()` so a downstream failure rolls back the placeholder.
+
+### L6. Revoke endpoints use IDs, not tokens
+Owner-facing UIs for invitations / API keys / share links MUST take the row ID in the URL (e.g. `DELETE /team/invitations/{invitation}`) and NEVER the token. Tokens are credentials; never include them in JSON payloads sent to the browser. The acceptance endpoint (`POST /team/accept/{token}`) is the only public surface where the token is the URL.
+
+### L7. Worktree-first when sister sessions are active
+When two Claude Code sessions might touch the same repo on the same day, the second session MUST work in a `git worktree` (`git worktree add ~/Desktop/<repo>-<feature> <branch>`) — not the main checkout. Cleanup after merge: `git worktree remove ~/Desktop/<repo>-<feature> --force`. This eliminates stash-race + HEAD-thrashing collisions. Verify with `git -C ~/Desktop/<repo> worktree list`.
+
+### L8. Auto-classifier blocks PR merges; chain `gh pr merge` separately
+`gh pr merge` is sometimes blocked by Claude Code's auto-mode classifier even when CI is green and the user has explicitly approved the workflow. **Do not** chain it after another command in the same Bash call — run it on its own line so the failure is visible, and ask the user to either merge via GitHub UI or grant a Bash permission rule. Use `gh pr merge <n> --repo raskimrusua/panda --squash --delete-branch` (the `--repo` flag works from any directory).
 
 ---
 
@@ -212,6 +224,11 @@ Disease photo uploads require farmer consent flag. Default retention 24 months (
 | Disease AI cost not env-capped | Surprise variable cost | #L1 |
 | Hardcoded English in PWA | No SW for farmer | #L3 |
 | Image upload without consent flag | DPA 2019 risk | #L4 |
+| Shipping `has_full_content=true` on agronomy you authored yourself | Farmer follows wrong advice → crop loss → liability | #L2 |
+| `'id' => Str::ulid()` passed to `create()` on a `HasUlids` model + relying on it elsewhere | HasUlids overwrites; the value you have is dead | #L5 |
+| Exposing an invitation token in a JSON resource | Token is a credential | #L6 |
+| Working directly on a Panda branch while another session might be on the repo | Stash races + lost edits | #L7 |
+| Chaining `gh pr merge` with other commands | Classifier failure goes invisible, work appears successful | #L8 |
 
 ---
 
@@ -288,4 +305,6 @@ UWC's pipeline drives development from here. Joshua's role: decisions, not codin
 
 Built starting May 2026. Laravel 11.x, PHP 8.3, Filament 3.2+. If Laravel 12 features are needed, verify compatibility before using.
 
-*Documentation initialised: 2026-05-07.*
+**Latest shipping wave (2026-05-15):** PRs #24–#35 closed the original 8-item backlog end-to-end plus shipped a 17-crop SHEP PLUS catalogue. Test count: 172 → 217 (+45 tests, +400+ assertions). Open follow-ups: Silas signs off the 16 authored crop JSONs via `/admin/crops` toggle; daily R2 export job for opted-in disease photos.
+
+*Documentation initialised: 2026-05-07. Last updated: 2026-05-15.*
