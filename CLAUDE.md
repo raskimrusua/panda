@@ -192,6 +192,31 @@ Every user-facing string in PWA passes through `t('key')`. New keys land in `fro
 ### L4. Image consent + retention
 Disease photo uploads require farmer consent flag. Default retention 24 months (env-overridable). Opt-in (default) for use as Phase 2 custom-model training data.
 
+### L5. DPA 2019 consent gate + advisory disclaimers (shipped 2026-05-15)
+Mirrors Shira's cross-product canonical pattern. Architecture in [Shira CLAUDE.md Rule #45](~/Desktop/farmcore/CLAUDE.md).
+
+**Backend pieces:**
+- `app/Models/UserConsent.php` — append-only (`updating` observer throws), unique on `(user_id, policy_type, version)`.
+- `app/Http/Middleware/ConsentGate.php` aliased as `consent`; applied to the `auth:sanctum + tenant + consent` route group. Emits **409** + `code: TERMS_VERSION_OUTDATED` on stale users.
+- `app/Http/Controllers/Api/V1/PolicyController.php` — `GET /policies/active` (public) + `POST /policies/accept` (auth, NOT consent-gated — escape hatch).
+- `config/legal.php` — env-driven `terms_version`, `privacy_version`, `marketing_url`, **`disease_disclaimer` (names KEPHIS + PCPB)**, **`price_disclaimer` (1–3 day lag)**. Bumping a version forces every existing user to re-accept on next request — that's DPA 2019 §31 behaviour, not a bug.
+- `AuthController::register` atomically creates User + Tenant + 2 UserConsent rows inside its existing transaction. `RegisterRequest` enforces `terms_accepted` + `privacy_accepted` (Laravel returns 422 on missing).
+
+**Advisory disclaimers ride in the API response payload**, not just the UI banner:
+- `DiseaseDetectionResource::toArray()` includes `disclaimer` field.
+- `MarketPriceResource::toArray()` + `MarketPriceController::forecast` include `disclaimer` field.
+- Apply this pattern to every new advisory endpoint (recommendations, alerts, forecasts).
+
+**Frontend (PWA):**
+- `pwa/src/lib/zodSchemas.ts` `registerSchema` requires `terms_accepted` + `privacy_accepted` via `.refine()`.
+- `pwa/src/api/client.ts` interceptor redirects 409 + `TERMS_VERSION_OUTDATED` → `/accept-terms?next=…`.
+- `pwa/src/pages/AcceptTermsPage.tsx` is the reconsent landing — rendered outside `AppShell` to avoid redirect loops.
+
+**Marketing pages:**
+- `marketing/src/pages/{terms,privacy,cookies}.astro` — Kenya-specific (DPA 2019 §§26–35/§43/§49, ODPC contact, Nairobi courts, named sub-processors). All flagged `v1_2026-05-15-DRAFT` until Kenyan counsel review lands.
+
+**Tests:** `tests/Feature/Auth/ConsentTest.php` (8 cases); `UserFactory` seeds current-version defaults with `->stale()` modifier.
+
 ---
 
 ## ANTI-PATTERNS — NEVER
@@ -212,6 +237,9 @@ Disease photo uploads require farmer consent flag. Default retention 24 months (
 | Disease AI cost not env-capped | Surprise variable cost | #L1 |
 | Hardcoded English in PWA | No SW for farmer | #L3 |
 | Image upload without consent flag | DPA 2019 risk | #L4 |
+| New advisory endpoint without `disclaimer` field in payload | Liability gap; offline-cached responses miss notice | #L5 |
+| Hardcoded `'v1_…'` version strings instead of `config('legal.*')` | Breaks env-driven version bump + reconsent loop | #L5 |
+| Registration without `terms_accepted` + `privacy_accepted` in payload | 422 from RegisterRequest; tests must include them | #L5 |
 
 ---
 
