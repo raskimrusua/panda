@@ -32,6 +32,7 @@ export interface Crop {
   jica_manual_ref: string | null;
   phase_added: number;
   is_active: boolean;
+  has_full_content: boolean;
 }
 
 export type SeasonStatus = 'planning' | 'active' | 'harvesting' | 'complete' | 'abandoned';

@@ -35,6 +35,7 @@ class CropResource extends JsonResource
             'jica_manual_ref' => $this->jica_manual_ref,
             'phase_added' => (int) $this->phase_added,
             'is_active' => (bool) $this->is_active,
+            'has_full_content' => (bool) $this->has_full_content,
         ];
     }
 }

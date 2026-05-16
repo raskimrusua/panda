@@ -1,0 +1,47 @@
+{
+    "slug": "potato",
+    "name_en": "Irish potato",
+    "name_sw": "Viazi",
+    "category": "tuber",
+    "harvest_type": "single",
+    "jica_manual_ref": "Inspired by JICA SHEP PLUS — Irish potato production manual",
+    "kalro_guide_ref": "KALRO + International Potato Center (CIP) Kenya guide",
+    "ecological_requirements": {
+        "altitude_min_m": 1500,
+        "altitude_max_m": 3000,
+        "rainfall_min_mm": 800,
+        "rainfall_max_mm": 1500,
+        "temperature_min_c": 10,
+        "temperature_max_c": 22,
+        "soil_types": ["loam", "sandy_loam", "volcanic_loam"],
+        "soil_ph_min": 5.0,
+        "soil_ph_max": 6.5
+    },
+    "varieties": [
+        {"name": "Shangi", "type": "OPEN_POLLINATED", "days_to_maturity": 90, "yield_kg_per_acre": 14000, "supplier_notes": "Most popular Kenyan variety; short dormancy; ready-market in Nairobi."},
+        {"name": "Dutch Robijn", "type": "OPEN_POLLINATED", "days_to_maturity": 100, "yield_kg_per_acre": 12000, "supplier_notes": "Red-skinned; processor-preferred for chips."}
+    ],
+    "timeline_template": [
+        {"activity_type": "land_prep", "phase": "land_prep", "week_from_planting": -2, "day_window": 7, "description_en": "Plough twice and ridge. Add 2 tons well-rotted manure per acre.", "description_sw": "Lima mara mbili na ufanye matuta. Weka tani 2 za samadi.", "is_critical": true},
+        {"activity_type": "seed_planting", "phase": "transplanting", "week_from_planting": 0, "day_window": 3, "description_en": "Plant seed tubers 10cm deep at 30cm x 75cm. Use certified seed.", "description_sw": "Panda mbegu kina 10cm nafasi 30cm x 75cm. Tumia mbegu iliyothibitishwa.", "is_critical": true},
+        {"activity_type": "basal_fertiliser", "phase": "transplanting", "week_from_planting": 0, "day_window": 1, "description_en": "Apply 200kg DAP banded below the seed (do not contact).", "description_sw": "Weka kilo 200 za DAP chini ya mbegu (siyo kugusa).", "is_critical": true},
+        {"activity_type": "first_weeding", "phase": "growth", "week_from_planting": 4, "day_window": 4, "description_en": "Hand-weed when shoots are 15cm. First earthing-up.", "description_sw": "Palia mwanzoni mwa kushuka kwa shina cm 15. Rundisha udongo.", "is_critical": true},
+        {"activity_type": "top_dress", "phase": "growth", "week_from_planting": 5, "day_window": 3, "description_en": "Apply 100kg CAN side-dressed. Earth up around stems.", "description_sw": "Weka kilo 100 za CAN. Rundisha udongo karibu na mashina.", "is_critical": true},
+        {"activity_type": "fungicide_spray_1", "phase": "growth", "week_from_planting": 6, "day_window": 7, "description_en": "Preventive fungicide for late blight (Phytophthora). Critical in wet seasons.", "description_sw": "Nyunyuza dawa ya kuzuia late blight. Muhimu wakati wa mvua.", "is_critical": true},
+        {"activity_type": "fungicide_spray_2", "phase": "growth", "week_from_planting": 9, "day_window": 7, "description_en": "Second fungicide spray during flowering.", "description_sw": "Dawa ya pili ya kuzuia magonjwa wakati wa maua.", "is_critical": true},
+        {"activity_type": "stop_irrigation", "phase": "growth", "week_from_planting": 11, "day_window": 7, "description_en": "Stop irrigation 1-2 weeks before harvest. Allow skins to set.", "description_sw": "Acha kumwagilia wiki 1-2 kabla ya kuvuna.", "is_critical": true},
+        {"activity_type": "harvest", "phase": "harvest", "week_from_planting": 13, "day_window": 7, "description_en": "Dig tubers when foliage yellows + dies back. Cure in shade 3 days.", "description_sw": "Chimba viazi majani yakipauka. Hifadhi kivulini siku 3.", "is_critical": true}
+    ],
+    "inputs_per_acre": [
+        {"input_type": "seed", "product_name": "Certified Shangi seed (1 ton)", "quantity": 1000, "unit": "kg", "week_from_planting": 0, "benchmark_price_kes": 30000, "pcpb_registered": false, "alternatives": ["Dutch Robijn", "Kenya Karibu"]},
+        {"input_type": "fertiliser", "product_name": "DAP 200kg", "quantity": 200, "unit": "kg", "week_from_planting": 0, "benchmark_price_kes": 14000, "pcpb_registered": false},
+        {"input_type": "fertiliser", "product_name": "CAN 100kg", "quantity": 100, "unit": "kg", "week_from_planting": 5, "benchmark_price_kes": 5600, "pcpb_registered": false},
+        {"input_type": "fertiliser", "product_name": "Well-rotted manure 2 tons", "quantity": 2000, "unit": "kg", "week_from_planting": -2, "benchmark_price_kes": 6000, "pcpb_registered": false},
+        {"input_type": "chemical", "product_name": "Ridomil Gold MZ (1kg)", "quantity": 1, "unit": "kg", "week_from_planting": 6, "benchmark_price_kes": 2400, "pcpb_registered": true, "alternatives": ["Dithane M-45"]},
+        {"input_type": "chemical", "product_name": "Ridomil Gold MZ (1kg, 2nd)", "quantity": 1, "unit": "kg", "week_from_planting": 9, "benchmark_price_kes": 2400, "pcpb_registered": true},
+        {"input_type": "other", "product_name": "Mesh bags 90kg", "quantity": 160, "unit": "pieces", "week_from_planting": 13, "benchmark_price_kes": 4800, "pcpb_registered": false}
+    ],
+    "yield_per_acre": {"expected_kg": 14000, "min_kg": 10000, "max_kg": 20000, "number_of_picks": 1, "pick_interval_days": 1},
+    "post_harvest": {"shelf_life_days": 90, "grading_criteria": "Ware (eating): 50g+, firm, no green tinge, no soft rot. Seed: 35-65g graded.", "packaging_standard": "90kg mesh sacks (Kenya market). 50kg for processor delivery.", "storage_tips_en": "Cool, dark, dry storage at 4-10°C. Sprouting starts above 12°C.", "storage_tips_sw": "Hifadhi mahali kavu giza 4-10°C. Huanza kuotesha juu ya 12°C."},
+    "diseases": ["late_blight", "early_blight", "bacterial_wilt", "potato_tuber_moth", "leafminer"]
+}

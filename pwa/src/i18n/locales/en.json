@@ -134,6 +134,8 @@
     "new_title": "Plan a season",
     "new_subtitle": "Pick a crop, your acreage, and a planting date. Panda will generate the activity timeline + scaled input list automatically.",
     "crop": "Crop",
+    "crop_coming_soon": "coming soon",
+    "crop_coming_soon_explainer": "Crops marked \"coming soon\" are in the catalogue but pending agronomist sign-off — plantable in the next release.",
     "acreage": "Acreage",
     "planting_date": "Planting date",
     "irrigation": "Irrigation",

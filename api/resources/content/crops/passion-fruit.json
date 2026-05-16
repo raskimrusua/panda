@@ -1,0 +1,51 @@
+{
+    "slug": "passion-fruit",
+    "name_en": "Passion fruit",
+    "name_sw": "Pasheni",
+    "category": "fruit",
+    "harvest_type": "multi",
+    "jica_manual_ref": "Inspired by JICA SHEP PLUS — Passion fruit (purple) manual",
+    "kalro_guide_ref": "KALRO Passion fruit production guide",
+    "ecological_requirements": {
+        "altitude_min_m": 1100,
+        "altitude_max_m": 2300,
+        "rainfall_min_mm": 900,
+        "rainfall_max_mm": 1800,
+        "temperature_min_c": 15,
+        "temperature_max_c": 28,
+        "soil_types": ["loam", "sandy_loam", "volcanic_loam"],
+        "soil_ph_min": 5.5,
+        "soil_ph_max": 7.0
+    },
+    "varieties": [
+        {"name": "Purple (KPF11)", "type": "GRAFTED_SEEDLING", "days_to_maturity": 365, "yield_kg_per_acre": 12000, "disease_resistance": ["fusarium_wilt"], "supplier_notes": "KALRO-released; main commercial purple; grafted on yellow rootstock."},
+        {"name": "Yellow", "type": "GRAFTED_SEEDLING", "days_to_maturity": 365, "yield_kg_per_acre": 10000, "supplier_notes": "Lower-altitude; juice/processor market; less sweet."}
+    ],
+    "timeline_template": [
+        {"activity_type": "trellis_setup", "phase": "land_prep", "week_from_planting": -2, "day_window": 7, "description_en": "Erect 2m trellis posts every 5m, with 3 wires at 0.6m / 1.2m / 2m. Mandatory — passion is a vine.", "description_sw": "Simika nguzo 2m kila 5m, na waya 3. Lazima — pasheni ni mzabibu.", "is_critical": true},
+        {"activity_type": "land_prep", "phase": "land_prep", "week_from_planting": -1, "day_window": 5, "description_en": "Dig 45cm holes at 3m x 2m spacing. Mix soil + manure.", "description_sw": "Chimba mashimo 45cm nafasi 3m x 2m.", "is_critical": true},
+        {"activity_type": "transplanting", "phase": "transplanting", "week_from_planting": 0, "day_window": 3, "description_en": "Plant grafted seedling. Tie main shoot to trellis as it grows.", "description_sw": "Panda mche. Funga shina kwenye trellis.", "is_critical": true},
+        {"activity_type": "basal_fertiliser", "phase": "transplanting", "week_from_planting": 0, "day_window": 1, "description_en": "Apply 100g DAP per hole.", "description_sw": "Weka gramu 100 za DAP.", "is_critical": true},
+        {"activity_type": "training", "phase": "growth", "week_from_planting": 4, "day_window": 28, "description_en": "Train single shoot up to top wire. Remove all side shoots until then.", "description_sw": "Ongoza shina moja juu hadi waya wa juu. Ondoa matawi mengine.", "is_critical": true},
+        {"activity_type": "top_wire_cut", "phase": "growth", "week_from_planting": 12, "day_window": 7, "description_en": "Cut growing tip at top wire to force 2 laterals.", "description_sw": "Kata kichwa cha shina ukifika waya wa juu kuongeza matawi 2.", "is_critical": true},
+        {"activity_type": "fertiliser_y1_1", "phase": "growth", "week_from_planting": 8, "day_window": 7, "description_en": "Apply 250g NPK 17:17:17 per plant.", "description_sw": "Weka gramu 250 za NPK kwa mmea.", "is_critical": true},
+        {"activity_type": "fertiliser_y1_2", "phase": "growth", "week_from_planting": 20, "day_window": 7, "description_en": "Second NPK dose at first flowering.", "description_sw": "NPK ya pili wakati wa maua ya kwanza.", "is_critical": true},
+        {"activity_type": "pest_spray", "phase": "growth", "week_from_planting": 24, "day_window": 30, "description_en": "Spray for fruit fly + brown spot every 4 weeks during fruiting.", "description_sw": "Nyunyuza dawa ya fruit fly + brown spot kila wiki 4.", "is_critical": true},
+        {"activity_type": "first_harvest", "phase": "harvest", "week_from_planting": 36, "day_window": 14, "description_en": "First fruits 9 months after transplant. Pick when fully purple; some drop is normal.", "description_sw": "Matunda ya kwanza miezi 9. Vuna yakiwa zambarau.", "tip_en": "Collect drops daily — they're as good as picked. Don't let them rot.", "tip_sw": "Okota yale yaliyoanguka kila siku — ni mazuri vivyo hivyo.", "is_critical": true},
+        {"activity_type": "subsequent_harvests", "phase": "harvest", "week_from_planting": 40, "day_window": 30, "description_en": "Plant peaks at month 18; produces 2-3 years total before rebuilding.", "description_sw": "Mavuno ya juu mwezi 18; mmea hutoa miaka 2-3.", "is_critical": false}
+    ],
+    "inputs_per_acre": [
+        {"input_type": "seed", "product_name": "Grafted Purple (KPF11) seedlings (550)", "quantity": 550, "unit": "pieces", "week_from_planting": 0, "benchmark_price_kes": 82500, "pcpb_registered": false, "alternatives": ["Yellow passion"]},
+        {"input_type": "fertiliser", "product_name": "DAP (55kg)", "quantity": 55, "unit": "kg", "week_from_planting": 0, "benchmark_price_kes": 3850, "pcpb_registered": false},
+        {"input_type": "fertiliser", "product_name": "Manure 3 tons", "quantity": 3000, "unit": "kg", "week_from_planting": -1, "benchmark_price_kes": 9000, "pcpb_registered": false},
+        {"input_type": "fertiliser", "product_name": "NPK 17:17:17 (140kg)", "quantity": 140, "unit": "kg", "week_from_planting": 8, "benchmark_price_kes": 11200, "pcpb_registered": false},
+        {"input_type": "fertiliser", "product_name": "NPK 17:17:17 (140kg, 2nd)", "quantity": 140, "unit": "kg", "week_from_planting": 20, "benchmark_price_kes": 11200, "pcpb_registered": false},
+        {"input_type": "equipment", "product_name": "Trellis posts 2m (treated)", "quantity": 100, "unit": "pieces", "week_from_planting": -2, "benchmark_price_kes": 25000, "pcpb_registered": false},
+        {"input_type": "equipment", "product_name": "Galvanised wire (kg)", "quantity": 60, "unit": "kg", "week_from_planting": -2, "benchmark_price_kes": 9000, "pcpb_registered": false},
+        {"input_type": "chemical", "product_name": "Bayfidan 250EC (500ml)", "quantity": 500, "unit": "ml", "week_from_planting": 24, "benchmark_price_kes": 2200, "pcpb_registered": true, "alternatives": ["Score 250EC"]},
+        {"input_type": "chemical", "product_name": "Fruit fly traps", "quantity": 30, "unit": "pieces", "week_from_planting": 24, "benchmark_price_kes": 3000, "pcpb_registered": true}
+    ],
+    "yield_per_acre": {"expected_kg": 12000, "min_kg": 8000, "max_kg": 18000, "number_of_picks": 15, "pick_interval_days": 14},
+    "post_harvest": {"shelf_life_days": 21, "grading_criteria": "Grade A: 60g+, smooth skin, fully purple. Grade B: 40-60g or shriveled.", "packaging_standard": "5kg cartons (export); 30kg crates (juice processor).", "storage_tips_en": "10-13°C extends shelf life to 3 weeks. Room temp: 1 week.", "storage_tips_sw": "10-13°C wiki 3. Joto la kawaida wiki 1."},
+    "diseases": ["fruit_fly", "brown_spot", "woodiness_virus", "fusarium_wilt", "phytophthora"]
+}

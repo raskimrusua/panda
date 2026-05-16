@@ -134,6 +134,8 @@
     "new_title": "Panga msimu",
     "new_subtitle": "Chagua zao, ekari, na tarehe ya kupanda. Panda itatengeneza ratiba ya kazi na orodha ya pembejeo zilizopimwa kulingana na ekari yako.",
     "crop": "Zao",
+    "crop_coming_soon": "inakuja hivi karibuni",
+    "crop_coming_soon_explainer": "Mazao yenye alama ya \"inakuja hivi karibuni\" yapo orodhani lakini bado yanasubiri uthibitisho wa mtaalamu — yatakuwa tayari toleo lijalo.",
     "acreage": "Ekari",
     "planting_date": "Tarehe ya kupanda",
     "irrigation": "Umwagiliaji",
