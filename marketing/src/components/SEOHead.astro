@@ -1,0 +1,44 @@
+---
+/**
+ * SEOHead — Organization + WebSite + SearchAction JSON-LD (Rule 78).
+ */
+import { SITE } from '../lib/config'
+
+interface OpeningHoursDay { dayOfWeek: string[]; opens: string; closes: string }
+interface Props { title?: string; description?: string; ogImage?: string; canonicalUrl?: string }
+const { title = SITE.name, description = SITE.description, ogImage = '/og-image.png', canonicalUrl = Astro.url.href } = Astro.props
+const pageTitle = title === SITE.name ? title : `${title} | ${SITE.name}`
+const siteSearchUrl = `${SITE.url}/search?q={search_term_string}`
+const orgSchema = {
+  '@context': 'https://schema.org', '@type': 'Organization', '@id': `${SITE.url}/#organization`,
+  name: SITE.name, url: SITE.url, email: SITE.email, description: SITE.description,
+  ...(SITE.phone ? { telephone: SITE.phone } : {}),
+  ...(SITE.postalAddress ? { address: { '@type': 'PostalAddress', ...SITE.postalAddress } } : {}),
+  ...(SITE.geo ? { geo: { '@type': 'GeoCoordinates', ...SITE.geo } } : {}),
+  ...(SITE.openingHours?.length ? { openingHoursSpecification: SITE.openingHours.map((oh: OpeningHoursDay) => ({ '@type': 'OpeningHoursSpecification', dayOfWeek: oh.dayOfWeek, opens: oh.opens, closes: oh.closes })) } : {}),
+  ...(SITE.sameAs?.length ? { sameAs: SITE.sameAs } : {}),
+  ...(SITE.priceRange ? { priceRange: SITE.priceRange } : {}),
+}
+const webSiteSchema = { '@context': 'https://schema.org', '@type': 'WebSite', name: SITE.name, url: SITE.url, ...(siteSearchUrl ? { potentialAction: { '@type': 'SearchAction', target: siteSearchUrl, 'query-input': 'required name=search_term_string' } } : {}) }
+---
+
+<title>{pageTitle}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonicalUrl} />
+<link rel="sitemap" href="/sitemap-index.xml" />
+{!SITE.indexable && <meta name="robots" content="noindex, nofollow" />}
+
+<meta property="og:type" content="website" />
+<meta property="og:title" content={pageTitle} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonicalUrl} />
+<meta property="og:image" content={ogImage} />
+<meta property="og:site_name" content={SITE.name} />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={pageTitle} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImage} />
+
+<script is:inline type="application/ld+json" set:html={JSON.stringify(orgSchema)} />
+<script is:inline type="application/ld+json" set:html={JSON.stringify(webSiteSchema)} />
