@@ -66,7 +66,7 @@ it('writes two UserConsent rows + stamps flat columns on successful register', f
     $consents = UserConsent::where('user_id', $user->id)->get();
     expect($consents)->toHaveCount(2)
         ->and($consents->pluck('policy_type')->sort()->values()->all())
-            ->toBe(['privacy', 'terms']);
+        ->toBe(['privacy', 'terms']);
 
     // IP + UA captured for DPA §30 burden-of-proof audits.
     foreach ($consents as $c) {
