@@ -35,4 +35,19 @@ return [
         ],
     ],
 
+    'kindwise' => [
+        'key' => env('KINDWISE_API_KEY'),
+        'url' => env('KINDWISE_API_URL', 'https://crop.kindwise.com/api/v1'),
+        'timeout' => env('KINDWISE_TIMEOUT', 20),
+    ],
+
+    /*
+    | Disease detection provider toggle. `mock` (default) uses the
+    | deterministic MockCropHealthClient — zero cost, no network. Flip
+    | to `kindwise` in prod once KINDWISE_API_KEY is set.
+    */
+    'crop_health' => [
+        'provider' => env('CROP_HEALTH_PROVIDER', 'mock'),
+    ],
+
 ];

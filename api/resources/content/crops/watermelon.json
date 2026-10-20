@@ -1,0 +1,47 @@
+{
+    "slug": "watermelon",
+    "name_en": "Watermelon",
+    "name_sw": "Tikiti maji",
+    "category": "fruit",
+    "harvest_type": "single",
+    "jica_manual_ref": "Inspired by JICA SHEP PLUS — Watermelon production manual",
+    "kalro_guide_ref": "KALRO Watermelon production guide",
+    "ecological_requirements": {
+        "altitude_min_m": 0,
+        "altitude_max_m": 1500,
+        "rainfall_min_mm": 400,
+        "rainfall_max_mm": 800,
+        "temperature_min_c": 22,
+        "temperature_max_c": 35,
+        "soil_types": ["sandy_loam", "loam"],
+        "soil_ph_min": 6.0,
+        "soil_ph_max": 7.0
+    },
+    "varieties": [
+        {"name": "Sugar Baby", "type": "OPEN_POLLINATED", "days_to_maturity": 85, "yield_kg_per_acre": 22000, "supplier_notes": "Round, 3-5kg fruit; dark green skin; popular fresh-market."},
+        {"name": "Crimson Sweet", "type": "OPEN_POLLINATED", "days_to_maturity": 90, "yield_kg_per_acre": 25000, "supplier_notes": "Oblong, 6-8kg; striped; sweeter, better shelf life."}
+    ],
+    "timeline_template": [
+        {"activity_type": "land_prep", "phase": "land_prep", "week_from_planting": -1, "day_window": 5, "description_en": "Plough and prepare planting holes 2m x 1m apart. Add 1 tin manure per hole.", "description_sw": "Lima na chimba mashimo 2m x 1m. Weka samadi shimoni.", "is_critical": true},
+        {"activity_type": "seed_planting", "phase": "transplanting", "week_from_planting": 0, "day_window": 2, "description_en": "Direct-sow 3 seeds per hole, 2cm deep. Thin to strongest plant at 2 weeks.", "description_sw": "Panda mbegu 3 kwa shimo, kina 2cm. Chagua iliyo na nguvu zaidi baada ya wiki 2.", "is_critical": true},
+        {"activity_type": "basal_fertiliser", "phase": "transplanting", "week_from_planting": 0, "day_window": 1, "description_en": "Apply 50kg DAP at planting (in the hole below the seed).", "description_sw": "Weka kilo 50 za DAP shimoni chini ya mbegu.", "is_critical": true},
+        {"activity_type": "first_weeding", "phase": "growth", "week_from_planting": 3, "day_window": 4, "description_en": "Hand-weed and mulch with dry grass.", "description_sw": "Palia na funika nyasi kavu.", "is_critical": false},
+        {"activity_type": "top_dress_1", "phase": "growth", "week_from_planting": 4, "day_window": 3, "description_en": "Apply 50kg CAN around each plant.", "description_sw": "Weka kilo 50 za CAN kuzunguka mmea.", "is_critical": true},
+        {"activity_type": "pest_spray", "phase": "growth", "week_from_planting": 5, "day_window": 7, "description_en": "Spray for melon fly and aphids.", "description_sw": "Nyunyuza dawa ya melon fly na vidudu.", "is_critical": true},
+        {"activity_type": "top_dress_2", "phase": "growth", "week_from_planting": 7, "day_window": 3, "description_en": "Second 50kg CAN at fruit-set.", "description_sw": "CAN ya pili wakati wa matunda.", "is_critical": true},
+        {"activity_type": "fruit_thinning", "phase": "growth", "week_from_planting": 9, "day_window": 5, "description_en": "Remove deformed fruits; leave 2-3 best per vine.", "description_sw": "Ondoa matunda yaliyoharibika; acha 2-3 mzuri kwa mmea.", "is_critical": false},
+        {"activity_type": "harvest", "phase": "harvest", "week_from_planting": 12, "day_window": 14, "description_en": "Harvest when the tendril near fruit dries + a dull thump on rind. Cut with shears.", "description_sw": "Vuna mkia karibu na tunda ukikauka + sauti nzito. Kata kwa mkasi.", "tip_en": "Don't drop watermelons — internal cracking kills shelf life.", "tip_sw": "Usidondoshe tikiti — hupasuka ndani na huharibika haraka.", "is_critical": true}
+    ],
+    "inputs_per_acre": [
+        {"input_type": "seed", "product_name": "Sugar Baby (1kg)", "quantity": 1, "unit": "kg", "week_from_planting": 0, "benchmark_price_kes": 6000, "pcpb_registered": false, "alternatives": ["Crimson Sweet", "Charleston Gray"]},
+        {"input_type": "fertiliser", "product_name": "DAP 50kg", "quantity": 50, "unit": "kg", "week_from_planting": 0, "benchmark_price_kes": 3500, "pcpb_registered": false},
+        {"input_type": "fertiliser", "product_name": "CAN 50kg (top-dress 1)", "quantity": 50, "unit": "kg", "week_from_planting": 4, "benchmark_price_kes": 2800, "pcpb_registered": false},
+        {"input_type": "fertiliser", "product_name": "CAN 50kg (top-dress 2)", "quantity": 50, "unit": "kg", "week_from_planting": 7, "benchmark_price_kes": 2800, "pcpb_registered": false},
+        {"input_type": "fertiliser", "product_name": "Manure 1.5 tons", "quantity": 1500, "unit": "kg", "week_from_planting": -1, "benchmark_price_kes": 4500, "pcpb_registered": false},
+        {"input_type": "chemical", "product_name": "Karate 5EC (500ml)", "quantity": 500, "unit": "ml", "week_from_planting": 5, "benchmark_price_kes": 850, "pcpb_registered": true},
+        {"input_type": "chemical", "product_name": "Lure trap (melon fly)", "quantity": 30, "unit": "pieces", "week_from_planting": 5, "benchmark_price_kes": 3000, "pcpb_registered": false}
+    ],
+    "yield_per_acre": {"expected_kg": 22000, "min_kg": 15000, "max_kg": 30000, "number_of_picks": 1, "pick_interval_days": 1},
+    "post_harvest": {"shelf_life_days": 14, "grading_criteria": "Grade A: 4kg+, uniform shape, no soft spots. Grade B: 2-4kg or minor blemishes.", "packaging_standard": "Loose on padded pickup beds (straw lining).", "storage_tips_en": "10-15°C optimal. Refrigeration below 7°C causes flesh damage.", "storage_tips_sw": "10-15°C. Friji chini ya 7°C huharibu nyama."},
+    "diseases": ["melon_fly", "aphids", "powdery_mildew", "anthracnose", "fusarium_wilt"]
+}

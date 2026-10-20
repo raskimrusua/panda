@@ -35,7 +35,13 @@ class UserFactory extends Factory
             'terms_version' => (string) config('legal.terms_version'),
             'privacy_accepted_at' => now(),
             'privacy_version' => (string) config('legal.privacy_version'),
+            'role' => User::ROLE_OWNER,
         ];
+    }
+
+    public function member(): static
+    {
+        return $this->state(fn () => ['role' => User::ROLE_MEMBER]);
     }
 
     public function unverified(): static

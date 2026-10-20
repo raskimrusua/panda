@@ -26,6 +26,10 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail
     use HasUlids;
     use Notifiable;
 
+    public const ROLE_OWNER = 'owner';
+
+    public const ROLE_MEMBER = 'member';
+
     /** @var list<string> */
     protected $fillable = [
         'tenant_id',
@@ -37,6 +41,7 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail
         'terms_version',
         'privacy_accepted_at',
         'privacy_version',
+        'role',
     ];
 
     /** @var list<string> */
@@ -77,6 +82,11 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail
     public function consents(): HasMany
     {
         return $this->hasMany(UserConsent::class);
+    }
+
+    public function isOwner(): bool
+    {
+        return $this->role === self::ROLE_OWNER;
     }
 
     /**

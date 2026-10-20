@@ -4,6 +4,9 @@ import { useAuth } from './auth/useAuth';
 import { LoginPage } from './pages/LoginPage';
 import { RegisterPage } from './pages/RegisterPage';
 import { AcceptTermsPage } from './pages/AcceptTermsPage';
+import { ForgotPasswordPage } from './pages/ForgotPasswordPage';
+import { ResetPasswordPage } from './pages/ResetPasswordPage';
+import { VerifiedPage } from './pages/VerifiedPage';
 import { DashboardPage } from './pages/DashboardPage';
 import { SeasonListPage } from './pages/SeasonListPage';
 import { NewSeasonPage } from './pages/NewSeasonPage';
@@ -11,6 +14,9 @@ import { SeasonDetailPage } from './pages/SeasonDetailPage';
 import { DiseaseScanPage } from './pages/DiseaseScanPage';
 import { DealerMapPage } from './pages/DealerMapPage';
 import { PricesPage } from './pages/PricesPage';
+import { ProfilePage } from './pages/ProfilePage';
+import { TeamPage } from './pages/TeamPage';
+import { AcceptInvitePage } from './pages/AcceptInvitePage';
 
 export function App() {
   const { user, isLoading } = useAuth();
@@ -28,6 +34,10 @@ export function App() {
       <Routes>
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
+        <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+        <Route path="/reset-password" element={<ResetPasswordPage />} />
+        <Route path="/verified" element={<VerifiedPage />} />
+        <Route path="/accept-invite" element={<AcceptInvitePage />} />
         <Route path="*" element={<Navigate to="/login" replace />} />
       </Routes>
     );
@@ -51,6 +61,8 @@ export function App() {
               <Route path="/disease" element={<DiseaseScanPage />} />
               <Route path="/dealers" element={<DealerMapPage />} />
               <Route path="/prices" element={<PricesPage />} />
+              <Route path="/profile" element={<ProfilePage />} />
+              <Route path="/team" element={<TeamPage />} />
               <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
           </AppShell>

@@ -27,11 +27,26 @@ class MarketPriceSeeder extends Seeder
 {
     /** @var array<string, array{base: float, swing: float, peak_month: int}> */
     private const CROP_PRICE_MODEL = [
+        // Phase 1
         'tomato' => ['base' => 70.0, 'swing' => 0.30, 'peak_month' => 8],
         'kale' => ['base' => 35.0, 'swing' => 0.30, 'peak_month' => 8],
         'french-beans' => ['base' => 90.0, 'swing' => 0.30, 'peak_month' => 8],
         'cabbage' => ['base' => 25.0, 'swing' => 0.20, 'peak_month' => 1],
         'bulb-onion' => ['base' => 110.0, 'swing' => 0.25, 'peak_month' => 4],
+        // Phase 2 — high-value horticulture + indigenous leafy greens
+        'capsicum' => ['base' => 130.0, 'swing' => 0.30, 'peak_month' => 8],
+        'chili' => ['base' => 180.0, 'swing' => 0.35, 'peak_month' => 9],
+        'eggplant' => ['base' => 60.0, 'swing' => 0.25, 'peak_month' => 8],
+        'potato' => ['base' => 40.0, 'swing' => 0.30, 'peak_month' => 6],
+        'watermelon' => ['base' => 30.0, 'swing' => 0.25, 'peak_month' => 12],
+        'amaranthus' => ['base' => 50.0, 'swing' => 0.25, 'peak_month' => 8],
+        'black-nightshade' => ['base' => 70.0, 'swing' => 0.25, 'peak_month' => 8],
+        'cowpea-leaves' => ['base' => 55.0, 'swing' => 0.25, 'peak_month' => 8],
+        // Phase 3 — perennials
+        'avocado' => ['base' => 80.0, 'swing' => 0.40, 'peak_month' => 5],
+        'banana' => ['base' => 35.0, 'swing' => 0.15, 'peak_month' => 4],
+        'mango' => ['base' => 50.0, 'swing' => 0.45, 'peak_month' => 12],
+        'passion-fruit' => ['base' => 150.0, 'swing' => 0.30, 'peak_month' => 6],
     ];
 
     /** @var list<array{name: string, county: string}> */

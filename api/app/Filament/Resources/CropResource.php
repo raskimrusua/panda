@@ -81,6 +81,10 @@ class CropResource extends Resource
                     ->required()
                     ->default(true)
                     ->helperText('Inactive crops are hidden from the public catalogue.'),
+                Forms\Components\Toggle::make('has_full_content')
+                    ->label('Agronomist sign-off')
+                    ->default(false)
+                    ->helperText('OFF: crop appears in the catalogue with a "Coming soon" badge but cannot be planted. Flip ON only after you have read the JSON in resources/content/crops/<slug>.json and confirmed the timeline + inputs + sprays are accurate for Kenyan field conditions.'),
             ]);
     }
 
@@ -108,6 +112,9 @@ class CropResource extends Resource
                     ->sortable(),
                 Tables\Columns\IconColumn::make('is_active')
                     ->label('Active')
+                    ->boolean(),
+                Tables\Columns\IconColumn::make('has_full_content')
+                    ->label('Signed off')
                     ->boolean(),
                 Tables\Columns\TextColumn::make('updated_at')
                     ->dateTime()

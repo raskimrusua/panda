@@ -15,6 +15,8 @@ export interface User {
   id: string;
   name: string;
   email: string;
+  email_verified_at: string | null;
+  role: 'owner' | 'member';
   tenant_id: string;
   tenant?: Tenant;
 }
@@ -30,6 +32,7 @@ export interface Crop {
   jica_manual_ref: string | null;
   phase_added: number;
   is_active: boolean;
+  has_full_content: boolean;
 }
 
 export type SeasonStatus = 'planning' | 'active' | 'harvesting' | 'complete' | 'abandoned';

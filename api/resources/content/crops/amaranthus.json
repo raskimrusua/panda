@@ -1,0 +1,43 @@
+{
+    "slug": "amaranthus",
+    "name_en": "Amaranthus",
+    "name_sw": "Mchicha",
+    "category": "leafy_green",
+    "harvest_type": "multi",
+    "jica_manual_ref": "Inspired by JICA SHEP PLUS — Indigenous leafy vegetables (Amaranthus)",
+    "kalro_guide_ref": "KALRO African leafy vegetables handbook — Amaranthus",
+    "ecological_requirements": {
+        "altitude_min_m": 0,
+        "altitude_max_m": 2400,
+        "rainfall_min_mm": 400,
+        "rainfall_max_mm": 1500,
+        "temperature_min_c": 18,
+        "temperature_max_c": 32,
+        "soil_types": ["loam", "sandy_loam", "clay_loam"],
+        "soil_ph_min": 5.5,
+        "soil_ph_max": 7.5
+    },
+    "varieties": [
+        {"name": "Mchicha (local green)", "type": "OPEN_POLLINATED", "days_to_maturity": 30, "yield_kg_per_acre": 8000, "supplier_notes": "Standard Kenyan green mchicha; fast turnover."},
+        {"name": "Red Amaranthus", "type": "OPEN_POLLINATED", "days_to_maturity": 35, "yield_kg_per_acre": 7000, "supplier_notes": "Red-leafed; higher iron; premium niche markets."}
+    ],
+    "timeline_template": [
+        {"activity_type": "land_prep", "phase": "land_prep", "week_from_planting": -1, "day_window": 3, "description_en": "Plough fine; incorporate 1 ton manure per acre.", "description_sw": "Lima vizuri; changanya tani 1 ya samadi.", "is_critical": true},
+        {"activity_type": "seed_planting", "phase": "transplanting", "week_from_planting": 0, "day_window": 2, "description_en": "Broadcast or drill seed at 1cm depth, 25cm row spacing. Cover lightly.", "description_sw": "Panda mbegu kina 1cm, safu 25cm.", "is_critical": true},
+        {"activity_type": "basal_fertiliser", "phase": "transplanting", "week_from_planting": 0, "day_window": 1, "description_en": "Apply 50kg DAP at planting.", "description_sw": "Weka kilo 50 za DAP.", "is_critical": true},
+        {"activity_type": "thinning", "phase": "growth", "week_from_planting": 2, "day_window": 3, "description_en": "Thin to 10cm between plants. Thinnings are edible.", "description_sw": "Punguza mimea iwe na umbali 10cm. Iliyovutwa ni chakula.", "is_critical": false},
+        {"activity_type": "top_dress", "phase": "growth", "week_from_planting": 3, "day_window": 2, "description_en": "Apply 25kg CAN. Fast-growing crop responds quickly.", "description_sw": "Weka kilo 25 za CAN.", "is_critical": false},
+        {"activity_type": "first_harvest", "phase": "harvest", "week_from_planting": 5, "day_window": 3, "description_en": "Cut whole plant 5cm above ground OR pluck top leaves repeatedly.", "description_sw": "Kata mmea wote cm 5 juu ya ardhi AU chuna majani ya juu.", "tip_en": "Repeated leaf-picking yields 3-4 cuts per planting.", "tip_sw": "Kupluck majani kunatoa mavuno 3-4 kwa upandaji mmoja.", "is_critical": true},
+        {"activity_type": "subsequent_harvests", "phase": "harvest", "week_from_planting": 7, "day_window": 14, "description_en": "Continue plucking every 7-10 days for 4-6 weeks.", "description_sw": "Endelea kuchuna kila siku 7-10 wiki 4-6.", "is_critical": false}
+    ],
+    "inputs_per_acre": [
+        {"input_type": "seed", "product_name": "Mchicha seed (2kg)", "quantity": 2, "unit": "kg", "week_from_planting": 0, "benchmark_price_kes": 1500, "pcpb_registered": false, "alternatives": ["Red Amaranthus", "Terere mix"]},
+        {"input_type": "fertiliser", "product_name": "DAP 50kg", "quantity": 50, "unit": "kg", "week_from_planting": 0, "benchmark_price_kes": 3500, "pcpb_registered": false},
+        {"input_type": "fertiliser", "product_name": "CAN 25kg", "quantity": 25, "unit": "kg", "week_from_planting": 3, "benchmark_price_kes": 1500, "pcpb_registered": false},
+        {"input_type": "fertiliser", "product_name": "Manure 1 ton", "quantity": 1000, "unit": "kg", "week_from_planting": -1, "benchmark_price_kes": 3000, "pcpb_registered": false},
+        {"input_type": "other", "product_name": "Twine for bunch tying", "quantity": 5, "unit": "pieces", "week_from_planting": 5, "benchmark_price_kes": 200, "pcpb_registered": false}
+    ],
+    "yield_per_acre": {"expected_kg": 8000, "min_kg": 5000, "max_kg": 12000, "number_of_picks": 6, "pick_interval_days": 8},
+    "post_harvest": {"shelf_life_days": 2, "grading_criteria": "Bunch by stem length 25-30cm. Reject yellowed or insect-damaged.", "packaging_standard": "Tied bunches sold same-day at local market.", "storage_tips_en": "Sell same-day. Sprinkle with cold water under shade to delay wilt.", "storage_tips_sw": "Uza siku hiyohiyo. Nyunyizia maji baridi kivulini."},
+    "diseases": ["aphids", "leaf_miners", "damping_off"]
+}

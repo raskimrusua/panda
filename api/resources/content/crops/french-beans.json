@@ -1,0 +1,45 @@
+{
+    "slug": "french-beans",
+    "name_en": "French beans",
+    "name_sw": "Mishiri",
+    "category": "legume",
+    "harvest_type": "multi",
+    "jica_manual_ref": "Inspired by JICA SHEP PLUS — French beans (export) manual",
+    "kalro_guide_ref": "KALRO French beans production guide",
+    "ecological_requirements": {
+        "altitude_min_m": 1000,
+        "altitude_max_m": 2100,
+        "rainfall_min_mm": 700,
+        "rainfall_max_mm": 1200,
+        "temperature_min_c": 18,
+        "temperature_max_c": 25,
+        "soil_types": ["loam", "sandy_loam"],
+        "soil_ph_min": 6.0,
+        "soil_ph_max": 7.0
+    },
+    "varieties": [
+        {"name": "Samantha", "type": "OPEN_POLLINATED", "days_to_maturity": 50, "yield_kg_per_acre": 4000, "supplier_notes": "Top export variety to EU; fine pod 9-11cm."},
+        {"name": "Paulista", "type": "OPEN_POLLINATED", "days_to_maturity": 55, "yield_kg_per_acre": 3500, "supplier_notes": "Slightly heavier pod; tolerates mild rust."}
+    ],
+    "timeline_template": [
+        {"activity_type": "land_prep", "phase": "land_prep", "week_from_planting": -1, "day_window": 5, "description_en": "Plough to fine tilth. French beans need a clean seedbed.", "description_sw": "Lima vizuri. Maharagwe ya mishiri yanahitaji shamba safi.", "is_critical": true},
+        {"activity_type": "seed_planting", "phase": "transplanting", "week_from_planting": 0, "day_window": 2, "description_en": "Direct-sow seed 3cm deep at 30cm x 10cm. No nursery needed.", "description_sw": "Panda mbegu moja kwa moja kina 3cm, nafasi 30cm x 10cm.", "is_critical": true},
+        {"activity_type": "basal_fertiliser", "phase": "transplanting", "week_from_planting": 0, "day_window": 1, "description_en": "Apply 50kg DAP at planting in the planting furrow.", "description_sw": "Weka kilo 50 za DAP wakati wa kupanda.", "is_critical": true},
+        {"activity_type": "first_weeding", "phase": "growth", "week_from_planting": 2, "day_window": 4, "description_en": "Shallow-hoe between rows. Beans dislike root disturbance.", "description_sw": "Palia juu juu kati ya safu. Maharagwe hayapendi kusumbuliwa mizizi.", "is_critical": false},
+        {"activity_type": "top_dress", "phase": "growth", "week_from_planting": 3, "day_window": 3, "description_en": "Apply 25kg CAN side-dressed. Beans fix nitrogen — modest dose.", "description_sw": "Weka kilo 25 za CAN. Maharagwe hujishika nitrojeni — dosi ndogo.", "is_critical": false},
+        {"activity_type": "flowering_spray", "phase": "growth", "week_from_planting": 4, "day_window": 7, "description_en": "Preventive fungicide at flowering for rust/anthracnose.", "description_sw": "Nyunyuza dawa ya kuzuia magonjwa wakati wa maua.", "is_critical": true},
+        {"activity_type": "first_harvest", "phase": "harvest", "week_from_planting": 7, "day_window": 5, "description_en": "Pick pods when 9-11cm long and tender. Snap test: pod breaks cleanly.", "description_sw": "Chuna magamba urefu 9-11cm bado machanga.", "tip_en": "Pick every 2-3 days during peak. Pods overrun in 24h.", "tip_sw": "Vuna kila siku 2-3. Magamba huzeeka haraka.", "is_critical": true},
+        {"activity_type": "subsequent_picks", "phase": "harvest", "week_from_planting": 8, "day_window": 21, "description_en": "Continue picks every 2-3 days for 3 weeks total.", "description_sw": "Endelea kuvuna kila siku 2-3 kwa wiki 3.", "is_critical": false}
+    ],
+    "inputs_per_acre": [
+        {"input_type": "seed", "product_name": "Samantha (25kg)", "quantity": 25, "unit": "kg", "week_from_planting": 0, "benchmark_price_kes": 12000, "pcpb_registered": false, "alternatives": ["Paulista", "Vanilla"]},
+        {"input_type": "fertiliser", "product_name": "DAP 50kg", "quantity": 50, "unit": "kg", "week_from_planting": 0, "benchmark_price_kes": 3500, "pcpb_registered": false},
+        {"input_type": "fertiliser", "product_name": "CAN 25kg", "quantity": 25, "unit": "kg", "week_from_planting": 3, "benchmark_price_kes": 1500, "pcpb_registered": false},
+        {"input_type": "chemical", "product_name": "Bayfidan 250EC (250ml)", "quantity": 250, "unit": "ml", "week_from_planting": 4, "benchmark_price_kes": 1100, "pcpb_registered": true, "alternatives": ["Score 250EC"]},
+        {"input_type": "chemical", "product_name": "Match 50EC (250ml)", "quantity": 250, "unit": "ml", "week_from_planting": 5, "benchmark_price_kes": 700, "pcpb_registered": true},
+        {"input_type": "other", "product_name": "Punnets 250g (export-grade)", "quantity": 16000, "unit": "pieces", "week_from_planting": 7, "benchmark_price_kes": 8000, "pcpb_registered": false}
+    ],
+    "yield_per_acre": {"expected_kg": 4000, "min_kg": 3000, "max_kg": 5000, "number_of_picks": 8, "pick_interval_days": 3},
+    "post_harvest": {"shelf_life_days": 7, "grading_criteria": "Export A: 9-11cm, no blemishes, snap-fresh. Local B: 8-12cm, minor blemishes.", "packaging_standard": "250g vented punnets for export; 5kg cartons for local market.", "storage_tips_en": "Cold chain at 5-7°C from harvest to airport. Same-day delivery to packhouse.", "storage_tips_sw": "Hifadhi 5-7°C tangu kuvuna mpaka airport."},
+    "diseases": ["rust", "anthracnose", "bean_fly", "powdery_mildew", "halo_blight"]
+}

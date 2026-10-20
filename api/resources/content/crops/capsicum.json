@@ -1,0 +1,49 @@
+{
+    "slug": "capsicum",
+    "name_en": "Capsicum",
+    "name_sw": "Pilipili hoho",
+    "category": "vegetable",
+    "harvest_type": "multi",
+    "jica_manual_ref": "Inspired by JICA SHEP PLUS — Capsicum (sweet pepper) manual",
+    "kalro_guide_ref": "KALRO Capsicum production guide",
+    "ecological_requirements": {
+        "altitude_min_m": 600,
+        "altitude_max_m": 2100,
+        "rainfall_min_mm": 600,
+        "rainfall_max_mm": 1300,
+        "temperature_min_c": 18,
+        "temperature_max_c": 30,
+        "soil_types": ["loam", "sandy_loam"],
+        "soil_ph_min": 5.5,
+        "soil_ph_max": 6.8
+    },
+    "varieties": [
+        {"name": "California Wonder", "type": "OPEN_POLLINATED", "days_to_maturity": 75, "yield_kg_per_acre": 10000, "supplier_notes": "Standard green/red variety; widely planted."},
+        {"name": "Yolo Wonder", "type": "OPEN_POLLINATED", "days_to_maturity": 80, "yield_kg_per_acre": 11000, "supplier_notes": "Larger fruit, slightly more disease tolerant."}
+    ],
+    "timeline_template": [
+        {"activity_type": "nursery_seeding", "phase": "nursery", "week_from_planting": -5, "day_window": 3, "description_en": "Sow seed in nursery trays, 0.5cm depth, in sterile media.", "description_sw": "Panda mbegu trei kina 0.5cm.", "is_critical": true},
+        {"activity_type": "seedling_hardening", "phase": "nursery", "week_from_planting": -1, "day_window": 5, "description_en": "Harden seedlings — reduce water, expose to sun.", "description_sw": "Tayarisha miche kwa jua, punguza maji.", "is_critical": false},
+        {"activity_type": "transplanting", "phase": "transplanting", "week_from_planting": 0, "day_window": 2, "description_en": "Transplant 5-week seedlings at 60cm x 45cm. Water heavily after.", "description_sw": "Pandikiza miche wiki 5 nafasi 60cm x 45cm.", "is_critical": true},
+        {"activity_type": "basal_fertiliser", "phase": "transplanting", "week_from_planting": 0, "day_window": 1, "description_en": "Apply 50kg DAP in planting holes.", "description_sw": "Weka kilo 50 za DAP.", "is_critical": true},
+        {"activity_type": "first_weeding", "phase": "growth", "week_from_planting": 3, "day_window": 4, "description_en": "Shallow weeding + mulching.", "description_sw": "Palia juu juu na funika.", "is_critical": false},
+        {"activity_type": "top_dress_1", "phase": "growth", "week_from_planting": 4, "day_window": 3, "description_en": "Apply 50kg CAN side-dressed.", "description_sw": "Weka kilo 50 za CAN.", "is_critical": true},
+        {"activity_type": "staking", "phase": "growth", "week_from_planting": 5, "day_window": 7, "description_en": "Stake tall plants 1.5m to prevent lodging when fruits weigh.", "description_sw": "Simika nguzo 1.5m kuzuia mmea kuanguka.", "is_critical": false},
+        {"activity_type": "pest_spray", "phase": "growth", "week_from_planting": 6, "day_window": 7, "description_en": "Spray for aphids and thrips at first sign of curl/silvering.", "description_sw": "Nyunyuza dawa ya wadudu ukianza kuona majani yamejikunja.", "is_critical": true},
+        {"activity_type": "top_dress_2", "phase": "growth", "week_from_planting": 8, "day_window": 3, "description_en": "Second 50kg CAN at flowering.", "description_sw": "CAN ya pili wakati wa maua.", "is_critical": true},
+        {"activity_type": "first_harvest", "phase": "harvest", "week_from_planting": 11, "day_window": 7, "description_en": "Cut peppers at full size, glossy green. Twist + pull is wrong — use shears.", "description_sw": "Kata pilipili zikiwa kubwa na kung'aa. Tumia mkasi.", "tip_en": "Pick every 5-7 days. Red peppers fetch 1.5x green prices.", "tip_sw": "Vuna kila siku 5-7. Pilipili nyekundu hupata bei mara 1.5.", "is_critical": true}
+    ],
+    "inputs_per_acre": [
+        {"input_type": "seed", "product_name": "California Wonder (100g)", "quantity": 100, "unit": "g", "week_from_planting": -5, "benchmark_price_kes": 3000, "pcpb_registered": false, "alternatives": ["Yolo Wonder", "Admiral F1"]},
+        {"input_type": "fertiliser", "product_name": "DAP 50kg", "quantity": 50, "unit": "kg", "week_from_planting": 0, "benchmark_price_kes": 3500, "pcpb_registered": false},
+        {"input_type": "fertiliser", "product_name": "CAN 50kg (top-dress 1)", "quantity": 50, "unit": "kg", "week_from_planting": 4, "benchmark_price_kes": 2800, "pcpb_registered": false},
+        {"input_type": "fertiliser", "product_name": "CAN 50kg (top-dress 2)", "quantity": 50, "unit": "kg", "week_from_planting": 8, "benchmark_price_kes": 2800, "pcpb_registered": false},
+        {"input_type": "chemical", "product_name": "Karate 5EC (500ml)", "quantity": 500, "unit": "ml", "week_from_planting": 6, "benchmark_price_kes": 850, "pcpb_registered": true},
+        {"input_type": "chemical", "product_name": "Ridomil Gold MZ (500g)", "quantity": 500, "unit": "g", "week_from_planting": 7, "benchmark_price_kes": 1200, "pcpb_registered": true},
+        {"input_type": "equipment", "product_name": "Stakes 1.5m", "quantity": 4000, "unit": "pieces", "week_from_planting": 5, "benchmark_price_kes": 8000, "pcpb_registered": false},
+        {"input_type": "other", "product_name": "Crates 20kg (harvest)", "quantity": 25, "unit": "crates", "week_from_planting": 11, "benchmark_price_kes": 7500, "pcpb_registered": false}
+    ],
+    "yield_per_acre": {"expected_kg": 10000, "min_kg": 7000, "max_kg": 13000, "number_of_picks": 12, "pick_interval_days": 6},
+    "post_harvest": {"shelf_life_days": 14, "grading_criteria": "Grade A: blocky, firm, glossy. Grade B: minor sun-scald or scarring.", "packaging_standard": "20kg crates lined with paper to avoid bruising.", "storage_tips_en": "7-10°C optimal. Avoid below 7°C — chilling injury.", "storage_tips_sw": "7-10°C ndiyo bora. Epuka chini ya 7°C — huharibika kwa baridi."},
+    "diseases": ["aphids", "thrips", "bacterial_wilt", "powdery_mildew", "anthracnose"]
+}

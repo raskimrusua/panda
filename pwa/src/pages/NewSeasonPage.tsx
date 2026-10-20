@@ -80,12 +80,14 @@ export function NewSeasonPage() {
                   {cropsQuery.isLoading ? t('common.loading') : t('auth.choose')}
                 </option>
                 {cropsQuery.data?.data.map((c) => (
-                  <option key={c.id} value={c.id}>
+                  <option key={c.id} value={c.id} disabled={!c.has_full_content}>
                     {c.name_en} ({c.name_sw})
+                    {!c.has_full_content && ` — ${t('seasons.crop_coming_soon')}`}
                   </option>
                 ))}
               </select>
               <FieldError message={errors.crop_id?.message} />
+              <p className="mt-1 text-xs text-gray-500">{t('seasons.crop_coming_soon_explainer')}</p>
             </div>
 
             <div className="grid grid-cols-2 gap-3">

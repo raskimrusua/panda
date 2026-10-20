@@ -1,0 +1,48 @@
+{
+    "slug": "bulb-onion",
+    "name_en": "Bulb onion",
+    "name_sw": "Kitunguu",
+    "category": "vegetable",
+    "harvest_type": "single",
+    "jica_manual_ref": "Inspired by JICA SHEP PLUS — Onion production manual",
+    "kalro_guide_ref": "KALRO Onion production handbook",
+    "ecological_requirements": {
+        "altitude_min_m": 500,
+        "altitude_max_m": 2400,
+        "rainfall_min_mm": 500,
+        "rainfall_max_mm": 1000,
+        "temperature_min_c": 15,
+        "temperature_max_c": 30,
+        "soil_types": ["sandy_loam", "loam"],
+        "soil_ph_min": 6.0,
+        "soil_ph_max": 7.0
+    },
+    "varieties": [
+        {"name": "Red Creole", "type": "OPEN_POLLINATED", "days_to_maturity": 150, "yield_kg_per_acre": 12000, "supplier_notes": "Standard Kenyan red onion; pungent, stores 3-4 months."},
+        {"name": "Texas Grano", "type": "OPEN_POLLINATED", "days_to_maturity": 130, "yield_kg_per_acre": 14000, "supplier_notes": "Larger bulb, milder; better for fresh market not long storage."}
+    ],
+    "timeline_template": [
+        {"activity_type": "nursery_seeding", "phase": "nursery", "week_from_planting": -8, "day_window": 5, "description_en": "Sow seed thinly in raised nursery bed at 1cm depth.", "description_sw": "Panda mbegu kitalu kina 1cm.", "is_critical": true},
+        {"activity_type": "land_prep", "phase": "land_prep", "week_from_planting": -2, "day_window": 7, "description_en": "Plough and level land. Incorporate 2 tons well-rotted manure per acre.", "description_sw": "Lima na sawazisha shamba. Changanya tani 2 za samadi iliyooza.", "is_critical": true},
+        {"activity_type": "transplanting", "phase": "transplanting", "week_from_planting": 0, "day_window": 3, "description_en": "Transplant 6-8 week seedlings at 10cm x 15cm. Trim roots and tops by 1/3.", "description_sw": "Pandikiza miche wiki 6-8 nafasi 10cm x 15cm. Punguza mizizi na ncha.", "is_critical": true},
+        {"activity_type": "basal_fertiliser", "phase": "transplanting", "week_from_planting": 0, "day_window": 1, "description_en": "Apply 100kg DAP at planting, well-mixed into soil.", "description_sw": "Weka kilo 100 za DAP wakati wa kupanda.", "is_critical": true},
+        {"activity_type": "first_weeding", "phase": "growth", "week_from_planting": 3, "day_window": 4, "description_en": "Hand-weed carefully — onion roots are shallow.", "description_sw": "Palia kwa mkono kwa makini — mizizi ni juujuu.", "is_critical": false},
+        {"activity_type": "top_dress_1", "phase": "growth", "week_from_planting": 5, "day_window": 3, "description_en": "Apply 50kg CAN broadcast between rows.", "description_sw": "Weka kilo 50 za CAN safuni.", "is_critical": true},
+        {"activity_type": "pest_spray", "phase": "growth", "week_from_planting": 7, "day_window": 14, "description_en": "Spray for thrips at first sign of silvery streaks.", "description_sw": "Nyunyuza dawa ya thrips ukianza kuona michirizi yenye rangi ya fedha.", "is_critical": true},
+        {"activity_type": "top_dress_2", "phase": "growth", "week_from_planting": 10, "day_window": 3, "description_en": "Second 50kg CAN at bulb formation.", "description_sw": "Dosi ya pili ya CAN wakati kitunguu kinaanza.", "is_critical": true},
+        {"activity_type": "withhold_water", "phase": "growth", "week_from_planting": 18, "day_window": 7, "description_en": "Stop irrigation 2 weeks before harvest to cure bulbs.", "description_sw": "Acha kumwagilia wiki 2 kabla ya kuvuna.", "is_critical": true},
+        {"activity_type": "harvest", "phase": "harvest", "week_from_planting": 21, "day_window": 14, "description_en": "Pull bulbs when tops fall over and yellow. Cure in shade 1 week.", "description_sw": "Vuta vitunguu majani yakianguka. Hifadhi kivulini wiki 1.", "is_critical": true}
+    ],
+    "inputs_per_acre": [
+        {"input_type": "seed", "product_name": "Red Creole (1kg)", "quantity": 1, "unit": "kg", "week_from_planting": -8, "benchmark_price_kes": 4500, "pcpb_registered": false, "alternatives": ["Texas Grano", "Bombay Red"]},
+        {"input_type": "fertiliser", "product_name": "DAP 100kg", "quantity": 100, "unit": "kg", "week_from_planting": 0, "benchmark_price_kes": 7000, "pcpb_registered": false},
+        {"input_type": "fertiliser", "product_name": "CAN 50kg (top-dress 1)", "quantity": 50, "unit": "kg", "week_from_planting": 5, "benchmark_price_kes": 2800, "pcpb_registered": false},
+        {"input_type": "fertiliser", "product_name": "CAN 50kg (top-dress 2)", "quantity": 50, "unit": "kg", "week_from_planting": 10, "benchmark_price_kes": 2800, "pcpb_registered": false},
+        {"input_type": "fertiliser", "product_name": "Well-rotted manure (2 tons)", "quantity": 2000, "unit": "kg", "week_from_planting": -2, "benchmark_price_kes": 6000, "pcpb_registered": false},
+        {"input_type": "chemical", "product_name": "Match 50EC (250ml)", "quantity": 250, "unit": "ml", "week_from_planting": 7, "benchmark_price_kes": 700, "pcpb_registered": true, "alternatives": ["Tracer 480SC"]},
+        {"input_type": "other", "product_name": "Mesh storage bags (50kg)", "quantity": 60, "unit": "pieces", "week_from_planting": 21, "benchmark_price_kes": 1800, "pcpb_registered": false}
+    ],
+    "yield_per_acre": {"expected_kg": 12000, "min_kg": 8000, "max_kg": 15000, "number_of_picks": 1, "pick_interval_days": 1},
+    "post_harvest": {"shelf_life_days": 90, "grading_criteria": "Grade A: 50g+ firm bulb, dry neck. Grade B: 30-50g. Reject soft or sprouted.", "packaging_standard": "50kg mesh bags for wholesale; 10kg net bags for retail.", "storage_tips_en": "Dry well-ventilated shed at 0-5°C lasts 6 months. At room temp, 2-3 months.", "storage_tips_sw": "Banda kavu lenye hewa 0-5°C miezi 6. Joto la kawaida miezi 2-3."},
+    "diseases": ["thrips", "downy_mildew", "purple_blotch", "white_rot"]
+}

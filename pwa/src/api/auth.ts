@@ -71,4 +71,37 @@ export const authApi = {
     const { data } = await apiClient.post<AcceptPoliciesResponse>('/policies/accept', payload);
     return data;
   },
+
+  async forgotPassword(email: string): Promise<{ message: string }> {
+    const { data } = await apiClient.post<{ message: string }>('/auth/password/forgot', { email });
+    return data;
+  },
+
+  async resetPassword(payload: {
+    token: string;
+    email: string;
+    password: string;
+    password_confirmation: string;
+  }): Promise<{ message: string }> {
+    const { data } = await apiClient.post<{ message: string }>('/auth/password/reset', payload);
+    return data;
+  },
+
+  async sendVerification(): Promise<void> {
+    await apiClient.post('/auth/email/verification-notification');
+  },
+
+  async updateProfile(payload: { name?: string; email?: string }): Promise<{ data: User }> {
+    const { data } = await apiClient.patch<{ data: User }>('/auth/profile', payload);
+    return data;
+  },
+
+  async changePassword(payload: {
+    current_password: string;
+    password: string;
+    password_confirmation: string;
+  }): Promise<{ message: string }> {
+    const { data } = await apiClient.patch<{ message: string }>('/auth/password', payload);
+    return data;
+  },
 };

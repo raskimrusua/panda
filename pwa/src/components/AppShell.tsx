@@ -1,11 +1,12 @@
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { Camera, LayoutDashboard, LineChart, LogOut, MapPin, Sprout } from 'lucide-react';
+import { Camera, LayoutDashboard, LineChart, LogOut, MapPin, Sprout, Users } from 'lucide-react';
 import { useAuth } from '@/auth/useAuth';
 import { Button } from './ui/Button';
 import { LanguageSwitcher } from './LanguageSwitcher';
 import { OnlineIndicator } from './OnlineIndicator';
 import { WelcomeModal } from './WelcomeModal';
+import { EmailVerificationBanner } from './EmailVerificationBanner';
 import { cn } from '@/lib/utils';
 import type { ReactNode } from 'react';
 
@@ -21,6 +22,7 @@ const NAV: NavItem[] = [
   { to: '/disease', labelKey: 'nav.disease', icon: <Camera className="h-4 w-4" /> },
   { to: '/dealers', labelKey: 'nav.dealers', icon: <MapPin className="h-4 w-4" /> },
   { to: '/prices', labelKey: 'nav.prices', icon: <LineChart className="h-4 w-4" /> },
+  { to: '/team', labelKey: 'nav.team', icon: <Users className="h-4 w-4" /> },
 ];
 
 export function AppShell({ children }: { children: ReactNode }) {
@@ -40,7 +42,9 @@ export function AppShell({ children }: { children: ReactNode }) {
           <Link to="/" className="text-xl font-semibold text-brand-700">
             Panda
           </Link>
-          <p className="mt-1 text-xs text-gray-500">{user?.tenant?.name ?? user?.name}</p>
+          <Link to="/profile" className="mt-1 block text-xs text-gray-500 hover:text-brand-700 hover:underline">
+            {user?.tenant?.name ?? user?.name}
+          </Link>
         </div>
         <div className="px-4 py-2 border-b border-gray-100 flex items-center justify-between">
           <OnlineIndicator />
@@ -78,7 +82,10 @@ export function AppShell({ children }: { children: ReactNode }) {
           </Button>
         </div>
       </aside>
-      <main className="flex-1 p-4 md:p-8 max-w-5xl mx-auto w-full">{children}</main>
+      <div className="flex-1 flex flex-col">
+        <EmailVerificationBanner />
+        <main className="flex-1 p-4 md:p-8 max-w-5xl mx-auto w-full">{children}</main>
+      </div>
       <WelcomeModal />
     </div>
   );

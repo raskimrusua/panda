@@ -1,0 +1,42 @@
+{
+    "slug": "black-nightshade",
+    "name_en": "Black nightshade",
+    "name_sw": "Managu",
+    "category": "leafy_green",
+    "harvest_type": "multi",
+    "jica_manual_ref": "Inspired by JICA SHEP PLUS — Indigenous leafy vegetables (Black nightshade)",
+    "kalro_guide_ref": "KALRO African leafy vegetables handbook — Solanum scabrum",
+    "ecological_requirements": {
+        "altitude_min_m": 600,
+        "altitude_max_m": 2400,
+        "rainfall_min_mm": 500,
+        "rainfall_max_mm": 1500,
+        "temperature_min_c": 15,
+        "temperature_max_c": 28,
+        "soil_types": ["loam", "sandy_loam"],
+        "soil_ph_min": 5.5,
+        "soil_ph_max": 6.8
+    },
+    "varieties": [
+        {"name": "Managu (Solanum scabrum)", "type": "OPEN_POLLINATED", "days_to_maturity": 50, "yield_kg_per_acre": 9000, "supplier_notes": "Local Kenyan managu; broad leaves; main commercial type."},
+        {"name": "Olevu (S. villosum)", "type": "OPEN_POLLINATED", "days_to_maturity": 55, "yield_kg_per_acre": 7000, "supplier_notes": "Smaller leaves but tastier; village-market preferred."}
+    ],
+    "timeline_template": [
+        {"activity_type": "nursery_seeding", "phase": "nursery", "week_from_planting": -4, "day_window": 3, "description_en": "Sow in raised nursery bed at 1cm depth. Tiny seed — barely cover.", "description_sw": "Panda kitalu kina 1cm. Mbegu ndogo — funika kidogo sana.", "is_critical": true},
+        {"activity_type": "transplanting", "phase": "transplanting", "week_from_planting": 0, "day_window": 2, "description_en": "Transplant 4-week seedlings at 30cm x 30cm.", "description_sw": "Pandikiza miche wiki 4 nafasi 30cm x 30cm.", "is_critical": true},
+        {"activity_type": "basal_fertiliser", "phase": "transplanting", "week_from_planting": 0, "day_window": 1, "description_en": "Apply 50kg DAP at transplanting.", "description_sw": "Weka kilo 50 za DAP.", "is_critical": true},
+        {"activity_type": "first_weeding", "phase": "growth", "week_from_planting": 2, "day_window": 4, "description_en": "Hand-weed and mulch.", "description_sw": "Palia na funika.", "is_critical": false},
+        {"activity_type": "top_dress", "phase": "growth", "week_from_planting": 3, "day_window": 3, "description_en": "Apply 50kg CAN. Stimulates leaf flush.", "description_sw": "Weka kilo 50 za CAN. Huongeza majani.", "is_critical": true},
+        {"activity_type": "first_harvest", "phase": "harvest", "week_from_planting": 7, "day_window": 5, "description_en": "Pluck top 2-3 leaves and tender stems. Don't strip the whole plant.", "description_sw": "Chuna majani 2-3 ya juu na shina laini. Usimaliz e mmea wote.", "tip_en": "First harvest delayed = sweeter taste, less bitter compounds.", "tip_sw": "Mavuno ya kwanza ukichelewa = ladha tamu zaidi.", "is_critical": true},
+        {"activity_type": "subsequent_harvests", "phase": "harvest", "week_from_planting": 8, "day_window": 21, "description_en": "Continue plucking every 7-10 days for 3 months.", "description_sw": "Endelea kuchuna kila siku 7-10 kwa miezi 3.", "is_critical": false}
+    ],
+    "inputs_per_acre": [
+        {"input_type": "seed", "product_name": "Managu (500g)", "quantity": 500, "unit": "g", "week_from_planting": -4, "benchmark_price_kes": 2000, "pcpb_registered": false, "alternatives": ["Olevu"]},
+        {"input_type": "fertiliser", "product_name": "DAP 50kg", "quantity": 50, "unit": "kg", "week_from_planting": 0, "benchmark_price_kes": 3500, "pcpb_registered": false},
+        {"input_type": "fertiliser", "product_name": "CAN 50kg", "quantity": 50, "unit": "kg", "week_from_planting": 3, "benchmark_price_kes": 2800, "pcpb_registered": false},
+        {"input_type": "fertiliser", "product_name": "Manure 1 ton", "quantity": 1000, "unit": "kg", "week_from_planting": -1, "benchmark_price_kes": 3000, "pcpb_registered": false}
+    ],
+    "yield_per_acre": {"expected_kg": 9000, "min_kg": 6000, "max_kg": 12000, "number_of_picks": 10, "pick_interval_days": 8},
+    "post_harvest": {"shelf_life_days": 3, "grading_criteria": "Bunched leaves + tender stems. Reject yellowed or seeded shoots.", "packaging_standard": "Tied bunches ~200g, sold same-day at market.", "storage_tips_en": "Sell same-day. Cool 5-10°C if delay forced.", "storage_tips_sw": "Uza siku hiyohiyo. 5-10°C ukilazimika kuchelewa."},
+    "diseases": ["aphids", "spider_mites", "early_blight"]
+}

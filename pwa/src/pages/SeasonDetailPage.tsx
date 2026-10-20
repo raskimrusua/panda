@@ -5,8 +5,10 @@ import { useTranslation } from 'react-i18next';
 import { ArrowLeft, CheckCircle2, Download, Plus } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 import { apiClient } from '@/api/client';
+import { ActivityProgressBar } from '@/components/charts/ActivityProgressBar';
 import { CostByCategoryBar } from '@/components/charts/CostByCategoryBar';
 import { CumulativeCostRevenueChart, type CumulativePoint } from '@/components/charts/CumulativeCostRevenueChart';
+import { YieldTrajectoryChart, type YieldPoint } from '@/components/charts/YieldTrajectoryChart';
 import { ProfitSummaryCard } from '@/components/ProfitSummaryCard';
 import { Card, CardBody, CardHeader } from '@/components/ui/Card';
 import { Modal } from '@/components/ui/Modal';
@@ -168,6 +170,19 @@ export function SeasonDetailPage() {
     return Array.from(m.entries()).map(([category, total]) => ({ category, total }));
   }, [costsQuery.data]);
 
+  // Cumulative kg picked over time for the yield trajectory chart on
+  // the Harvests tab. Sorted by harvested_at, running sum across picks.
+  const yieldPoints = useMemo<YieldPoint[]>(() => {
+    const rows = [...(harvestsQuery.data?.data ?? [])].sort((a, b) =>
+      String(a.harvested_at).localeCompare(String(b.harvested_at)),
+    );
+    let run = 0;
+    return rows.map((h) => {
+      run += Number(h.quantity_kg ?? 0);
+      return { label: String(h.harvested_at), cumulativeKg: run };
+    });
+  }, [harvestsQuery.data]);
+
   if (seasonQuery.isLoading) return <p className="text-gray-500">{t('seasons.loading_season')}</p>;
   if (seasonQuery.error) return <p className="text-danger-600">{t('seasons.could_not_load_season')}</p>;
   if (!seasonQuery.data) return null;
@@ -244,6 +259,16 @@ export function SeasonDetailPage() {
 
       {tab === 'timeline' && (
         <div className="space-y-2">
+          {timelineQuery.data && timelineQuery.data.data.length > 0 && (
+            <Card>
+              <CardBody>
+                <ActivityProgressBar
+                  done={timelineQuery.data.data.filter((a) => a.status === 'done').length}
+                  total={timelineQuery.data.data.length}
+                />
+              </CardBody>
+            </Card>
+          )}
           <div className="flex justify-end">
             <Button
               size="sm"
@@ -399,6 +424,22 @@ export function SeasonDetailPage() {
 
       {tab === 'harvests' && (
         <div className="space-y-3">
+          {yieldPoints.length > 0 && (
+            <Card>
+              <CardHeader>
+                <h3 className="text-sm font-semibold text-gray-900">
+                  {t('seasons.yield_trajectory_title')}
+                </h3>
+                <p className="text-xs text-gray-500">{t('seasons.yield_trajectory_subtitle')}</p>
+              </CardHeader>
+              <CardBody>
+                <YieldTrajectoryChart
+                  points={yieldPoints}
+                  formatValue={(n) => `${Math.round(n)} kg`}
+                />
+              </CardBody>
+            </Card>
+          )}
           <div className="flex items-center justify-between">
             <div className="text-sm text-gray-600">
               {harvestsQuery.data && (

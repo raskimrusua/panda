@@ -1,0 +1,47 @@
+{
+    "slug": "banana",
+    "name_en": "Banana",
+    "name_sw": "Ndizi",
+    "category": "fruit",
+    "harvest_type": "multi",
+    "jica_manual_ref": "Inspired by JICA SHEP PLUS — Banana production manual",
+    "kalro_guide_ref": "KALRO Banana production guide (tissue-cultured planting material)",
+    "ecological_requirements": {
+        "altitude_min_m": 0,
+        "altitude_max_m": 1800,
+        "rainfall_min_mm": 1000,
+        "rainfall_max_mm": 2000,
+        "temperature_min_c": 15,
+        "temperature_max_c": 30,
+        "soil_types": ["loam", "clay_loam", "volcanic_loam"],
+        "soil_ph_min": 5.5,
+        "soil_ph_max": 7.5
+    },
+    "varieties": [
+        {"name": "Williams (Cavendish)", "type": "TISSUE_CULTURED", "days_to_maturity": 365, "yield_kg_per_acre": 20000, "supplier_notes": "Sweet dessert banana; main commercial type."},
+        {"name": "Ng'ombe (Plantain)", "type": "TISSUE_CULTURED", "days_to_maturity": 420, "yield_kg_per_acre": 18000, "supplier_notes": "Cooking banana; high local demand."}
+    ],
+    "timeline_template": [
+        {"activity_type": "land_prep", "phase": "land_prep", "week_from_planting": -4, "day_window": 14, "description_en": "Mark planting holes 3m x 3m. Dig 60cm cubed holes. Mix soil + 2 tins manure.", "description_sw": "Weka alama 3m x 3m. Chimba mashimo 60cm. Changanya na samadi.", "is_critical": true},
+        {"activity_type": "transplanting", "phase": "transplanting", "week_from_planting": 0, "day_window": 3, "description_en": "Plant tissue-cultured plantlet 5cm deep. Water immediately.", "description_sw": "Panda mche kina 5cm. Mwagilia mara moja.", "is_critical": true},
+        {"activity_type": "basal_fertiliser", "phase": "transplanting", "week_from_planting": 0, "day_window": 1, "description_en": "Apply 200g DAP per hole.", "description_sw": "Weka gramu 200 za DAP kwa shimo.", "is_critical": true},
+        {"activity_type": "watering", "phase": "growth", "week_from_planting": 1, "day_window": 12, "description_en": "Water 30L per plant weekly for 12 weeks if no rain.", "description_sw": "Mwagilia lita 30 kwa mmea kwa wiki kwa wiki 12.", "is_critical": true},
+        {"activity_type": "mulching", "phase": "growth", "week_from_planting": 4, "day_window": 7, "description_en": "Mulch heavily with banana trash or grass. Suppresses weeds + holds moisture.", "description_sw": "Funika vizuri na nyasi.", "is_critical": false},
+        {"activity_type": "fertiliser_dose_1", "phase": "growth", "week_from_planting": 12, "day_window": 7, "description_en": "Apply 300g NPK 17:17:17 per mat.", "description_sw": "Weka gramu 300 za NPK kwa mmea.", "is_critical": true},
+        {"activity_type": "sucker_management", "phase": "growth", "week_from_planting": 20, "day_window": 14, "description_en": "Keep mother + 1 daughter + 1 grand-daughter. Remove all other suckers.", "description_sw": "Acha mama + binti + mjukuu. Ondoa ndizi nyingine.", "is_critical": true},
+        {"activity_type": "fertiliser_dose_2", "phase": "growth", "week_from_planting": 30, "day_window": 7, "description_en": "Second 300g NPK dose at bud emergence.", "description_sw": "NPK ya pili wakati wa kuanza kwa shada.", "is_critical": true},
+        {"activity_type": "bunch_propping", "phase": "growth", "week_from_planting": 40, "day_window": 14, "description_en": "Prop heavy bunches with forked stake. Wind risk.", "description_sw": "Simika nguzo ya kushikilia shada nzito. Hatari ya upepo.", "is_critical": true},
+        {"activity_type": "first_harvest", "phase": "harvest", "week_from_planting": 52, "day_window": 14, "description_en": "Harvest when fingers fill out, are 3/4 round. Cut whole bunch.", "description_sw": "Vuna ndizi zikijaa, zikiwa nusu duara. Kata shada lote.", "tip_en": "After first harvest, plant continues yielding via suckers — perennial.", "tip_sw": "Baada ya mavuno ya kwanza, mmea unaendelea kupitia vichipukizi.", "is_critical": true}
+    ],
+    "inputs_per_acre": [
+        {"input_type": "seed", "product_name": "Tissue-cultured Williams plantlets (450)", "quantity": 450, "unit": "pieces", "week_from_planting": 0, "benchmark_price_kes": 67500, "pcpb_registered": false, "alternatives": ["Ng'ombe plantain", "Grand Naine"]},
+        {"input_type": "fertiliser", "product_name": "DAP (90kg)", "quantity": 90, "unit": "kg", "week_from_planting": 0, "benchmark_price_kes": 6300, "pcpb_registered": false},
+        {"input_type": "fertiliser", "product_name": "Manure 5 tons", "quantity": 5000, "unit": "kg", "week_from_planting": -4, "benchmark_price_kes": 15000, "pcpb_registered": false},
+        {"input_type": "fertiliser", "product_name": "NPK 17:17:17 (135kg)", "quantity": 135, "unit": "kg", "week_from_planting": 12, "benchmark_price_kes": 10800, "pcpb_registered": false},
+        {"input_type": "fertiliser", "product_name": "NPK 17:17:17 (135kg, 2nd)", "quantity": 135, "unit": "kg", "week_from_planting": 30, "benchmark_price_kes": 10800, "pcpb_registered": false},
+        {"input_type": "equipment", "product_name": "Forked props (bunch support)", "quantity": 450, "unit": "pieces", "week_from_planting": 40, "benchmark_price_kes": 4500, "pcpb_registered": false}
+    ],
+    "yield_per_acre": {"expected_kg": 20000, "min_kg": 14000, "max_kg": 28000, "number_of_picks": 8, "pick_interval_days": 30},
+    "post_harvest": {"shelf_life_days": 14, "grading_criteria": "Grade A: bunches 20kg+, no insect damage. Grade B: 10-20kg or minor flaws.", "packaging_standard": "Whole bunch loaded on padded pickup. Dehanded fingers in 18kg boxes for export.", "storage_tips_en": "Cool 13-14°C delays ripening. Don't refrigerate below 12°C — chilling injury.", "storage_tips_sw": "13-14°C huchelewesha kuiva. Epuka chini ya 12°C."},
+    "diseases": ["panama_disease", "black_sigatoka", "banana_weevil", "nematodes"]
+}
