@@ -46,6 +46,45 @@ const {
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
+    <!-- Structured data (JSON-LD) — Rule 78: AI agent commerce + rich results -->
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        '@context': 'https://schema.org',
+        '@graph': [
+          {
+            '@type': 'Organization',
+            '@id': 'https://panda.shira.farm/#org',
+            name: 'Panda',
+            url: 'https://panda.shira.farm',
+            description,
+            email: 'hello@panda.shira.farm',
+            slogan: 'Plan, log, and grow your horticulture farm.',
+          },
+          {
+            '@type': 'WebSite',
+            '@id': 'https://panda.shira.farm/#website',
+            url: 'https://panda.shira.farm',
+            name: 'Panda — Farm Planner',
+            publisher: { '@id': 'https://panda.shira.farm/#org' },
+            potentialAction: {
+              '@type': 'SearchAction',
+              target: { '@type': 'EntryPoint', urlTemplate: 'https://panda.shira.farm/?q={search_term_string}' },
+              'query-input': 'required name=search_term_string',
+            },
+          },
+          {
+            '@type': 'SoftwareApplication',
+            '@id': 'https://panda.shira.farm/#app',
+            name: 'Panda — Farm Planner',
+            applicationCategory: 'BusinessApplication',
+            operatingSystem: 'Android, iOS, Web',
+            url: 'https://panda-pwa.pages.dev',
+            offers: { '@type': 'Offer', price: '0', priceCurrency: 'KES', description: 'Free Mkulima tier' },
+          },
+        ],
+      })}
+    />
   </head>
   <body class="font-sans">
     <Navbar client:load />
