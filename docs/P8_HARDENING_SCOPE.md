@@ -20,7 +20,7 @@
 
 | # | Item | Effort | Notes |
 |---|---|---|---|
-| P8.5 | **UptimeRobot or BetterStack** | 30 min | Monitor `api.panda.shira.farm/up` + `panda.shira.farm`. Free tier sufficient for pilot |
+| P8.5 | **UptimeRobot** | ✅ DONE (2026-10-20) | Monitors created: 804350912 `panda-api.shira.farm/up` + 804350915 `panda.shira.farm`; preview-URL monitors 804350265 `panda-marketing.pages.dev` + 804350267 `panda-pwa.pages.dev`. Alerts: useshiira@gmail.com. Custom-domain monitors report DOWN until the DNS/SSL flip executes (registry: uwc-agency-admin/docs/uptime-monitors.md) |
 | P8.6 | **Disk/memory alerts** | 30 min | Hetzner CX22 shared box — need alert when disk <5GB or memory consistently >80%. Simple cron + email to Josh |
 | P8.7 | **Horizon dashboard auth** | 15 min | `/horizon` dashboard needs auth gate (currently accessible to anyone who knows the URL) |
 

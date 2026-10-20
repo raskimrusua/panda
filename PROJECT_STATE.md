@@ -241,6 +241,12 @@ Branch from `main` (not `feat/p3-tenant-multitenancy`) so PR #4 is independent o
    - Queue check: count of failed_jobs in last hour (warn if > 5)
    - Crop.health: `'skipped'` until P5 wires the real client (mock through P4)
    - Returns 200 if all `ok`; 503 if any check fails (so uptime monitors fire)
+   - UptimeRobot monitors wired 2026-10-20 (session uptime-monitor-audit):
+     - 804350912 — panda-api.shira.farm/up (P8.5; DOWN until DNS flip)
+     - 804350915 — panda.shira.farm (P8.5; DOWN until DNS flip)
+     - 804350265 — panda-marketing.pages.dev (live preview URL)
+     - 804350267 — panda-pwa.pages.dev (live preview URL)
+     - Registry: uwc-agency-admin/docs/uptime-monitors.md
    - 4-5 Pest tests (each check, all-good, one-broken)
 
 4. **Coverage gate** climbs to 78% (from 75%) since Filament + ContentReview + HealthCheck add a lot of well-tested code.
