@@ -21,6 +21,8 @@ describe('registerSchema', () => {
     email: 'jane@example.com',
     password: 'kale-acres-1',
     password_confirmation: 'kale-acres-1',
+    terms_accepted: true,
+    privacy_accepted: true,
   };
 
   it('accepts a valid payload', () => {

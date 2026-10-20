@@ -20,6 +20,8 @@ it('registration dispatches the verification email', function () {
         'password_confirmation' => 'super-secret-123',
         'farm_name' => 'Wanjiru Farm',
         'county' => 'Meru',
+        'terms_accepted' => true,
+        'privacy_accepted' => true,
     ])->assertCreated();
 
     $user = User::where('email', 'wanjiru@example.com')->sole();

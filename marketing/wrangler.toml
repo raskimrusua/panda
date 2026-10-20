@@ -8,7 +8,7 @@ pages_build_output_dir = "dist"
 [[d1_databases]]
 binding = "DB"
 database_name = "panda-marketing-db"
-database_id = "TODO_AFTER_D1_CREATE"
+database_id = "b2626b37-e13f-4b62-894b-7ea6a9373465"
 
 # R2 + KV bindings deferred until lead-CRM + rate-limiting actually need
 # them (Phase-8 marketing-admin work). Until then the contact + waitlist
@@ -18,4 +18,4 @@ database_id = "TODO_AFTER_D1_CREATE"
 ENVIRONMENT = "production"
 SITE_URL = "https://panda.shira.farm"
 APP_URL = "https://app.panda.shira.farm"
-API_URL = "https://api.panda.shira.farm"
+API_URL = "https://panda-api.shira.farm"

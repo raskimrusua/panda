@@ -3,6 +3,7 @@ import { AppShell } from './components/AppShell';
 import { useAuth } from './auth/useAuth';
 import { LoginPage } from './pages/LoginPage';
 import { RegisterPage } from './pages/RegisterPage';
+import { AcceptTermsPage } from './pages/AcceptTermsPage';
 import { ForgotPasswordPage } from './pages/ForgotPasswordPage';
 import { ResetPasswordPage } from './pages/ResetPasswordPage';
 import { VerifiedPage } from './pages/VerifiedPage';
@@ -43,19 +44,30 @@ export function App() {
   }
 
   return (
-    <AppShell>
-      <Routes>
-        <Route path="/" element={<DashboardPage />} />
-        <Route path="/seasons" element={<SeasonListPage />} />
-        <Route path="/seasons/new" element={<NewSeasonPage />} />
-        <Route path="/seasons/:id" element={<SeasonDetailPage />} />
-        <Route path="/disease" element={<DiseaseScanPage />} />
-        <Route path="/dealers" element={<DealerMapPage />} />
-        <Route path="/prices" element={<PricesPage />} />
-        <Route path="/profile" element={<ProfilePage />} />
-        <Route path="/team" element={<TeamPage />} />
-        <Route path="*" element={<Navigate to="/" replace />} />
-      </Routes>
-    </AppShell>
+    <Routes>
+      {/* Reconsent gate — rendered outside AppShell so its nav/queries
+          (which themselves go through the gated API) don't trigger
+          a redirect loop. The page redirects to `?next=` on success. */}
+      <Route path="/accept-terms" element={<AcceptTermsPage />} />
+      <Route
+        path="*"
+        element={
+          <AppShell>
+            <Routes>
+              <Route path="/" element={<DashboardPage />} />
+              <Route path="/seasons" element={<SeasonListPage />} />
+              <Route path="/seasons/new" element={<NewSeasonPage />} />
+              <Route path="/seasons/:id" element={<SeasonDetailPage />} />
+              <Route path="/disease" element={<DiseaseScanPage />} />
+              <Route path="/dealers" element={<DealerMapPage />} />
+              <Route path="/prices" element={<PricesPage />} />
+              <Route path="/profile" element={<ProfilePage />} />
+              <Route path="/team" element={<TeamPage />} />
+              <Route path="*" element={<Navigate to="/" replace />} />
+            </Routes>
+          </AppShell>
+        }
+      />
+    </Routes>
   );
 }

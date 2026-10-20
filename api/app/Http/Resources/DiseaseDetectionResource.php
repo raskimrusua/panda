@@ -30,6 +30,11 @@ class DiseaseDetectionResource extends JsonResource
             'treatments' => $this->treatments,
             'opt_in_for_training' => $this->opt_in_for_training,
             'captured_at' => $this->captured_at?->toIso8601String(),
+            // Advisory disclaimer rides in the payload so offline-cached + any
+            // programmatic API consumers cannot receive a diagnosis without
+            // the "verify with a qualified agronomist" notice. Source of
+            // truth: config('legal.disease_disclaimer').
+            'disclaimer' => (string) config('legal.disease_disclaimer'),
         ];
     }
 }
