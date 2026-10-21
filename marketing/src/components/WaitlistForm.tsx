@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 
 const COUNTIES = [
   'Meru',
@@ -31,6 +31,17 @@ export default function WaitlistForm() {
   const [status, setStatus] = useState<Status>('idle')
   const [errorMsg, setErrorMsg] = useState<string | null>(null)
 
+  // Attribution: read UTM params from the signup link so recruitment
+  // channels (extension officers, agrovets, WhatsApp groups) are tracked
+  // per-row in panda_waitlist.source. Stored as pipe-joined string.
+  const utmSource = useMemo(() => {
+    const params = new URLSearchParams(window.location.search)
+    const parts = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content']
+      .map((k) => params.get(k))
+      .filter((v): v is string => Boolean(v))
+    return parts.length > 0 ? parts.join('|') : undefined
+  }, [])
+
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setStatus('sending')
@@ -46,6 +57,7 @@ export default function WaitlistForm() {
           county: county || undefined,
           acreage: acreage ? Number(acreage) : undefined,
           crop: crop || undefined,
+          source: utmSource,
         }),
       })
       if (!res.ok) {
