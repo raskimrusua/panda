@@ -1,0 +1,75 @@
+---
+import { getCollection, render } from 'astro:content'
+import PublicLayout from '@/layouts/PublicLayout.astro'
+
+export const prerender = true
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog')
+  // Kenya time (EAT, UTC+3) — the daily rebuild runs at 21:10 UTC (= 00:10 EAT),
+// so 'today' must be the EAT date for posts to go live on their publishedDate.
+const today = new Date(Date.now() + 3 * 3600 * 1000).toISOString().split('T')[0]
+  return posts
+    .filter((post) => !post.data.draft && post.data.publishedDate <= new Date(today))
+    .map((post) => ({ params: { slug: post.id } }))
+}
+
+const { slug } = Astro.params
+const post = (await getCollection('blog')).find((p) => p.id === slug)
+
+if (!post) {
+  return Astro.redirect('/blog/')
+}
+
+const { Content } = await render(post)
+---
+
+<PublicLayout
+  title={`${post.data.title} — Panda`}
+  description={post.data.description}
+  ogImage={post.data.image ?? '/og-image.png'}
+>
+  <main class="mx-auto max-w-3xl px-4 py-16 md:py-20">
+    <p class="text-sm font-medium uppercase tracking-widest text-savanna-sun">
+      {post.data.publishedDate.toLocaleDateString('en-GB', {
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric',
+      })}
+    </p>
+    {post.data.image && (
+      <img
+        src={post.data.image}
+        alt={post.data.title}
+        class="mt-6 w-full rounded-xl border border-warm-cream/60"
+      />
+    )}
+    <article
+      class="blog-article mt-6"
+    >
+      <Content />
+    </article>
+
+    <div class="mt-14 rounded-xl border border-soft-green/40 bg-sky-wash p-6 text-center">
+      <p class="text-lg font-semibold text-highland-green">
+        Growing this crop? Get the full season plan.
+      </p>
+      <p class="mt-2 text-sm text-rich-earth/75">
+        Panda turns guides like this into week-by-week reminders on your phone —
+        in English and Swahili. The 200-farmer pilot opens in Meru &amp; Kirinyaga.
+      </p>
+      <a
+        href="https://panda.shira.farm/?utm_source=blog&utm_medium=blog&utm_campaign=pilot-2026#waitlist"
+        class="mt-4 inline-block rounded-md bg-savanna-sun px-5 py-2.5 text-sm font-semibold text-bone-white transition-colors hover:bg-terracotta"
+      >
+        Join the pilot waitlist
+      </a>
+    </div>
+
+    <p class="mt-10 text-center">
+      <a href="/blog/" class="text-sm font-medium text-soft-green hover:text-highland-green">
+        ← All posts
+      </a>
+    </p>
+  </main>
+</PublicLayout>

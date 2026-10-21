@@ -1,0 +1,66 @@
+---
+import { getCollection } from 'astro:content'
+import PublicLayout from '@/layouts/PublicLayout.astro'
+
+export const prerender = true
+
+const posts = await getCollection('blog')
+// Kenya time (EAT, UTC+3) — the daily rebuild runs at 21:10 UTC (= 00:10 EAT),
+// so 'today' must be the EAT date for posts to go live on their publishedDate.
+const today = new Date(Date.now() + 3 * 3600 * 1000).toISOString().split('T')[0]
+const published = posts
+  .filter((post) => !post.data.draft && post.data.publishedDate <= new Date(today))
+  .sort((a, b) => b.data.publishedDate.getTime() - a.data.publishedDate.getTime())
+---
+
+<PublicLayout
+  title="Blog — Panda"
+  description="Practical growing guides for Kenyan horticulture: kale, tomato, French beans, mango, onion and the rest of the 17-crop Panda catalogue."
+>
+  <main class="mx-auto max-w-3xl px-4 py-16 md:py-20">
+    <p class="text-center text-sm font-medium uppercase tracking-widest text-savanna-sun">
+      From the Panda team
+    </p>
+    <h1 class="mt-2 text-center text-4xl font-bold text-highland-green">
+      The Field Blog
+    </h1>
+    <p class="mt-4 text-center text-rich-earth/80">
+      Growing guides built from the same crop data that powers the Panda app —
+      field numbers, not guesswork.
+    </p>
+
+    <div class="mt-12 space-y-6">
+      {published.length === 0 && (
+        <p class="text-center text-rich-earth/60">
+          First posts are coming. Join the pilot waitlist in the meantime.
+        </p>
+      )}
+      {published.map((post) => (
+        <a
+          href={`/blog/${post.id}/`}
+          class="block rounded-xl border border-warm-cream/60 bg-bone-white p-6 transition-colors hover:border-soft-green/60"
+        >
+          <p class="text-xs font-medium uppercase tracking-wider text-savanna-sun">
+            {post.data.publishedDate.toLocaleDateString('en-GB', {
+              day: 'numeric',
+              month: 'long',
+              year: 'numeric',
+            })}
+          </p>
+          {post.data.image && (
+            <img
+              src={post.data.image}
+              alt={post.data.title}
+              class="mt-3 aspect-[16/9] w-full rounded-lg border border-warm-cream/60 object-cover"
+            />
+          )}
+          <h2 class="mt-2 text-xl font-semibold text-highland-green">
+            {post.data.title}
+          </h2>
+          <p class="mt-2 text-sm text-rich-earth/75">{post.data.description}</p>
+          <p class="mt-3 text-sm font-medium text-soft-green">Read →</p>
+        </a>
+      ))}
+    </div>
+  </main>
+</PublicLayout>

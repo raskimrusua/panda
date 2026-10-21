@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Menu, X } from 'lucide-react'
 
 const links = [
+  { href: '/blog', label: 'Blog' },
   { href: '/features', label: 'Features' },
   { href: '/pricing', label: 'Pricing' },
   { href: '/faq', label: 'FAQ' },

@@ -14,6 +14,11 @@ const {
   description = 'A Kenyan-built planning + logging tool for tomato, kale, and 15 other crops. Inspired by SHEP PLUS. Works offline. Bilingual EN / SW.',
   ogImage = '/og-image.png',
 } = Astro.props
+
+// OG scrapers (WhatsApp, Facebook, X) need absolute image URLs.
+const ogImageAbs = ogImage.startsWith('http')
+  ? ogImage
+  : new URL(ogImage, 'https://panda.shira.farm').toString()
 ---
 
 <!doctype html>
@@ -37,7 +42,7 @@ const {
     <!-- Open Graph -->
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={ogImage} />
+    <meta property="og:image" content={ogImageAbs} />
     <meta property="og:type" content="website" />
     <meta property="og:url" content={Astro.url.href} />
 
@@ -45,7 +50,7 @@ const {
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image" content={ogImageAbs} />
     <!-- Structured data (JSON-LD) — Rule 78: AI agent commerce + rich results -->
     <script
       type="application/ld+json"
