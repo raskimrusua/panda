@@ -1,0 +1,57 @@
+---
+title: 'Built for the Phone in Your Pocket: Why Panda Chose Offline-First for Kenyan Farms'
+description: >-
+  Data costs, dead zones, and shared phones — the design decisions behind
+  an app that works on 2G and syncs later, with real Kenyan connectivity
+  prices and what they mean for daily use.
+publishedDate: '2026-12-15'
+draft: false
+gated: false
+tags: ['farm tech', 'offline', 'connectivity']
+image: '/blog/offline-first-phone-kenya.png'
+---
+
+# Built for the Phone in Your Pocket: Why Panda Chose Offline-First for Kenyan Farms
+
+Farm apps usually get designed on a fast connection, in a city, on a phone with a full battery. Then they meet reality: a 2G signal at the edge of the shamba, data bought in weekly bundles, and one phone shared by a family.
+
+Panda is built the other way around. The design question was never "what can the app do with a good connection?" — it was "what must the app still do when the connection is nothing?"
+
+## The numbers that shaped the decision
+
+From Panda's connectivity research — what farmers actually pay for data:
+
+- **Safaricom weekly bundles:** roughly **KES 300–500/week** — the most common purchase pattern for daily-use apps.
+- **Safaricom 5GB postpaid:** **KES 1,500/month** — the ceiling most farms won't cross.
+- **Airtel postpaid:** **KES 1,200–1,800/month** where Airtel's network is stronger.
+- **SMS:** about **KES 0.50–1.00 per message** — fine for alerts, wrong for anything heavy.
+
+A data-hungry app that pulls images on every screen can burn a weekly bundle in an afternoon. An offline-first app — which stores the season plan, tasks, and logs on the phone and syncs when signal exists — costs a farmer **almost nothing to run** between syncs.
+
+## What "offline-first" means in practice
+
+1. **The season plan lives on the phone.** Timelines, input lists, spray schedules — readable at the shamba with zero bars.
+2. **You log when you work.** Harvests, costs, disease scans, irrigation — every entry saves locally first, syncs to the cloud when the connection returns. No "connection lost, try again" while standing in the field.
+3. **The sync is the patient one.** Panda uploads and downloads in small pieces, exactly the pattern that survives weak 2G — the opposite of a giant refresh.
+4. **English and Swahili, offline too.** The translation doesn't live in the cloud.
+
+## The shared-phone reality
+
+On many farms the smartphone belongs to the household, not to one farmer. That reality shaped two more decisions:
+
+- **It installs like a normal app** — Panda is a PWA: add it to the home screen once and it opens like any other app, no app-store maze.
+- **No account lockout at the field** — because the plan and the logs are local, the person holding the phone at the plot doesn't need the signal at that exact moment.
+
+## What we did not build (on purpose)
+
+- **No video-heavy onboarding.** A 50MB tutorial would cost more in data than it teaches.
+- **No always-on location tracking.** It drains battery and data, and the value isn't there for a plot you already know.
+- **No cloud-only features.** If a feature needs a perfect connection to be useful, it's not a farm feature.
+
+The result is the phone-in-your-pocket test: a farmer with a KES 10,000 Android on a KES 300 weekly bundle should get the full season plan, logs, and scan history without ever thinking about the app's data appetite.
+
+Panda's pilot in Meru and Kirinyaga is built around exactly this test. Join the waitlist:
+
+[Join the pilot waitlist](https://panda.shira.farm/?utm_source=blog&utm_medium=blog&utm_campaign=pilot-2026&utm_content=offline#waitlist)
+
+*Connectivity prices from Panda's research corpus (Kenyan market, 2026); bundles change often — check your operator's current rates.*

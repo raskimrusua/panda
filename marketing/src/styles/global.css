@@ -39,3 +39,14 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+/* Blog article typography (Markdoc-rendered posts) */
+.blog-article h1 { font-size: 1.9rem; font-weight: 700; color: var(--color-highland-green); margin: 0 0 1rem; line-height: 1.25; }
+.blog-article h2 { font-size: 1.35rem; font-weight: 600; color: var(--color-highland-green); margin: 2rem 0 0.75rem; }
+.blog-article p { margin: 0.9rem 0; line-height: 1.7; }
+.blog-article ul, .blog-article ol { margin: 0.9rem 0; padding-left: 1.4rem; }
+.blog-article li { margin: 0.4rem 0; }
+.blog-article a { color: var(--color-soft-green); font-weight: 500; text-decoration: underline; text-underline-offset: 2px; }
+.blog-article a:hover { color: var(--color-highland-green); }
+.blog-article strong { color: var(--color-rich-earth); }
+.blog-article em { font-style: italic; }
