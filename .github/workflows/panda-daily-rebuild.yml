@@ -1,0 +1,35 @@
+name: Panda Daily Rebuild
+
+# Rebuilds + redeploys the Panda marketing site every night so
+# date-driven blog posts self-publish (prerendered pages, EAT dates).
+# panda-marketing has no git integration on Cloudflare Pages — this
+# workflow IS the deploy pipeline.
+#
+# 21:10 UTC = 00:10 EAT — first minutes of the Kenyan day; the blog
+# filters use EAT 'today', so a post dated D goes live on D.
+
+on:
+  schedule:
+    - cron: '10 21 * * *'
+  workflow_dispatch:
+
+jobs:
+  rebuild:
+    name: Rebuild + deploy panda-marketing
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: marketing
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+          cache-dependency-path: marketing/package-lock.json
+      - run: npm ci --no-audit --no-fund
+      - run: npx astro build
+      - run: npx wrangler pages deploy dist --project-name panda-marketing --branch main --commit-dirty=true
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
