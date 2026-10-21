@@ -1,0 +1,240 @@
+---
+import { adminCookieValid, issueAdminCookieValue, ADMIN_COOKIE_TTL_SECONDS } from '../../lib/admin-auth'
+
+export const prerender = false
+
+interface Env {
+  DB: D1Database
+  WAITLIST_ADMIN_PASSWORD?: string
+}
+
+const env = (Astro.locals as unknown as { runtime: { env: Env } }).runtime?.env
+const password = env?.WAITLIST_ADMIN_PASSWORD ?? ''
+
+const cookieHeader = Astro.request.headers.get('cookie')
+const keyParam = Astro.url.searchParams.get('key') ?? ''
+
+let authed = await adminCookieValid(cookieHeader, password)
+
+// Login flow: correct ?key= issues the signed cookie.
+if (!authed && password !== '' && keyParam !== '' && keyParam === password) {
+  const value = await issueAdminCookieValue(password)
+  Astro.cookies.set('panda_admin', value, {
+    httpOnly: true,
+    sameSite: 'strict',
+    path: '/',
+    maxAge: ADMIN_COOKIE_TTL_SECONDS,
+  })
+  authed = true
+}
+
+const statuses = ['new', 'contacted', 'enrolled', 'declined', 'lost'] as const
+const filterStatus = Astro.url.searchParams.get('status') ?? ''
+const filterCounty = Astro.url.searchParams.get('county') ?? ''
+const filterQ = Astro.url.searchParams.get('q') ?? ''
+
+interface WaitlistRow {
+  id: number
+  name: string
+  email: string
+  phone: string | null
+  county: string | null
+  acreage: number | null
+  crop: string | null
+  status: string
+  notes: string | null
+  source: string
+  created_at: string
+  updated_at: string
+}
+
+let rows: WaitlistRow[] = []
+let counts: Record<string, number> = {}
+
+if (authed) {
+  const clauses: string[] = []
+  const binds: unknown[] = []
+  if (filterStatus) { clauses.push('status = ?'); binds.push(filterStatus) }
+  if (filterCounty) { clauses.push('county = ?'); binds.push(filterCounty) }
+  if (filterQ) {
+    clauses.push('(name LIKE ? OR email LIKE ? OR phone LIKE ?)')
+    const like = `%${filterQ}%`
+    binds.push(like, like, like)
+  }
+  const where = clauses.length ? `WHERE ${clauses.join(' AND ')}` : ''
+  const result = await env?.DB.prepare(
+    `SELECT id, name, email, phone, county, acreage, crop, status, notes, source, created_at, updated_at
+     FROM panda_waitlist ${where} ORDER BY created_at DESC LIMIT 200`,
+  ).bind(...binds).all()
+  rows = (result?.results ?? []) as WaitlistRow[]
+
+  const countResult = await env?.DB.prepare(
+    'SELECT status, COUNT(*) AS n FROM panda_waitlist GROUP BY status',
+  ).all()
+  for (const r of (countResult?.results ?? []) as Array<{ status: string; n: number }>) {
+    counts[r.status] = r.n
+  }
+}
+
+const badgeColor: Record<string, string> = {
+  new: 'bg-harvest-gold/15 text-harvest-gold',
+  contacted: 'bg-sky-wash text-highland-green',
+  enrolled: 'bg-soft-green/20 text-highland-green',
+  declined: 'bg-terracotta/15 text-terracotta',
+  lost: 'bg-rich-earth/10 text-rich-earth/60',
+}
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Waitlist CRM — Panda</title>
+  </head>
+  <body class="m-0 bg-bone-white font-sans text-rich-earth" style="font-family:'DM Sans',system-ui,sans-serif;background:#FFF8F0;color:#2D2D2D;">
+    {!authed && (
+      <main class="mx-auto max-w-sm px-4 py-24">
+        <h1 class="text-xl font-semibold" style="color:#1B4332">Panda waitlist admin</h1>
+        {password === '' && (
+          <p class="mt-4 text-sm" style="color:#C4652E">
+            WAITLIST_ADMIN_PASSWORD is not set on this Pages project — admin is disabled.
+            Set it with: wrangler pages secret put WAITLIST_ADMIN_PASSWORD --project-name panda-marketing
+          </p>
+        )}
+        {password !== '' && (
+          <form method="get" class="mt-6 space-y-3">
+            <label class="block text-sm font-medium">Admin key</label>
+            <input
+              type="password"
+              name="key"
+              required
+              class="w-full rounded-md border px-3 py-2 text-sm"
+              style="border:1px solid #F5E6D3;background:#FFF8F0"
+            />
+            <button type="submit" class="rounded-md px-5 py-2.5 text-sm font-semibold text-white" style="background:#E07A2F">
+              Sign in
+            </button>
+          </form>
+        )}
+      </main>
+    )}
+
+    {authed && (
+      <main class="mx-auto max-w-6xl px-4 py-10">
+        <div class="flex flex-wrap items-center justify-between gap-4">
+          <div>
+            <h1 class="text-2xl font-bold" style="color:#1B4332">Waitlist CRM</h1>
+            <p class="mt-1 text-sm text-rich-earth/60">
+              {rows.length} rows shown · status machine: new → contacted → enrolled / declined / lost
+            </p>
+          </div>
+          <div class="flex flex-wrap gap-2 text-xs">
+            {statuses.map((s) => (
+              <span class="rounded-full px-3 py-1 font-semibold" style="background:#F0F2EF">
+                {s}: {counts[s] ?? 0}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        <form method="get" class="mt-6 flex flex-wrap gap-2">
+          <input type="hidden" name="key" value={keyParam} />
+          <select name="status" class="rounded-md border px-3 py-2 text-sm" style="border:1px solid #F5E6D3;background:#FFF8F0">
+            <option value="">All statuses</option>
+            {statuses.map((s) => <option value={s} selected={filterStatus === s}>{s}</option>)}
+          </select>
+          <input
+            type="text"
+            name="county"
+            placeholder="County"
+            value={filterCounty}
+            class="rounded-md border px-3 py-2 text-sm"
+            style="border:1px solid #F5E6D3;background:#FFF8F0"
+          />
+          <input
+            type="text"
+            name="q"
+            placeholder="Search name / email / phone"
+            value={filterQ}
+            class="min-w-56 flex-1 rounded-md border px-3 py-2 text-sm"
+            style="border:1px solid #F5E6D3;background:#FFF8F0"
+          />
+          <button type="submit" class="rounded-md px-4 py-2 text-sm font-semibold text-white" style="background:#1B4332">
+            Filter
+          </button>
+        </form>
+
+        <div class="mt-6 overflow-x-auto rounded-xl border" style="border:1px solid #F5E6D3">
+          <table class="w-full text-left text-sm">
+            <thead>
+              <tr class="border-b" style="border-color:#F5E6D3;background:#FFF8F0">
+                <th class="px-3 py-2">Name</th>
+                <th class="px-3 py-2">Contact</th>
+                <th class="px-3 py-2">County</th>
+                <th class="px-3 py-2">Crop</th>
+                <th class="px-3 py-2">Acres</th>
+                <th class="px-3 py-2">Source</th>
+                <th class="px-3 py-2">Status</th>
+                <th class="px-3 py-2">Signed up</th>
+              </tr>
+            </thead>
+            <tbody>
+              {rows.length === 0 && (
+                <tr><td colspan="8" class="px-3 py-8 text-center text-rich-earth/50">No rows.</td></tr>
+              )}
+              {rows.map((row) => (
+                <tr class="border-b" style="border-color:#F5E6D3" data-row={row.id}>
+                  <td class="px-3 py-2 font-medium">{row.name}</td>
+                  <td class="px-3 py-2">
+                    <a href={`mailto:${row.email}`} class="underline">{row.email}</a>
+                    {row.phone && <div class="text-rich-earth/60">{row.phone}</div>}
+                  </td>
+                  <td class="px-3 py-2">{row.county ?? '—'}</td>
+                  <td class="px-3 py-2">{row.crop ?? '—'}</td>
+                  <td class="px-3 py-2">{row.acreage ?? '—'}</td>
+                  <td class="px-3 py-2 text-xs text-rich-earth/60">{row.source}</td>
+                  <td class="px-3 py-2">
+                    <select data-status={row.id} class="rounded-md border px-2 py-1 text-xs" style="border:1px solid #F5E6D3;background:#FFF8F0">
+                      {statuses.map((s) => <option value={s} selected={row.status === s}>{s}</option>)}
+                    </select>
+                    {row.notes && <div class="mt-1 text-xs text-rich-earth/60">{row.notes}</div>}
+                  </td>
+                  <td class="px-3 py-2 text-xs text-rich-earth/60">
+                    {row.created_at.slice(0, 16).replace('T', ' ')}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </main>
+    )}
+
+    <script>
+      document.querySelectorAll('select[data-status]').forEach((select) => {
+        select.addEventListener('change', async () => {
+          const id = select.getAttribute('data-status')
+          const status = select.value
+          const res = await fetch(`/api/admin/waitlist/${id}/status`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ status }),
+          })
+          if (res.status === 401) {
+            window.location.href = '/admin/waitlist'
+            return
+          }
+          if (!res.ok) {
+            alert('Update failed (' + res.status + ')')
+            window.location.reload()
+            return
+          }
+          select.classList.remove('bg-harvest-gold/15')
+          window.location.reload()
+        })
+      })
+    </script>
+  </body>
+</html>
