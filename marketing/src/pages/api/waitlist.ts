@@ -11,6 +11,7 @@ const Body = z.object({
   acreage: z.coerce.number().min(0).max(1000).optional(),
   crop: z.string().max(80).optional(),
   source: z.string().max(80).optional(),
+  wtp: z.enum(['yes', 'maybe', 'no']).optional(),
 })
 
 interface Env {
@@ -68,8 +69,8 @@ export const POST: APIRoute = async ({ request, locals }) => {
 
   try {
     await env.DB.prepare(
-      `INSERT INTO panda_waitlist (name, email, phone, county, acreage, crop, source)
-       VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7)
+      `INSERT INTO panda_waitlist (name, email, phone, county, acreage, crop, source, wtp)
+       VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8)
        ON CONFLICT (email) DO UPDATE SET
          name = excluded.name,
          phone = excluded.phone,
@@ -77,6 +78,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
          acreage = excluded.acreage,
          crop = excluded.crop,
          source = COALESCE(excluded.source, panda_waitlist.source),
+         wtp = COALESCE(excluded.wtp, panda_waitlist.wtp),
          updated_at = CURRENT_TIMESTAMP`,
     )
       .bind(
@@ -87,6 +89,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
         data.acreage ?? null,
         data.crop ?? null,
         data.source ?? null,
+        data.wtp ?? null,
       )
       .run()
   } catch (err) {

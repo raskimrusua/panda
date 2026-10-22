@@ -10,6 +10,8 @@ live waitlist (`panda_waitlist`, D1 `panda-marketing-db`) into a tracked funnel.
 2. The form now captures UTM params into `panda_waitlist.source` (pipe-joined,
    e.g. `extension_officer|whatsapp|pilot-2026|meru`) — patch 017 in this pack.
 3. Resend confirmation email fires (already live, verified end-to-end).
+3b. The signup form asks the willingness-to-pay question ("after the pilot,
+    would you pay KES 200/month?") — stored in panda_waitlist.wtp.
 4. Phase-8 CRM (see waitlist-crm spec) moves rows through
    `new → contacted → enrolled | declined | lost`.
 5. Weekly metric: signups per channel, county mix, crop mix — all queryable
@@ -127,10 +129,10 @@ Ninaweza pia kufanya demo kwa ofisi au field day yako. Asante!
 
 - **"Inspired by JICA SHEP PLUS"** only — never claim a JICA partnership
   (per project framing; no formal partnership exists).
-- **Pricing honesty:** say "free during the pilot" only if Josh confirms the
-  pilot is free. The pricing page hypothesis is KES 200/mo with a 40%
-  willingness-to-pay gate — if the pilot charges from day one, replace the
-  free lines with "KES 200/month after a free trial week" (Josh decides).
+- **Pricing — DECIDED (2026-10-21, Josh):** the pilot is **free for farmers**.
+  The KES 200/month hypothesis is validated by a willingness-to-pay question
+  asked at signup and at pilot exit (the 40% WTP gate). Never claim the pilot
+  is paid; never promise post-pilot pricing.
 - **No yield guarantees, no cure promises.** Disease advice is advisory and
   carries the KEPHIS/PCPB disclaimer pattern (Rule L5) — drafts above avoid
   specific claims.
@@ -139,7 +141,7 @@ Ninaweza pia kufanya demo kwa ofisi au field day yako. Asante!
 
 ## 5. Pilot gates (definition of done for recruitment)
 
-- [ ] Josh approves the pricing/free-during-pilot wording (section 4)
+- [x] Josh approves the pricing/free-during-pilot wording (section 4) — **free during pilot, decided 2026-10-21**
 - [ ] 200 signups across the two counties (or the target Josh sets)
 - [ ] Silas sign-off: all 17 crops reviewed (see `docs/crop-signoff-checklist.md`)
 - [ ] Disease scan flipped to Kindwise OR explicitly deferred (see

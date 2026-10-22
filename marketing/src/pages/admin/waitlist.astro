@@ -63,7 +63,7 @@ if (authed) {
   }
   const where = clauses.length ? `WHERE ${clauses.join(' AND ')}` : ''
   const result = await env?.DB.prepare(
-    `SELECT id, name, email, phone, county, acreage, crop, status, notes, source, created_at, updated_at
+    `SELECT id, name, email, phone, county, acreage, crop, status, notes, source, wtp, created_at, updated_at
      FROM panda_waitlist ${where} ORDER BY created_at DESC LIMIT 200`,
   ).bind(...binds).all()
   rows = (result?.results ?? []) as WaitlistRow[]
@@ -176,13 +176,14 @@ const badgeColor: Record<string, string> = {
                 <th class="px-3 py-2">Crop</th>
                 <th class="px-3 py-2">Acres</th>
                 <th class="px-3 py-2">Source</th>
+                <th class="px-3 py-2">WTP</th>
                 <th class="px-3 py-2">Status</th>
                 <th class="px-3 py-2">Signed up</th>
               </tr>
             </thead>
             <tbody>
               {rows.length === 0 && (
-                <tr><td colspan="8" class="px-3 py-8 text-center text-rich-earth/50">No rows.</td></tr>
+                <tr><td colspan="9" class="px-3 py-8 text-center text-rich-earth/50">No rows.</td></tr>
               )}
               {rows.map((row) => (
                 <tr class="border-b" style="border-color:#F5E6D3" data-row={row.id}>
@@ -195,6 +196,7 @@ const badgeColor: Record<string, string> = {
                   <td class="px-3 py-2">{row.crop ?? '—'}</td>
                   <td class="px-3 py-2">{row.acreage ?? '—'}</td>
                   <td class="px-3 py-2 text-xs text-rich-earth/60">{row.source}</td>
+                  <td class="px-3 py-2 text-xs">{row.wtp ?? '—'}</td>
                   <td class="px-3 py-2">
                     <select data-status={row.id} class="rounded-md border px-2 py-1 text-xs" style="border:1px solid #F5E6D3;background:#FFF8F0">
                       {statuses.map((s) => <option value={s} selected={row.status === s}>{s}</option>)}

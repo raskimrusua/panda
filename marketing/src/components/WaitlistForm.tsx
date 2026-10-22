@@ -29,6 +29,7 @@ export default function WaitlistForm() {
   const [acreage, setAcreage] = useState('')
   const [crop, setCrop] = useState('')
   const [status, setStatus] = useState<Status>('idle')
+  const [wtp, setWtp] = useState<string>('')
   const [errorMsg, setErrorMsg] = useState<string | null>(null)
 
   // Attribution: read UTM params from the signup link so recruitment
@@ -58,6 +59,7 @@ export default function WaitlistForm() {
           acreage: acreage ? Number(acreage) : undefined,
           crop: crop || undefined,
           source: utmSource,
+          wtp: (wtp as 'yes' | 'maybe' | 'no') || undefined,
         }),
       })
       if (!res.ok) {
@@ -65,7 +67,7 @@ export default function WaitlistForm() {
         throw new Error(body.error ?? `bad_response_${res.status}`)
       }
       setStatus('sent')
-      setName(''); setEmail(''); setPhone(''); setCounty(''); setAcreage(''); setCrop('')
+      setName(''); setEmail(''); setPhone(''); setCounty(''); setAcreage(''); setCrop(''); setWtp('')
     } catch (err) {
       setStatus('error')
       setErrorMsg(err instanceof Error ? err.message : 'Unknown error')
@@ -177,6 +179,23 @@ export default function WaitlistForm() {
             ))}
           </select>
         </div>
+      </div>
+
+      <div>
+        <label htmlFor="wl-wtp" class="block text-sm font-medium text-rich-earth">
+          After the pilot, would you pay KES 200/month for Panda?
+        </label>
+        <select
+          id="wl-wtp"
+          value={wtp}
+          onChange={(e) => setWtp(e.target.value)}
+          className="mt-1 block h-[38px] w-full rounded-md border border-warm-cream bg-bone-white px-3 py-2 text-sm focus:border-highland-green focus:outline-none focus:ring-2 focus:ring-soft-green/40"
+        >
+          <option value="">Choose…</option>
+          <option value="yes">Yes</option>
+          <option value="maybe">Maybe</option>
+          <option value="no">No</option>
+        </select>
       </div>
 
       {errorMsg && (
