@@ -2,6 +2,7 @@
 
 use App\Models\Crop;
 use App\Models\DiseaseDetection;
+use App\Models\Season;
 use App\Models\Tenant;
 use App\Models\User;
 use App\Services\Crops\Disease\CropHealthClient;
@@ -78,6 +79,19 @@ it('rejects oversized image', function () {
     $this->postJson('/api/v1/disease/detect', ['image' => $file])
         ->assertUnprocessable()
         ->assertJsonValidationErrors(['image']);
+});
+
+it('rejects a season that belongs to another tenant', function () {
+    $other = Tenant::factory()->create();
+    $foreignSeason = Season::factory()->create(['tenant_id' => $other->id]);
+    $file = UploadedFile::fake()->image('leaf.jpg', 800, 600);
+
+    $this->postJson('/api/v1/disease/detect', [
+        'image' => $file,
+        'season_id' => $foreignSeason->id,
+    ])->assertUnprocessable()->assertJsonValidationErrors(['season_id']);
+
+    expect(DiseaseDetection::withoutGlobalScopes()->count())->toBe(0);
 });
 
 it('mock diagnosis is deterministic for the same image path + crop slug', function () {

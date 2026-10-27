@@ -77,6 +77,30 @@ it('hits the Kindwise endpoint and maps the top disease suggestion', function ()
     });
 });
 
+it('falls back to the local PCPB catalogue when the API returns no treatment details', function () {
+    Http::fake([
+        'crop.kindwise.com/*' => Http::response([
+            'result' => [
+                'disease' => [
+                    'suggestions' => [
+                        [
+                            'name' => 'Early Blight',
+                            'probability' => 0.9,
+                            'details' => ['language' => 'en'],
+                        ],
+                    ],
+                ],
+            ],
+        ], 200),
+    ]);
+
+    $result = app(KindwiseCropHealthClient::class)->diagnose('disease/leaf.jpg', 'tomato');
+
+    expect($result->treatments)->not->toBeEmpty()
+        ->and($result->treatments[0]['generic'])->toBe('Mancozeb 80WP')
+        ->and($result->treatments[0]['pcpb'])->toBe('Ridomil Gold MZ 68 WG');
+});
+
 it('returns a low-confidence "no disease" result when suggestions are empty', function () {
     Http::fake([
         'crop.kindwise.com/*' => Http::response([

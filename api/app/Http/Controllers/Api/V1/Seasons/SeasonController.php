@@ -39,7 +39,7 @@ class SeasonController extends Controller
 
     public function show(Season $season): SeasonDetailResource
     {
-        return new SeasonDetailResource($season->load('crop'));
+        return new SeasonDetailResource($season->loadCount('diseaseDetections')->load('crop'));
     }
 
     public function update(UpdateSeasonRequest $request, Season $season): SeasonDetailResource

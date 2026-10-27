@@ -88,13 +88,13 @@ class KindwiseCropHealthClient implements CropHealthClient
             throw new RuntimeException('Crop.health API call failed (status '.$response->status().').');
         }
 
-        return $this->mapResponse($response->json());
+        return $this->mapResponse($response->json(), $cropSlug);
     }
 
     /**
      * @param  array<mixed>  $raw
      */
-    private function mapResponse(array $raw): DiagnosisResult
+    private function mapResponse(array $raw, ?string $cropSlug = null): DiagnosisResult
     {
         $diseaseSuggestions = data_get($raw, 'result.disease.suggestions', []);
         $top = is_array($diseaseSuggestions) && count($diseaseSuggestions) > 0
@@ -127,6 +127,16 @@ class KindwiseCropHealthClient implements CropHealthClient
                     ];
                 }
             }
+        }
+
+        // The live API (crop_health:1.2.1) rejects the `details` modifier,
+        // so `details.treatment` is never present. Fall back to the local
+        // PCPB catalogue so farmers still get actionable guidance.
+        if ($treatments === []) {
+            $treatments = TreatmentCatalogue::suggest(
+                (string) data_get($top, 'name', ''),
+                $cropSlug,
+            );
         }
 
         return new DiagnosisResult(
