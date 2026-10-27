@@ -1,8 +1,8 @@
 # Panda — PROJECT_STATE
 
-**Last updated:** 2026-05-15
-**Phase:** P5 PWA polish + P6 marketing live; P7 content authoring + P8 pilot still pending
-**Status:** **MVP-grade with edit/delete recovery paths shipped.** Backend live on Hetzner; marketing + PWA on CF Pages preview URLs; pilot waitlist endpoint shipped; weekend ops queue documented for flip-to-live at panda.shira.farm. **21 PRs merged 2026-05-13/14/15.**
+**Last updated:** 2026-10-27
+**Phase:** P8 pilot — all three hosts live at panda.shira.farm; disease scan on real ML (Kindwise) with season binding + treatment planning
+**Status:** **Pilot live (2026-10-20).** Marketing + PWA + API on public DNS with Google-managed certs. Waitlist CRM + WTP survey shipped. **Kindwise disease scan live 2026-10-27.** **39 PRs merged.**
 
 ---
 
@@ -14,13 +14,22 @@
 | **Plan** | `~/.claude/plans/piped-knitting-blum.md` — 9 phases |
 | **Governance** | `docs/GOVERNANCE_REPORT_2026_05_07.md` — combined 7.05/10 |
 | **Skills (UWC)** | 14 Laravel skill files + new `skill-laravel-github-actions-ci.md`. 4 lessons backported in PR `uwc-ops#5` (awaiting review). |
-| **Backend** | ✅ Built + deployed. `panda_app` + `panda_horizon` on Hetzner shared CX22. Filament admin + Sentry + /up + Sanctum + multi-tenancy + Season Engine + Cost/Harvest/Disease/Dealer/Price endpoints + lender PDF. Reachable via `panda_test_nginx` on host port 8090 (NOT public DNS yet). |
-| **PWA** | ✅ Built + deployed. Auth + Season list/detail/new + log forms + Disease scan + Dealer map + Price chart + offline write queue + i18n EN/SW + onboarding modal + HelpTooltips + profit summary + cumulative cost-vs-revenue chart + cost-by-category bar. Live at `panda-pwa.pages.dev` (cloud, baked for prod URL) + `localhost:5173` (local dev against Hetzner backend). |
+| **Backend** | ✅ Built + deployed. `panda_app` + `panda_horizon` on Hetzner shared CX22. Filament admin + Sentry + /up + Sanctum + multi-tenancy + Season Engine + Cost/Harvest/Disease/Dealer/Price endpoints + lender PDF. Public at `panda-api.shira.farm` (nginx vhost on Shira's CX22). |
+| **PWA** | ✅ Built + deployed. Auth + Season list/detail/new + log forms + Disease scan (season-bound, treatment→cost planning) + Dealer map + Price chart + offline write queue + i18n EN/SW + onboarding modal + HelpTooltips + profit summary + cumulative cost-vs-revenue chart + cost-by-category bar. Live at `app.panda.shira.farm` + `localhost:5173` (local dev against Hetzner backend). |
+| **Disease scan** | ✅ Kindwise live (2026-10-27). Minimal API payload (PR #40); treatments from local PCPB `TreatmentCatalogue`; season binding + `plan-treatment`→chemical CostEntry (PR #41). |
 | **Marketing site** | ✅ Built + deployed. Astro 5 + Tailwind 4 inheriting Shira theme. 5 pages + pilot waitlist form (D1 + Resend confirmation). Live at `panda-marketing.pages.dev`. |
 | **Repo** | **`raskimrusua/panda`** — flipped to **PUBLIC** 2026-05-13 to unblock GHA Actions billing. |
-| **Domain** | `panda.shira.farm` — DNS not yet wired (weekend work). |
+| **Domain** | ✅ `panda.shira.farm` + `panda-api.shira.farm` + `app.panda.shira.farm` — DNS wired 2026-10-20 (Google-managed certs, Option B); all three live. |
 | **Demo data (`panda:seed-demo --months=12`)** | 1 tenant (Demo Farm in Meru), 1 user (`demo@panda.shira.farm` / `demo-panda`), 5 crops, 3 seasons, 33 activities, 24 inputs, 34 costs, 19 harvests, 3 disease detections, 30 dealers, 1560 prices. |
 | **Resend** | shira.farm domain verified 2026-05-14 (DKIM + SPF + DMARC on CF). API key in both Shira + Panda `.env` on Hetzner; rotation deferred per Joshua. |
+
+### 2026-10-27 — Disease scan live on Kindwise + season binding (P0/P1)
+
+- **Kindwise flip** (runbook `docs/runbooks/disease-scan-ml-flip.md`): key provisioned; adapter payload reduced to `images` only after live 400s on `similar_images:false`/`classification_level`/`crop` (PR #40); `KINDWISE_API_KEY` + `CROP_HEALTH_PROVIDER=kindwise` set in `/srv/panda/.env`; app image rebuilt; verified with a real identification call from inside the container (HTTP 200 + `result.disease.suggestions`).
+- **Treatments**: the live API version returns no treatment details → local PCPB `TreatmentCatalogue` fills them; the mock provider uses the same catalogue.
+- **P0 season binding**: scan form season picker (preselects active season); tenant-scoped `season_id` validation (BOLA); season detail shows scan count + latest diagnosis.
+- **P1 plan-treatment**: `POST /api/v1/disease/{id}/plan-treatment` turns a chosen treatment into a chemical `CostEntry` on the season; PWA treatment cards carry a KES amount input + "Add to season costs".
+- PWA deployed to production; verified live by asset hash.
 
 ## PRs merged (21 total across 2026-05-13/14/15)
 
