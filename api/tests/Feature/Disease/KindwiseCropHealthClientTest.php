@@ -71,8 +71,9 @@ it('hits the Kindwise endpoint and maps the top disease suggestion', function ()
         $body = $request->data();
 
         return isset($body['images'][0])
-            && $body['crop'] === 'tomato'
-            && $body['classification_level'] === 'species';
+            && ! array_key_exists('crop', $body)
+            && ! array_key_exists('classification_level', $body)
+            && ! array_key_exists('similar_images', $body);
     });
 });
 

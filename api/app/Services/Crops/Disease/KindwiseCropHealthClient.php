@@ -13,17 +13,23 @@ use RuntimeException;
  *
  *   API:   POST https://crop.kindwise.com/api/v1/identification
  *   Auth:  Api-Key header
- *   Body:  { images: [base64...], similar_images: true, classification_level: "species" }
+ *   Body:  { images: [base64...] } — minimal. Verified against model
+ *          crop_health:1.2.1 (2026-10-27): the ONLY accepted modifier is
+ *          `similar_images=true`. `classification_level`, `crop`, and
+ *          `details` are rejected with HTTP 400 ("Unknown modifier").
  *
  * The response shape (relevant fields):
- *   result.classification.suggestions[].name
- *   result.classification.suggestions[].probability
+ *   result.is_plant.probability
  *   result.disease.suggestions[].name + .probability + .details.treatment
  *
  * We map the first disease suggestion to topDiagnosis + confidence. If
  * `disease.suggestions` is empty we fall back to `is_plant` / health
  * assessment messaging by leaving topDiagnosis null and returning a
  * low-confidence "healthy" result.
+ *
+ * NOTE: this API version does not return treatment data (the `details`
+ * modifier that would include it is rejected), so treatments are always
+ * empty until we source them locally from crop content JSONs.
  *
  * Costs: each call hits Kindwise's per-month identification quota.
  * `DiseaseDetection.provider = 'crop_health'` (vs 'mock') is the audit
@@ -59,16 +65,12 @@ class KindwiseCropHealthClient implements CropHealthClient
 
         $payload = [
             'images' => [base64_encode($bytes)],
-            'similar_images' => false,
-            'classification_level' => 'species',
         ];
 
-        // Crop hint narrows Kindwise's candidate set. Slug→common name
-        // mapping is intentionally minimal here; full localisation lives
-        // elsewhere (see resources/content/crops/*.json).
-        if ($cropSlug !== null) {
-            $payload['crop'] = $cropSlug;
-        }
+        // The crop hint (and every other modifier except
+        // `similar_images=true`) is rejected by the live API, so the slug
+        // is not sent. $cropSlug is kept in the interface signature for
+        // future API versions that re-enable crop narrowing.
 
         $response = Http::withHeaders([
             'Api-Key' => $apiKey,
