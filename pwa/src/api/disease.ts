@@ -27,6 +27,14 @@ export interface DetectPayload {
   opt_in_for_training?: boolean;
 }
 
+export interface PlanTreatmentPayload {
+  season_id: string;
+  treatment_index: number;
+  amount_kes: number;
+  supplier_name?: string;
+  incurred_at?: string;
+}
+
 export const diseaseApi = {
   async detect(payload: DetectPayload): Promise<{ data: DiseaseDetection }> {
     const fd = new FormData();
@@ -46,6 +54,14 @@ export const diseaseApi = {
   async history(): Promise<PaginatedResponse<DiseaseDetection>> {
     const { data } = await apiClient.get<PaginatedResponse<DiseaseDetection>>(
       '/disease/history',
+    );
+    return data;
+  },
+
+  async planTreatment(id: string, payload: PlanTreatmentPayload): Promise<{ data: unknown }> {
+    const { data } = await apiClient.post<{ data: unknown }>(
+      `/disease/${id}/plan-treatment`,
+      payload,
     );
     return data;
   },

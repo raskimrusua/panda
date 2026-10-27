@@ -4,7 +4,10 @@ namespace App\Http\Controllers\Api\V1\Disease;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Disease\DetectRequest;
+use App\Http\Requests\Disease\PlanTreatmentRequest;
+use App\Http\Resources\CostEntryResource;
 use App\Http\Resources\DiseaseDetectionResource;
+use App\Models\CostEntry;
 use App\Models\Crop;
 use App\Models\DiseaseDetection;
 use App\Services\Crops\Disease\CropHealthClient;
@@ -95,5 +98,52 @@ class DiseaseDetectionController extends Controller
     public function show(DiseaseDetection $diseaseDetection): DiseaseDetectionResource
     {
         return new DiseaseDetectionResource($diseaseDetection);
+    }
+
+    /**
+     * Turn a scan's treatment recommendation into a chemical CostEntry on
+     * the chosen season. Route-model binding is tenant-scoped
+     * (BelongsToTenant), so foreign-tenant scans 404 before this runs.
+     */
+    public function planTreatment(PlanTreatmentRequest $request, DiseaseDetection $diseaseDetection): JsonResponse
+    {
+        $data = $request->validated();
+        $user = $request->user();
+
+        if ($user === null) {
+            return response()->json(['message' => 'Unauthenticated.'], 401);
+        }
+
+        /** @var list<array{generic: string, pcpb?: ?string, application_notes?: string}> $treatments */
+        $treatments = $diseaseDetection->treatments;
+        $index = (int) $data['treatment_index'];
+        $treatment = $treatments[$index] ?? null;
+
+        if ($treatment === null) {
+            return response()->json([
+                'message' => 'The given treatment index is not valid for this scan.',
+                'errors' => ['treatment_index' => ['No treatment at this index.']],
+            ], 422);
+        }
+
+        $description = trim(($diseaseDetection->top_diagnosis ?? 'Disease scan').' — '.$treatment['generic']);
+        if (! empty($treatment['pcpb'])) {
+            $description .= ' ('.$treatment['pcpb'].')';
+        }
+
+        $cost = CostEntry::create([
+            'tenant_id' => $user->tenant_id,
+            'season_id' => $data['season_id'],
+            'category' => CostEntry::CATEGORY_CHEMICAL,
+            'description' => $description,
+            'amount_kes' => $data['amount_kes'],
+            'incurred_at' => $data['incurred_at'] ?? now(),
+            'supplier_name' => $data['supplier_name'] ?? null,
+            'logged_by' => $user->id,
+        ]);
+
+        return (new CostEntryResource($cost))
+            ->response()
+            ->setStatusCode(201);
     }
 }

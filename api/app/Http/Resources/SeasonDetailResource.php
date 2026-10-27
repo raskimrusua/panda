@@ -29,6 +29,8 @@ class SeasonDetailResource extends JsonResource
             'irrigation_type' => $this->irrigation_type,
             'engine_metadata' => $this->engine_metadata,
             'client_id' => $this->client_id,
+            'disease_scan_count' => (int) ($this->disease_detections_count ?? 0),
+            'latest_diagnosis' => $this->when(($this->disease_detections_count ?? 0) > 0, fn () => $this->diseaseDetections()->latest('captured_at')->value('top_diagnosis')),
             'created_at' => $this->created_at?->toIso8601String(),
             'updated_at' => $this->updated_at?->toIso8601String(),
         ];

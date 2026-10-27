@@ -88,6 +88,12 @@ class Season extends Model
         return $this->hasMany(SeasonActivity::class)->orderBy('ideal_date');
     }
 
+    /** @return HasMany<DiseaseDetection, $this> */
+    public function diseaseDetections(): HasMany
+    {
+        return $this->hasMany(DiseaseDetection::class);
+    }
+
     /** @return HasMany<InputListItem, $this> */
     public function inputListItems(): HasMany
     {

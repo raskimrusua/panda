@@ -49,6 +49,8 @@ export interface Season {
   irrigation_type: IrrigationType;
   engine_metadata?: Record<string, unknown>;
   client_id: string | null;
+  disease_scan_count?: number;
+  latest_diagnosis?: string | null;
   created_at?: string;
   updated_at?: string;
 }

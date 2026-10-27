@@ -209,6 +209,12 @@ export function SeasonDetailPage() {
           <p className="text-gray-600">
             {t('seasons.planted_on', { date: formatDate(season.planting_date) })} · {irrigationLabel} · {statusLabel}
           </p>
+          {season.disease_scan_count !== undefined && season.disease_scan_count > 0 && (
+            <p className="text-gray-600">
+              {season.disease_scan_count} disease scan{season.disease_scan_count !== 1 ? 's' : ''} this season
+              {season.latest_diagnosis ? ` · latest: ${season.latest_diagnosis}` : ''}
+            </p>
+          )}
         </div>
         {season.status !== 'abandoned' && season.status !== 'complete' && (
           <Button variant="ghost" size="sm" onClick={() => setShowAbandonConfirm(true)}>
