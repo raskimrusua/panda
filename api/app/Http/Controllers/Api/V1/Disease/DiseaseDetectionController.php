@@ -12,7 +12,9 @@ use App\Models\Crop;
 use App\Models\DiseaseDetection;
 use App\Services\Crops\Disease\CropHealthClient;
 use App\Services\Storage\ImageUploadService;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Support\Facades\DB;
 
@@ -98,6 +100,34 @@ class DiseaseDetectionController extends Controller
     public function show(DiseaseDetection $diseaseDetection): DiseaseDetectionResource
     {
         return new DiseaseDetectionResource($diseaseDetection);
+    }
+
+    /**
+     * Download a scan as a shareable PDF (crop, diagnosis, confidence,
+     * PCPB treatment plan + advisory disclaimer). Route-model binding is
+     * tenant-scoped, so foreign-tenant scans 404 before this runs.
+     */
+    public function report(DiseaseDetection $diseaseDetection): Response
+    {
+        $providerLabels = [
+            DiseaseDetection::PROVIDER_MOCK => 'Demo mode',
+            DiseaseDetection::PROVIDER_CROP_HEALTH => 'Crop.health (Kindwise)',
+            DiseaseDetection::PROVIDER_OFFLINE_TREE => 'Offline decision tree',
+        ];
+
+        $pdf = Pdf::loadView('pdf.disease-report', [
+            'detection' => $diseaseDetection,
+            'crop' => $diseaseDetection->crop,
+            'season' => $diseaseDetection->season,
+            'providerLabel' => $providerLabels[$diseaseDetection->provider] ?? (string) $diseaseDetection->provider,
+            'confidencePct' => $diseaseDetection->confidence !== null
+                ? (int) round((float) $diseaseDetection->confidence * 100)
+                : null,
+            'treatments' => is_array($diseaseDetection->treatments) ? $diseaseDetection->treatments : [],
+            'disclaimer' => (string) config('legal.disease_disclaimer'),
+        ]);
+
+        return $pdf->download(sprintf('panda-disease-scan-%s.pdf', $diseaseDetection->id));
     }
 
     /**
