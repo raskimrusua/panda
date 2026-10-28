@@ -37,7 +37,7 @@ export function AppShell({ children }: { children: ReactNode }) {
 
   return (
     <div className="flex min-h-screen flex-col md:flex-row">
-      <aside className="md:w-64 md:flex-shrink-0 border-b md:border-b-0 md:border-r border-gray-200 bg-white">
+      <aside className="md:w-64 md:flex-shrink-0 border-b md:border-b-0 md:border-r border-gray-200 bg-white print:hidden">
         <div className="p-4 border-b border-gray-100">
           <Link to="/" className="text-xl font-semibold text-brand-700">
             Panda
