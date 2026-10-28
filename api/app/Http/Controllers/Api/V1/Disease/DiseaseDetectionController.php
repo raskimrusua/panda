@@ -115,6 +115,9 @@ class DiseaseDetectionController extends Controller
             DiseaseDetection::PROVIDER_OFFLINE_TREE => 'Offline decision tree',
         ];
 
+        /** @var list<array{generic: string, pcpb?: ?string, application_notes?: string}> $treatments */
+        $treatments = $diseaseDetection->treatments;
+
         $pdf = Pdf::loadView('pdf.disease-report', [
             'detection' => $diseaseDetection,
             'crop' => $diseaseDetection->crop,
@@ -123,7 +126,7 @@ class DiseaseDetectionController extends Controller
             'confidencePct' => $diseaseDetection->confidence !== null
                 ? (int) round((float) $diseaseDetection->confidence * 100)
                 : null,
-            'treatments' => is_array($diseaseDetection->treatments) ? $diseaseDetection->treatments : [],
+            'treatments' => $treatments,
             'disclaimer' => (string) config('legal.disease_disclaimer'),
         ]);
 
