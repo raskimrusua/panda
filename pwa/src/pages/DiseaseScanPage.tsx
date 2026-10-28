@@ -73,6 +73,26 @@ export function DiseaseScanPage() {
     },
   });
 
+  const downloadPdf = async () => {
+    if (!latest) return;
+    setDownloadingPdf(true);
+    try {
+      const blob = await diseaseApi.report(latest.id);
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `panda-disease-scan-${latest.id}.pdf`;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+    } catch (err) {
+      console.error('PDF download failed', err);
+    } finally {
+      setDownloadingPdf(false);
+    }
+  };
+
   const planMutation = useMutation({
     mutationFn: ({ index }: { index: number }) => {
       if (!latest?.season_id) throw new Error('Pick a season first');
@@ -205,27 +225,6 @@ export function DiseaseScanPage() {
           </Button>
         </CardBody>
       </Card>
-
-
-  const downloadPdf = async () => {
-    if (!latest) return;
-    setDownloadingPdf(true);
-    try {
-      const blob = await diseaseApi.report(latest.id);
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = `panda-disease-scan-${latest.id}.pdf`;
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
-      URL.revokeObjectURL(url);
-    } catch (err) {
-      console.error('PDF download failed', err);
-    } finally {
-      setDownloadingPdf(false);
-    }
-  };
 
       {latest && (
         <Card>
