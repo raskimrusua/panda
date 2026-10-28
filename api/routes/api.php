@@ -106,6 +106,7 @@ Route::prefix('v1')->group(function () {
         Route::post('disease/detect', [DiseaseDetectionController::class, 'detect']);
         Route::get('disease/history', [DiseaseDetectionController::class, 'history']);
         Route::get('disease/{diseaseDetection}', [DiseaseDetectionController::class, 'show']);
+        Route::get('disease/{diseaseDetection}/report', [DiseaseDetectionController::class, 'report']);
         Route::post('disease/{diseaseDetection}/plan-treatment', [DiseaseDetectionController::class, 'planTreatment']);
 
         /* Dealer directory — auth required, NOT tenant-scoped */

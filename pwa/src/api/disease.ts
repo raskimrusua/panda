@@ -58,6 +58,11 @@ export const diseaseApi = {
     return data;
   },
 
+  async report(id: string): Promise<Blob> {
+    const res = await apiClient.get(`/disease/${id}/report`, { responseType: 'blob' });
+    return res.data as Blob;
+  },
+
   async planTreatment(id: string, payload: PlanTreatmentPayload): Promise<{ data: unknown }> {
     const { data } = await apiClient.post<{ data: unknown }>(
       `/disease/${id}/plan-treatment`,

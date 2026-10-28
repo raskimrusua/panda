@@ -14,6 +14,7 @@ export function DiseaseScanPage() {
   const [preview, setPreview] = useState<string | null>(null);
   const [cropId, setCropId] = useState<string>('');
   const [seasonId, setSeasonId] = useState<string>('');
+  const [downloadingPdf, setDownloadingPdf] = useState(false);
   const [amounts, setAmounts] = useState<Record<number, string>>({});
   const [plannedIndex, setPlannedIndex] = useState<number | null>(null);
   const [submitError, setSubmitError] = useState<string | null>(null);
@@ -71,6 +72,26 @@ export function DiseaseScanPage() {
       setSubmitError(message);
     },
   });
+
+  const downloadPdf = async () => {
+    if (!latest) return;
+    setDownloadingPdf(true);
+    try {
+      const blob = await diseaseApi.report(latest.id);
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `panda-disease-scan-${latest.id}.pdf`;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+    } catch (err) {
+      console.error('PDF download failed', err);
+    } finally {
+      setDownloadingPdf(false);
+    }
+  };
 
   const planMutation = useMutation({
     mutationFn: ({ index }: { index: number }) => {
@@ -208,7 +229,12 @@ export function DiseaseScanPage() {
       {latest && (
         <Card>
           <CardHeader>
-            <div className="font-semibold">Latest result</div>
+            <div className="flex items-center justify-between w-full">
+              <div className="font-semibold">Latest result</div>
+              <Button size="sm" variant="secondary" loading={downloadingPdf} onClick={downloadPdf}>
+                Download PDF
+              </Button>
+            </div>
           </CardHeader>
           <CardBody className="space-y-3">
             <div>
