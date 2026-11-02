@@ -20,9 +20,9 @@ The disease scanner's thoroughness is bounded by this matrix. Each row is a
 ## Crop coverage (20-crop library)
 
 Live guides (5): kale/sukuma, tomato, French beans, mango, onion.
-Staged guides (4): maize, beans, Irish potato, sweet potato.
-Queue (11): cabbage, spinach, capsicum, carrot, butternut, coriander, avocado, banana,
-pawpaw, watermelon, snow peas.
+Staged guides (6): maize, beans, Irish potato, sweet potato, cabbage, spinach.
+Queue (9): capsicum, carrot, butternut, coriander, avocado, banana, pawpaw, watermelon,
+snow peas.
 
 ---
 
@@ -82,6 +82,24 @@ pawpaw, watermelon, snow peas.
 | Alternaria leaf spot | Low (scattered spots) · High (defoliation in wet spells) | Brown ringed spots, yellowing, older leaves first | Registered alternaria-active classes if severe | Row ventilation, avoid overhead watering at night | Ringed spots distinguish from SPVD mottling |
 
 ---
+
+## Cabbage (Brassica oleracea var. capitata)
+
+| Disease | Severity classes | Symptoms | Treatment (advisory) | Prevention | Scanner notes |
+|---|---|---|---|---|---|
+| Diamondback moth | Low (window-pane feeding) · High (head damage) | Leaf "windows", frass, caterpillars tunnelling into young heads | Registered larvicides at threshold only; ROTATE chemical classes (DBM resists fast) | Scout week 4–12; row covers in nursery; brassica rotation | Photo the leaf underside + inside young head; frass separates DBM from aphids |
+| Black rot | Low (V-lesions) · High (systemic, head loss) | Yellow V-shaped lesions at leaf margins, blackened veins | None curative — remove plants; copper classes suppress spread | 2–3 yr brassica rotation, clean seed, no overhead irrigation | V-margin lesions are the signature (shared with kale row) |
+| Downy mildew | Low (specks) · High (grey fuzz, leaf loss) | Yellow specks above, grey-purple fuzz below, cool damp spells | Registered downy-active fungicide at first specks | Spacing/airflow, morning watering | Photograph the UNDERSIDE — fuzz invisible from above |
+| Head rot (soft rot) | Early (water-soaked spots) · High (collapsed heads) | Water-soaked heads, foul smell, collapse after insect damage | None — remove and destroy; manage the insect damage that opens the door | DBM/aphid control, drainage, dry harvest handling | Ask about insect damage in-app — rot follows damage |
+
+## Spinach / Swiss chard (Spinacia oleracea / Beta vulgaris var. cicla)
+
+| Disease | Severity classes | Symptoms | Treatment (advisory) | Prevention | Scanner notes |
+|---|---|---|---|---|---|
+| Downy mildew | Low (specks) · High (grey fuzz, leaf loss) | Yellow patches above, grey-purple fuzz below, cool humid spells | Registered downy-active fungicide at first specks | Wide spacing, morning watering, resistant varieties | Underside photo required — fuzz invisible from above |
+| Cercospora leaf spot | Low (scattered spots) · High (defoliation) | Round grey-brown spots with dark borders, older leaves first | Registered contact fungicide at first spots | Clean seed, rotation, remove debris | Round spots with distinct borders vs mildew fuzz |
+| Aphids | Low (colonies) · High (curled, stunted growth) | Curled new leaves, colonies on undersides, sticky honeydew | Squash early colonies; registered products only if spreading | Natural enemies first — scout before spraying | Photo the leaf UNDERSIDE with the colony visible |
+| Leaf miners | Low (tunnels) · High (leaf scorch, market rejection) | Silvery winding tunnels in the leaf, no holes | Remove/destroy mined leaves; registered products at threshold only | Row covers in nursery, rotation | Backlit photo shows the tunnel track best |
 
 ## Process
 
