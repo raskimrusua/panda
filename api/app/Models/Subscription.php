@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Carbon;
 use Spatie\Activitylog\LogOptions;
 use Spatie\Activitylog\Traits\LogsActivity;
 
@@ -89,7 +90,9 @@ class Subscription extends Model
             return false;
         }
 
-        return $this->current_period_end === null || $this->current_period_end->isFuture();
+        $end = $this->current_period_end;
+
+        return $end === null || Carbon::parse($end)->isFuture();
     }
 
     /** Amount due for the next billing period — the plan's price in KES. */

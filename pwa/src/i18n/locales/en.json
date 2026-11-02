@@ -23,7 +23,8 @@
     "dealers": "Dealers",
     "prices": "Market prices",
     "team": "Team",
-    "sign_out": "Sign out"
+    "sign_out": "Sign out",
+    "billing": "Billing"
   },
   "auth": {
     "sign_in_title": "Sign in to your farm.",
@@ -257,18 +258,19 @@
     "save_harvest": "Save harvest",
     "saved_offline": "Saved offline. Will sync when you're back online."
   },
-  "nav.billing": "Billing",
-  "billing.title": "Subscription & Payments",
-  "billing.current": "Current plan",
-  "billing.currentBadge": "Current",
-  "billing.validUntil": "Valid until",
-  "billing.phoneLabel": "M-Pesa phone number",
-  "billing.phonePlaceholder": "07XX XXX XXX",
-  "billing.switchFree": "Switch to free plan",
-  "billing.pay": "Pay with M-Pesa",
-  "billing.perMonth": "/month",
-  "billing.sentPrompt": "Payment request sent. Check your phone and enter your M-Pesa PIN. Your plan updates automatically.",
-  "billing.paymentFailed": "Payment could not be started. Please try again.",
-  "billing.phoneRequired": "Enter your M-Pesa phone number first.",
-  "billing.loadFailed": "Could not load billing details. Please try again."
+  "billing": {
+    "title": "Subscription & Payments",
+    "current": "Current plan",
+    "currentBadge": "Current",
+    "validUntil": "Valid until",
+    "phoneLabel": "M-Pesa phone number",
+    "phonePlaceholder": "07XX XXX XXX",
+    "switchFree": "Switch to free plan",
+    "pay": "Pay with M-Pesa",
+    "perMonth": "/month",
+    "sentPrompt": "Payment request sent. Check your phone and enter your M-Pesa PIN. Your plan updates automatically.",
+    "paymentFailed": "Payment could not be started. Please try again.",
+    "phoneRequired": "Enter your M-Pesa phone number first.",
+    "loadFailed": "Could not load billing details. Please try again."
+  }
 }

@@ -23,7 +23,8 @@
     "dealers": "Maduka",
     "prices": "Bei za sokoni",
     "team": "Timu",
-    "sign_out": "Toka"
+    "sign_out": "Toka",
+    "billing": "Malipo"
   },
   "auth": {
     "sign_in_title": "Ingia kwenye shamba lako.",
@@ -257,18 +258,19 @@
     "save_harvest": "Hifadhi mavuno",
     "saved_offline": "Imehifadhiwa bila mtandao. Itasawazishwa ukirudi mtandaoni."
   },
-  "nav.billing": "Malipo",
-  "billing.title": "Usajili na Malipo",
-  "billing.current": "Mpango wa sasa",
-  "billing.currentBadge": "Sasa",
-  "billing.validUntil": "Inatumika hadi",
-  "billing.phoneLabel": "Nambari ya simu ya M-Pesa",
-  "billing.phonePlaceholder": "07XX XXX XXX",
-  "billing.switchFree": "Badili kwa mpango wa bure",
-  "billing.pay": "Lipa kwa M-Pesa",
-  "billing.perMonth": "/mwezi",
-  "billing.sentPrompt": "Ombi la malipo limetumwa. Angalia simu yako na uweke PIN ya M-Pesa. Mpango wako utasasishwa kiotomatiki.",
-  "billing.paymentFailed": "Malipo hayakuweza kuanza. Tafadhali jaribu tena.",
-  "billing.phoneRequired": "Weka nambari yako ya simu ya M-Pesa kwanza.",
-  "billing.loadFailed": "Haikuwezekana kupakia maelezo ya malipo. Tafadhali jaribu tena."
+  "billing": {
+    "title": "Usajili na Malipo",
+    "current": "Mpango wa sasa",
+    "currentBadge": "Sasa",
+    "validUntil": "Inatumika hadi",
+    "phoneLabel": "Nambari ya simu ya M-Pesa",
+    "phonePlaceholder": "07XX XXX XXX",
+    "switchFree": "Badili kwa mpango wa bure",
+    "pay": "Lipa kwa M-Pesa",
+    "perMonth": "/mwezi",
+    "sentPrompt": "Ombi la malipo limetumwa. Angalia simu yako na uweke PIN ya M-Pesa. Mpango wako utasasishwa kiotomatiki.",
+    "paymentFailed": "Malipo hayakuweza kuanza. Tafadhali jaribu tena.",
+    "phoneRequired": "Weka nambari yako ya simu ya M-Pesa kwanza.",
+    "loadFailed": "Haikuwezekana kupakia maelezo ya malipo. Tafadhali jaribu tena."
+  }
 }

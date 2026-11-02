@@ -27,6 +27,6 @@ class SubscriptionPlanFactory extends Factory
 
     public function free(): static
     {
-        return $this->state(['price_kes' => 0, 'slug' => 'mkulima', 'name' => 'Mkulima']);
+        return $this->state(['price_kes' => 0, 'slug' => 'mkulima-test', 'name' => 'Mkulima']);
     }
 }

@@ -11,6 +11,16 @@ use Illuminate\Support\Facades\Http;
 
 uses(RefreshDatabase::class);
 
+beforeEach(function () {
+    config([
+        'daraja.consumer_key' => 'ck',
+        'daraja.consumer_secret' => 'cs',
+        'daraja.shortcode' => '174379',
+        'daraja.passkey' => 'test-pass',
+        'daraja.subscription_callback_url' => 'https://example.test/billing/callback',
+    ]);
+});
+
 /*
 | Subscription billing service — M-Pesa STK initiation + callback processing.
 | Ported from Shira's tests/test_billing.py (PlatformBillingService cases).
@@ -21,7 +31,7 @@ function makeBillingService(): SubscriptionBillingService
     return new SubscriptionBillingService(new DarajaStkClient);
 }
 
-function makePaidSubscription(string $slug = 'shamba', int $priceKes = 200): Subscription
+function makePaidSubscription(string $slug = 'paid-test', int $priceKes = 200): Subscription
 {
     $tenant = Tenant::factory()->create();
     $plan = SubscriptionPlan::factory()->create(['slug' => $slug, 'price_kes' => $priceKes]);
@@ -152,7 +162,7 @@ it('completes the payment and activates the subscription on a success callback',
 
 it('applies a pending plan upgrade atomically with the payment', function () {
     $subscription = makePaidSubscription();
-    $boma = SubscriptionPlan::factory()->create(['slug' => 'boma', 'price_kes' => 600]);
+    $boma = SubscriptionPlan::factory()->create(['slug' => 'boma-test', 'price_kes' => 600]);
     $payment = SubscriptionPayment::factory()->create([
         'subscription_id' => $subscription->id,
         'tenant_id' => $subscription->tenant_id,
