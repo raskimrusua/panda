@@ -18,9 +18,11 @@ use Illuminate\Http\Request;
  */
 class SubscriptionController extends Controller
 {
-    public function show(Request $request): SubscriptionResource
+    public function show(Request $request): JsonResponse
     {
-        return new SubscriptionResource($this->currentSubscription($request)->load('plan'));
+        return (new SubscriptionResource($this->currentSubscription($request)->load('plan')))
+            ->response()
+            ->setStatusCode(200);
     }
 
     public function initiatePayment(InitiateSubscriptionPaymentRequest $request): JsonResponse

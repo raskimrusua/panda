@@ -9,11 +9,22 @@ use Illuminate\Support\Facades\Http;
 
 uses(RefreshDatabase::class);
 
+beforeEach(function () {
+    config([
+        'daraja.consumer_key' => 'ck',
+        'daraja.consumer_secret' => 'cs',
+        'daraja.shortcode' => '174379',
+        'daraja.passkey' => 'test-pass',
+        'daraja.subscription_callback_url' => 'https://example.test/billing/callback',
+    ]);
+});
+
 /*
 | Billing API surface — plan catalogue, subscription show, payment
 | initiation, and the public Safaricom callback sink.
 */
 
+/** @return array{0: Tenant, 1: User} */
 function billingFarmer(): array
 {
     $tenant = Tenant::factory()->create();

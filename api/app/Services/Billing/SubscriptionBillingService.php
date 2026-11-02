@@ -45,7 +45,7 @@ class SubscriptionBillingService
     /**
      * Send an STK push for a subscription payment.
      *
-     * @return array{success: bool, message: string, payment_id?: string, checkout_request_id?: string, plan?: array{slug: string, name: string}}
+     * @return array{success: bool, message: string, payment_id?: string, checkout_request_id?: string|null, plan?: array{slug: string, name: string}}
      */
     public function initiatePayment(Subscription $subscription, string $phone, ?SubscriptionPlan $targetPlan = null): array
     {
@@ -96,18 +96,18 @@ class SubscriptionBillingService
             $token,
             $normalizedPhone,
             $plan->price_kes,
-            $payment->id,
+            (string) $payment->id,
             'Panda '.$plan->name.' Subscription',
         );
 
-        if ($result['success'] ?? false) {
+        if ($result['success']) {
             $payment->update(['checkout_request_id' => $result['checkout_request_id'] ?? null]);
 
             return [
                 'success' => true,
                 'message' => 'Payment request sent. Check your phone.',
-                'payment_id' => $payment->id,
-                'checkout_request_id' => $result['checkout_request_id'] ?? null,
+                'payment_id' => (string) $payment->id,
+                'checkout_request_id' => (string) ($result['checkout_request_id'] ?? ''),
             ];
         }
 
@@ -119,7 +119,11 @@ class SubscriptionBillingService
         return ['success' => false, 'message' => $result['message'] ?? 'Payment failed.'];
     }
 
-    /** Process an STK callback payload. Never throws — callers always 200. */
+    /**
+     * Process an STK callback payload. Never throws — callers always 200.
+     *
+     * @param  array<string, mixed>  $payload
+     */
     public function processStkCallback(array $payload): void
     {
         try {
