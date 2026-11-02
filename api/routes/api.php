@@ -2,6 +2,9 @@
 
 use App\Http\Controllers\Api\V1\Activities\SeasonActivityController;
 use App\Http\Controllers\Api\V1\Auth\AuthController;
+use App\Http\Controllers\Api\V1\Billing\MpesaCallbackController;
+use App\Http\Controllers\Api\V1\Billing\SubscriptionController;
+use App\Http\Controllers\Api\V1\Billing\SubscriptionPlanController;
 use App\Http\Controllers\Api\V1\Costs\CostEntryController;
 use App\Http\Controllers\Api\V1\Crops\CropController;
 use App\Http\Controllers\Api\V1\Dealers\DealerController;
@@ -40,6 +43,10 @@ Route::prefix('v1')->group(function () {
     Route::get('prices/{crop:slug}/latest', [MarketPriceController::class, 'latest']);
     Route::get('prices/{crop:slug}/history', [MarketPriceController::class, 'history']);
     Route::get('prices/{crop:slug}/forecast', [MarketPriceController::class, 'forecast']);
+
+    /* Billing — plan catalogue is public; callback is a Safaricom POST sink */
+    Route::get('billing/plans', [SubscriptionPlanController::class, 'index']);
+    Route::post('billing/callback', [MpesaCallbackController::class, 'stkCallback']);
 
     /* Auth */
     Route::post('auth/register', [AuthController::class, 'register']);
@@ -81,6 +88,10 @@ Route::prefix('v1')->group(function () {
         Route::post('team/invite', [TeamController::class, 'invite']);
         Route::delete('team/invitations/{invitation}', [TeamController::class, 'revokeInvitation']);
         Route::delete('team/{user}', [TeamController::class, 'removeMember']);
+
+        /* Billing — subscription + payment initiation */
+        Route::get('billing/subscription', [SubscriptionController::class, 'show']);
+        Route::post('billing/subscription/initiate-payment', [SubscriptionController::class, 'initiatePayment']);
 
         /* Tenant-scoped resources */
         Route::apiResource('seasons', SeasonController::class);

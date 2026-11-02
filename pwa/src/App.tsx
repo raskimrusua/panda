@@ -14,6 +14,7 @@ import { SeasonDetailPage } from './pages/SeasonDetailPage';
 import { DiseaseScanPage } from './pages/DiseaseScanPage';
 import { DealerMapPage } from './pages/DealerMapPage';
 import { PricesPage } from './pages/PricesPage';
+import { BillingPage } from './pages/BillingPage';
 import { ProfilePage } from './pages/ProfilePage';
 import { TeamPage } from './pages/TeamPage';
 import { AcceptInvitePage } from './pages/AcceptInvitePage';
@@ -61,6 +62,7 @@ export function App() {
               <Route path="/disease" element={<DiseaseScanPage />} />
               <Route path="/dealers" element={<DealerMapPage />} />
               <Route path="/prices" element={<PricesPage />} />
+              <Route path="/billing" element={<BillingPage />} />
               <Route path="/profile" element={<ProfilePage />} />
               <Route path="/team" element={<TeamPage />} />
               <Route path="*" element={<Navigate to="/" replace />} />
