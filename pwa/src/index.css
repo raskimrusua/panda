@@ -30,3 +30,9 @@ body {
   background-color: #f9fafb;
   color: #111827;
 }
+@media print {
+  * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body { background: #fff !important; }
+  main { overflow: visible !important; padding: 0 !important; background: #fff !important; }
+  @page { margin: 12mm; }
+}

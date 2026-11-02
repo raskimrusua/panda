@@ -196,7 +196,7 @@ export function SeasonDetailPage() {
     <div className="space-y-4">
       <Link
         to="/seasons"
-        className="inline-flex items-center gap-1 text-sm text-gray-600 hover:text-gray-900"
+        className="inline-flex items-center gap-1 text-sm text-gray-600 hover:text-gray-900 print:hidden"
       >
         <ArrowLeft className="h-4 w-4" /> {t('common.all_seasons')}
       </Link>
@@ -275,7 +275,7 @@ export function SeasonDetailPage() {
               </CardBody>
             </Card>
           )}
-          <div className="flex justify-end">
+          <div className="flex justify-end print:hidden">
             <Button
               size="sm"
               variant="secondary"
@@ -390,7 +390,7 @@ export function SeasonDetailPage() {
                 <>{t('seasons.total_spent')}: <strong>{formatKes(costsQuery.data.totals.all_kes)}</strong></>
               )}
             </div>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 print:hidden">
               <Button
                 size="sm"
                 variant="secondary"
@@ -458,7 +458,7 @@ export function SeasonDetailPage() {
                 </>
               )}
             </div>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 print:hidden">
               <Button
                 size="sm"
                 variant="secondary"
@@ -499,7 +499,7 @@ export function SeasonDetailPage() {
         </div>
       )}
 
-      <div className="pt-4">
+      <div className="pt-4 print:hidden">
         <Button
           variant="secondary"
           onClick={handleDownloadPdf}
