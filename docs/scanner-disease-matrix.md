@@ -20,9 +20,9 @@ The disease scanner's thoroughness is bounded by this matrix. Each row is a
 ## Crop coverage (20-crop library)
 
 Live guides (5): kale/sukuma, tomato, French beans, mango, onion.
-Staged guides (2, this PR): maize, beans.
-Queue (13): Irish potato, sweet potato, cabbage, spinach, capsicum, carrot, butternut,
-coriander, avocado, banana, pawpaw, watermelon, snow peas.
+Staged guides (4): maize, beans, Irish potato, sweet potato.
+Queue (11): cabbage, spinach, capsicum, carrot, butternut, coriander, avocado, banana,
+pawpaw, watermelon, snow peas.
 
 ---
 
@@ -62,6 +62,24 @@ coriander, avocado, banana, pawpaw, watermelon, snow peas.
 | Early blight | Low (leaf spots) · High (defoliation, fruit shoulder rot) | Target-ring brown spots on older leaves, yellowing, fruit shoulder lesions | Registered alternaria-active classes at first rings | Rotation (avoid potato/pepper), mulching, balanced nitrogen | Ring pattern on OLDER leaves first — vs late blight starting on new growth |
 | Bacterial wilt | Early (day-wilt) · Advanced (permanent wilt, ooze) | Sudden wilt of one side, plants stay green, white ooze from cut stem in water | None — rogue + destroy; grafted rootstocks where economic | Rotation, raised beds, avoid flooding | Cut-stem-in-water test is the in-app verification step |
 | Tomato yellow leaf curl (TYLCV) | Mild (curling) · Severe (stunting, no fruit) | Upward curled yellow leaves, stunted growth, flower drop | None — remove infected plants, whitefly control only | Whitefly nets/barriers, tolerant varieties, early whitefly control | Curling UP + yellow margins = virus, not water stress |
+
+## Irish potato (Solanum tuberosum)
+
+| Disease | Severity classes | Symptoms | Treatment (advisory) | Prevention | Scanner notes |
+|---|---|---|---|---|---|
+| Late blight | Low (first spots) · High (stem + tuber rot, field collapse in ~10 days) | Water-soaked spots browning fast, white fuzz at lesion margins in humidity, blackened stems, tuber red-brown rot | Registered late-blight fungicide classes on a strict preventive schedule in wet spells | Certified seed, resistant varieties where available, wide spacing, no volunteer plants | The fastest killer in the catalogue — in-app escalation when lesions spread within days |
+| Early blight | Low (leaf spots) · High (defoliation) | Target-ring brown spots on OLDER leaves first, yellowing, weak stand | Registered alternaria-active classes at first rings | Rotation away from tomato/pepper, balanced nitrogen, mulching | Ring pattern starting low on the plant discriminates vs late blight |
+| Bacterial wilt | Early (day-wilt) · Advanced (permanent wilt, tuber ooze) | Green wilt of one side, recovery at night then permanent; grey ooze from tuber eyes when squeezed | None — rogue + destroy; 3+ season rotation away from solanaceous crops | Certified seed only, clean tools, avoid flooding | Tuber-eye ooze test is the in-app verification; photo leaves + cut tuber |
+| Potato viruses (PLRV/PVY) | Mild (curl) · Severe (stunting, small tubers) | Leaf curl, mottling, stunted plants, aphid colonies present | None — vector (aphid) control early only | Certified seed, rogue early infections, aphid monitoring | Ask about seed source in-app — saved seed + aphids = virus pattern |
+
+## Sweet potato (Ipomoea batatas)
+
+| Disease | Severity classes | Symptoms | Treatment (advisory) | Prevention | Scanner notes |
+|---|---|---|---|---|---|
+| Sweet potato weevil | Low (scattered tunnels) · High (bitter, rotting roots) | Larvae tunnel roots + vines, root surface pimpled with exit holes, bitter taste, storage rot | None effective post-infestation — harvest on time, destroy infested material | Cover ridge cracks, piecemeal harvest before 5 months, rotation, clean vines | Photograph ridge base cracks + cut root surface — leaf photos miss it |
+| Sweet potato virus disease (SPVD) | Mild (crinkle) · Severe (stunting, no marketable roots) | Stunted plants, small crinkled leaves, chlorotic mottling, poor root set | None — remove infected plants, control whiteflies early | Clean certified vines only, whitefly monitoring, never save vines from infected fields | Crinkle + stunting pattern; ask about vine source in-app |
+| Root-knot nematodes | Patchy (stunted patches) · Severe (galled, unsaleable roots) | Knotted galls on roots, stunted patches, roots deformed | None curative — rotation is the treatment | Rotate with cereals, avoid after tomato/potato, resistant varieties where available | Photograph washed roots — galls vs weevil tunnels are the discriminator |
+| Alternaria leaf spot | Low (scattered spots) · High (defoliation in wet spells) | Brown ringed spots, yellowing, older leaves first | Registered alternaria-active classes if severe | Row ventilation, avoid overhead watering at night | Ringed spots distinguish from SPVD mottling |
 
 ---
 
