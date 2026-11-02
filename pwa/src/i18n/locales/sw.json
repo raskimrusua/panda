@@ -256,5 +256,19 @@
     "buyer_optional": "Mnunuzi (si lazima)",
     "save_harvest": "Hifadhi mavuno",
     "saved_offline": "Imehifadhiwa bila mtandao. Itasawazishwa ukirudi mtandaoni."
-  }
+  },
+  "nav.billing": "Malipo",
+  "billing.title": "Usajili na Malipo",
+  "billing.current": "Mpango wa sasa",
+  "billing.currentBadge": "Sasa",
+  "billing.validUntil": "Inatumika hadi",
+  "billing.phoneLabel": "Nambari ya simu ya M-Pesa",
+  "billing.phonePlaceholder": "07XX XXX XXX",
+  "billing.switchFree": "Badili kwa mpango wa bure",
+  "billing.pay": "Lipa kwa M-Pesa",
+  "billing.perMonth": "/mwezi",
+  "billing.sentPrompt": "Ombi la malipo limetumwa. Angalia simu yako na uweke PIN ya M-Pesa. Mpango wako utasasishwa kiotomatiki.",
+  "billing.paymentFailed": "Malipo hayakuweza kuanza. Tafadhali jaribu tena.",
+  "billing.phoneRequired": "Weka nambari yako ya simu ya M-Pesa kwanza.",
+  "billing.loadFailed": "Haikuwezekana kupakia maelezo ya malipo. Tafadhali jaribu tena."
 }
