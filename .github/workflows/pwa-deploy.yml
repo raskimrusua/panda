@@ -1,0 +1,31 @@
+name: PWA Deploy
+
+# Deploys the Panda PWA (pwa/) to Cloudflare Pages (panda-pwa project) at
+# app.panda.shira.farm. panda-pwa has no git integration on Cloudflare Pages —
+# this workflow IS the deploy pipeline (mirror of panda-daily-rebuild.yml for
+# the marketing site). Dispatch manually from the Actions tab or via the API.
+# Push-trigger can be added later if auto-deploy-on-merge is approved.
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    name: Build + deploy panda-pwa
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: pwa
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+          cache-dependency-path: pwa/package-lock.json
+      - run: npm ci --no-audit --no-fund
+      - run: npm run build
+      - run: npx wrangler pages deploy dist --project-name panda-pwa --branch main --commit-dirty=true
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
