@@ -20,9 +20,8 @@ The disease scanner's thoroughness is bounded by this matrix. Each row is a
 ## Crop coverage (20-crop library)
 
 Live guides (5): kale/sukuma, tomato, French beans, mango, onion.
-Staged guides (6): maize, beans, Irish potato, sweet potato, cabbage, spinach.
-Queue (9): capsicum, carrot, butternut, coriander, avocado, banana, pawpaw, watermelon,
-snow peas.
+Staged guides (8): maize, beans, Irish potato, sweet potato, cabbage, spinach, capsicum, carrot.
+Queue (7): butternut, coriander, avocado, banana, pawpaw, watermelon, snow peas.
 
 ---
 
@@ -100,6 +99,25 @@ snow peas.
 | Cercospora leaf spot | Low (scattered spots) · High (defoliation) | Round grey-brown spots with dark borders, older leaves first | Registered contact fungicide at first spots | Clean seed, rotation, remove debris | Round spots with distinct borders vs mildew fuzz |
 | Aphids | Low (colonies) · High (curled, stunted growth) | Curled new leaves, colonies on undersides, sticky honeydew | Squash early colonies; registered products only if spreading | Natural enemies first — scout before spraying | Photo the leaf UNDERSIDE with the colony visible |
 | Leaf miners | Low (tunnels) · High (leaf scorch, market rejection) | Silvery winding tunnels in the leaf, no holes | Remove/destroy mined leaves; registered products at threshold only | Row covers in nursery, rotation | Backlit photo shows the tunnel track best |
+
+## Capsicum (Capsicum annuum)
+
+| Disease | Severity classes | Symptoms | Treatment (advisory) | Prevention | Scanner notes |
+|---|---|---|---|---|---|
+| Whiteflies + viruses | Low (adults present) · High (curled leaves, no fruit set) | Whitefly clouds on undersides, upward curled yellow leaves, flower drop, stunted fruit | Registered whitefly products early; remove infected plants | Sticky traps, barriers, tolerant varieties | Curling + whitefly presence = virus pattern; photograph the underside with insects |
+| Bacterial wilt | Early (day-wilt) · Advanced (permanent wilt, ooze) | Green wilt in heat, recovery at night then permanent; white ooze from cut stem | None — rogue + destroy; 3-season rotation away from tomato/potato/pepper | Rotation, raised beds, no flooding | Cut-stem-in-water test is the in-app verification |
+| Phytophthora blight | Early (stem lesion) · High (fruit rot, collapse) | Dark stem lesions at soil line, water-soaked fruit rot, wilting in wet spells | Registered blight-active sprays preventatively in wet weather | Drainage, raised beds, no overhead watering | Stem-base photo + fruit close-up; wet-season timing is diagnostic |
+| Anthracnose fruit rot | Low (specks) · High (sunken rot on ripe fruit) | Sunken dark circular spots on ripening fruit, pink spore ooze in humidity | Registered anthracnose-active sprays from first colour | Never leave ripe fruit hanging, handle gently | Photograph the fruit, not leaves — leaf photos miss it entirely |
+| Powdery mildew | Low (dusting) · High (leaf loss, sunscald fruit) | White powder on both leaf sides, yellowing, fruit exposed to sun | Sulphur-class or registered mildew products at first dusting | Airflow, avoid water stress | White powder on TOP of leaf distinguishes from downy mildew |
+
+## Carrot (Daucus carota)
+
+| Disease | Severity classes | Symptoms | Treatment (advisory) | Prevention | Scanner notes |
+|---|---|---|---|---|---|
+| Alternaria leaf blight | Low (spots) · High (tops burn down, harvest problems) | Brown ringed spots on leaves, yellowing, burnt tops in humid weather | Registered alternaria-active sprays at first spots | Rotation, clean seed, avoid leaf wetness | Photograph the TOP growth — root photos show nothing for leaf blight |
+| Powdery mildew | Low (dusting) · High (defoliation) | White dusting on leaves, weak tops, small roots | Sulphur-class products at first dusting | Row airflow, avoid water stress | White powder both sides; usually warm-dry weather |
+| Root-knot nematodes | Patchy (stunted patches) · Severe (galled, forked roots) | Knotted galls on roots, forking, stunted patches | None curative — rotation is the treatment | Rotate with cereals, avoid after tomato/potato | Photograph washed roots — galls vs forking-from-stones are different causes |
+| Cavity spot | Low (specks) · High (sunken holes, market rejection) | Small sunken oval holes under the skin, worse with moisture swings | None direct — correct calcium + steady watering | Balanced nutrition, consistent irrigation | Cut roots crosswise to photograph the lesions under the skin |
 
 ## Process
 
