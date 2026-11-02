@@ -20,8 +20,8 @@ The disease scanner's thoroughness is bounded by this matrix. Each row is a
 ## Crop coverage (20-crop library)
 
 Live guides (5): kale/sukuma, tomato, French beans, mango, onion.
-Staged guides (8): maize, beans, Irish potato, sweet potato, cabbage, spinach, capsicum, carrot.
-Queue (7): butternut, coriander, avocado, banana, pawpaw, watermelon, snow peas.
+Staged guides (10): maize, beans, Irish potato, sweet potato, cabbage, spinach, capsicum, carrot, butternut, coriander.
+Queue (5): avocado, banana, pawpaw, watermelon, snow peas.
 
 ---
 
@@ -118,6 +118,25 @@ Queue (7): butternut, coriander, avocado, banana, pawpaw, watermelon, snow peas.
 | Powdery mildew | Low (dusting) · High (defoliation) | White dusting on leaves, weak tops, small roots | Sulphur-class products at first dusting | Row airflow, avoid water stress | White powder both sides; usually warm-dry weather |
 | Root-knot nematodes | Patchy (stunted patches) · Severe (galled, forked roots) | Knotted galls on roots, forking, stunted patches | None curative — rotation is the treatment | Rotate with cereals, avoid after tomato/potato | Photograph washed roots — galls vs forking-from-stones are different causes |
 | Cavity spot | Low (specks) · High (sunken holes, market rejection) | Small sunken oval holes under the skin, worse with moisture swings | None direct — correct calcium + steady watering | Balanced nutrition, consistent irrigation | Cut roots crosswise to photograph the lesions under the skin |
+
+## Butternut (Cucurbita moschata)
+
+| Disease | Severity classes | Symptoms | Treatment (advisory) | Prevention | Scanner notes |
+|---|---|---|---|---|---|
+| Powdery mildew | Low (dusting) · High (leaf death, sunscald fruit) | White powder on leaves, yellowing, dieback in warm-dry spells | Sulphur-class or registered mildew products at first dusting | Tolerant F1s, airflow, avoid water stress | White powder on TOP of leaf, warm-dry weather — distinct from downy mildew |
+| Downy mildew | Low (patches) · High (grey fuzz, defoliation) | Yellow patches above, grey-purple fuzz below, cool damp spells | Registered downy-active fungicide at first patches | Airflow, morning watering, avoid overhead irrigation | Underside photo required — fuzz invisible from above |
+| Fruit fly (melon fly) | Low (stings) · High (maggots in fruit, rot) | Pin-prick stings on young fruit, oozing, maggots inside, fruit rots from inside | Registered bait sprays + weekly fruit inspection; destroy stung fruit | Early fruit protection, sanitation, remove fallen fruit | Photograph the FRUIT surface and any cut-open fruit — leaf photos miss it |
+| Viruses (WMV/ZYMV/PRSV) | Mild (mottle) · Severe (distorted fruit, stunting) | Mottled distorted leaves, knobbly fruit, stunted vines; aphids present | None — remove infected plants, early aphid control | Aphid management, clean seed, tolerant varieties | Distorted leaves + aphids = virus pattern; ask about aphids in-app |
+| Anthracnose | Low (specks) · High (sunken rot on fruit) | Sunken dark spots on ripening fruit, pink ooze in humidity | Registered anthracnose-active sprays in wet spells | No overhead watering, rotation, clean vines | Fruit photo needed; late-season + wet = diagnostic |
+
+## Coriander / Dhania (Coriandrum sativum)
+
+| Disease | Severity classes | Symptoms | Treatment (advisory) | Prevention | Scanner notes |
+|---|---|---|---|---|---|
+| Damping off | Seedling (collapse patches) · Severe (stand loss) | Seedlings collapse at soil line, brown pinched stems, in wet spells | Seed-dressing where wet; no rescue for collapsed patches | Raised beds, thin sowing, well-drained nursery | Photograph a whole patch, not one seedling — pattern is the diagnosis |
+| Aphids | Low (colonies) · High (curled, stunted growth) | Curled new growth, colonies on undersides, honeydew | Squash early colonies; registered products if spreading | Weekly underside scouting, natural enemies first | Underside photo with colony visible |
+| Alternaria leaf spot | Low (spots) · High (leaf burn, market rejection) | Brown ringed spots on leaves, yellowing, humid weather | Registered alternaria-active sprays at first spots | Clean seed, rotation, avoid leaf wetness | Ringed spots distinguish from mildew dusting |
+| Powdery mildew | Low (dusting) · High (defoliation) | White dusting on leaves in warm-dry spells | Sulphur-class products at first dusting | Airflow, avoid water stress | White powder top of leaf, warm-dry weather |
 
 ## Process
 
