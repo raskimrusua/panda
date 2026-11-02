@@ -20,8 +20,8 @@ The disease scanner's thoroughness is bounded by this matrix. Each row is a
 ## Crop coverage (20-crop library)
 
 Live guides (5): kale/sukuma, tomato, French beans, mango, onion.
-Staged guides (10): maize, beans, Irish potato, sweet potato, cabbage, spinach, capsicum, carrot, butternut, coriander.
-Queue (5): avocado, banana, pawpaw, watermelon, snow peas.
+Staged guides (12): maize, beans, Irish potato, sweet potato, cabbage, spinach, capsicum, carrot, butternut, coriander, avocado, banana.
+Queue (3): pawpaw, watermelon, snow peas.
 
 ---
 
@@ -137,6 +137,25 @@ Queue (5): avocado, banana, pawpaw, watermelon, snow peas.
 | Aphids | Low (colonies) · High (curled, stunted growth) | Curled new growth, colonies on undersides, honeydew | Squash early colonies; registered products if spreading | Weekly underside scouting, natural enemies first | Underside photo with colony visible |
 | Alternaria leaf spot | Low (spots) · High (leaf burn, market rejection) | Brown ringed spots on leaves, yellowing, humid weather | Registered alternaria-active sprays at first spots | Clean seed, rotation, avoid leaf wetness | Ringed spots distinguish from mildew dusting |
 | Powdery mildew | Low (dusting) · High (defoliation) | White dusting on leaves in warm-dry spells | Sulphur-class products at first dusting | Airflow, avoid water stress | White powder top of leaf, warm-dry weather |
+
+## Avocado (Persea americana)
+
+| Disease | Severity classes | Symptoms | Treatment (advisory) | Prevention | Scanner notes |
+|---|---|---|---|---|---|
+| Root rot (Phytophthora cinnamomi) | Early (yellowing, thin canopy) · Advanced (dieback, death) | Yellowing leaves, branch dieback, sparse canopy, dark lesions at the collar, wet soil | None once advanced — improve drainage, remove dying trees | Certified clean seedlings, perfect drainage, no collar watering | Photograph the tree base + canopy; ask about water pooling in-app |
+| Anthracnose | Low (specks) · High (sunken rot on fruit) | Black sunken spots on fruit, often appearing days after picking, pink ooze in humidity | Registered anthracnose-active sprays pre-harvest; clean dry handling | Prune for airflow, harvest dry, handle gently | Fruit close-up; post-harvest timing of spots is diagnostic |
+| Cercospora leaf spot | Low (scattered spots) · High (leaf drop, sunburned fruit) | Brown spots on leaves, yellowing, premature leaf drop in humid weather | Registered sprays at first spots | Pruning for airflow, orchard hygiene | Leaf spots + drop pattern; humid season timing |
+| Thrips and scales | Low (scarring) · Severe (bronzed fruit, sooty mould) | Silver-bronze fruit scarring (thrips), dark sooty mould on leaves (scales) | Registered products at threshold only | Natural enemy preservation, monitoring | Fruit surface photo for thrips; leaf underside for scales |
+
+## Banana (Musa spp.)
+
+| Disease | Severity classes | Symptoms | Treatment (advisory) | Prevention | Scanner notes |
+|---|---|---|---|---|---|
+| Banana weevil | Low (tunnels) · High (toppled plants, dead mats) | Larvae tunnels in the corm, dark oozing galleries, plants topple in wind | Registered treatments at threshold; trapping | Clean TC plantlets, remove old stumps, trap | Photograph the cut corm — tunnels are the diagnosis |
+| Panama disease (Fusarium wilt) | Early (leaf yellowing) · Advanced (split pseudostem, death) | Yellowing from older leaves, reddish-brown staining inside the pseudostem, wilt, death; spreads on tools/suckers | None — destroy mats, biosecurity protocol | Clean TC plantlets, disinfect tools, never move soil | Internal stem staining is the signature — photograph a cut pseudostem |
+| Black sigatoka | Low (streaks) · High (burnt canopy, small bunches) | Yellow-brown streaks that blacken, leaf burn from the margins, smaller bunches | Registered fungicide programme + de-leafing infected leaves | Airflow, de-leafing, resistant varieties | Streaks evolving to burnt margins; lower leaves first |
+| Bunchy top virus (BBTV) | Early (upright leaves) · Severe (no bunches, stunting) | Stunted upright leaves with dark green streaks, no bunch production, aphids present | None — rogue and destroy immediately | Clean plantlets, aphid control, remove infected plants | Upright stunted leaves + streaks = BBTV; escalate — not a nutrient issue |
+| Cigar end rot | Low (tip rot) · High (bunch tip loss) | Ash-grey rot at the bunch tip spreading up the fingers, wet weather | Remove the male bud; registered sprays in severe cases | Male bud removal after fruit set, airflow | Photograph the bunch tip |
 
 ## Process
 
