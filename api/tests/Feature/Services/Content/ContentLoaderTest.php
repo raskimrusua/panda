@@ -82,12 +82,15 @@ it('tomato.json contains the JAICA-spec timeline structure', function () {
         ->and($content['yield_per_acre']['expected_kg'])->toBeGreaterThan(10000);
 });
 
-it('ships all 17 SHEP PLUS crops as schema-valid content files', function () {
+it('ships all 26 catalogue crops as schema-valid content files', function () {
     $expected = [
         'tomato', 'kale', 'cabbage', 'bulb-onion', 'french-beans',
         'capsicum', 'chili', 'eggplant', 'potato', 'watermelon',
         'amaranthus', 'black-nightshade', 'cowpea-leaves',
         'avocado', 'banana', 'mango', 'passion-fruit',
+        // S1 enrichment additions (2026-11)
+        'maize', 'beans', 'sweet-potato', 'spinach', 'carrot',
+        'butternut', 'coriander', 'pawpaw', 'snow-peas',
     ];
 
     foreach ($expected as $slug) {
