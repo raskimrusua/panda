@@ -1,0 +1,228 @@
+{
+ "slug": "sweet-potato",
+ "name_en": "Sweet potato",
+ "name_sw": "Viazi vitamu",
+ "category": "tuber",
+ "harvest_type": "multi",
+ "jica_manual_ref": "Inspired by JICA SHEP PLUS — Root crops production guide (Kenya)",
+ "kalro_guide_ref": "KALRO Root and tuber crops handbook",
+ "ecological_requirements": {
+  "altitude_min_m": 0,
+  "altitude_max_m": 2100,
+  "rainfall_min_mm": 400,
+  "rainfall_max_mm": 1100,
+  "temperature_min_c": 20,
+  "temperature_max_c": 30,
+  "soil_types": [
+   "sandy_loam",
+   "loam"
+  ],
+  "soil_ph_min": 5.5,
+  "soil_ph_max": 6.5
+ },
+ "varieties": [
+  {
+   "name": "Kabode",
+   "type": "OPEN_POLLINATED",
+   "days_to_maturity": 140,
+   "yield_kg_per_acre": 8000,
+   "disease_resistance": [],
+   "supplier_notes": "Orange-fleshed (OFSP), vitamin A; premium from institutional buyers."
+  },
+  {
+   "name": "SPK004",
+   "type": "OPEN_POLLINATED",
+   "days_to_maturity": 140,
+   "yield_kg_per_acre": 9000,
+   "disease_resistance": [],
+   "supplier_notes": "High-yielding white-fleshed workhorse for bulk and flour."
+  },
+  {
+   "name": "Kenspot 1",
+   "type": "OPEN_POLLINATED",
+   "days_to_maturity": 130,
+   "yield_kg_per_acre": 7500,
+   "disease_resistance": [],
+   "supplier_notes": "Dual-purpose — roots + fodder vines."
+  }
+ ],
+ "timeline_template": [
+  {
+   "activity_type": "ridge_up",
+   "phase": "establishment",
+   "week_from_planting": -1,
+   "day_window": 7,
+   "description_en": "Ridge up 90-100 cm apart — flat planting means small roots and weevil entry points.",
+   "description_sw": "Tengeneza matuta 90-100 cm kati — kupanda tambarare kunaleta mizizi midogo na njia za wadudu.",
+   "is_critical": true
+  },
+  {
+   "activity_type": "vine_planting",
+   "phase": "establishment",
+   "week_from_planting": 0,
+   "day_window": 7,
+   "description_en": "Plant 3-node vine cuttings, 2 nodes buried, 30 cm in-row (~14,000 cuttings per acre).",
+   "description_sw": "Panda vipandikizi vya mizabibu vyenye vifundo 3, 2 chini, sentimita 30 kwa mstari.",
+   "tip_en": "Skip heavy nitrogen — it grows vines at the expense of roots.",
+   "tip_sw": "Usiweke mbolea ya nitrojeni nyingi — inalisha mizabibu, si mizizi.",
+   "is_critical": true
+  },
+  {
+   "activity_type": "first_weeding",
+   "phase": "growth",
+   "week_from_planting": 3,
+   "day_window": 7,
+   "description_en": "First weeding; re-hill any exposed roots.",
+   "description_sw": "Palia kwanza; pandia udongo mizizi iliyojitokeza.",
+   "is_critical": false
+  },
+  {
+   "activity_type": "pest_scout",
+   "phase": "growth",
+   "week_from_planting": 4,
+   "day_window": 70,
+   "description_en": "Scout for weevil — cracked soil at the ridge base is the tell. Keep cracks covered.",
+   "description_sw": "Chunguza wadudu — nyufa za udongo kwenye tuta ni dalili. Funika nyufa.",
+   "is_critical": true
+  },
+  {
+   "activity_type": "first_harvest",
+   "phase": "harvest",
+   "week_from_planting": 18,
+   "day_window": 60,
+   "description_en": "Harvest piecemeal from 3.5-5 months — dig what you need, leave the rest in the ground.",
+   "description_sw": "Vuna kidogokidogo kuanzia miezi 3.5-5 — chimba unachohitaji, acha kingine ardhini.",
+   "tip_en": "Don't leave roots in-ground past 5 months — weevil damage climbs sharply.",
+   "tip_sw": "Usiache mizizi ardhini zaidi ya miezi 5 — uharibifu wa wadudu unaongezeka.",
+   "is_critical": true
+  }
+ ],
+ "inputs_per_acre": [
+  {
+   "input_type": "seed",
+   "product_name": "Vine cuttings (Kabode class)",
+   "quantity": 14000,
+   "unit": "cuttings",
+   "week_from_planting": 0,
+   "benchmark_price_kes": 3000,
+   "pcpb_registered": false,
+   "alternatives": [
+    "SPK004 vines"
+   ]
+  },
+  {
+   "input_type": "fertiliser",
+   "product_name": "DAP",
+   "quantity": 50,
+   "unit": "kg",
+   "week_from_planting": 0,
+   "benchmark_price_kes": 3500,
+   "pcpb_registered": false,
+   "alternatives": []
+  }
+ ],
+ "yield_per_acre": {
+  "expected_kg": 8000,
+  "min_kg": 5000,
+  "max_kg": 10000,
+  "number_of_picks": 12,
+  "pick_interval_days": 7
+ },
+ "post_harvest": {
+  "shelf_life_days": 90,
+  "grading_criteria": "Grade by root size and skin condition; OFSP by colour depth. Reject weevil-damaged roots.",
+  "packaging_standard": "50 kg bags or crates; cure lightly in shade before transport.",
+  "storage_tips_en": "In-ground piecemeal harvest IS the storage system — no warehouse needed.",
+  "storage_tips_sw": "Kuvuna kidogokidogo ardhini NDIO hifadhi — haihitaji ghala."
+ },
+ "diseases": [
+  {
+   "key": "sweet_potato_weevil",
+   "name_en": "Sweet potato weevil",
+   "name_sw": "Wadudu wa viazi vitamu",
+   "type": "pest",
+   "severity_classes": "Low (scattered tunnels) · High (bitter, rotting roots)",
+   "symptoms_en": "Larvae tunnel roots and vines, root surface pimpled with exit holes, bitter taste, storage rot.",
+   "symptoms_sw": "Viluwiluwi hutoboa mizizi, matundu kwenye ngozi, ladha chungu, kuoza.",
+   "treatment_en": "None effective post-infestation — harvest on time, destroy infested material. Advisory: use PCPB-registered products only, at label rates.",
+   "treatment_sw": "Hakuna dawa baada ya kuambukizwa — vuna kwa wakati, teketeza vilivyoathirika. Shauri: tumia dawa zilizoidhinishwa na PCPB tu, kwa kiwango kilichoandikwa.",
+   "prevention_en": "Cover ridge cracks, piecemeal harvest before 5 months, rotation, clean vines.",
+   "prevention_sw": "Funika nyufa, vuna kabla ya miezi 5, zungusha, mizabibu safi.",
+   "scanner_notes": "Photograph ridge base cracks + cut root surface — leaf photos miss it."
+  },
+  {
+   "key": "spvd",
+   "name_en": "Sweet potato virus disease (SPVD)",
+   "name_sw": "Virusi vya viazi vitamu",
+   "type": "disease",
+   "severity_classes": "Mild (crinkle) · Severe (stunting, no marketable roots)",
+   "symptoms_en": "Stunted plants, small crinkled leaves, chlorotic mottling, poor root set.",
+   "symptoms_sw": "Mimea dhaifu, majani madogo yaliyokunjana, madoa ya manjano, mizizi midogo.",
+   "treatment_en": "None — remove infected plants, control whiteflies early. Advisory: use PCPB-registered products only, at label rates.",
+   "treatment_sw": "Hakuna tiba — ondoa mimea iliyoathirika, dhibiti nzi weupe mapema. Shauri: tumia dawa zilizoidhinishwa na PCPB tu, kwa kiwango kilichoandikwa.",
+   "prevention_en": "Clean certified vines only, never save vines from infected fields.",
+   "prevention_sw": "Mizabibu safi tu, usihifadhi mizabibu ya shamba lililoathirika.",
+   "scanner_notes": "Crinkle + stunting pattern; ask about vine source in-app."
+  },
+  {
+   "key": "root_knot_nematodes",
+   "name_en": "Root-knot nematodes",
+   "name_sw": "Vidudu vya mizizi",
+   "type": "pest",
+   "severity_classes": "Patchy (stunted patches) · Severe (galled, unsaleable roots)",
+   "symptoms_en": "Knotted galls on roots, stunted patches, roots deformed.",
+   "symptoms_sw": "Uvimbe kwenye mizizi, mapande dhaifu, mizizi iliyopinda.",
+   "treatment_en": "None curative — rotation is the treatment. Advisory: use PCPB-registered products only, at label rates.",
+   "treatment_sw": "Hakuna tiba — kuzungusha ndio dawa. Shauri: tumia dawa zilizoidhinishwa na PCPB tu, kwa kiwango kilichoandikwa.",
+   "prevention_en": "Rotate with cereals, avoid after tomato/potato.",
+   "prevention_sw": "Zungusha na nafaka, epuka baada ya nyanya/viazi.",
+   "scanner_notes": "Photograph washed roots — galls vs weevil tunnels are the discriminator."
+  },
+  {
+   "key": "alternaria_leaf_spot",
+   "name_en": "Alternaria leaf spot",
+   "name_sw": "Madoa ya majani",
+   "type": "disease",
+   "severity_classes": "Low (scattered spots) · High (defoliation in wet spells)",
+   "symptoms_en": "Brown ringed spots, yellowing, older leaves first.",
+   "symptoms_sw": "Madoa ya kahawia yenye pete, kuwitikia, majani makubwa kwanza.",
+   "treatment_en": "Registered alternaria-active classes if severe. Advisory: use PCPB-registered products only, at label rates.",
+   "treatment_sw": "Dawa za alternaria zilizoidhinishwa ikithiri. Shauri: tumia dawa zilizoidhinishwa na PCPB tu, kwa kiwango kilichoandikwa.",
+   "prevention_en": "Row ventilation, avoid overhead watering at night.",
+   "prevention_sw": "Hewa, usimwagilie kutoka juu usiku.",
+   "scanner_notes": "Ringed spots distinguish from SPVD mottling."
+  }
+ ],
+ "links": [
+  {
+   "kind": "blog_guide",
+   "label_en": "Panda growing guide: Sweet potato",
+   "label_sw": "Mwongozo wa Panda: Viazi vitamu",
+   "url": "https://panda.shira.farm/blog/sweet-potato-insurance-crop-guide"
+  },
+  {
+   "kind": "pcpb",
+   "label_en": "PCPB — registered pest control products",
+   "label_sw": "PCPB — orodha ya dawa zilizoidhinishwa",
+   "url": "https://www.pcpb.go.ke/"
+  },
+  {
+   "kind": "kephis",
+   "label_en": "KEPHIS — plant health services",
+   "label_sw": "KEPHIS — huduma za afya ya mimea",
+   "url": "https://www.kephis.org/"
+  },
+  {
+   "kind": "prices",
+   "label_en": "MoALD market information (KAMIS)",
+   "label_sw": "Taarifa za soko za Wizara ya Kilimo (KAMIS)",
+   "url": "https://www.kilimo.go.ke/"
+  }
+ ],
+ "market_notes": {
+  "sell_windows_en": "Piecemeal harvest means you're never forced to sell in a glut — the price floor rarely collapses. OFSP commands the premium with institutional buyers.",
+  "sell_windows_sw": "Kuvuna kidogokidogo kunamaanisha haulazimiki kuuza wakati wa wingi — bei haianguki sana. OFSP ina bei ya juu kwa wakubwa.",
+  "price_notes_en": "Fresh roots 25–60 KES per kg by variety; vines sell to neighbours at planting time (November 2026). Input bill under 10,000 KES per acre.",
+  "price_notes_sw": "Mizizi mibichi KES 25–60 kwa kilo; mizabibu huuzwa kwa majirani wakati wa kupanda (Novemba 2026). Gharama chini ya 10,000 KES kwa eka."
+ }
+}

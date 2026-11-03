@@ -46,6 +46,9 @@ class CropSeeder extends Seeder
             ['slug' => 'passion-fruit',  'name_en' => 'Passion fruit',  'name_sw' => 'Pasheni',      'category' => 'fruit',       'harvest_type' => 'multi',  'phase_added' => 3],
             // ---- Phase 4: staple expansion (S1 enrichment, 2026-11) ----
             ['slug' => 'maize',         'name_en' => 'Maize',          'name_sw' => 'Mahindi',       'category' => 'cereal',      'harvest_type' => 'single', 'phase_added' => 4],
+            ['slug' => 'sweet-potato',  'name_en' => 'Sweet potato',  'name_sw' => 'Viazi vitamu', 'category' => 'tuber',       'harvest_type' => 'multi',  'phase_added' => 4],
+            ['slug' => 'spinach',       'name_en' => 'Spinach',       'name_sw' => 'Spinachi',     'category' => 'leafy_green', 'harvest_type' => 'multi',  'phase_added' => 4],
+            ['slug' => 'carrot',        'name_en' => 'Carrot',        'name_sw' => 'Karoti',       'category' => 'root',        'harvest_type' => 'single', 'phase_added' => 4],
             ['slug' => 'beans',         'name_en' => 'Beans',          'name_sw' => 'Maharagwe',     'category' => 'legume',      'harvest_type' => 'single', 'phase_added' => 4],
         ];
         foreach ($crops as $row) {

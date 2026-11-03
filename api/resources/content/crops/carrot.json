@@ -1,0 +1,245 @@
+{
+ "slug": "carrot",
+ "name_en": "Carrot",
+ "name_sw": "Karoti",
+ "category": "root",
+ "harvest_type": "single",
+ "jica_manual_ref": "Inspired by JICA SHEP PLUS — Root crops production guide (Kenya)",
+ "kalro_guide_ref": "KALRO Vegetable production handbook",
+ "ecological_requirements": {
+  "altitude_min_m": 1200,
+  "altitude_max_m": 2600,
+  "rainfall_min_mm": 500,
+  "rainfall_max_mm": 1000,
+  "temperature_min_c": 15,
+  "temperature_max_c": 24,
+  "soil_types": [
+   "sandy_loam",
+   "loam"
+  ],
+  "soil_ph_min": 6.0,
+  "soil_ph_max": 6.8
+ },
+ "varieties": [
+  {
+   "name": "Nantes",
+   "type": "OPEN_POLLINATED",
+   "days_to_maturity": 100,
+   "yield_kg_per_acre": 20000,
+   "disease_resistance": [],
+   "supplier_notes": "The Kenyan standard: cylindrical, sweet, the shape greengrocers expect."
+  },
+  {
+   "name": "Chantenay",
+   "type": "OPEN_POLLINATED",
+   "days_to_maturity": 95,
+   "yield_kg_per_acre": 16000,
+   "disease_resistance": [],
+   "supplier_notes": "Short and broad, tolerant of heavier soil."
+  },
+  {
+   "name": "Kuroda",
+   "type": "OPEN_POLLINATED",
+   "days_to_maturity": 95,
+   "yield_kg_per_acre": 17000,
+   "disease_resistance": [],
+   "supplier_notes": "Heat-tolerant for warmer lower zones."
+  }
+ ],
+ "timeline_template": [
+  {
+   "activity_type": "bed_prep",
+   "phase": "establishment",
+   "week_from_planting": -2,
+   "day_window": 14,
+   "description_en": "Deep-dig 25 cm, remove stones. NEVER apply fresh manure — it forks roots.",
+   "description_sw": "Chimba kwa kina cha cm 25, ondoa mawe. USIWEKE samadi mbichi — inapinda mizizi.",
+   "is_critical": true
+  },
+  {
+   "activity_type": "seed_planting",
+   "phase": "establishment",
+   "week_from_planting": 0,
+   "day_window": 7,
+   "description_en": "Direct-sow 1 cm deep in rows 25-30 cm apart (2-3 kg per acre raw, 1-1.5 kg pelleted). Carrots never transplant.",
+   "description_sw": "Panda moja kwa moja kina cha 1 cm, mistari 25-30 cm (kilo 2-3 kwa eka). Karoti hazipandikizwi.",
+   "is_critical": true
+  },
+  {
+   "activity_type": "thinning",
+   "phase": "growth",
+   "week_from_planting": 3,
+   "day_window": 5,
+   "description_en": "Thin to 5-7 cm spacing — the step most farms skip and most yields die on. Crowded carrots stay pencil-thin.",
+   "description_sw": "Punguza hadi nafasi ya cm 5-7 — hatua inayorukwa na wengi. Karoti zilizosongamana hubaki ndogo.",
+   "is_critical": true
+  },
+  {
+   "activity_type": "top_dress_1",
+   "phase": "growth",
+   "week_from_planting": 4,
+   "day_window": 4,
+   "description_en": "Top-dress 50 kg CAN per acre; weed shallow — deep hoeing cuts the roots.",
+   "description_sw": "Weka kilo 50 za CAN; palia juu juu — kulima kwa kina kunakata mizizi.",
+   "is_critical": false
+  },
+  {
+   "activity_type": "top_dress_2",
+   "phase": "growth",
+   "week_from_planting": 6,
+   "day_window": 4,
+   "description_en": "Second 50 kg CAN per acre; water consistently — alternating wet-dry splits the roots.",
+   "description_sw": "Kilo 50 za CAN tena; mwagilia kwa utaratibu — kukausha na kulowesha kunapasua mizizi.",
+   "is_critical": true
+  },
+  {
+   "activity_type": "harvest",
+   "phase": "harvest",
+   "week_from_planting": 13,
+   "day_window": 14,
+   "description_en": "Pull when shoulders show 2-3 cm. Loosen with a fork and pull by the tops — never yank dry soil.",
+   "description_sw": "Ng'oa wakati mizizi ina upana wa cm 2-3. Legeza na uma kisha vuta — usivute udongo mkavu.",
+   "tip_en": "Top immediately after harvest — tops suck moisture from the root.",
+   "tip_sw": "Kata majani mara baada ya kuvuna — majani hunyonya unyevu wa mzizi.",
+   "is_critical": true
+  }
+ ],
+ "inputs_per_acre": [
+  {
+   "input_type": "seed",
+   "product_name": "Carrot seed (Nantes class)",
+   "quantity": 2,
+   "unit": "kg",
+   "week_from_planting": 0,
+   "benchmark_price_kes": 2000,
+   "pcpb_registered": false,
+   "alternatives": [
+    "Pelleted seed"
+   ]
+  },
+  {
+   "input_type": "fertiliser",
+   "product_name": "DAP",
+   "quantity": 50,
+   "unit": "kg",
+   "week_from_planting": 0,
+   "benchmark_price_kes": 3500,
+   "pcpb_registered": false,
+   "alternatives": []
+  },
+  {
+   "input_type": "fertiliser",
+   "product_name": "CAN",
+   "quantity": 100,
+   "unit": "kg",
+   "week_from_planting": 4,
+   "benchmark_price_kes": 6000,
+   "pcpb_registered": false,
+   "alternatives": []
+  }
+ ],
+ "yield_per_acre": {
+  "expected_kg": 20000,
+  "min_kg": 12000,
+  "max_kg": 25000,
+  "number_of_picks": 1,
+  "pick_interval_days": 1
+ },
+ "post_harvest": {
+  "shelf_life_days": 14,
+  "grading_criteria": "Medium roots (2-3 cm shoulder, 15-20 cm long) fetch top price; oversized to stew markets, undersized to feed.",
+  "packaging_standard": "5 kg lots; bunch greens on for premium retail.",
+  "storage_tips_en": "Top immediately, wash lightly if the market wants washed, sell within days. Cool storage 1-2 weeks.",
+  "storage_tips_sw": "Kata majani mara moja, osha kidogo kama soko linataka, uza ndani ya siku chache. Hifadhi baridi wiki 1-2."
+ },
+ "diseases": [
+  {
+   "key": "alternaria_leaf_blight",
+   "name_en": "Alternaria leaf blight",
+   "name_sw": "Ugonjwa wa majani",
+   "type": "disease",
+   "severity_classes": "Low (spots) · High (tops burn down, harvest problems)",
+   "symptoms_en": "Brown ringed spots on leaves, yellowing, burnt tops in humid weather.",
+   "symptoms_sw": "Madoa ya kahawia yenye pete, kuwitikia, majani kuungua unyevu.",
+   "treatment_en": "Registered alternaria-active sprays at first spots. Advisory: use PCPB-registered products only, at label rates.",
+   "treatment_sw": "Dawa za alternaria zilizoidhinishwa mara madoa yanapoanza. Shauri: tumia dawa zilizoidhinishwa na PCPB tu, kwa kiwango kilichoandikwa.",
+   "prevention_en": "Rotation, clean seed, avoid leaf wetness.",
+   "prevention_sw": "Zungusha, mbegu safi, epuka majani kuloweshwa.",
+   "scanner_notes": "Photograph the TOP growth — root photos show nothing for leaf blight."
+  },
+  {
+   "key": "powdery_mildew",
+   "name_en": "Powdery mildew",
+   "name_sw": "Ukungu",
+   "type": "disease",
+   "severity_classes": "Low (dusting) · High (defoliation)",
+   "symptoms_en": "White dusting on leaves, weak tops, small roots.",
+   "symptoms_sw": "Unga mweupe majani, vichwa dhaifu, mizizi midogo.",
+   "treatment_en": "Sulphur-class products at first dusting. Advisory: use PCPB-registered products only, at label rates.",
+   "treatment_sw": "Dawa za salfa mara inapoanza. Shauri: tumia dawa zilizoidhinishwa na PCPB tu, kwa kiwango kilichoandikwa.",
+   "prevention_en": "Row airflow, avoid water stress.",
+   "prevention_sw": "Hewa, epuka mkazo wa maji.",
+   "scanner_notes": "White powder both sides; usually warm-dry weather."
+  },
+  {
+   "key": "root_knot_nematodes",
+   "name_en": "Root-knot nematodes",
+   "name_sw": "Vidudu vya mizizi",
+   "type": "pest",
+   "severity_classes": "Patchy (stunted patches) · Severe (galled, forked roots)",
+   "symptoms_en": "Knotted galls on roots, forking, stunted patches.",
+   "symptoms_sw": "Uvimbe kwenye mizizi, mizizi iliyopinda, mapande dhaifu.",
+   "treatment_en": "None curative — rotation is the treatment. Advisory: use PCPB-registered products only, at label rates.",
+   "treatment_sw": "Hakuna tiba — kuzungusha ndio dawa. Shauri: tumia dawa zilizoidhinishwa na PCPB tu, kwa kiwango kilichoandikwa.",
+   "prevention_en": "Rotate with cereals, avoid after tomato/potato.",
+   "prevention_sw": "Zungusha na nafaka, epuka baada ya nyanya/viazi.",
+   "scanner_notes": "Photograph washed roots — galls vs forking-from-stones are different causes."
+  },
+  {
+   "key": "cavity_spot",
+   "name_en": "Cavity spot",
+   "name_sw": "Mashimo ya mizizi",
+   "type": "disease",
+   "severity_classes": "Low (specks) · High (sunken holes, market rejection)",
+   "symptoms_en": "Small sunken oval holes under the skin, worse with moisture swings.",
+   "symptoms_sw": "Mashimo madogo chini ya ngozi, zaidi kwa kubadilika kwa unyevu.",
+   "treatment_en": "None direct — correct calcium + steady watering. Advisory: use PCPB-registered products only, at label rates.",
+   "treatment_sw": "Hakuna dawa ya moja kwa moja — rekebisha kalsiamu + mwagilia kwa utaratibu. Shauri: tumia dawa zilizoidhinishwa na PCPB tu, kwa kiwango kilichoandikwa.",
+   "prevention_en": "Balanced nutrition, consistent irrigation.",
+   "prevention_sw": "Lishe sawia, umwagiliaji wa utaratibu.",
+   "scanner_notes": "Cut roots crosswise to photograph the lesions under the skin."
+  }
+ ],
+ "links": [
+  {
+   "kind": "blog_guide",
+   "label_en": "Panda growing guide: Carrot",
+   "label_sw": "Mwongozo wa Panda: Karoti",
+   "url": "https://panda.shira.farm/blog/carrot-100-day-root-crop-guide"
+  },
+  {
+   "kind": "pcpb",
+   "label_en": "PCPB — registered pest control products",
+   "label_sw": "PCPB — orodha ya dawa zilizoidhinishwa",
+   "url": "https://www.pcpb.go.ke/"
+  },
+  {
+   "kind": "kephis",
+   "label_en": "KEPHIS — plant health services",
+   "label_sw": "KEPHIS — huduma za afya ya mimea",
+   "url": "https://www.kephis.org/"
+  },
+  {
+   "kind": "prices",
+   "label_en": "MoALD market information (KAMIS)",
+   "label_sw": "Taarifa za soko za Wizara ya Kilimo (KAMIS)",
+   "url": "https://www.kilimo.go.ke/"
+  }
+ ],
+ "market_notes": {
+  "sell_windows_en": "Prices steadier than leafy crops — carrots store a few days and smooth out the glut. Medium grade tops the band year-round.",
+  "sell_windows_sw": "Bei thabiti kuliko mboga za majani — karoti hudumu siku chache na kupunguza wingi sokoni. Daraja la kati linaongoza mwaka mzima.",
+  "price_notes_en": "30–60 KES per kg farm-gate, medium grade at the top (November 2026). Input bill 20,000–35,000 KES per acre.",
+  "price_notes_sw": "KES 30–60 kwa kilo shambani, daraja la kati juu (Novemba 2026). Gharama 20,000–35,000 KES kwa eka."
+ }
+}
