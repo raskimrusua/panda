@@ -7,6 +7,7 @@ use App\Models\Tenant;
 use App\Models\User;
 use App\Services\Crops\Disease\CropHealthClient;
 use App\Services\Crops\Disease\MockCropHealthClient;
+use App\Services\Crops\Disease\TreatmentCatalogue;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
@@ -107,7 +108,7 @@ it('mock diagnosis is deterministic for the same image path + crop slug', functi
 
 it('mock returns tomato-specific diseases when crop_slug=tomato', function () {
     $client = new MockCropHealthClient;
-    $tomatoDiseases = ['Early Blight', 'Late Blight', 'Tomato Yellow Leaf Curl Virus (TYLCV)', 'Powdery Mildew', 'Aphid Infestation'];
+    $allTomatoDiseases = array_column(TreatmentCatalogue::catalogue('tomato'), 'name');
 
     // Several attempts to collect a tomato-specific disease.
     $hits = 0;
@@ -116,7 +117,7 @@ it('mock returns tomato-specific diseases when crop_slug=tomato', function () {
         if (in_array($result->topDiagnosis, ['Early Blight', 'Late Blight', 'Tomato Yellow Leaf Curl Virus (TYLCV)'], true)) {
             $hits++;
         }
-        expect(in_array($result->topDiagnosis, $tomatoDiseases, true))->toBeTrue();
+        expect(in_array($result->topDiagnosis, $allTomatoDiseases, true))->toBeTrue();
     }
     // Statistical: with tomato hint, tomato-specific diseases should appear at least once across 20 trials.
     expect($hits)->toBeGreaterThan(0);

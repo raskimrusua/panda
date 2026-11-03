@@ -137,9 +137,13 @@ it('documents result-suggestion coverage per sample crop', function () {
             'mb_strtolower',
             array_column(TreatmentCatalogue::catalogue($slug), 'name')
         );
+        $catalogueKeys = array_map(
+            'mb_strtolower',
+            array_column(TreatmentCatalogue::catalogue($slug), 'key')
+        );
         $report[$slug] = [
             'json_diseases' => count($jsonNames),
-            'by_key' => count(array_intersect($jsonKeys, $catalogueNames)),
+            'by_key' => count(array_intersect($jsonKeys, $catalogueKeys)),
             'by_name' => count(array_intersect($jsonNames, $catalogueNames)),
         ];
     }
