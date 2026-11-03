@@ -18,13 +18,11 @@ beforeEach(function () {
         'image_path' => $image,
     ]);
 
-    /** @var DiseaseFeedback $incorrect */
     $this->incorrect = DiseaseFeedback::factory()->incorrect()->create([
         'tenant_id' => $this->tenant->id,
         'user_id' => $this->user->id,
         'disease_detection_id' => $detection('Early Blight', 'tenants/a/disease/1.jpg')->id,
     ]);
-    /** @var DiseaseFeedback $correct */
     $this->correct = DiseaseFeedback::factory()->create([
         'tenant_id' => $this->tenant->id,
         'user_id' => $this->user->id,
@@ -46,19 +44,22 @@ function cleanupExports(): void
 it('exports incorrect verdicts by default with the retrain columns', function () {
     cleanupExports();
 
+    /** @var DiseaseFeedback $incorrect */
+    $incorrect = $this->incorrect;
+
     $this->artisan('panda:export-feedback')->assertSuccessful();
 
-    $files = glob(storage_path('app/exports/disease-feedback-*.csv'));
+    $files = (array) glob(storage_path('app/exports/disease-feedback-*.csv'));
     expect($files)->toHaveCount(1);
 
-    $lines = file((string) $files[0]);
+    $lines = file((string) $files[0]) ?: [];
     expect(count($lines))->toBe(2); // header + 1 incorrect row
 
     $header = str_getcsv($lines[0]);
     expect($header)->toContain('image_path', 'correction_text', 'top_diagnosis', 'verdict');
 
     $row = str_getcsv($lines[1]);
-    expect($row[0])->toBe($this->incorrect->id)
+    expect($row[0])->toBe($incorrect->id)
         ->and($row[1])->toBe('incorrect')
         ->and($row[3])->toBe('It was actually spider mites.')
         ->and($row[5])->toBe('Early Blight')
@@ -72,8 +73,8 @@ it('includes correct verdicts with --all', function () {
 
     $this->artisan('panda:export-feedback', ['--all' => true])->assertSuccessful();
 
-    $files = glob(storage_path('app/exports/disease-feedback-*.csv'));
-    expect(count(file((string) $files[0])))->toBe(3); // header + 2 rows
+    $files = (array) glob(storage_path('app/exports/disease-feedback-*.csv'));
+    expect(count(file((string) $files[0]) ?: []))->toBe(3); // header + 2 rows
 
     cleanupExports();
 });
@@ -83,7 +84,7 @@ it('filters by verdict explicitly', function () {
 
     $this->artisan('panda:export-feedback', ['--verdict' => 'correct'])->assertSuccessful();
 
-    $files = glob(storage_path('app/exports/disease-feedback-*.csv'));
+    $files = (array) glob(storage_path('app/exports/disease-feedback-*.csv'));
     $row = str_getcsv(file((string) $files[0])[1]);
     expect($row[1])->toBe('correct');
 

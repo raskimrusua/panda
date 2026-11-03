@@ -198,14 +198,14 @@ it('accepts multiple images and persists the full path list', function () {
     expect($response->json('data.image_urls'))->toBeArray()->toHaveCount(2);
 
     $detection = DiseaseDetection::withoutGlobalScopes()->sole();
-    expect($detection->image_paths)->toBeArray()->toHaveCount(2)
-        ->and($detection->image_path)->toBe($detection->image_paths[0])
-        ->and($detection->image_paths[1])->toEndWith('-1.jpg')
-        ->and($detection->image_path)->not->toBe($detection->image_paths[1]);
+    $paths = $detection->image_paths ?? [];
+    expect($paths)->toHaveCount(2)
+        ->and($detection->image_path)->toBe($paths[0])
+        ->and($paths[1])->toEndWith('-1.jpg')
+        ->and($detection->image_path)->not->toBe($paths[1]);
 
     // Both files are on the storage disk under distinct paths.
-    $persistedPaths = is_array($detection->image_paths) ? $detection->image_paths : [];
-    foreach ($persistedPaths as $path) {
+    foreach ($paths as $path) {
         Storage::disk(config('filesystems.default'))->assertExists($path);
     }
 });

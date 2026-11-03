@@ -14,6 +14,13 @@ use Spatie\Activitylog\Traits\LogsActivity;
 
 /**
  * One disease scan from a farmer. Tenant-scoped.
+ *
+ * @property list<string>|null $image_paths All photos from the scan
+ *                                          (first element = primary image_path); Phase B multi-image.
+ * @property list<array{name: string, probability: float}>|null $suggestions
+ *                                                                           Normalised top-3 alternate diagnoses.
+ * @property array<string, mixed>|null $disease_card Bilingual content-card
+ *                                                   snapshot resolved at scan time (Phase A).
  */
 class DiseaseDetection extends Model
 {

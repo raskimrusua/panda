@@ -18,7 +18,7 @@ class DiseaseDetectionResource extends JsonResource
     public function toArray(Request $request): array
     {
         $imageService = app(ImageUploadService::class);
-        $imagePaths = is_array($this->image_paths) ? $this->image_paths : [];
+        $imagePaths = $this->image_paths ?? [];
 
         return [
             'id' => $this->id,
