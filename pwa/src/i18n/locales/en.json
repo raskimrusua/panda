@@ -272,5 +272,26 @@
     "paymentFailed": "Payment could not be started. Please try again.",
     "phoneRequired": "Enter your M-Pesa phone number first.",
     "loadFailed": "Could not load billing details. Please try again."
+  },
+  "disease": {
+    "leaf_photo": "Leaf photo",
+    "photo_guide_title": "Take a clear photo",
+    "photo_guide_lighting": "Natural daylight — avoid harsh shadow",
+    "photo_guide_angle": "Hold the camera parallel to the leaf",
+    "photo_guide_frame": "Fill the frame with the affected leaf",
+    "photo_guide_still": "Hold still — blur hides the details",
+    "analyse_photo": "Analyse photo",
+    "severity": "Severity",
+    "symptoms": "Symptoms",
+    "confidence_high": "High confidence",
+    "confidence_medium": "Medium confidence",
+    "confidence_low": "Low confidence",
+    "other_possibilities": "Other possibilities",
+    "was_this_helpful": "Was this result correct?",
+    "yes": "Yes",
+    "no": "No",
+    "thanks_feedback": "Thanks — your feedback helps improve the scanner.",
+    "what_did_you_see": "What did you actually see? (optional)",
+    "submit_feedback": "Send feedback"
   }
 }

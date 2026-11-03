@@ -272,5 +272,26 @@
     "paymentFailed": "Malipo hayakuweza kuanza. Tafadhali jaribu tena.",
     "phoneRequired": "Weka nambari yako ya simu ya M-Pesa kwanza.",
     "loadFailed": "Haikuwezekana kupakia maelezo ya malipo. Tafadhali jaribu tena."
+  },
+  "disease": {
+    "leaf_photo": "Picha ya jani",
+    "photo_guide_title": "Piga picha iliyo wazi",
+    "photo_guide_lighting": "Mwanga wa asili — epuka kivuli kikali",
+    "photo_guide_angle": "Shika simu sambamba na jani",
+    "photo_guide_frame": "Jaza fremu na jani lililoathirika",
+    "photo_guide_still": "Shikilia vizuri — kutetemeka kunaficha maelezo",
+    "analyse_photo": "Chunguza picha",
+    "severity": "Ukali",
+    "symptoms": "Dalili",
+    "confidence_high": "Uhakika mkubwa",
+    "confidence_medium": "Uhakika wa wastani",
+    "confidence_low": "Uhakika mdogo",
+    "other_possibilities": "Uwezekano mwingine",
+    "was_this_helpful": "Je, matokeo haya ni sahihi?",
+    "yes": "Ndiyo",
+    "no": "Hapana",
+    "thanks_feedback": "Asante — maoni yako yanaboresha skana.",
+    "what_did_you_see": "Umeona nini hasa? (si lazima)",
+    "submit_feedback": "Tuma maoni"
   }
 }

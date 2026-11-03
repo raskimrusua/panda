@@ -4,13 +4,17 @@ namespace App\Http\Controllers\Api\V1\Disease;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Disease\DetectRequest;
+use App\Http\Requests\Disease\DiseaseFeedbackRequest;
 use App\Http\Requests\Disease\PlanTreatmentRequest;
 use App\Http\Resources\CostEntryResource;
 use App\Http\Resources\DiseaseDetectionResource;
+use App\Http\Resources\DiseaseFeedbackResource;
 use App\Models\CostEntry;
 use App\Models\Crop;
 use App\Models\DiseaseDetection;
+use App\Models\DiseaseFeedback;
 use App\Services\Crops\Disease\CropHealthClient;
+use App\Services\Crops\Disease\DiseaseCardResolver;
 use App\Services\Storage\ImageUploadService;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\JsonResponse;
@@ -35,6 +39,7 @@ class DiseaseDetectionController extends Controller
     public function __construct(
         private readonly CropHealthClient $client,
         private readonly ImageUploadService $images,
+        private readonly DiseaseCardResolver $cards,
     ) {}
 
     public function detect(DetectRequest $request): JsonResponse
@@ -78,6 +83,8 @@ class DiseaseDetectionController extends Controller
                 'confidence' => $result->confidence,
                 'engine_response' => $result->rawResponse,
                 'treatments' => $result->treatments,
+                'disease_card' => $this->cards->resolve($result->topDiagnosis, $cropSlug),
+                'suggestions' => $result->suggestions(3),
             ])->save();
 
             return $detection;
@@ -178,5 +185,34 @@ class DiseaseDetectionController extends Controller
         return (new CostEntryResource($cost))
             ->response()
             ->setStatusCode(201);
+    }
+
+    /**
+     * Farmer verdict on a scan result — Phase A capture for the Phase B
+     * correction retrain queue. One row per scan per user; re-submission
+     * updates the verdict in place (201 create / 200 update). Route-model
+     * binding is tenant-scoped, so foreign-tenant scans 404 before this runs.
+     */
+    public function feedback(DiseaseFeedbackRequest $request, DiseaseDetection $diseaseDetection): JsonResponse
+    {
+        $data = $request->validated();
+        $user = $request->user();
+
+        $feedback = DiseaseFeedback::query()->updateOrCreate(
+            [
+                'disease_detection_id' => $diseaseDetection->id,
+                'user_id' => $user?->id,
+            ],
+            [
+                'tenant_id' => $diseaseDetection->tenant_id,
+                'verdict' => $data['verdict'],
+                'correction_key' => $data['correction_key'] ?? null,
+                'correction_text' => $data['correction_text'] ?? null,
+            ]
+        );
+
+        return (new DiseaseFeedbackResource($feedback))
+            ->response()
+            ->setStatusCode($feedback->wasRecentlyCreated ? 201 : 200);
     }
 }

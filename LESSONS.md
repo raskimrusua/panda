@@ -47,6 +47,8 @@ These 4 lessons have been backported to `uwc-ops#5` (awaiting Joshua review).
 | PANDA-004 | Non-tomato crops (kale, onion) have 0 Season Engine activities — no JSON content files exist | 🔴 Open | Create kale.json + onion.json content files in resources/content/crops/ |
 | PANDA-005 | Cost/harvest simulation seed data hardcoded for tomato across all crops | 🟡 Open | Parameterize seedCostsForSeason/seedHarvestsForSeason by crop type |
 | PANDA-006 | Docker image must be rebuilt for code changes — files not bind-mounted in prod | ✅ Fixed (workaround) | Rebuild with `docker compose -f docker-compose.prod.yml build app` after file changes |
+| PANDA-007 | Disease vocabulary mismatch — catalogue display names (`Aphid Infestation`) vs content keys (`aphids`) never intersect | ✅ Fixed (Phase A, PR #71) | `DiseaseCardResolver::NAME_ALIASES` + convention: catalogue `name` must equal card `name_en` (or add a documented alias) |
+| PANDA-008 | Push to raskimrusua/panda 403s with the default `upstate-web-co` gh account | ✅ Fixed (Phase A, PR #71) | Per-command `gh auth token --user raskimrusua` → `GH_TOKEN=… gh pr create` / token URL push; never `gh auth switch` (disturbs other sessions) |
 
 
 ---

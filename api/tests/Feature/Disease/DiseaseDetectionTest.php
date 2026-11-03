@@ -6,6 +6,7 @@ use App\Models\Season;
 use App\Models\Tenant;
 use App\Models\User;
 use App\Services\Crops\Disease\CropHealthClient;
+use App\Services\Crops\Disease\DiseaseCardResolver;
 use App\Services\Crops\Disease\MockCropHealthClient;
 use App\Services\Crops\Disease\TreatmentCatalogue;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -140,4 +141,42 @@ it('CROSS-TENANT: cannot read another tenant scan (404)', function () {
 
     $this->getJson("/api/v1/disease/{$foreign->id}")
         ->assertNotFound();
+});
+
+it('persists the resolved bilingual disease card and top-3 suggestions on detect', function () {
+    $crop = Crop::factory()->tomato()->create();
+    $file = UploadedFile::fake()->image('leaf.jpg', 800, 600);
+
+    $response = $this->postJson('/api/v1/disease/detect', [
+        'image' => $file,
+        'crop_id' => $crop->id,
+    ])
+        ->assertCreated()
+        ->assertJsonStructure(['data' => ['id', 'image_url', 'provider', 'top_diagnosis', 'confidence', 'treatments', 'disease_card', 'suggestions', 'disclaimer']]);
+
+    $top = (string) $response->json('data.top_diagnosis');
+    $expected = app(DiseaseCardResolver::class)->resolve($top, 'tomato');
+
+    expect($response->json('data.disease_card'))->toBe($expected)
+        ->and($response->json('data.suggestions'))->toBeArray()->toHaveCount(3);
+    expect($response->json('data.suggestions.0.name'))->toBe($top)
+        ->and($response->json('data.suggestions.0.probability'))->toBeNumeric();
+
+    // Snapshot persisted on the row (drift-proof history), not resolved live.
+    $detection = DiseaseDetection::withoutGlobalScopes()->sole();
+    expect($detection->disease_card)->toBe($expected)
+        ->and($detection->suggestions)->toHaveCount(3);
+});
+
+it('resolves a bilingual card even without a crop hint (global fallback)', function () {
+    $file = UploadedFile::fake()->image('leaf.jpg', 800, 600);
+
+    $response = $this->postJson('/api/v1/disease/detect', ['image' => $file])
+        ->assertCreated();
+
+    $card = $response->json('data.disease_card');
+    expect($card)->not->toBeNull()
+        ->and($card['name_en'])->not->toBeEmpty()
+        ->and($card['name_sw'])->not->toBeEmpty()
+        ->and($card['severity_classes'])->not->toBeEmpty();
 });

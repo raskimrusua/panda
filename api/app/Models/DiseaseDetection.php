@@ -43,6 +43,8 @@ class DiseaseDetection extends Model
         'confidence',
         'engine_response',
         'treatments',
+        'disease_card',
+        'suggestions',
         'opt_in_for_training',
         'captured_by',
         'captured_at',
@@ -54,6 +56,8 @@ class DiseaseDetection extends Model
             'confidence' => 'decimal:4',
             'engine_response' => 'array',
             'treatments' => 'array',
+            'disease_card' => 'array',
+            'suggestions' => 'array',
             'opt_in_for_training' => 'boolean',
             'captured_at' => 'datetime',
         ];
