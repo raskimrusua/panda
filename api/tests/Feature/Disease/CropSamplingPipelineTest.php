@@ -144,22 +144,19 @@ it('documents result-suggestion coverage per sample crop', function () {
         ];
     }
 
-    // Current reality (locks in the known integration gap): the catalogue is
-    // keyed by DISPLAY NAMES (matching the Kindwise API's naming), while the
-    // crop JSONs are keyed by disease KEYS — the two vocabularies never
-    // intersect. Tomato has real catalogue entries but its JSON holds keys
-    // (early_blight vs "Early Blight"), and kale/maize/pawpaw only see the
-    // 2 generic entries. Extending TreatmentCatalogue per crop — and bridging
-    // the key/name vocabularies — is the deliberate S1 follow-up this test
-    // guards.
-    foreach (SAMPLE_CROPS as $slug) {
-        expect($report[$slug]['by_key'])->toBe(0);
-    }
-    // Only pawpaw intersects the suggestion layer, and only via the generic
-    // "Powdery Mildew" entry — every crop-specific disease is outside the
-    // catalogue. The bridge work is the deliberate S1 follow-up.
+    // Post-bridge state (TreatmentCatalogue extended per crop, S1 2026-11):
+    // the crop JSON disease cards and the catalogue now reference each other
+    // by key. The numbers below are the real intersections — they change only
+    // when the catalogue or the JSONs deliberately change. Tomato intersects
+    // by key only (its JSON holds string keys, the catalogue holds Kindwise
+    // display names) — the tomato name-space gap remains a known follow-up.
+    expect($report['tomato']['by_key'])->toBe(6);
+    expect($report['kale']['by_key'])->toBe(5);
+    expect($report['maize']['by_key'])->toBe(5);
+    expect($report['pawpaw']['by_key'])->toBe(5);
+
     expect($report['tomato']['by_name'])->toBe(0);
-    expect($report['kale']['by_name'])->toBe(0);
-    expect($report['maize']['by_name'])->toBe(0);
-    expect($report['pawpaw']['by_name'])->toBe(1);
+    expect($report['kale']['by_name'])->toBe(5);
+    expect($report['maize']['by_name'])->toBe(5);
+    expect($report['pawpaw']['by_name'])->toBe(5);
 });
