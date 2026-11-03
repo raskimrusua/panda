@@ -1,46 +1,312 @@
 {
-    "slug": "avocado",
-    "name_en": "Avocado",
-    "name_sw": "Parachichi",
-    "category": "fruit",
-    "harvest_type": "multi",
-    "jica_manual_ref": "Inspired by JICA SHEP PLUS — Avocado production manual (Hass focus)",
-    "kalro_guide_ref": "KALRO Avocado production guide + HCD export standards",
-    "ecological_requirements": {
-        "altitude_min_m": 1000,
-        "altitude_max_m": 2100,
-        "rainfall_min_mm": 1000,
-        "rainfall_max_mm": 1600,
-        "temperature_min_c": 15,
-        "temperature_max_c": 28,
-        "soil_types": ["loam", "sandy_loam", "volcanic_loam"],
-        "soil_ph_min": 5.5,
-        "soil_ph_max": 7.0
-    },
-    "varieties": [
-        {"name": "Hass", "type": "GRAFTED_SEEDLING", "days_to_maturity": 730, "yield_kg_per_acre": 8000, "supplier_notes": "Export gold standard; 80% of Kenyan avocado exports. First fruit at 2-3 years; full yield at 5-7."},
-        {"name": "Fuerte", "type": "GRAFTED_SEEDLING", "days_to_maturity": 730, "yield_kg_per_acre": 7000, "supplier_notes": "Local market preferred; thinner skin; ships less well."}
-    ],
-    "timeline_template": [
-        {"activity_type": "land_prep", "phase": "land_prep", "week_from_planting": -4, "day_window": 14, "description_en": "Mark planting holes 8m x 8m. Dig 60cm cubed holes. Mix topsoil + 2 tins manure per hole.", "description_sw": "Weka alama mashimo 8m x 8m. Chimba mashimo 60cm pande zote. Changanya udongo na samadi.", "is_critical": true},
-        {"activity_type": "transplanting", "phase": "transplanting", "week_from_planting": 0, "day_window": 3, "description_en": "Plant grafted seedling at original nursery depth. Stake against wind.", "description_sw": "Panda mche uliotokana na kupandikiza, kina sawa na kitalu. Simika nguzo.", "is_critical": true},
-        {"activity_type": "basal_fertiliser", "phase": "transplanting", "week_from_planting": 0, "day_window": 1, "description_en": "Apply 100g DAP per hole, mixed into soil before planting.", "description_sw": "Weka gramu 100 za DAP kwa shimo.", "is_critical": true},
-        {"activity_type": "watering", "phase": "growth", "week_from_planting": 2, "day_window": 12, "description_en": "Water 20L per tree weekly for first 12 weeks if no rain.", "description_sw": "Mwagilia lita 20 kwa mti kwa wiki kwa wiki 12 ikiwa hakuna mvua.", "is_critical": true},
-        {"activity_type": "weeding_basin", "phase": "growth", "week_from_planting": 8, "day_window": 4, "description_en": "Hand-weed basin around tree. Mulch heavily.", "description_sw": "Palia kuzunguka mti. Funika na nyasi.", "is_critical": false},
-        {"activity_type": "fertiliser_year1", "phase": "growth", "week_from_planting": 16, "day_window": 7, "description_en": "Apply 250g NPK 17:17:17 per tree. Split into 2 doses 6 months apart.", "description_sw": "Weka gramu 250 za NPK kwa mti. Gawanya dosi 2.", "is_critical": true},
-        {"activity_type": "formative_pruning", "phase": "growth", "week_from_planting": 26, "day_window": 14, "description_en": "Light pruning to shape — remove suckers and crossing branches.", "description_sw": "Punguza matawi yanayozidi.", "is_critical": false},
-        {"activity_type": "pest_monitoring", "phase": "growth", "week_from_planting": 52, "day_window": 30, "description_en": "Scout for false codling moth + thrips. Spray only at threshold.", "description_sw": "Tafuta vidudu vya parachichi. Nyunyuza wakizidi.", "is_critical": false},
-        {"activity_type": "first_fruiting_check", "phase": "harvest", "week_from_planting": 100, "day_window": 30, "description_en": "First commercial fruits at year 2-3. Pick when fruit is firm and dark.", "description_sw": "Matunda ya kwanza ya kuuza mwaka 2-3. Vuna yakiwa magumu.", "tip_en": "Hass: skin turns dark before pick. Fuerte: skin stays green; test by feel.", "tip_sw": "Hass: ngozi inakuwa nyeusi. Fuerte: ngozi inabaki kijani.", "is_critical": false}
-    ],
-    "inputs_per_acre": [
-        {"input_type": "seed", "product_name": "Grafted Hass seedlings (75 trees)", "quantity": 75, "unit": "pieces", "week_from_planting": 0, "benchmark_price_kes": 22500, "pcpb_registered": false, "alternatives": ["Fuerte", "Pinkerton"]},
-        {"input_type": "fertiliser", "product_name": "DAP (7.5kg)", "quantity": 7.5, "unit": "kg", "week_from_planting": 0, "benchmark_price_kes": 600, "pcpb_registered": false},
-        {"input_type": "fertiliser", "product_name": "Manure 3 tons", "quantity": 3000, "unit": "kg", "week_from_planting": -4, "benchmark_price_kes": 9000, "pcpb_registered": false},
-        {"input_type": "fertiliser", "product_name": "NPK 17:17:17 (37.5kg)", "quantity": 37.5, "unit": "kg", "week_from_planting": 16, "benchmark_price_kes": 3000, "pcpb_registered": false},
-        {"input_type": "equipment", "product_name": "Stakes 1.5m", "quantity": 75, "unit": "pieces", "week_from_planting": 0, "benchmark_price_kes": 1500, "pcpb_registered": false},
-        {"input_type": "chemical", "product_name": "Karate 5EC (500ml)", "quantity": 500, "unit": "ml", "week_from_planting": 52, "benchmark_price_kes": 850, "pcpb_registered": true}
-    ],
-    "yield_per_acre": {"expected_kg": 8000, "min_kg": 4000, "max_kg": 12000, "number_of_picks": 4, "pick_interval_days": 21},
-    "post_harvest": {"shelf_life_days": 14, "grading_criteria": "Export A: 200-350g, no blemishes, oil content 23%+. Grade B: 150-200g or minor scars.", "packaging_standard": "4kg cartons (export); 50kg crates (local).", "storage_tips_en": "Cold chain 4-7°C from pack-house to destination. Don't freeze.", "storage_tips_sw": "Hifadhi 4-7°C tangu kuvuna mpaka soko."},
-    "diseases": ["false_codling_moth", "anthracnose", "phytophthora_root_rot", "thrips"]
+ "slug": "avocado",
+ "name_en": "Avocado",
+ "name_sw": "Parachichi",
+ "category": "fruit",
+ "harvest_type": "multi",
+ "jica_manual_ref": "Inspired by JICA SHEP PLUS — Avocado production manual (Hass focus)",
+ "kalro_guide_ref": "KALRO Avocado production guide + HCD export standards",
+ "ecological_requirements": {
+  "altitude_min_m": 1000,
+  "altitude_max_m": 2100,
+  "rainfall_min_mm": 1000,
+  "rainfall_max_mm": 1600,
+  "temperature_min_c": 15,
+  "temperature_max_c": 28,
+  "soil_types": [
+   "loam",
+   "sandy_loam",
+   "volcanic_loam"
+  ],
+  "soil_ph_min": 5.5,
+  "soil_ph_max": 7.0
+ },
+ "varieties": [
+  {
+   "name": "Hass",
+   "type": "GRAFTED_SEEDLING",
+   "days_to_maturity": 730,
+   "yield_kg_per_acre": 8000,
+   "supplier_notes": "Export gold standard; 80% of Kenyan avocado exports. First fruit at 2-3 years; full yield at 5-7."
+  },
+  {
+   "name": "Fuerte",
+   "type": "GRAFTED_SEEDLING",
+   "days_to_maturity": 730,
+   "yield_kg_per_acre": 7000,
+   "supplier_notes": "Local market preferred; thinner skin; ships less well."
+  }
+ ],
+ "timeline_template": [
+  {
+   "activity_type": "land_prep",
+   "phase": "land_prep",
+   "week_from_planting": -4,
+   "day_window": 14,
+   "description_en": "Mark planting holes 8m x 8m. Dig 60cm cubed holes. Mix topsoil + 2 tins manure per hole.",
+   "description_sw": "Weka alama mashimo 8m x 8m. Chimba mashimo 60cm pande zote. Changanya udongo na samadi.",
+   "is_critical": true
+  },
+  {
+   "activity_type": "transplanting",
+   "phase": "transplanting",
+   "week_from_planting": 0,
+   "day_window": 3,
+   "description_en": "Plant grafted seedling at original nursery depth. Stake against wind.",
+   "description_sw": "Panda mche uliotokana na kupandikiza, kina sawa na kitalu. Simika nguzo.",
+   "is_critical": true
+  },
+  {
+   "activity_type": "basal_fertiliser",
+   "phase": "transplanting",
+   "week_from_planting": 0,
+   "day_window": 1,
+   "description_en": "Apply 100g DAP per hole, mixed into soil before planting.",
+   "description_sw": "Weka gramu 100 za DAP kwa shimo.",
+   "is_critical": true
+  },
+  {
+   "activity_type": "watering",
+   "phase": "growth",
+   "week_from_planting": 2,
+   "day_window": 12,
+   "description_en": "Water 20L per tree weekly for first 12 weeks if no rain.",
+   "description_sw": "Mwagilia lita 20 kwa mti kwa wiki kwa wiki 12 ikiwa hakuna mvua.",
+   "is_critical": true
+  },
+  {
+   "activity_type": "intercropping",
+   "phase": "establishment",
+   "week_from_planting": 4,
+   "day_window": 120,
+   "description_en": "Intercrop the avenues with beans, sukuma, dhania or butternut — the annuals pay the land rent while the orchard matures.",
+   "description_sw": "Panda maharagwe, sukuma, dhania au butternut katikati — mazao ya msimu yanalipa kodi ya ardhi wakati miti inakua.",
+   "is_critical": false
+  },
+  {
+   "activity_type": "weeding_basin",
+   "phase": "growth",
+   "week_from_planting": 8,
+   "day_window": 4,
+   "description_en": "Hand-weed basin around tree. Mulch heavily.",
+   "description_sw": "Palia kuzunguka mti. Funika na nyasi.",
+   "is_critical": false
+  },
+  {
+   "activity_type": "fertiliser_year1",
+   "phase": "growth",
+   "week_from_planting": 16,
+   "day_window": 7,
+   "description_en": "Apply 250g NPK 17:17:17 per tree. Split into 2 doses 6 months apart.",
+   "description_sw": "Weka gramu 250 za NPK kwa mti. Gawanya dosi 2.",
+   "is_critical": true
+  },
+  {
+   "activity_type": "formative_pruning",
+   "phase": "growth",
+   "week_from_planting": 26,
+   "day_window": 14,
+   "description_en": "Light pruning to shape — remove suckers and crossing branches.",
+   "description_sw": "Punguza matawi yanayozidi.",
+   "is_critical": false
+  },
+  {
+   "activity_type": "pest_monitoring",
+   "phase": "growth",
+   "week_from_planting": 52,
+   "day_window": 30,
+   "description_en": "Scout for false codling moth + thrips. Spray only at threshold.",
+   "description_sw": "Tafuta vidudu vya parachichi. Nyunyuza wakizidi.",
+   "is_critical": false
+  },
+  {
+   "activity_type": "first_fruiting_check",
+   "phase": "harvest",
+   "week_from_planting": 100,
+   "day_window": 30,
+   "description_en": "First commercial fruits at year 2-3. Pick when fruit is firm and dark.",
+   "description_sw": "Matunda ya kwanza ya kuuza mwaka 2-3. Vuna yakiwa magumu.",
+   "tip_en": "Hass: skin turns dark before pick. Fuerte: skin stays green; test by feel.",
+   "tip_sw": "Hass: ngozi inakuwa nyeusi. Fuerte: ngozi inabaki kijani.",
+   "is_critical": false
+  }
+ ],
+ "inputs_per_acre": [
+  {
+   "input_type": "seed",
+   "product_name": "Grafted Hass seedlings (75 trees)",
+   "quantity": 75,
+   "unit": "pieces",
+   "week_from_planting": 0,
+   "benchmark_price_kes": 22500,
+   "pcpb_registered": false,
+   "alternatives": [
+    "Fuerte",
+    "Pinkerton"
+   ]
+  },
+  {
+   "input_type": "fertiliser",
+   "product_name": "DAP (7.5kg)",
+   "quantity": 7.5,
+   "unit": "kg",
+   "week_from_planting": 0,
+   "benchmark_price_kes": 600,
+   "pcpb_registered": false
+  },
+  {
+   "input_type": "fertiliser",
+   "product_name": "Manure 3 tons",
+   "quantity": 3000,
+   "unit": "kg",
+   "week_from_planting": -4,
+   "benchmark_price_kes": 9000,
+   "pcpb_registered": false
+  },
+  {
+   "input_type": "fertiliser",
+   "product_name": "NPK 17:17:17 (37.5kg)",
+   "quantity": 37.5,
+   "unit": "kg",
+   "week_from_planting": 16,
+   "benchmark_price_kes": 3000,
+   "pcpb_registered": false
+  },
+  {
+   "input_type": "equipment",
+   "product_name": "Stakes 1.5m",
+   "quantity": 75,
+   "unit": "pieces",
+   "week_from_planting": 0,
+   "benchmark_price_kes": 1500,
+   "pcpb_registered": false
+  },
+  {
+   "input_type": "chemical",
+   "product_name": "Karate 5EC (500ml)",
+   "quantity": 500,
+   "unit": "ml",
+   "week_from_planting": 52,
+   "benchmark_price_kes": 850,
+   "pcpb_registered": true
+  }
+ ],
+ "yield_per_acre": {
+  "expected_kg": 8000,
+  "min_kg": 4000,
+  "max_kg": 12000,
+  "number_of_picks": 4,
+  "pick_interval_days": 21
+ },
+ "post_harvest": {
+  "shelf_life_days": 14,
+  "grading_criteria": "Export A: 200-350g, no blemishes, oil content 23%+. Grade B: 150-200g or minor scars.",
+  "packaging_standard": "4kg cartons (export); 50kg crates (local).",
+  "storage_tips_en": "Cold chain 4-7°C from pack-house to destination. Don't freeze.",
+  "storage_tips_sw": "Hifadhi 4-7°C tangu kuvuna mpaka soko."
+ },
+ "diseases": [
+  {
+   "key": "false_codling_moth",
+   "name_en": "False codling moth",
+   "name_sw": "Nondo wa matunda",
+   "type": "pest",
+   "severity_classes": "Low (stings) · High (larval tunnels, export rejection)",
+   "symptoms_en": "Larvae tunnel into fruit; the #1 export quarantine pest on Kenyan avocados.",
+   "symptoms_sw": "Viluwiluwi hutoboa matunda; mdudu namba moja wa kukataliwa kwa kuuza nje.",
+   "treatment_en": "Registered larvicides on orchard schedule; remove and destroy fallen fruit. Advisory: use PCPB-registered products only, at label rates.",
+   "treatment_sw": "Dawa zilizoidhinishwa kwa ratiba; ondoa na uteketeze matunda yaliyoanguka. Shauri: tumia dawa zilizoidhinishwa na PCPB tu, kwa kiwango kilichoandikwa.",
+   "prevention_en": "Orchard sanitation, monitoring traps, harvest on time.",
+   "prevention_sw": "Usafi wa shamba, mitego ya kuchunguza, vuna kwa wakati.",
+   "scanner_notes": "Fruit close-up at the sting point."
+  },
+  {
+   "key": "anthracnose",
+   "name_en": "Anthracnose",
+   "name_sw": "Ugonjwa wa madoa meusi",
+   "type": "disease",
+   "severity_classes": "Low (specks) · High (sunken rot on fruit)",
+   "symptoms_en": "Black sunken spots on fruit, often appearing days after picking, pink ooze in humidity.",
+   "symptoms_sw": "Madoa meusi yaliyozama, yanaonekana siku chache baada ya kuvuna, ute wa pinki unyevu.",
+   "treatment_en": "Registered anthracnose-active sprays pre-harvest; clean dry handling. Advisory: use PCPB-registered products only, at label rates.",
+   "treatment_sw": "Dawa zilizoidhinishwa kabla ya kuvuna; shika pakavu na safi. Shauri: tumia dawa zilizoidhinishwa na PCPB tu, kwa kiwango kilichoandikwa.",
+   "prevention_en": "Prune for airflow, harvest dry, handle gently.",
+   "prevention_sw": "Kata matawi kwa hewa, vuna pakavu, shika kwa upole.",
+   "scanner_notes": "Fruit close-up; post-harvest timing of spots is diagnostic."
+  },
+  {
+   "key": "phytophthora_root_rot",
+   "name_en": "Root rot (Phytophthora)",
+   "name_sw": "Uoza wa mizizi",
+   "type": "disease",
+   "severity_classes": "Early (yellowing, thin canopy) · Advanced (dieback, death)",
+   "symptoms_en": "Yellowing leaves, branch dieback, sparse canopy, dark lesions at the collar, wet soil.",
+   "symptoms_sw": "Majani kuwitikia, matawi kufa, kichwa cheusi cha miti, udongo wenye maji.",
+   "treatment_en": "None once advanced — improve drainage, remove dying trees. Advisory: use PCPB-registered products only, at label rates.",
+   "treatment_sw": "Hakuna tiba ikiwa imeendelea — boresha mifereji, ng'oa miti inayokufa. Shauri: tumia dawa zilizoidhinishwa na PCPB tu, kwa kiwango kilichoandikwa.",
+   "prevention_en": "Certified clean seedlings, perfect drainage, no collar watering.",
+   "prevention_sw": "Miche safi iliyothibitishwa, mifereji bora, usimwagilie kwenye shina.",
+   "scanner_notes": "Photograph the tree base + canopy; ask about water pooling in-app."
+  },
+  {
+   "key": "thrips_scales",
+   "name_en": "Thrips and scales",
+   "name_sw": "Vidukari na magamba",
+   "type": "pest",
+   "severity_classes": "Low (scarring) · Severe (bronzed fruit, sooty mould)",
+   "symptoms_en": "Silver-bronze fruit scarring (thrips), dark sooty mould on leaves (scales).",
+   "symptoms_sw": "Matunda yenye makovu ya fedha (vidukari), ukungu mweusi majani (magamba).",
+   "treatment_en": "Registered products at threshold only. Advisory: use PCPB-registered products only, at label rates.",
+   "treatment_sw": "Dawa zilizoidhinishwa tu wakati wamezidi. Shauri: tumia dawa zilizoidhinishwa na PCPB tu, kwa kiwango kilichoandikwa.",
+   "prevention_en": "Natural enemy preservation, monitoring.",
+   "prevention_sw": "Hifadhi maadui wa asili, chunguza.",
+   "scanner_notes": "Fruit surface photo for thrips; leaf underside for scales."
+  },
+  {
+   "key": "cercospora_leaf_spot",
+   "name_en": "Cercospora leaf spot",
+   "name_sw": "Madoa ya majani",
+   "type": "disease",
+   "severity_classes": "Low (scattered spots) · High (leaf drop, sunburned fruit)",
+   "symptoms_en": "Brown spots on leaves, yellowing, premature leaf drop in humid weather.",
+   "symptoms_sw": "Madoa ya kahawia majani, kuwitikia, majani kuanguka mapema unyevu.",
+   "treatment_en": "Registered sprays at first spots. Advisory: use PCPB-registered products only, at label rates.",
+   "treatment_sw": "Dawa zilizoidhinishwa mara madoa yanapoanza. Shauri: tumia dawa zilizoidhinishwa na PCPB tu, kwa kiwango kilichoandikwa.",
+   "prevention_en": "Pruning for airflow, orchard hygiene.",
+   "prevention_sw": "Kata matawi kwa hewa, usafi wa shamba.",
+   "scanner_notes": "Leaf spots + drop pattern; humid season timing."
+  }
+ ],
+ "links": [
+  {
+   "kind": "blog_guide",
+   "label_en": "Panda growing guide: Avocado",
+   "label_sw": "Mwongozo wa Panda: Parachichi",
+   "url": "https://panda.shira.farm/blog/avocado-5-year-export-crop-guide"
+  },
+  {
+   "kind": "pcpb",
+   "label_en": "PCPB — registered pest control products",
+   "label_sw": "PCPB — orodha ya dawa zilizoidhinishwa",
+   "url": "https://www.pcpb.go.ke/"
+  },
+  {
+   "kind": "kephis",
+   "label_en": "KEPHIS — plant health services",
+   "label_sw": "KEPHIS — huduma za afya ya mimea",
+   "url": "https://www.kephis.org/"
+  },
+  {
+   "kind": "prices",
+   "label_en": "MoALD market information (KAMIS)",
+   "label_sw": "Taarifa za soko za Wizara ya Kilimo (KAMIS)",
+   "url": "https://www.kilimo.go.ke/"
+  }
+ ],
+ "market_notes": {
+  "sell_windows_en": "Main harvest March–September; export window June–September. The 5-year wait is funded by intercropping the avenues in years 0–3.",
+  "sell_windows_sw": "Mavuno makuu Machi–Septemba; dirisha la kuuza nje Juni–Septemba. Kusubiri miaka 5 kunafadhiliwa na kupanda mazao katikati miaka 0–3.",
+  "price_notes_en": "Local ~10–50 KES per fruit by size; export-grade Hass several multiples (November 2026). Establishment ~50,000–100,000 KES per acre before full returns.",
+  "price_notes_sw": "Soko la ndani ~10–50 KES kwa tunda; Hass ya kuuza nje mara kadhaa zaidi (Novemba 2026). Uanzishaji ~50,000–100,000 KES kwa eka kabla ya faida kamili."
+ }
 }
