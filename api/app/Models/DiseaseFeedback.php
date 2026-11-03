@@ -13,7 +13,7 @@ use Spatie\Activitylog\Traits\LogsActivity;
 
 /**
  * One farmer verdict on a disease scan. Phase A capture; Phase B consumes
- * rows for the correction retrain queue.
+ * rows for the correction retrain queue (`reviewed_*` stamps + export).
  */
 class DiseaseFeedback extends Model
 {
@@ -37,14 +37,36 @@ class DiseaseFeedback extends Model
         'verdict',
         'correction_key',
         'correction_text',
+        'reviewed_at',
+        'reviewed_by',
     ];
+
+    protected function casts(): array
+    {
+        return [
+            'reviewed_at' => 'datetime',
+        ];
+    }
 
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()
-            ->logOnly(['verdict', 'correction_key'])
+            ->logOnly(['verdict', 'correction_key', 'reviewed_at'])
             ->logOnlyDirty()
             ->dontSubmitEmptyLogs();
+    }
+
+    /**
+     * Stamp the row as pulled into a training batch. NULL reviewed_at = still
+     * in the retrain queue (the Filament triage filter keys off this).
+     */
+    public function markReviewed(User $user): static
+    {
+        $this->reviewed_at = now();
+        $this->reviewed_by = $user->id;
+        $this->save();
+
+        return $this;
     }
 
     /** @return BelongsTo<DiseaseDetection, $this> */
@@ -57,5 +79,11 @@ class DiseaseFeedback extends Model
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    /** @return BelongsTo<User, $this> */
+    public function reviewedBy(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'reviewed_by');
     }
 }

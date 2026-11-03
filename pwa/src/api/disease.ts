@@ -38,7 +38,8 @@ export interface DiseaseDetection {
   id: string;
   season_id: string | null;
   crop_id: string | null;
-  image_url: string;
+  image_url: string | null;
+  image_urls?: string[] | null;
   provider: 'mock' | 'crop_health' | 'offline_decision_tree';
   top_diagnosis: string | null;
   confidence: number | null;
@@ -50,7 +51,8 @@ export interface DiseaseDetection {
 }
 
 export interface DetectPayload {
-  image: File;
+  image?: File;
+  images?: File[];
   crop_id?: string;
   season_id?: string;
   opt_in_for_training?: boolean;
@@ -73,7 +75,12 @@ export interface DiseaseFeedbackPayload {
 export const diseaseApi = {
   async detect(payload: DetectPayload): Promise<{ data: DiseaseDetection }> {
     const fd = new FormData();
-    fd.append('image', payload.image);
+    // Legacy single-photo field for older builds; `images[]` is the
+    // Phase B multi-photo field (API accepts either).
+    if (payload.image) fd.append('image', payload.image);
+    if (payload.images) {
+      for (const img of payload.images) fd.append('images[]', img);
+    }
     if (payload.crop_id) fd.append('crop_id', payload.crop_id);
     if (payload.season_id) fd.append('season_id', payload.season_id);
     if (payload.opt_in_for_training) fd.append('opt_in_for_training', '1');

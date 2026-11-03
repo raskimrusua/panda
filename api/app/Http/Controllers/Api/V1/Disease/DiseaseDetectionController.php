@@ -68,16 +68,28 @@ class DiseaseDetectionController extends Controller
             ]);
             $detection->save();
 
-            $imagePath = $this->images->uploadDiseasePhoto(
-                $request->file('image'),
-                $request->user()->tenant_id,
-                (string) $detection->id,
-            );
+            $files = [];
+            if (is_array($request->file('images'))) {
+                $files = array_values(array_filter($request->file('images')));
+            } elseif ($request->file('image') !== null) {
+                $files = [$request->file('image')];
+            }
 
-            $result = $this->client->diagnose($imagePath, $cropSlug);
+            $imagePaths = [];
+            foreach ($files as $index => $file) {
+                $imagePaths[] = $this->images->uploadDiseasePhoto(
+                    $file,
+                    $request->user()->tenant_id,
+                    (string) $detection->id,
+                    $index,
+                );
+            }
+
+            $result = $this->client->diagnose($imagePaths, $cropSlug);
 
             $detection->fill([
-                'image_path' => $imagePath,
+                'image_path' => $imagePaths[0],
+                'image_paths' => $imagePaths,
                 'provider' => $result->provider,
                 'top_diagnosis' => $result->topDiagnosis,
                 'confidence' => $result->confidence,

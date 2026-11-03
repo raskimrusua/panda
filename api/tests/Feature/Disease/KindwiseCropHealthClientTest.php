@@ -6,6 +6,7 @@ use App\Services\Crops\Disease\KindwiseCropHealthClient;
 use App\Services\Crops\Disease\MockCropHealthClient;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
+use RuntimeException;
 
 beforeEach(function () {
     config([
@@ -14,6 +15,7 @@ beforeEach(function () {
     ]);
     Storage::fake(config('filesystems.default'));
     Storage::disk(config('filesystems.default'))->put('disease/leaf.jpg', 'fake-image-bytes');
+    Storage::disk(config('filesystems.default'))->put('disease/leaf-2.jpg', 'fake-image-bytes-2');
 });
 
 it('binds the mock provider by default', function () {
@@ -54,7 +56,7 @@ it('hits the Kindwise endpoint and maps the top disease suggestion', function ()
         ], 200),
     ]);
 
-    $result = app(KindwiseCropHealthClient::class)->diagnose('disease/leaf.jpg', 'tomato');
+    $result = app(KindwiseCropHealthClient::class)->diagnose(['disease/leaf.jpg'], 'tomato');
 
     expect($result->provider)->toBe(DiseaseDetection::PROVIDER_CROP_HEALTH)
         ->and($result->topDiagnosis)->toBe('Early Blight')
@@ -77,6 +79,42 @@ it('hits the Kindwise endpoint and maps the top disease suggestion', function ()
     });
 });
 
+it('sends every photo in one call and merges per-image suggestions', function () {
+    Http::fake([
+        'crop.kindwise.com/*' => Http::response([
+            'result' => [
+                [
+                    'disease' => [
+                        'suggestions' => [
+                            ['name' => 'Early Blight', 'probability' => 0.62],
+                        ],
+                    ],
+                ],
+                [
+                    'disease' => [
+                        'suggestions' => [
+                            ['name' => 'Late Blight', 'probability' => 0.88],
+                        ],
+                    ],
+                ],
+            ],
+        ], 200),
+    ]);
+
+    $result = app(KindwiseCropHealthClient::class)->diagnose(['disease/leaf.jpg', 'disease/leaf-2.jpg'], 'tomato');
+
+    expect($result->topDiagnosis)->toBe('Late Blight')
+        ->and($result->confidence)->toBe(0.88)
+        ->and($result->suggestions(3))->toHaveCount(2);
+    expect($result->suggestions(3)[0]['name'])->toBe('Late Blight');
+
+    Http::assertSent(function ($request) {
+        $body = $request->data();
+
+        return is_array($body['images'] ?? null) && count($body['images']) === 2;
+    });
+});
+
 it('falls back to the local PCPB catalogue when the API returns no treatment details', function () {
     Http::fake([
         'crop.kindwise.com/*' => Http::response([
@@ -94,7 +132,7 @@ it('falls back to the local PCPB catalogue when the API returns no treatment det
         ], 200),
     ]);
 
-    $result = app(KindwiseCropHealthClient::class)->diagnose('disease/leaf.jpg', 'tomato');
+    $result = app(KindwiseCropHealthClient::class)->diagnose(['disease/leaf.jpg'], 'tomato');
 
     expect($result->treatments)->not->toBeEmpty()
         ->and($result->treatments[0]['generic'])->toBe('Mancozeb 80WP')
@@ -108,7 +146,7 @@ it('returns a low-confidence "no disease" result when suggestions are empty', fu
         ], 200),
     ]);
 
-    $result = app(KindwiseCropHealthClient::class)->diagnose('disease/leaf.jpg');
+    $result = app(KindwiseCropHealthClient::class)->diagnose(['disease/leaf.jpg']);
 
     expect($result->topDiagnosis)->toBe('No disease detected')
         ->and($result->confidence)->toBeLessThan(0.7);
@@ -117,7 +155,7 @@ it('returns a low-confidence "no disease" result when suggestions are empty', fu
 it('throws when the Kindwise API key is missing', function () {
     config(['services.kindwise.key' => '']);
 
-    app(KindwiseCropHealthClient::class)->diagnose('disease/leaf.jpg');
+    app(KindwiseCropHealthClient::class)->diagnose(['disease/leaf.jpg']);
 })->throws(RuntimeException::class, 'Kindwise API key is not configured');
 
 it('throws when the Kindwise API returns a non-2xx response', function () {
@@ -125,11 +163,11 @@ it('throws when the Kindwise API returns a non-2xx response', function () {
         'crop.kindwise.com/*' => Http::response(['error' => 'invalid api key'], 401),
     ]);
 
-    app(KindwiseCropHealthClient::class)->diagnose('disease/leaf.jpg');
+    app(KindwiseCropHealthClient::class)->diagnose(['disease/leaf.jpg']);
 })->throws(RuntimeException::class, 'Crop.health API call failed');
 
 it('throws when the image is missing from storage', function () {
     Storage::disk(config('filesystems.default'))->delete('disease/leaf.jpg');
 
-    app(KindwiseCropHealthClient::class)->diagnose('disease/leaf.jpg');
+    app(KindwiseCropHealthClient::class)->diagnose(['disease/leaf.jpg']);
 })->throws(RuntimeException::class, 'Could not read image');

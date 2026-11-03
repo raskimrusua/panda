@@ -38,6 +38,7 @@ class DiseaseDetection extends Model
         'season_id',
         'crop_id',
         'image_path',
+        'image_paths',
         'provider',
         'top_diagnosis',
         'confidence',
@@ -58,6 +59,7 @@ class DiseaseDetection extends Model
             'treatments' => 'array',
             'disease_card' => 'array',
             'suggestions' => 'array',
+            'image_paths' => 'array',
             'opt_in_for_training' => 'boolean',
             'captured_at' => 'datetime',
         ];

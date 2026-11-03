@@ -18,18 +18,24 @@ use RuntimeException;
  *          `similar_images=true`. `classification_level`, `crop`, and
  *          `details` are rejected with HTTP 400 ("Unknown modifier").
  *
- * The response shape (relevant fields):
+ * Single-image response shape (verified live):
  *   result.is_plant.probability
  *   result.disease.suggestions[].name + .probability + .details.treatment
  *
- * We map the first disease suggestion to topDiagnosis + confidence. If
- * `disease.suggestions` is empty we fall back to `is_plant` / health
- * assessment messaging by leaving topDiagnosis null and returning a
- * low-confidence "healthy" result.
+ * Multi-image (Phase B): the payload is an array by design, so a scan
+ * sends all photos in one call. The response mapping is defensive:
+ * legacy single `result.disease.suggestions` is used when present,
+ * otherwise every `result[]` element's `disease.suggestions` are merged
+ * and ranked by probability. Confirm the multi-shape against a live
+ * call after first multi-image scan (the docs SPA does not publish the
+ * schema).
+ *
+ * We map the top suggestion to topDiagnosis + confidence. If no
+ * suggestions exist we fall back to the healthy/unknown path.
  *
  * NOTE: this API version does not return treatment data (the `details`
- * modifier that would include it is rejected), so treatments are always
- * empty until we source them locally from crop content JSONs.
+ * modifier that would include it is rejected), so treatments come from
+ * the local PCPB `TreatmentCatalogue`.
  *
  * Costs: each call hits Kindwise's per-month identification quota.
  * `DiseaseDetection.provider = 'crop_health'` (vs 'mock') is the audit
@@ -39,7 +45,7 @@ use RuntimeException;
  */
 class KindwiseCropHealthClient implements CropHealthClient
 {
-    public function diagnose(string $imagePath, ?string $cropSlug = null): DiagnosisResult
+    public function diagnose(array $imagePaths, ?string $cropSlug = null): DiagnosisResult
     {
         $apiKey = (string) config('services.kindwise.key');
         $baseUrl = rtrim((string) config('services.kindwise.url'), '/');
@@ -49,28 +55,27 @@ class KindwiseCropHealthClient implements CropHealthClient
             throw new RuntimeException('Kindwise API key is not configured (KINDWISE_API_KEY).');
         }
 
-        // Storage path -> raw bytes. The default disk is whatever
-        // STORAGE_BACKEND resolves to (r2 in prod, local in dev) — same
-        // facade ImageUploadService writes through, so private R2 photos
-        // are read here without exposing a public URL.
-        try {
-            $bytes = Storage::disk(config('filesystems.default'))->get($imagePath);
-        } catch (\Throwable $e) {
-            throw new RuntimeException("Could not read image at path: {$imagePath}", 0, $e);
-        }
-
-        if (! is_string($bytes) || $bytes === '') {
-            throw new RuntimeException("Could not read image at path: {$imagePath}");
+        $images = [];
+        foreach ($imagePaths as $imagePath) {
+            try {
+                $bytes = Storage::disk(config('filesystems.default'))->get($imagePath);
+            } catch (\Throwable $e) {
+                throw new RuntimeException("Could not read image at path: {$imagePath}", 0, $e);
+            }
+            if (! is_string($bytes) || $bytes === '') {
+                throw new RuntimeException("Could not read image at path: {$imagePath}");
+            }
+            $images[] = base64_encode($bytes);
         }
 
         $payload = [
-            'images' => [base64_encode($bytes)],
+            'images' => $images,
         ];
 
         // The crop hint (and every other modifier except
         // `similar_images=true`) is rejected by the live API, so the slug
         // is not sent. $cropSlug is kept in the interface signature for
-        // future API versions that re-enable crop narrowing.
+        // local treatment-catalogue narrowing + future API versions.
 
         $response = Http::withHeaders([
             'Api-Key' => $apiKey,
@@ -83,23 +88,22 @@ class KindwiseCropHealthClient implements CropHealthClient
             Log::warning('Kindwise Crop.health call failed', [
                 'status' => $response->status(),
                 'body' => $response->body(),
-                'image_path' => $imagePath,
+                'image_paths' => $imagePaths,
             ]);
             throw new RuntimeException('Crop.health API call failed (status '.$response->status().').');
         }
 
-        return $this->mapResponse($response->json(), $cropSlug);
+        return $this->mapResponse($response->json(), $cropSlug, $imagePaths);
     }
 
     /**
      * @param  array<mixed>  $raw
+     * @param  list<string>  $imagePaths
      */
-    private function mapResponse(array $raw, ?string $cropSlug = null): DiagnosisResult
+    private function mapResponse(array $raw, ?string $cropSlug = null, array $imagePaths = []): DiagnosisResult
     {
-        $diseaseSuggestions = data_get($raw, 'result.disease.suggestions', []);
-        $top = is_array($diseaseSuggestions) && count($diseaseSuggestions) > 0
-            ? $diseaseSuggestions[0]
-            : null;
+        $suggestions = $this->collectSuggestions($raw);
+        $top = count($suggestions) > 0 ? $suggestions[0] : null;
 
         if ($top === null) {
             // Plant looks healthy or unidentifiable.
@@ -139,6 +143,10 @@ class KindwiseCropHealthClient implements CropHealthClient
             );
         }
 
+        // Normalised key so DiagnosisResult::suggestions() stays provider-shape-agnostic.
+        $raw['suggestions'] = $suggestions;
+        $raw['image_paths'] = $imagePaths;
+
         return new DiagnosisResult(
             provider: DiseaseDetection::PROVIDER_CROP_HEALTH,
             topDiagnosis: (string) data_get($top, 'name', 'Unknown'),
@@ -146,5 +154,42 @@ class KindwiseCropHealthClient implements CropHealthClient
             treatments: $treatments,
             rawResponse: $raw,
         );
+    }
+
+    /**
+     * Merge disease suggestions from both response shapes and rank by
+     * probability. Legacy single-image: `result.disease.suggestions`;
+     * multi-image: `result[]` list of per-image result objects.
+     *
+     * @param  array<mixed>  $raw
+     * @return list<array{name: mixed, probability: mixed}>
+     */
+    private function collectSuggestions(array $raw): array
+    {
+        $out = [];
+
+        $legacy = data_get($raw, 'result.disease.suggestions');
+        if (is_array($legacy)) {
+            $out = array_merge($out, $legacy);
+        }
+
+        $results = data_get($raw, 'result');
+        if (is_array($results) && array_is_list($results)) {
+            foreach ($results as $result) {
+                if (! is_array($result)) {
+                    continue;
+                }
+                $perImage = data_get($result, 'disease.suggestions');
+                if (is_array($perImage)) {
+                    $out = array_merge($out, $perImage);
+                }
+            }
+        }
+
+        usort($out, function (array $a, array $b): int {
+            return ((float) ($b['probability'] ?? 0.0)) <=> ((float) ($a['probability'] ?? 0.0));
+        });
+
+        return $out;
     }
 }
