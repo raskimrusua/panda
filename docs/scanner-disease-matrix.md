@@ -20,8 +20,8 @@ The disease scanner's thoroughness is bounded by this matrix. Each row is a
 ## Crop coverage (20-crop library)
 
 Live guides (5): kale/sukuma, tomato, French beans, mango, onion.
-Staged guides (12): maize, beans, Irish potato, sweet potato, cabbage, spinach, capsicum, carrot, butternut, coriander, avocado, banana.
-Queue (3): pawpaw, watermelon, snow peas.
+Staged guides (14): maize, beans, Irish potato, sweet potato, cabbage, spinach, capsicum, carrot, butternut, coriander, avocado, banana, pawpaw, watermelon.
+Queue (1): snow peas.
 
 ---
 
@@ -156,6 +156,26 @@ Queue (3): pawpaw, watermelon, snow peas.
 | Black sigatoka | Low (streaks) · High (burnt canopy, small bunches) | Yellow-brown streaks that blacken, leaf burn from the margins, smaller bunches | Registered fungicide programme + de-leafing infected leaves | Airflow, de-leafing, resistant varieties | Streaks evolving to burnt margins; lower leaves first |
 | Bunchy top virus (BBTV) | Early (upright leaves) · Severe (no bunches, stunting) | Stunted upright leaves with dark green streaks, no bunch production, aphids present | None — rogue and destroy immediately | Clean plantlets, aphid control, remove infected plants | Upright stunted leaves + streaks = BBTV; escalate — not a nutrient issue |
 | Cigar end rot | Low (tip rot) · High (bunch tip loss) | Ash-grey rot at the bunch tip spreading up the fingers, wet weather | Remove the male bud; registered sprays in severe cases | Male bud removal after fruit set, airflow | Photograph the bunch tip |
+
+## Pawpaw (Carica papaya)
+
+| Disease | Severity classes | Symptoms | Treatment (advisory) | Prevention | Scanner notes |
+|---|---|---|---|---|---|
+| Papaya ringspot virus (PRSV) | Early (mottle) · Severe (oily rings, production collapse) | Mottled distorted leaves, oily ring spots on fruit, dark streaks on stems, plants stop producing | None — rogue and destroy immediately; aphid control only | Tolerant varieties (Calina), early aphid control, clean seedlings | Ring spots on FRUIT are the signature — photograph fruit and leaves together |
+| Powdery mildew | Low (dusting) · High (leaf loss) | White dusting on leaves in warm-dry spells | Sulphur-class products at first dusting | Airflow, avoid water stress | White powder both leaf sides |
+| Anthracnose | Low (specks) · High (sunken rot on fruit) | Sunken dark spots on ripening fruit, pink ooze in humidity | Registered anthracnose-active sprays; clean handling | No overhead watering, harvest dry | Fruit close-up at colour break |
+| Damping off / root rot | Seedling (collapse) · Advanced (wilting, death) | Seedlings collapse at soil line; established plants wilt and die in wet soil | None once advanced — drainage is the cure | Raised beds, strict drainage, no collar watering | Photograph the plant base; ask about water pooling |
+| Fruit fly | Low (stings) · High (maggots, fruit rot) | Pin-prick stings on ripening fruit, larvae inside, fruit rots | Registered bait sprays; remove fallen fruit | Sanitation, early harvest | Fruit surface photo + cut-open fruit |
+
+## Watermelon (Citrullus lanatus)
+
+| Disease | Severity classes | Symptoms | Treatment (advisory) | Prevention | Scanner notes |
+|---|---|---|---|---|---|
+| Powdery mildew | Low (dusting) · High (burnt canopy, small bland fruit) | White dusting on leaves, canopy burn before fruit fill, warm-dry spells | Sulphur-class or registered mildew products at first dusting | Airflow, avoid water stress | Canopy-level photo; pre-fill timing is the decision point |
+| Downy mildew | Low (patches) · High (grey fuzz, defoliation) | Yellow patches above, grey-purple fuzz below, cool damp spells | Registered downy-active sprays at first patches | Airflow, morning watering | Underside photo required |
+| Gummy stem blight | Early (stem canker) · High (vine death) | Brown cankers oozing gum on stems, wilting vines | Registered sprays at first cankers; clean rotation | Rotation, avoid wounding vines | Photograph the STEM canker — leaf photos miss it |
+| Anthracnose | Low (spots) · High (sunken rot on fruit) | Sunken dark spots on fruit and leaves, wet weather | Registered anthracnose-active sprays; no overhead watering | Rotation, dry handling | Fruit + leaf photo pair |
+| Fruit fly | Low (stings) · High (maggots, market rejection) | Pin-prick stings on young fruit, larvae inside, rot from within | Registered bait sprays; remove fallen fruit | Sanitation, harvest on time | Cut-open fruit photo shows the maggots |
 
 ## Process
 
