@@ -30,7 +30,6 @@ uses(RefreshDatabase::class);
  * the TreatmentCatalogue (tomato covered; others currently generic-only —
  * the known gap this test locks in so catalogue extensions are deliberate).
  */
-
 const SAMPLE_CROPS = ['tomato', 'kale', 'maize', 'pawpaw'];
 const ENRICHED_CROPS = ['kale', 'maize', 'pawpaw'];
 
