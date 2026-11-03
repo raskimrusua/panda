@@ -1,49 +1,366 @@
 {
-    "slug": "capsicum",
-    "name_en": "Capsicum",
-    "name_sw": "Pilipili hoho",
-    "category": "vegetable",
-    "harvest_type": "multi",
-    "jica_manual_ref": "Inspired by JICA SHEP PLUS — Capsicum (sweet pepper) manual",
-    "kalro_guide_ref": "KALRO Capsicum production guide",
-    "ecological_requirements": {
-        "altitude_min_m": 600,
-        "altitude_max_m": 2100,
-        "rainfall_min_mm": 600,
-        "rainfall_max_mm": 1300,
-        "temperature_min_c": 18,
-        "temperature_max_c": 30,
-        "soil_types": ["loam", "sandy_loam"],
-        "soil_ph_min": 5.5,
-        "soil_ph_max": 6.8
-    },
-    "varieties": [
-        {"name": "California Wonder", "type": "OPEN_POLLINATED", "days_to_maturity": 75, "yield_kg_per_acre": 10000, "supplier_notes": "Standard green/red variety; widely planted."},
-        {"name": "Yolo Wonder", "type": "OPEN_POLLINATED", "days_to_maturity": 80, "yield_kg_per_acre": 11000, "supplier_notes": "Larger fruit, slightly more disease tolerant."}
-    ],
-    "timeline_template": [
-        {"activity_type": "nursery_seeding", "phase": "nursery", "week_from_planting": -5, "day_window": 3, "description_en": "Sow seed in nursery trays, 0.5cm depth, in sterile media.", "description_sw": "Panda mbegu trei kina 0.5cm.", "is_critical": true},
-        {"activity_type": "seedling_hardening", "phase": "nursery", "week_from_planting": -1, "day_window": 5, "description_en": "Harden seedlings — reduce water, expose to sun.", "description_sw": "Tayarisha miche kwa jua, punguza maji.", "is_critical": false},
-        {"activity_type": "transplanting", "phase": "transplanting", "week_from_planting": 0, "day_window": 2, "description_en": "Transplant 5-week seedlings at 60cm x 45cm. Water heavily after.", "description_sw": "Pandikiza miche wiki 5 nafasi 60cm x 45cm.", "is_critical": true},
-        {"activity_type": "basal_fertiliser", "phase": "transplanting", "week_from_planting": 0, "day_window": 1, "description_en": "Apply 50kg DAP in planting holes.", "description_sw": "Weka kilo 50 za DAP.", "is_critical": true},
-        {"activity_type": "first_weeding", "phase": "growth", "week_from_planting": 3, "day_window": 4, "description_en": "Shallow weeding + mulching.", "description_sw": "Palia juu juu na funika.", "is_critical": false},
-        {"activity_type": "top_dress_1", "phase": "growth", "week_from_planting": 4, "day_window": 3, "description_en": "Apply 50kg CAN side-dressed.", "description_sw": "Weka kilo 50 za CAN.", "is_critical": true},
-        {"activity_type": "staking", "phase": "growth", "week_from_planting": 5, "day_window": 7, "description_en": "Stake tall plants 1.5m to prevent lodging when fruits weigh.", "description_sw": "Simika nguzo 1.5m kuzuia mmea kuanguka.", "is_critical": false},
-        {"activity_type": "pest_spray", "phase": "growth", "week_from_planting": 6, "day_window": 7, "description_en": "Spray for aphids and thrips at first sign of curl/silvering.", "description_sw": "Nyunyuza dawa ya wadudu ukianza kuona majani yamejikunja.", "is_critical": true},
-        {"activity_type": "top_dress_2", "phase": "growth", "week_from_planting": 8, "day_window": 3, "description_en": "Second 50kg CAN at flowering.", "description_sw": "CAN ya pili wakati wa maua.", "is_critical": true},
-        {"activity_type": "first_harvest", "phase": "harvest", "week_from_planting": 11, "day_window": 7, "description_en": "Cut peppers at full size, glossy green. Twist + pull is wrong — use shears.", "description_sw": "Kata pilipili zikiwa kubwa na kung'aa. Tumia mkasi.", "tip_en": "Pick every 5-7 days. Red peppers fetch 1.5x green prices.", "tip_sw": "Vuna kila siku 5-7. Pilipili nyekundu hupata bei mara 1.5.", "is_critical": true}
-    ],
-    "inputs_per_acre": [
-        {"input_type": "seed", "product_name": "California Wonder (100g)", "quantity": 100, "unit": "g", "week_from_planting": -5, "benchmark_price_kes": 3000, "pcpb_registered": false, "alternatives": ["Yolo Wonder", "Admiral F1"]},
-        {"input_type": "fertiliser", "product_name": "DAP 50kg", "quantity": 50, "unit": "kg", "week_from_planting": 0, "benchmark_price_kes": 3500, "pcpb_registered": false},
-        {"input_type": "fertiliser", "product_name": "CAN 50kg (top-dress 1)", "quantity": 50, "unit": "kg", "week_from_planting": 4, "benchmark_price_kes": 2800, "pcpb_registered": false},
-        {"input_type": "fertiliser", "product_name": "CAN 50kg (top-dress 2)", "quantity": 50, "unit": "kg", "week_from_planting": 8, "benchmark_price_kes": 2800, "pcpb_registered": false},
-        {"input_type": "chemical", "product_name": "Karate 5EC (500ml)", "quantity": 500, "unit": "ml", "week_from_planting": 6, "benchmark_price_kes": 850, "pcpb_registered": true},
-        {"input_type": "chemical", "product_name": "Ridomil Gold MZ (500g)", "quantity": 500, "unit": "g", "week_from_planting": 7, "benchmark_price_kes": 1200, "pcpb_registered": true},
-        {"input_type": "equipment", "product_name": "Stakes 1.5m", "quantity": 4000, "unit": "pieces", "week_from_planting": 5, "benchmark_price_kes": 8000, "pcpb_registered": false},
-        {"input_type": "other", "product_name": "Crates 20kg (harvest)", "quantity": 25, "unit": "crates", "week_from_planting": 11, "benchmark_price_kes": 7500, "pcpb_registered": false}
-    ],
-    "yield_per_acre": {"expected_kg": 10000, "min_kg": 7000, "max_kg": 13000, "number_of_picks": 12, "pick_interval_days": 6},
-    "post_harvest": {"shelf_life_days": 14, "grading_criteria": "Grade A: blocky, firm, glossy. Grade B: minor sun-scald or scarring.", "packaging_standard": "20kg crates lined with paper to avoid bruising.", "storage_tips_en": "7-10°C optimal. Avoid below 7°C — chilling injury.", "storage_tips_sw": "7-10°C ndiyo bora. Epuka chini ya 7°C — huharibika kwa baridi."},
-    "diseases": ["aphids", "thrips", "bacterial_wilt", "powdery_mildew", "anthracnose"]
+ "slug": "capsicum",
+ "name_en": "Capsicum",
+ "name_sw": "Pilipili hoho",
+ "category": "vegetable",
+ "harvest_type": "multi",
+ "jica_manual_ref": "Inspired by JICA SHEP PLUS — Capsicum (sweet pepper) manual",
+ "kalro_guide_ref": "KALRO Capsicum production guide",
+ "ecological_requirements": {
+  "altitude_min_m": 600,
+  "altitude_max_m": 2100,
+  "rainfall_min_mm": 600,
+  "rainfall_max_mm": 1300,
+  "temperature_min_c": 18,
+  "temperature_max_c": 30,
+  "soil_types": [
+   "loam",
+   "sandy_loam"
+  ],
+  "soil_ph_min": 5.5,
+  "soil_ph_max": 6.8
+ },
+ "varieties": [
+  {
+   "name": "California Wonder",
+   "type": "OPEN_POLLINATED",
+   "days_to_maturity": 75,
+   "yield_kg_per_acre": 10000,
+   "supplier_notes": "Standard green/red variety; widely planted."
+  },
+  {
+   "name": "Yolo Wonder",
+   "type": "OPEN_POLLINATED",
+   "days_to_maturity": 80,
+   "yield_kg_per_acre": 11000,
+   "supplier_notes": "Larger fruit, slightly more disease tolerant."
+  }
+ ],
+ "timeline_template": [
+  {
+   "activity_type": "nursery_seeding",
+   "phase": "nursery",
+   "week_from_planting": -5,
+   "day_window": 3,
+   "description_en": "Sow seed in nursery trays, 0.5cm depth, in sterile media.",
+   "description_sw": "Panda mbegu trei kina 0.5cm.",
+   "is_critical": true
+  },
+  {
+   "activity_type": "seedling_hardening",
+   "phase": "nursery",
+   "week_from_planting": -1,
+   "day_window": 5,
+   "description_en": "Harden seedlings — reduce water, expose to sun.",
+   "description_sw": "Tayarisha miche kwa jua, punguza maji.",
+   "is_critical": false
+  },
+  {
+   "activity_type": "transplanting",
+   "phase": "transplanting",
+   "week_from_planting": 0,
+   "day_window": 2,
+   "description_en": "Transplant 5-week seedlings at 60cm x 45cm. Water heavily after.",
+   "description_sw": "Pandikiza miche wiki 5 nafasi 60cm x 45cm.",
+   "is_critical": true
+  },
+  {
+   "activity_type": "basal_fertiliser",
+   "phase": "transplanting",
+   "week_from_planting": 0,
+   "day_window": 1,
+   "description_en": "Apply 50kg DAP in planting holes.",
+   "description_sw": "Weka kilo 50 za DAP.",
+   "is_critical": true
+  },
+  {
+   "activity_type": "first_weeding",
+   "phase": "growth",
+   "week_from_planting": 3,
+   "day_window": 4,
+   "description_en": "Shallow weeding + mulching.",
+   "description_sw": "Palia juu juu na funika.",
+   "is_critical": false
+  },
+  {
+   "activity_type": "top_dress_1",
+   "phase": "growth",
+   "week_from_planting": 4,
+   "day_window": 3,
+   "description_en": "Apply 50kg CAN side-dressed.",
+   "description_sw": "Weka kilo 50 za CAN.",
+   "is_critical": true
+  },
+  {
+   "activity_type": "staking",
+   "phase": "growth",
+   "week_from_planting": 5,
+   "day_window": 7,
+   "description_en": "Stake tall plants 1.5m to prevent lodging when fruits weigh.",
+   "description_sw": "Simika nguzo 1.5m kuzuia mmea kuanguka.",
+   "is_critical": false
+  },
+  {
+   "activity_type": "pest_spray",
+   "phase": "growth",
+   "week_from_planting": 6,
+   "day_window": 7,
+   "description_en": "Spray for aphids and thrips at first sign of curl/silvering.",
+   "description_sw": "Nyunyuza dawa ya wadudu ukianza kuona majani yamejikunja.",
+   "is_critical": true
+  },
+  {
+   "activity_type": "pest_scout",
+   "phase": "growth",
+   "week_from_planting": 5,
+   "day_window": 56,
+   "description_en": "Scout whitefly and aphids weekly — they carry the viruses that ruin capsicum.",
+   "description_sw": "Chunguza nzi weupe na vidukari kila wiki — wanaeneza virusi vya pilipili hoho.",
+   "is_critical": false
+  },
+  {
+   "activity_type": "top_dress_2",
+   "phase": "growth",
+   "week_from_planting": 8,
+   "day_window": 3,
+   "description_en": "Second 50kg CAN at flowering.",
+   "description_sw": "CAN ya pili wakati wa maua.",
+   "is_critical": true
+  },
+  {
+   "activity_type": "first_harvest",
+   "phase": "harvest",
+   "week_from_planting": 11,
+   "day_window": 7,
+   "description_en": "Cut peppers at full size, glossy green. Twist + pull is wrong — use shears.",
+   "description_sw": "Kata pilipili zikiwa kubwa na kung'aa. Tumia mkasi.",
+   "tip_en": "Pick every 5-7 days. Red peppers fetch 1.5x green prices.",
+   "tip_sw": "Vuna kila siku 5-7. Pilipili nyekundu hupata bei mara 1.5.",
+   "is_critical": true
+  }
+ ],
+ "inputs_per_acre": [
+  {
+   "input_type": "seed",
+   "product_name": "California Wonder (100g)",
+   "quantity": 100,
+   "unit": "g",
+   "week_from_planting": -5,
+   "benchmark_price_kes": 3000,
+   "pcpb_registered": false,
+   "alternatives": [
+    "Yolo Wonder",
+    "Admiral F1"
+   ]
+  },
+  {
+   "input_type": "fertiliser",
+   "product_name": "DAP 50kg",
+   "quantity": 50,
+   "unit": "kg",
+   "week_from_planting": 0,
+   "benchmark_price_kes": 3500,
+   "pcpb_registered": false
+  },
+  {
+   "input_type": "fertiliser",
+   "product_name": "CAN 50kg (top-dress 1)",
+   "quantity": 50,
+   "unit": "kg",
+   "week_from_planting": 4,
+   "benchmark_price_kes": 2800,
+   "pcpb_registered": false
+  },
+  {
+   "input_type": "fertiliser",
+   "product_name": "CAN 50kg (top-dress 2)",
+   "quantity": 50,
+   "unit": "kg",
+   "week_from_planting": 8,
+   "benchmark_price_kes": 2800,
+   "pcpb_registered": false
+  },
+  {
+   "input_type": "chemical",
+   "product_name": "Karate 5EC (500ml)",
+   "quantity": 500,
+   "unit": "ml",
+   "week_from_planting": 6,
+   "benchmark_price_kes": 850,
+   "pcpb_registered": true
+  },
+  {
+   "input_type": "chemical",
+   "product_name": "Ridomil Gold MZ (500g)",
+   "quantity": 500,
+   "unit": "g",
+   "week_from_planting": 7,
+   "benchmark_price_kes": 1200,
+   "pcpb_registered": true
+  },
+  {
+   "input_type": "equipment",
+   "product_name": "Stakes 1.5m",
+   "quantity": 4000,
+   "unit": "pieces",
+   "week_from_planting": 5,
+   "benchmark_price_kes": 8000,
+   "pcpb_registered": false
+  },
+  {
+   "input_type": "other",
+   "product_name": "Crates 20kg (harvest)",
+   "quantity": 25,
+   "unit": "crates",
+   "week_from_planting": 11,
+   "benchmark_price_kes": 7500,
+   "pcpb_registered": false
+  }
+ ],
+ "yield_per_acre": {
+  "expected_kg": 10000,
+  "min_kg": 7000,
+  "max_kg": 13000,
+  "number_of_picks": 12,
+  "pick_interval_days": 6
+ },
+ "post_harvest": {
+  "shelf_life_days": 14,
+  "grading_criteria": "Grade A: blocky, firm, glossy. Grade B: minor sun-scald or scarring.",
+  "packaging_standard": "20kg crates lined with paper to avoid bruising.",
+  "storage_tips_en": "7-10°C optimal. Avoid below 7°C — chilling injury.",
+  "storage_tips_sw": "7-10°C ndiyo bora. Epuka chini ya 7°C — huharibika kwa baridi."
+ },
+ "diseases": [
+  {
+   "key": "whiteflies_viruses",
+   "name_en": "Whiteflies + viruses",
+   "name_sw": "Nzi weupe + virusi",
+   "type": "pest",
+   "severity_classes": "Low (adults present) · High (curled leaves, no fruit set)",
+   "symptoms_en": "Whitefly clouds on undersides, upward curled yellow leaves, flower drop, stunted fruit.",
+   "symptoms_sw": "Makundi ya nzi weupe chini ya majani, majani yaliyokunjika na manjano, maua huanguka.",
+   "treatment_en": "Spray registered whitefly products early; remove infected plants. Advisory: use PCPB-registered products only, at label rates.",
+   "treatment_sw": "Nyunyuza dawa zilizoidhinishwa mapema; ng'oa mimea iliyoathirika. Shauri: tumia dawa zilizoidhinishwa na PCPB tu, kwa kiwango kilichoandikwa.",
+   "prevention_en": "Sticky traps, barriers, tolerant varieties.",
+   "prevention_sw": "Mitego ya kunata, vizuizi, aina sugu.",
+   "scanner_notes": "Curling + whitefly presence = virus pattern; photograph the underside with insects."
+  },
+  {
+   "key": "aphids",
+   "name_en": "Aphids",
+   "name_sw": "Vidukari",
+   "type": "pest",
+   "severity_classes": "Low (colonies) · High (curled new growth)",
+   "symptoms_en": "Colonies curl new growth and vector viruses.",
+   "symptoms_sw": "Makundi yanakunja majani machanga na kueneza virusi.",
+   "treatment_en": "Squash early colonies; registered products only if spreading. Advisory: use PCPB-registered products only, at label rates.",
+   "treatment_sw": "Ponda makundi ya mwanzo; nyunyuza tu ikiwa yanaenea. Shauri: tumia dawa zilizoidhinishwa na PCPB tu, kwa kiwango kilichoandikwa.",
+   "prevention_en": "Scout undersides weekly.",
+   "prevention_sw": "Chunguza chini ya majani kila wiki.",
+   "scanner_notes": "Underside photo with the colony visible."
+  },
+  {
+   "key": "thrips",
+   "name_en": "Thrips",
+   "name_sw": "Vidukari wadogo",
+   "type": "pest",
+   "severity_classes": "Low (scarring) · High (bronzed fruit)",
+   "symptoms_en": "Silver-bronze fruit scarring, distorted leaves, dry spells.",
+   "symptoms_sw": "Matunda yenye makovu ya fedha, majani yaliyopinda, kiangazi.",
+   "treatment_en": "Registered products at threshold only. Advisory: use PCPB-registered products only, at label rates.",
+   "treatment_sw": "Dawa zilizoidhinishwa tu wakati wamezidi. Shauri: tumia dawa zilizoidhinishwa na PCPB tu, kwa kiwango kilichoandikwa.",
+   "prevention_en": "Natural enemy preservation, monitoring.",
+   "prevention_sw": "Hifadhi maadui wa asili, chunguza mara kwa mara.",
+   "scanner_notes": "Fruit surface photo for scarring."
+  },
+  {
+   "key": "bacterial_wilt",
+   "name_en": "Bacterial wilt",
+   "name_sw": "Unyauka wa bakteria",
+   "type": "disease",
+   "severity_classes": "Early (day-wilt) · Advanced (permanent wilt, ooze)",
+   "symptoms_en": "Green wilt in heat, recovery at night then permanent; white ooze from cut stem.",
+   "symptoms_sw": "Kunyauka kijani jua, kupona usiku kisha kunyauka kabisa; ute mweupe kwenye shina lililokatwa.",
+   "treatment_en": "No cure — rogue and destroy; 3-season rotation away from tomato/potato/pepper. Advisory: use PCPB-registered products only, at label rates.",
+   "treatment_sw": "Hakuna tiba — ng'oa na uteketeze; zungusha miaka 3 mbali na nyanya/viazi/pilipili. Shauri: tumia dawa zilizoidhinishwa na PCPB tu, kwa kiwango kilichoandikwa.",
+   "prevention_en": "Rotation, raised beds, no flooding.",
+   "prevention_sw": "Zungusha mazao, vitanda vilivyoinuliwa, epuka mafuriko.",
+   "scanner_notes": "Cut-stem-in-water test is the in-app verification."
+  },
+  {
+   "key": "phytophthora_blight",
+   "name_en": "Phytophthora blight",
+   "name_sw": "Uoza wa phytophthora",
+   "type": "disease",
+   "severity_classes": "Early (stem lesion) · High (fruit rot, collapse)",
+   "symptoms_en": "Dark stem lesions at soil line, water-soaked fruit rot, wilting in wet spells.",
+   "symptoms_sw": "Vidonda vyeusi kwenye shina, matunda yanayooza, kunyauka mvua nyingi.",
+   "treatment_en": "Registered blight-active sprays preventatively in wet weather. Advisory: use PCPB-registered products only, at label rates.",
+   "treatment_sw": "Dawa zilizoidhinishwa za blight kama kinga wakati wa mvua. Shauri: tumia dawa zilizoidhinishwa na PCPB tu, kwa kiwango kilichoandikwa.",
+   "prevention_en": "Drainage, raised beds, no overhead watering.",
+   "prevention_sw": "Mifereji ya maji, vitanda vilivyoinuliwa, usimwagilie kutoka juu.",
+   "scanner_notes": "Stem-base photo + fruit close-up; wet-season timing is diagnostic."
+  },
+  {
+   "key": "powdery_mildew",
+   "name_en": "Powdery mildew",
+   "name_sw": "Ukungu",
+   "type": "disease",
+   "severity_classes": "Low (dusting) · High (leaf loss, sunscald fruit)",
+   "symptoms_en": "White powder on both leaf sides, yellowing, fruit exposed to sun.",
+   "symptoms_sw": "Unga mweupe pande zote za jani, kuwitikia, matunda yanachomwa na jua.",
+   "treatment_en": "Sulphur-class or registered mildew products at first dusting. Advisory: use PCPB-registered products only, at label rates.",
+   "treatment_sw": "Dawa za salfa au zilizoidhinishwa mara inapoanza. Shauri: tumia dawa zilizoidhinishwa na PCPB tu, kwa kiwango kilichoandikwa.",
+   "prevention_en": "Airflow, avoid water stress.",
+   "prevention_sw": "Hewa ya kutosha, epuka mkazo wa maji.",
+   "scanner_notes": "White powder on TOP of leaf distinguishes from downy mildew."
+  },
+  {
+   "key": "anthracnose",
+   "name_en": "Anthracnose fruit rot",
+   "name_sw": "Uoza wa matunda",
+   "type": "disease",
+   "severity_classes": "Low (specks) · High (sunken rot on ripe fruit)",
+   "symptoms_en": "Sunken dark circular spots on ripening fruit, pink spore ooze in humidity.",
+   "symptoms_sw": "Madoa meusi yaliyozama kwenye matunda yanayoiva, ute wa pinki unyevu.",
+   "treatment_en": "Registered anthracnose-active sprays from first colour. Advisory: use PCPB-registered products only, at label rates.",
+   "treatment_sw": "Dawa zilizoidhinishwa za anthracnose tangu rangi ya kwanza. Shauri: tumia dawa zilizoidhinishwa na PCPB tu, kwa kiwango kilichoandikwa.",
+   "prevention_en": "Never leave ripe fruit hanging, handle gently.",
+   "prevention_sw": "Usiache matunda yaliyoiva shambani, shika kwa upole.",
+   "scanner_notes": "Photograph the fruit, not leaves — leaf photos miss it entirely."
+  }
+ ],
+ "links": [
+  {
+   "kind": "blog_guide",
+   "label_en": "Panda growing guide: Capsicum",
+   "label_sw": "Mwongozo wa Panda: Pilipili hoho",
+   "url": "https://panda.shira.farm/blog/capsicum-hoho-grading-guide"
+  },
+  {
+   "kind": "pcpb",
+   "label_en": "PCPB — registered pest control products",
+   "label_sw": "PCPB — orodha ya dawa zilizoidhinishwa",
+   "url": "https://www.pcpb.go.ke/"
+  },
+  {
+   "kind": "kephis",
+   "label_en": "KEPHIS — plant health services",
+   "label_sw": "KEPHIS — huduma za afya ya mimea",
+   "url": "https://www.kephis.org/"
+  },
+  {
+   "kind": "prices",
+   "label_en": "MoALD market information (KAMIS)",
+   "label_sw": "Taarifa za soko za Wizara ya Kilimo (KAMIS)",
+   "url": "https://www.kilimo.go.ke/"
+  }
+ ],
+ "market_notes": {
+  "sell_windows_en": "Coloured peppers carry the premium — decide before planting whether your buyer pays for colour. Pick twice weekly; fruit left on the plant slows the next set.",
+  "sell_windows_sw": "Pilipili za rangi zina bei ya juu — amua kabla ya kupanda kama mnunuzi analipa rangi. Vuna mara mbili kwa wiki.",
+  "price_notes_en": "Farm-gate ~60–120 KES/kg green, 150–300 KES/kg coloured (November 2026). Grading ladder: export → supermarket → open market; each rung is roughly half the next.",
+  "price_notes_sw": "Bei ya shambani ~60–120 KES/kg kijani, 150–300 KES/kg za rangi (Novemba 2026). Ngazi ya daraja: nje → duka kubwa → soko wazi."
+ }
 }
