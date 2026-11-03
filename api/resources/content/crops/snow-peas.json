@@ -1,0 +1,257 @@
+{
+ "slug": "snow-peas",
+ "name_en": "Snow peas",
+ "name_sw": "Mbaazi za theluji",
+ "category": "legume",
+ "harvest_type": "multi",
+ "jica_manual_ref": "Inspired by JICA SHEP PLUS — Legumes production guide (Kenya)",
+ "kalro_guide_ref": "KALRO Grain legumes production handbook",
+ "ecological_requirements": {
+  "altitude_min_m": 1800,
+  "altitude_max_m": 2800,
+  "rainfall_min_mm": 700,
+  "rainfall_max_mm": 1200,
+  "temperature_min_c": 15,
+  "temperature_max_c": 22,
+  "soil_types": [
+   "loam"
+  ],
+  "soil_ph_min": 6.0,
+  "soil_ph_max": 7.0
+ },
+ "varieties": [
+  {
+   "name": "Oregon Sugar Pod II",
+   "type": "OPEN_POLLINATED",
+   "days_to_maturity": 60,
+   "yield_kg_per_acre": 3000,
+   "disease_resistance": [],
+   "supplier_notes": "Classic flat-podded type: stringless, uniform, the export workhorse."
+  },
+  {
+   "name": "Dwarf Grey Sugar",
+   "type": "OPEN_POLLINATED",
+   "days_to_maturity": 55,
+   "yield_kg_per_acre": 2500,
+   "disease_resistance": [],
+   "supplier_notes": "Compact, earlier; tolerates slightly warmer spots."
+  },
+  {
+   "name": "Export F1",
+   "type": "HYBRID",
+   "days_to_maturity": 60,
+   "yield_kg_per_acre": 3500,
+   "disease_resistance": [],
+   "supplier_notes": "Bred for pod uniformity where the packhouse demands it."
+  }
+ ],
+ "timeline_template": [
+  {
+   "activity_type": "trellis_setup",
+   "phase": "establishment",
+   "week_from_planting": -2,
+   "day_window": 7,
+   "description_en": "Set stakes and strings BEFORE sowing — untrellised snow peas trail on the ground and pod quality collapses.",
+   "description_sw": "Weka fito na kamba KABLA ya kupanda — bila kufungwa, mbaazi hutambaa na ubora wa maganda hupotea.",
+   "is_critical": true
+  },
+  {
+   "activity_type": "seed_planting",
+   "phase": "establishment",
+   "week_from_planting": 0,
+   "day_window": 7,
+   "description_en": "Direct-sow 25-40 kg per acre, 2-3 cm deep at 60cm × 10cm. Basal 50 kg DAP — light on nitrogen.",
+   "description_sw": "Panda kilo 25-40 kwa eka, kina cha cm 2-3 kwa 60cm × 10cm. Weka kilo 50 za DAP — nitrojeni kidogo.",
+   "is_critical": true
+  },
+  {
+   "activity_type": "first_weeding",
+   "phase": "growth",
+   "week_from_planting": 3,
+   "day_window": 4,
+   "description_en": "First weeding; guide tendrils onto the strings.",
+   "description_sw": "Palia kwanza; ongoza michirizi kwenye kamba.",
+   "is_critical": false
+  },
+  {
+   "activity_type": "top_dress",
+   "phase": "growth",
+   "week_from_planting": 5,
+   "day_window": 4,
+   "description_en": "Top-dress 50 kg CAN per acre ONCE — no more. Start the mildew watch.",
+   "description_sw": "Weka kilo 50 za CAN MARA MOJA — usizidishe. Anza kuchunguza ukungu.",
+   "is_critical": false
+  },
+  {
+   "activity_type": "first_harvest",
+   "phase": "harvest",
+   "week_from_planting": 8,
+   "day_window": 7,
+   "description_en": "Pick pods FLAT, 7-9 cm, before the peas swell. Pick every 2-3 days — a missed round turns today's grade into tomorrow's cull.",
+   "description_sw": "Vuna maganda GOROFU, sentimita 7-9, kabla ya mbaazi kuvimba. Vuna kila siku 2-3.",
+   "tip_en": "The picking rhythm IS the export game — swollen pods are rejected at the packhouse.",
+   "tip_sw": "Mwendo wa kuvuna NDIO mchezo wa kuuza nje — maganda yaliyovimba hukataliwa.",
+   "is_critical": true
+  }
+ ],
+ "inputs_per_acre": [
+  {
+   "input_type": "seed",
+   "product_name": "Snow pea seed (Oregon Sugar Pod class)",
+   "quantity": 30,
+   "unit": "kg",
+   "week_from_planting": 0,
+   "benchmark_price_kes": 9000,
+   "pcpb_registered": false,
+   "alternatives": []
+  },
+  {
+   "input_type": "fertiliser",
+   "product_name": "DAP",
+   "quantity": 50,
+   "unit": "kg",
+   "week_from_planting": 0,
+   "benchmark_price_kes": 3500,
+   "pcpb_registered": false,
+   "alternatives": []
+  },
+  {
+   "input_type": "fertiliser",
+   "product_name": "CAN",
+   "quantity": 50,
+   "unit": "kg",
+   "week_from_planting": 5,
+   "benchmark_price_kes": 3000,
+   "pcpb_registered": false,
+   "alternatives": []
+  },
+  {
+   "input_type": "structure",
+   "product_name": "Trellis materials (stakes + strings)",
+   "quantity": 1,
+   "unit": "set",
+   "week_from_planting": -2,
+   "benchmark_price_kes": 8000,
+   "pcpb_registered": false,
+   "alternatives": []
+  }
+ ],
+ "yield_per_acre": {
+  "expected_kg": 3000,
+  "min_kg": 2000,
+  "max_kg": 4000,
+  "number_of_picks": 16,
+  "pick_interval_days": 2
+ },
+ "post_harvest": {
+  "shelf_life_days": 3,
+  "grading_criteria": "Export: flat, unblemished, 7-9 cm pods. Local: everything else. Grade at the vine.",
+  "packaging_standard": "Single-layer cartons; cold chain 4-6°C within hours of picking.",
+  "storage_tips_en": "The packhouse doesn't negotiate — it grades. Keep the picking calendar like a contract.",
+  "storage_tips_sw": "Packhouse haijadili — inapanga daraja. Shika kalenda ya kuvuna kama mkataba."
+ },
+ "diseases": [
+  {
+   "key": "powdery_mildew",
+   "name_en": "Powdery mildew",
+   "name_sw": "Ukungu",
+   "type": "disease",
+   "severity_classes": "Low (dusting) · High (burnt vines, shrunk pods)",
+   "symptoms_en": "White dusting on leaves, vine burn, small pods, cool-dry spells.",
+   "symptoms_sw": "Unga mweupe majani, miti kuungua, maganda madogo, baridi-kavu.",
+   "treatment_en": "Sulphur-class products at first dusting — prevention beats pod loss. Advisory: use PCPB-registered products only, at label rates.",
+   "treatment_sw": "Dawa za salfa mara inapoanza — kinga ni bora kuliko hasara ya maganda. Shauri: tumia dawa zilizoidhinishwa na PCPB tu, kwa kiwango kilichoandikwa.",
+   "prevention_en": "Airflow, resistant varieties, avoid water stress.",
+   "prevention_sw": "Hewa, aina sugu, epuka mkazo wa maji.",
+   "scanner_notes": "Vine-level photo; early dusting on lower leaves first."
+  },
+  {
+   "key": "downy_mildew",
+   "name_en": "Downy mildew",
+   "name_sw": "Ukungu wa baridi",
+   "type": "disease",
+   "severity_classes": "Low (patches) · High (grey fuzz, defoliation)",
+   "symptoms_en": "Yellow patches above, grey-purple fuzz below, cool damp spells.",
+   "symptoms_sw": "Madoa ya manjano juu, ukungu wa kijivu chini, baridi na unyevu.",
+   "treatment_en": "Registered downy-active sprays at first patches. Advisory: use PCPB-registered products only, at label rates.",
+   "treatment_sw": "Dawa iliyoidhinishwa ya ukungu mara inapoanza. Shauri: tumia dawa zilizoidhinishwa na PCPB tu, kwa kiwango kilichoandikwa.",
+   "prevention_en": "Airflow, morning watering.",
+   "prevention_sw": "Hewa, mwagilia asubuhi.",
+   "scanner_notes": "Underside photo required."
+  },
+  {
+   "key": "aphids_viruses",
+   "name_en": "Aphids + viruses",
+   "name_sw": "Vidukari + virusi",
+   "type": "pest",
+   "severity_classes": "Low (colonies) · High (curled growth, virus)",
+   "symptoms_en": "Curled new growth, colonies on undersides, mottled virus symptoms.",
+   "symptoms_sw": "Majani machanga yaliyokunjika, makundi chini, dalili za virusi.",
+   "treatment_en": "Early aphid control only. Advisory: use PCPB-registered products only, at label rates.",
+   "treatment_sw": "Dhibiti vidukari mapema tu. Shauri: tumia dawa zilizoidhinishwa na PCPB tu, kwa kiwango kilichoandikwa.",
+   "prevention_en": "Weekly scouting, natural enemies first.",
+   "prevention_sw": "Chunguza kila wiki, maadui wa asili kwanza.",
+   "scanner_notes": "Underside photo with colony."
+  },
+  {
+   "key": "root_rots",
+   "name_en": "Root rots",
+   "name_sw": "Uoza wa mizizi",
+   "type": "disease",
+   "severity_classes": "Patchy (yellowing patches) · Severe (stand collapse)",
+   "symptoms_en": "Yellowing patches, dying plants, rotting roots in wet soil.",
+   "symptoms_sw": "Mapande ya manjano, mimea inayokufa, mizizi inayooza.",
+   "treatment_en": "None — drainage is the cure. Advisory: use PCPB-registered products only, at label rates.",
+   "treatment_sw": "Hakuna tiba — mifereji ndio dawa. Shauri: tumia dawa zilizoidhinishwa na PCPB tu, kwa kiwango kilichoandikwa.",
+   "prevention_en": "Raised beds, rotation away from legumes.",
+   "prevention_sw": "Vitanda vilivyoinuliwa, zungusha mbali na mikunde.",
+   "scanner_notes": "Photograph an uprooted plant with washed roots."
+  },
+  {
+   "key": "leaf_miners",
+   "name_en": "Leaf miners",
+   "name_sw": "Wachimba majani",
+   "type": "pest",
+   "severity_classes": "Low (tunnels) · High (market rejection)",
+   "symptoms_en": "Silvery tunnels through leaves, cosmetic damage.",
+   "symptoms_sw": "Michirizi ya fedha ndani ya majani, hudhuru sura.",
+   "treatment_en": "Threshold management; remove mined leaves. Advisory: use PCPB-registered products only, at label rates.",
+   "treatment_sw": "Dhibiti kwa kiwango; ondoa majani yaliyoathirika. Shauri: tumia dawa zilizoidhinishwa na PCPB tu, kwa kiwango kilichoandikwa.",
+   "prevention_en": "Row covers, rotation.",
+   "prevention_sw": "Vifuniko, zungusha.",
+   "scanner_notes": "Backlit photo shows the tunnel track."
+  }
+ ],
+ "links": [
+  {
+   "kind": "blog_guide",
+   "label_en": "Panda growing guide: Snow peas",
+   "label_sw": "Mwongozo wa Panda: Mbaazi za theluji",
+   "url": "https://panda.shira.farm/blog/snow-peas-export-grade-guide"
+  },
+  {
+   "kind": "pcpb",
+   "label_en": "PCPB — registered pest control products",
+   "label_sw": "PCPB — orodha ya dawa zilizoidhinishwa",
+   "url": "https://www.pcpb.go.ke/"
+  },
+  {
+   "kind": "kephis",
+   "label_en": "KEPHIS — plant health services",
+   "label_sw": "KEPHIS — huduma za afya ya mimea",
+   "url": "https://www.kephis.org/"
+  },
+  {
+   "kind": "prices",
+   "label_en": "MoALD market information (KAMIS)",
+   "label_sw": "Taarifa za soko za Wizara ya Kilimo (KAMIS)",
+   "url": "https://www.kilimo.go.ke/"
+  }
+ ],
+ "market_notes": {
+  "sell_windows_en": "Export-grade pods fetch several times the local price — the difference is the picking discipline and the grading. Cool highlands ARE the production zone.",
+  "sell_windows_sw": "Maganda ya kuuza nje yana bei mara kadhaa ya ndani — tofauti ni nidhamu ya kuvuna na kupanga daraja. Nyanda za juu baridi NDIO eneo la uzalishaji.",
+  "price_notes_en": "Export 200–400 KES per kg, local 80–150 (November 2026). Input bill 30,000–50,000 KES per acre — seed is heavy and the trellis is real.",
+  "price_notes_sw": "Nje KES 200–400 kwa kilo, ndani 80–150 (Novemba 2026). Gharama 30,000–50,000 KES kwa eka."
+ }
+}

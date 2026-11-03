@@ -49,6 +49,10 @@ class CropSeeder extends Seeder
             ['slug' => 'sweet-potato',  'name_en' => 'Sweet potato',  'name_sw' => 'Viazi vitamu', 'category' => 'tuber',       'harvest_type' => 'multi',  'phase_added' => 4],
             ['slug' => 'spinach',       'name_en' => 'Spinach',       'name_sw' => 'Spinachi',     'category' => 'leafy_green', 'harvest_type' => 'multi',  'phase_added' => 4],
             ['slug' => 'carrot',        'name_en' => 'Carrot',        'name_sw' => 'Karoti',       'category' => 'root',        'harvest_type' => 'single', 'phase_added' => 4],
+            ['slug' => 'butternut',     'name_en' => 'Butternut',     'name_sw' => 'Butternut',    'category' => 'cucurbit',    'harvest_type' => 'single', 'phase_added' => 4],
+            ['slug' => 'coriander',     'name_en' => 'Coriander',     'name_sw' => 'Dhania',       'category' => 'herb',        'harvest_type' => 'multi',  'phase_added' => 4],
+            ['slug' => 'pawpaw',        'name_en' => 'Pawpaw',        'name_sw' => 'Papai',        'category' => 'fruit',       'harvest_type' => 'multi',  'phase_added' => 4],
+            ['slug' => 'snow-peas',     'name_en' => 'Snow peas',     'name_sw' => 'Mbaazi za theluji', 'category' => 'legume',  'harvest_type' => 'multi',  'phase_added' => 4],
             ['slug' => 'beans',         'name_en' => 'Beans',          'name_sw' => 'Maharagwe',     'category' => 'legume',      'harvest_type' => 'single', 'phase_added' => 4],
         ];
         foreach ($crops as $row) {
