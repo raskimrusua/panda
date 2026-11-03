@@ -1,45 +1,333 @@
 {
-    "slug": "french-beans",
-    "name_en": "French beans",
-    "name_sw": "Mishiri",
-    "category": "legume",
-    "harvest_type": "multi",
-    "jica_manual_ref": "Inspired by JICA SHEP PLUS — French beans (export) manual",
-    "kalro_guide_ref": "KALRO French beans production guide",
-    "ecological_requirements": {
-        "altitude_min_m": 1000,
-        "altitude_max_m": 2100,
-        "rainfall_min_mm": 700,
-        "rainfall_max_mm": 1200,
-        "temperature_min_c": 18,
-        "temperature_max_c": 25,
-        "soil_types": ["loam", "sandy_loam"],
-        "soil_ph_min": 6.0,
-        "soil_ph_max": 7.0
-    },
-    "varieties": [
-        {"name": "Samantha", "type": "OPEN_POLLINATED", "days_to_maturity": 50, "yield_kg_per_acre": 4000, "supplier_notes": "Top export variety to EU; fine pod 9-11cm."},
-        {"name": "Paulista", "type": "OPEN_POLLINATED", "days_to_maturity": 55, "yield_kg_per_acre": 3500, "supplier_notes": "Slightly heavier pod; tolerates mild rust."}
-    ],
-    "timeline_template": [
-        {"activity_type": "land_prep", "phase": "land_prep", "week_from_planting": -1, "day_window": 5, "description_en": "Plough to fine tilth. French beans need a clean seedbed.", "description_sw": "Lima vizuri. Maharagwe ya mishiri yanahitaji shamba safi.", "is_critical": true},
-        {"activity_type": "seed_planting", "phase": "transplanting", "week_from_planting": 0, "day_window": 2, "description_en": "Direct-sow seed 3cm deep at 30cm x 10cm. No nursery needed.", "description_sw": "Panda mbegu moja kwa moja kina 3cm, nafasi 30cm x 10cm.", "is_critical": true},
-        {"activity_type": "basal_fertiliser", "phase": "transplanting", "week_from_planting": 0, "day_window": 1, "description_en": "Apply 50kg DAP at planting in the planting furrow.", "description_sw": "Weka kilo 50 za DAP wakati wa kupanda.", "is_critical": true},
-        {"activity_type": "first_weeding", "phase": "growth", "week_from_planting": 2, "day_window": 4, "description_en": "Shallow-hoe between rows. Beans dislike root disturbance.", "description_sw": "Palia juu juu kati ya safu. Maharagwe hayapendi kusumbuliwa mizizi.", "is_critical": false},
-        {"activity_type": "top_dress", "phase": "growth", "week_from_planting": 3, "day_window": 3, "description_en": "Apply 25kg CAN side-dressed. Beans fix nitrogen — modest dose.", "description_sw": "Weka kilo 25 za CAN. Maharagwe hujishika nitrojeni — dosi ndogo.", "is_critical": false},
-        {"activity_type": "flowering_spray", "phase": "growth", "week_from_planting": 4, "day_window": 7, "description_en": "Preventive fungicide at flowering for rust/anthracnose.", "description_sw": "Nyunyuza dawa ya kuzuia magonjwa wakati wa maua.", "is_critical": true},
-        {"activity_type": "first_harvest", "phase": "harvest", "week_from_planting": 7, "day_window": 5, "description_en": "Pick pods when 9-11cm long and tender. Snap test: pod breaks cleanly.", "description_sw": "Chuna magamba urefu 9-11cm bado machanga.", "tip_en": "Pick every 2-3 days during peak. Pods overrun in 24h.", "tip_sw": "Vuna kila siku 2-3. Magamba huzeeka haraka.", "is_critical": true},
-        {"activity_type": "subsequent_picks", "phase": "harvest", "week_from_planting": 8, "day_window": 21, "description_en": "Continue picks every 2-3 days for 3 weeks total.", "description_sw": "Endelea kuvuna kila siku 2-3 kwa wiki 3.", "is_critical": false}
-    ],
-    "inputs_per_acre": [
-        {"input_type": "seed", "product_name": "Samantha (25kg)", "quantity": 25, "unit": "kg", "week_from_planting": 0, "benchmark_price_kes": 12000, "pcpb_registered": false, "alternatives": ["Paulista", "Vanilla"]},
-        {"input_type": "fertiliser", "product_name": "DAP 50kg", "quantity": 50, "unit": "kg", "week_from_planting": 0, "benchmark_price_kes": 3500, "pcpb_registered": false},
-        {"input_type": "fertiliser", "product_name": "CAN 25kg", "quantity": 25, "unit": "kg", "week_from_planting": 3, "benchmark_price_kes": 1500, "pcpb_registered": false},
-        {"input_type": "chemical", "product_name": "Bayfidan 250EC (250ml)", "quantity": 250, "unit": "ml", "week_from_planting": 4, "benchmark_price_kes": 1100, "pcpb_registered": true, "alternatives": ["Score 250EC"]},
-        {"input_type": "chemical", "product_name": "Match 50EC (250ml)", "quantity": 250, "unit": "ml", "week_from_planting": 5, "benchmark_price_kes": 700, "pcpb_registered": true},
-        {"input_type": "other", "product_name": "Punnets 250g (export-grade)", "quantity": 16000, "unit": "pieces", "week_from_planting": 7, "benchmark_price_kes": 8000, "pcpb_registered": false}
-    ],
-    "yield_per_acre": {"expected_kg": 4000, "min_kg": 3000, "max_kg": 5000, "number_of_picks": 8, "pick_interval_days": 3},
-    "post_harvest": {"shelf_life_days": 7, "grading_criteria": "Export A: 9-11cm, no blemishes, snap-fresh. Local B: 8-12cm, minor blemishes.", "packaging_standard": "250g vented punnets for export; 5kg cartons for local market.", "storage_tips_en": "Cold chain at 5-7°C from harvest to airport. Same-day delivery to packhouse.", "storage_tips_sw": "Hifadhi 5-7°C tangu kuvuna mpaka airport."},
-    "diseases": ["rust", "anthracnose", "bean_fly", "powdery_mildew", "halo_blight"]
+ "slug": "french-beans",
+ "name_en": "French beans",
+ "name_sw": "Mishiri",
+ "category": "legume",
+ "harvest_type": "multi",
+ "jica_manual_ref": "Inspired by JICA SHEP PLUS — French beans (export) manual",
+ "kalro_guide_ref": "KALRO French beans production guide",
+ "ecological_requirements": {
+  "altitude_min_m": 1000,
+  "altitude_max_m": 2100,
+  "rainfall_min_mm": 700,
+  "rainfall_max_mm": 1200,
+  "temperature_min_c": 18,
+  "temperature_max_c": 25,
+  "soil_types": [
+   "loam",
+   "sandy_loam"
+  ],
+  "soil_ph_min": 6.0,
+  "soil_ph_max": 7.0
+ },
+ "varieties": [
+  {
+   "name": "Samantha",
+   "type": "OPEN_POLLINATED",
+   "days_to_maturity": 50,
+   "yield_kg_per_acre": 4000,
+   "supplier_notes": "Top export variety to EU; fine pod 9-11cm."
+  },
+  {
+   "name": "Paulista",
+   "type": "OPEN_POLLINATED",
+   "days_to_maturity": 55,
+   "yield_kg_per_acre": 3500,
+   "supplier_notes": "Slightly heavier pod; tolerates mild rust."
+  }
+ ],
+ "timeline_template": [
+  {
+   "activity_type": "land_prep",
+   "phase": "land_prep",
+   "week_from_planting": -1,
+   "day_window": 5,
+   "description_en": "Plough to fine tilth. French beans need a clean seedbed.",
+   "description_sw": "Lima vizuri. Maharagwe ya mishiri yanahitaji shamba safi.",
+   "is_critical": true
+  },
+  {
+   "activity_type": "seed_planting",
+   "phase": "transplanting",
+   "week_from_planting": 0,
+   "day_window": 2,
+   "description_en": "Direct-sow seed 3cm deep at 30cm x 10cm. No nursery needed.",
+   "description_sw": "Panda mbegu moja kwa moja kina 3cm, nafasi 30cm x 10cm.",
+   "is_critical": true
+  },
+  {
+   "activity_type": "basal_fertiliser",
+   "phase": "transplanting",
+   "week_from_planting": 0,
+   "day_window": 1,
+   "description_en": "Apply 50kg DAP at planting in the planting furrow.",
+   "description_sw": "Weka kilo 50 za DAP wakati wa kupanda.",
+   "is_critical": true
+  },
+  {
+   "activity_type": "first_weeding",
+   "phase": "growth",
+   "week_from_planting": 2,
+   "day_window": 4,
+   "description_en": "Shallow-hoe between rows. Beans dislike root disturbance.",
+   "description_sw": "Palia juu juu kati ya safu. Maharagwe hayapendi kusumbuliwa mizizi.",
+   "is_critical": false
+  },
+  {
+   "activity_type": "top_dress",
+   "phase": "growth",
+   "week_from_planting": 3,
+   "day_window": 3,
+   "description_en": "Apply 25kg CAN side-dressed. Beans fix nitrogen — modest dose.",
+   "description_sw": "Weka kilo 25 za CAN. Maharagwe hujishika nitrojeni — dosi ndogo.",
+   "is_critical": false
+  },
+  {
+   "activity_type": "flowering_spray",
+   "phase": "growth",
+   "week_from_planting": 4,
+   "day_window": 7,
+   "description_en": "Preventive fungicide at flowering for rust/anthracnose.",
+   "description_sw": "Nyunyuza dawa ya kuzuia magonjwa wakati wa maua.",
+   "is_critical": true
+  },
+  {
+   "activity_type": "pest_scout",
+   "phase": "growth",
+   "week_from_planting": 5,
+   "day_window": 28,
+   "description_en": "Scout for rust pustules and angular leaf spot weekly through pod fill; treat at first sign.",
+   "description_sw": "Chunguza kutu na madoa ya pembetatu kila wiki wakati wa kujaa kwa maganda.",
+   "is_critical": false
+  },
+  {
+   "activity_type": "first_harvest",
+   "phase": "harvest",
+   "week_from_planting": 7,
+   "day_window": 5,
+   "description_en": "Pick pods when 9-11cm long and tender. Snap test: pod breaks cleanly.",
+   "description_sw": "Chuna magamba urefu 9-11cm bado machanga.",
+   "tip_en": "Pick every 2-3 days during peak. Pods overrun in 24h.",
+   "tip_sw": "Vuna kila siku 2-3. Magamba huzeeka haraka.",
+   "is_critical": true
+  },
+  {
+   "activity_type": "subsequent_picks",
+   "phase": "harvest",
+   "week_from_planting": 8,
+   "day_window": 21,
+   "description_en": "Continue picks every 2-3 days for 3 weeks total.",
+   "description_sw": "Endelea kuvuna kila siku 2-3 kwa wiki 3.",
+   "is_critical": false
+  }
+ ],
+ "inputs_per_acre": [
+  {
+   "input_type": "seed",
+   "product_name": "Samantha (25kg)",
+   "quantity": 25,
+   "unit": "kg",
+   "week_from_planting": 0,
+   "benchmark_price_kes": 12000,
+   "pcpb_registered": false,
+   "alternatives": [
+    "Paulista",
+    "Vanilla"
+   ]
+  },
+  {
+   "input_type": "fertiliser",
+   "product_name": "DAP 50kg",
+   "quantity": 50,
+   "unit": "kg",
+   "week_from_planting": 0,
+   "benchmark_price_kes": 3500,
+   "pcpb_registered": false
+  },
+  {
+   "input_type": "fertiliser",
+   "product_name": "CAN 25kg",
+   "quantity": 25,
+   "unit": "kg",
+   "week_from_planting": 3,
+   "benchmark_price_kes": 1500,
+   "pcpb_registered": false
+  },
+  {
+   "input_type": "chemical",
+   "product_name": "Bayfidan 250EC (250ml)",
+   "quantity": 250,
+   "unit": "ml",
+   "week_from_planting": 4,
+   "benchmark_price_kes": 1100,
+   "pcpb_registered": true,
+   "alternatives": [
+    "Score 250EC"
+   ]
+  },
+  {
+   "input_type": "chemical",
+   "product_name": "Match 50EC (250ml)",
+   "quantity": 250,
+   "unit": "ml",
+   "week_from_planting": 5,
+   "benchmark_price_kes": 700,
+   "pcpb_registered": true
+  },
+  {
+   "input_type": "other",
+   "product_name": "Punnets 250g (export-grade)",
+   "quantity": 16000,
+   "unit": "pieces",
+   "week_from_planting": 7,
+   "benchmark_price_kes": 8000,
+   "pcpb_registered": false
+  }
+ ],
+ "yield_per_acre": {
+  "expected_kg": 4000,
+  "min_kg": 3000,
+  "max_kg": 5000,
+  "number_of_picks": 8,
+  "pick_interval_days": 3
+ },
+ "post_harvest": {
+  "shelf_life_days": 7,
+  "grading_criteria": "Export A: 9-11cm, no blemishes, snap-fresh. Local B: 8-12cm, minor blemishes.",
+  "packaging_standard": "250g vented punnets for export; 5kg cartons for local market.",
+  "storage_tips_en": "Cold chain at 5-7°C from harvest to airport. Same-day delivery to packhouse.",
+  "storage_tips_sw": "Hifadhi 5-7°C tangu kuvuna mpaka airport."
+ },
+ "diseases": [
+  {
+   "key": "rust",
+   "name_en": "Rust",
+   "name_sw": "Kutu",
+   "type": "disease",
+   "severity_classes": "Low (pustules) · High (defoliation, rejected pods)",
+   "symptoms_en": "Orange-brown pustules on leaf undersides, yellow halo, defoliation in humid spells.",
+   "symptoms_sw": "Viputo vya rangi ya kutu chini ya majani, mpaka wa manjano, majani huanguka unyevu.",
+   "treatment_en": "Spray a registered rust-active fungicide at onset. Advisory: use PCPB-registered products only, at label rates.",
+   "treatment_sw": "Nyunyuza dawa iliyoidhinishwa ya kutu mara inapoanza. Shauri: tumia dawa zilizoidhinishwa na PCPB tu, kwa kiwango kilichoandikwa.",
+   "prevention_en": "Resistant varieties, avoid overhead watering.",
+   "prevention_sw": "Aina sugu, epuka kumwagilia kutoka juu.",
+   "scanner_notes": "Pustules rub off on fingers — the field test that confirms rust."
+  },
+  {
+   "key": "anthracnose",
+   "name_en": "Anthracnose",
+   "name_sw": "Ugonjwa wa madoa meusi",
+   "type": "disease",
+   "severity_classes": "Low (specks) · High (pod rot, packhouse rejection)",
+   "symptoms_en": "Sunken dark lesions on pods, stems and cotyledons; black seed blotches.",
+   "symptoms_sw": "Madoa meusi yaliyozama kwenye maganda na mashina; mbegu zenye madoa meusi.",
+   "treatment_en": "Spray a registered fungicide at first sign; never save seed from an infected crop. Advisory: use PCPB-registered products only, at label rates.",
+   "treatment_sw": "Nyunyuza dawa iliyoidhinishwa mara inapoanza; usihifadhi mbegu za shamba lililoathirika. Shauri: tumia dawa zilizoidhinishwa na PCPB tu, kwa kiwango kilichoandikwa.",
+   "prevention_en": "Certified seed only; field hygiene.",
+   "prevention_sw": "Mbegu zilizothibitishwa tu; usafi shambani.",
+   "scanner_notes": "Pod close-up; the seed-source question improves the advice."
+  },
+  {
+   "key": "bean_fly",
+   "name_en": "Bean fly",
+   "name_sw": "Nzi wa maharagwe",
+   "type": "pest",
+   "severity_classes": "Seedling (tunnelled stems) · Established (swollen cracked stems)",
+   "symptoms_en": "Maggots tunnel the stem base; seedlings die or stay stunted with swollen, cracked stems.",
+   "symptoms_sw": "Viluwiluwi hutoboa shina chini; miche hufa au kubaki dhaifu na mashina yaliyovimba.",
+   "treatment_en": "Seed-dress with a registered insecticide; early foliar only in the seedling stage. Advisory: use PCPB-registered products only, at label rates.",
+   "treatment_sw": "Tia dawa kwenye mbegu; nyunyuza mapema tu kwenye kipindi cha miche. Shauri: tumia dawa zilizoidhinishwa na PCPB tu, kwa kiwango kilichoandikwa.",
+   "prevention_en": "Plant early and dense so the stand outgrows it.",
+   "prevention_sw": "Panda mapema na kwa wingi ili mimea iwe imara.",
+   "scanner_notes": "Photograph the stem base — leaf photos miss the tunnel."
+  },
+  {
+   "key": "powdery_mildew",
+   "name_en": "Powdery mildew",
+   "name_sw": "Ukungu",
+   "type": "disease",
+   "severity_classes": "Low (dusting) · High (leaf death)",
+   "symptoms_en": "White dusting on leaves in warm-dry spells, leaf burn, weak pods.",
+   "symptoms_sw": "Ukungu mweupe majani wakati wa joto na ukavu, majani huungua, maganda dhaifu.",
+   "treatment_en": "Spray sulphur-class or registered mildew products at first dusting. Advisory: use PCPB-registered products only, at label rates.",
+   "treatment_sw": "Nyunyuza dawa za kikundi cha salfa au zilizoidhinishwa mara inapoanza. Shauri: tumia dawa zilizoidhinishwa na PCPB tu, kwa kiwango kilichoandikwa.",
+   "prevention_en": "Airflow between rows; avoid water stress.",
+   "prevention_sw": "Nafasi kwa hewa; epuka mkazo wa maji.",
+   "scanner_notes": "White powder on TOP of leaf — distinct from downy mildew."
+  },
+  {
+   "key": "halo_blight",
+   "name_en": "Halo blight",
+   "name_sw": "Ugonjwa wa madoa yenye mpaka",
+   "type": "disease",
+   "severity_classes": "Low (water-soaked spots) · High (pod blemish, defoliation)",
+   "symptoms_en": "Small water-soaked spots with yellow halos on leaves and pods; worse in cool wet spells.",
+   "symptoms_sw": "Madoa madogo yenye maji na mpaka wa manjano majani na maganda; zaidi baridi na unyevu.",
+   "treatment_en": "No cure — copper-class products suppress spread. Advisory: use PCPB-registered products only, at label rates.",
+   "treatment_sw": "Hakuna tiba — dawa za kikundi cha copper zinazuia kuenea tu. Shauri: tumia dawa zilizoidhinishwa na PCPB tu, kwa kiwango kilichoandikwa.",
+   "prevention_en": "Certified seed only; avoid working the field when wet.",
+   "prevention_sw": "Mbegu zilizothibitishwa tu; epuka kufanya kazi shambani mvua.",
+   "scanner_notes": "Water-soaked spots WITH halos distinguish from angular leaf spot."
+  },
+  {
+   "key": "angular_leaf_spot",
+   "name_en": "Angular leaf spot",
+   "name_sw": "Madoa ya pembetatu",
+   "type": "disease",
+   "severity_classes": "Low (lesions) · High (defoliation, pod blemish)",
+   "symptoms_en": "Brown angular lesions with grey centres, vein-bounded, on leaves and pods.",
+   "symptoms_sw": "Madoa ya kahawia yenye katikati ya kijivu, kwenye majani na maganda.",
+   "treatment_en": "Spray a registered fungicide class at first lesions. Advisory: use PCPB-registered products only, at label rates.",
+   "treatment_sw": "Nyunyuza dawa iliyoidhinishwa mara madoa yanapoanza. Shauri: tumia dawa zilizoidhinishwa na PCPB tu, kwa kiwango kilichoandikwa.",
+   "prevention_en": "Rotate crops, clean seed, open rows.",
+   "prevention_sw": "Zungusha mazao, mbegu safi, nafasi ya kutosha.",
+   "scanner_notes": "Angular vein-bounded shape discriminates vs anthracnose."
+  },
+  {
+   "key": "root_rots",
+   "name_en": "Root rots",
+   "name_sw": "Uoza wa mizizi",
+   "type": "disease",
+   "severity_classes": "Patchy (stunted patches) · Severe (stand collapse)",
+   "symptoms_en": "Dark rotting roots, stunted yellow patches, plants pull out easily.",
+   "symptoms_sw": "Mizizi inayooza, mapande ya mimea dhaifu ya manjano, mimea hung'oleka kwa urahisi.",
+   "treatment_en": "No effective spray — drainage is the fix. Advisory: use PCPB-registered products only, at label rates.",
+   "treatment_sw": "Hakuna dawa mwafaka — mifereji ya maji ndio tiba. Shauri: tumia dawa zilizoidhinishwa na PCPB tu, kwa kiwango kilichoandikwa.",
+   "prevention_en": "Raised beds, rotation away from legumes.",
+   "prevention_sw": "Vitanda vilivyoinuliwa, zungusha mbali na mikunde.",
+   "scanner_notes": "Photograph an uprooted plant with roots washed."
+  }
+ ],
+ "links": [
+  {
+   "kind": "blog_guide",
+   "label_en": "Panda growing guide: French beans",
+   "label_sw": "Mwongozo wa Panda: Mishiri",
+   "url": "https://panda.shira.farm/blog/french-beans-export-cold-chain"
+  },
+  {
+   "kind": "pcpb",
+   "label_en": "PCPB — registered pest control products",
+   "label_sw": "PCPB — orodha ya dawa zilizoidhinishwa",
+   "url": "https://www.pcpb.go.ke/"
+  },
+  {
+   "kind": "kephis",
+   "label_en": "KEPHIS — plant health services",
+   "label_sw": "KEPHIS — huduma za afya ya mimea",
+   "url": "https://www.kephis.org/"
+  },
+  {
+   "kind": "prices",
+   "label_en": "MoALD market information (KAMIS)",
+   "label_sw": "Taarifa za soko za Wizara ya Kilimo (KAMIS)",
+   "url": "https://www.kilimo.go.ke/"
+  }
+ ],
+ "market_notes": {
+  "sell_windows_en": "Export-grade pods fetch a premium over local; packhouse grading rejects swollen pods. Pick every 2–3 days through the 6–8 week window — the picking rhythm IS the export game.",
+  "sell_windows_sw": "Maganda ya kuuza nje yana bei ya juu; grading inakataa maganda yaliyovimba. Vuna kila siku 2–3 kwa wiki 6–8 — mwendo wa kuvuna ndio mchezo wa kuuza nje.",
+  "price_notes_en": "Local ~60–100 KES per kg; export-grade several multiples (November 2026). Cold-chain discipline (4–6°C within hours of picking) keeps export grade.",
+  "price_notes_sw": "Soko la ndani ~60–100 KES kwa kilo; la nje mara kadhaa zaidi (Novemba 2026). Mnyororo wa baridi (4–6°C saa chache baada ya kuvuna) hudumisha daraja la kuuza nje."
+ }
 }
