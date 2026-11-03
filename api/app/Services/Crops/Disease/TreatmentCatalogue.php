@@ -962,6 +962,223 @@ final class TreatmentCatalogue
     ];
 
     /**
+     * Amaranthus entries — keys bridge to amaranthus.json.
+     *
+     * @var list<array{key: string, name: string, treatments: list<array{generic: string, pcpb: ?string, application_notes?: string}>}>
+     */
+    private const AMARANTHUS_DISEASES = [
+        [
+            'key' => 'aphids',
+            'name' => 'Aphids',
+            'treatments' => [
+                ['generic' => 'Imidacloprid', 'pcpb' => 'Actara 25 WG', 'application_notes' => 'Apply only if colonies spread; natural enemies control early outbreaks.'],
+            ],
+        ],
+        [
+            'key' => 'leaf_miners',
+            'name' => 'Leaf miners',
+            'treatments' => [
+                ['generic' => 'Cyromazine', 'pcpb' => 'Trigard 75 WP', 'application_notes' => 'Apply at threshold; remove mined leaves.'],
+            ],
+        ],
+        [
+            'key' => 'damping_off',
+            'name' => 'Damping off',
+            'treatments' => [
+                ['generic' => 'Thiram-class seed dressing', 'pcpb' => null, 'application_notes' => 'Seed-dress where the nursery is wet; raised beds and thin sowing.'],
+            ],
+        ],
+    ];
+
+    /**
+     * Black Nightshade entries — keys bridge to black-nightshade.json.
+     *
+     * @var list<array{key: string, name: string, treatments: list<array{generic: string, pcpb: ?string, application_notes?: string}>}>
+     */
+    private const BLACK_NIGHTSHADE_DISEASES = [
+        [
+            'key' => 'aphids',
+            'name' => 'Aphids',
+            'treatments' => [
+                ['generic' => 'Imidacloprid', 'pcpb' => 'Actara 25 WG', 'application_notes' => 'Apply only if colonies spread; natural enemies control early outbreaks.'],
+            ],
+        ],
+        [
+            'key' => 'spider_mites',
+            'name' => 'Spider mites',
+            'treatments' => [
+                ['generic' => 'Abamectin', 'pcpb' => 'Dynamec 1.8 EC', 'application_notes' => 'Apply at first webbing on leaf undersides; repeat in 7 days.'],
+            ],
+        ],
+        [
+            'key' => 'early_blight',
+            'name' => 'Early blight',
+            'treatments' => [
+                ['generic' => 'Mancozeb 80WP', 'pcpb' => 'Ridomil Gold MZ 68 WG', 'application_notes' => 'Spray every 7-10 days at first sign.'],
+                ['generic' => 'Copper Hydroxide', 'pcpb' => 'Funguran-OH 50 WP', 'application_notes' => 'Preventive — alternate with Ridomil to avoid resistance.'],
+            ],
+        ],
+    ];
+
+    /**
+     * Chili entries — keys bridge to chili.json.
+     *
+     * @var list<array{key: string, name: string, treatments: list<array{generic: string, pcpb: ?string, application_notes?: string}>}>
+     */
+    private const CHILI_DISEASES = [
+        [
+            'key' => 'thrips',
+            'name' => 'Thrips',
+            'treatments' => [
+                ['generic' => 'Lambda-cyhalothrin', 'pcpb' => 'Karate Zeon 2.5 CS', 'application_notes' => 'Apply at threshold; monitor during dry spells.'],
+            ],
+        ],
+        [
+            'key' => 'aphids',
+            'name' => 'Aphids',
+            'treatments' => [
+                ['generic' => 'Imidacloprid', 'pcpb' => 'Actara 25 WG', 'application_notes' => 'Apply only if colonies spread; natural enemies control early outbreaks.'],
+            ],
+        ],
+        [
+            'key' => 'anthracnose',
+            'name' => 'Anthracnose',
+            'treatments' => [
+                ['generic' => 'Azoxystrobin', 'pcpb' => 'Ortiva 250 SC', 'application_notes' => 'Apply at flowering and fruit set in wet weather.'],
+            ],
+        ],
+        [
+            'key' => 'bacterial_wilt',
+            'name' => 'Bacterial wilt',
+            'treatments' => [
+                ['generic' => 'None — rogue and destroy; 3-season rotation away from solanaceous crops. Prevention and field hygiene are the control.', 'pcpb' => null, 'application_notes' => 'No cure — rogue and destroy; 3-season rotation away from solanaceous crops.'],
+            ],
+        ],
+        [
+            'key' => 'powdery_mildew',
+            'name' => 'Powdery mildew',
+            'treatments' => [
+                ['generic' => 'Sulphur', 'pcpb' => 'Thiovit Jet 80 WG', 'application_notes' => 'Apply in cool morning hours. Avoid temps above 30°C.'],
+            ],
+        ],
+    ];
+
+    /**
+     * Cowpea Leaves entries — keys bridge to cowpea-leaves.json.
+     *
+     * @var list<array{key: string, name: string, treatments: list<array{generic: string, pcpb: ?string, application_notes?: string}>}>
+     */
+    private const COWPEA_LEAVES_DISEASES = [
+        [
+            'key' => 'aphids',
+            'name' => 'Aphids',
+            'treatments' => [
+                ['generic' => 'Imidacloprid', 'pcpb' => 'Actara 25 WG', 'application_notes' => 'Apply only if colonies spread; natural enemies control early outbreaks.'],
+            ],
+        ],
+        [
+            'key' => 'thrips',
+            'name' => 'Thrips',
+            'treatments' => [
+                ['generic' => 'Lambda-cyhalothrin', 'pcpb' => 'Karate Zeon 2.5 CS', 'application_notes' => 'Apply at threshold; monitor during dry spells.'],
+            ],
+        ],
+        [
+            'key' => 'powdery_mildew',
+            'name' => 'Powdery mildew',
+            'treatments' => [
+                ['generic' => 'Sulphur', 'pcpb' => 'Thiovit Jet 80 WG', 'application_notes' => 'Apply in cool morning hours. Avoid temps above 30°C.'],
+            ],
+        ],
+        [
+            'key' => 'bacterial_blight',
+            'name' => 'Bacterial blight',
+            'treatments' => [
+                ['generic' => 'Copper Hydroxide', 'pcpb' => 'Funguran-OH 50 WP', 'application_notes' => 'Suppression only — clean certified seed is the control.'],
+            ],
+        ],
+    ];
+
+    /**
+     * Eggplant entries — keys bridge to eggplant.json.
+     *
+     * @var list<array{key: string, name: string, treatments: list<array{generic: string, pcpb: ?string, application_notes?: string}>}>
+     */
+    private const EGGPLANT_DISEASES = [
+        [
+            'key' => 'shoot_borer',
+            'name' => 'Shoot and fruit borer',
+            'treatments' => [
+                ['generic' => 'Emamectin benzoate', 'pcpb' => 'Proclaim Fit 5 SG', 'application_notes' => 'Apply at first tip damage; remove and destroy bored shoots.'],
+            ],
+        ],
+        [
+            'key' => 'fruit_borer',
+            'name' => 'Fruit borer',
+            'treatments' => [
+                ['generic' => 'Emamectin benzoate', 'pcpb' => 'Proclaim Fit 5 SG', 'application_notes' => 'Apply at first fruit punctures; remove infested fruit.'],
+            ],
+        ],
+        [
+            'key' => 'bacterial_wilt',
+            'name' => 'Bacterial wilt',
+            'treatments' => [
+                ['generic' => 'None — rogue and destroy; 3-season rotation away from solanaceous crops. Prevention and field hygiene are the control.', 'pcpb' => null, 'application_notes' => 'No cure — rogue and destroy; 3-season rotation away from solanaceous crops.'],
+            ],
+        ],
+        [
+            'key' => 'verticillium_wilt',
+            'name' => 'Verticillium wilt',
+            'treatments' => [
+                ['generic' => 'None — rotation away from solanaceous crops; solarize beds. Prevention and field hygiene are the control.', 'pcpb' => null, 'application_notes' => 'No cure — rotation away from solanaceous crops; solarize beds.'],
+            ],
+        ],
+    ];
+
+    /**
+     * Passion Fruit entries — keys bridge to passion-fruit.json.
+     *
+     * @var list<array{key: string, name: string, treatments: list<array{generic: string, pcpb: ?string, application_notes?: string}>}>
+     */
+    private const PASSION_FRUIT_DISEASES = [
+        [
+            'key' => 'fruit_fly',
+            'name' => 'Fruit fly',
+            'treatments' => [
+                ['generic' => 'Spinosad protein bait', 'pcpb' => 'GF-120 NF', 'application_notes' => 'Bait sprays + sanitation; remove fallen fruit.'],
+            ],
+        ],
+        [
+            'key' => 'brown_spot',
+            'name' => 'Brown spot',
+            'treatments' => [
+                ['generic' => 'Mancozeb', 'pcpb' => 'Dithane M-45 80WP', 'application_notes' => 'Apply at first spots; prune for airflow.'],
+            ],
+        ],
+        [
+            'key' => 'woodiness_virus',
+            'name' => 'Woodiness virus (PWV)',
+            'treatments' => [
+                ['generic' => 'None — rogue infected vines; clean seedlings; control aphids. Prevention and field hygiene are the control.', 'pcpb' => null, 'application_notes' => 'No cure — rogue infected vines; clean seedlings; control aphids.'],
+            ],
+        ],
+        [
+            'key' => 'fusarium_wilt',
+            'name' => 'Fusarium wilt',
+            'treatments' => [
+                ['generic' => 'None — remove plants; resistant varieties and rotation. Prevention and field hygiene are the control.', 'pcpb' => null, 'application_notes' => 'No cure — remove plants; resistant varieties and rotation.'],
+            ],
+        ],
+        [
+            'key' => 'phytophthora',
+            'name' => 'Phytophthora blight',
+            'treatments' => [
+                ['generic' => 'Metalaxyl-M', 'pcpb' => 'Ridomil Gold MZ 68 WG', 'application_notes' => 'Collar drench at first symptoms; drainage is the prevention.'],
+            ],
+        ],
+    ];
+
+    /**
      * Full catalogue for a crop: crop-specific entries followed by the
      * generic entries (so unknown crops still get the two universal ones).
      *
@@ -970,7 +1187,7 @@ final class TreatmentCatalogue
     public static function catalogue(?string $cropSlug = null): array
     {
         $crop = match ($cropSlug) {
-            'kale' => self::KALE_DISEASES,            'tomato' => self::TOMATO_DISEASES,            'french-beans' => self::FRENCH_BEANS_DISEASES,            'mango' => self::MANGO_DISEASES,            'bulb-onion' => self::ONION_DISEASES,            'avocado' => self::AVOCADO_DISEASES,            'banana' => self::BANANA_DISEASES,            'capsicum' => self::CAPSICUM_DISEASES,            'potato' => self::POTATO_DISEASES,            'watermelon' => self::WATERMELON_DISEASES,            'maize' => self::MAIZE_DISEASES,            'beans' => self::BEANS_DISEASES,            'sweet-potato' => self::SWEET_POTATO_DISEASES,            'spinach' => self::SPINACH_DISEASES,            'carrot' => self::CARROT_DISEASES,            'butternut' => self::BUTTERNUT_DISEASES,            'coriander' => self::CORIANDER_DISEASES,            'pawpaw' => self::PAWPAW_DISEASES,            'snow-peas' => self::SNOW_PEAS_DISEASES,            'cabbage' => self::CABBAGE_DISEASES,            default => [],
+            'kale' => self::KALE_DISEASES,            'tomato' => self::TOMATO_DISEASES,            'french-beans' => self::FRENCH_BEANS_DISEASES,            'mango' => self::MANGO_DISEASES,            'bulb-onion' => self::ONION_DISEASES,            'avocado' => self::AVOCADO_DISEASES,            'banana' => self::BANANA_DISEASES,            'capsicum' => self::CAPSICUM_DISEASES,            'potato' => self::POTATO_DISEASES,            'watermelon' => self::WATERMELON_DISEASES,            'maize' => self::MAIZE_DISEASES,            'beans' => self::BEANS_DISEASES,            'sweet-potato' => self::SWEET_POTATO_DISEASES,            'spinach' => self::SPINACH_DISEASES,            'carrot' => self::CARROT_DISEASES,            'butternut' => self::BUTTERNUT_DISEASES,            'coriander' => self::CORIANDER_DISEASES,            'pawpaw' => self::PAWPAW_DISEASES,            'snow-peas' => self::SNOW_PEAS_DISEASES,            'cabbage' => self::CABBAGE_DISEASES,            'amaranthus' => self::AMARANTHUS_DISEASES,            'black-nightshade' => self::BLACK_NIGHTSHADE_DISEASES,            'chili' => self::CHILI_DISEASES,            'cowpea-leaves' => self::COWPEA_LEAVES_DISEASES,            'eggplant' => self::EGGPLANT_DISEASES,            'passion-fruit' => self::PASSION_FRUIT_DISEASES,            default => [],
         };
 
         return array_merge($crop, self::GENERIC_DISEASES);
