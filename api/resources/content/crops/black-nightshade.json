@@ -1,42 +1,231 @@
 {
-    "slug": "black-nightshade",
-    "name_en": "Black nightshade",
-    "name_sw": "Managu",
-    "category": "leafy_green",
-    "harvest_type": "multi",
-    "jica_manual_ref": "Inspired by JICA SHEP PLUS — Indigenous leafy vegetables (Black nightshade)",
-    "kalro_guide_ref": "KALRO African leafy vegetables handbook — Solanum scabrum",
-    "ecological_requirements": {
-        "altitude_min_m": 600,
-        "altitude_max_m": 2400,
-        "rainfall_min_mm": 500,
-        "rainfall_max_mm": 1500,
-        "temperature_min_c": 15,
-        "temperature_max_c": 28,
-        "soil_types": ["loam", "sandy_loam"],
-        "soil_ph_min": 5.5,
-        "soil_ph_max": 6.8
-    },
-    "varieties": [
-        {"name": "Managu (Solanum scabrum)", "type": "OPEN_POLLINATED", "days_to_maturity": 50, "yield_kg_per_acre": 9000, "supplier_notes": "Local Kenyan managu; broad leaves; main commercial type."},
-        {"name": "Olevu (S. villosum)", "type": "OPEN_POLLINATED", "days_to_maturity": 55, "yield_kg_per_acre": 7000, "supplier_notes": "Smaller leaves but tastier; village-market preferred."}
-    ],
-    "timeline_template": [
-        {"activity_type": "nursery_seeding", "phase": "nursery", "week_from_planting": -4, "day_window": 3, "description_en": "Sow in raised nursery bed at 1cm depth. Tiny seed — barely cover.", "description_sw": "Panda kitalu kina 1cm. Mbegu ndogo — funika kidogo sana.", "is_critical": true},
-        {"activity_type": "transplanting", "phase": "transplanting", "week_from_planting": 0, "day_window": 2, "description_en": "Transplant 4-week seedlings at 30cm x 30cm.", "description_sw": "Pandikiza miche wiki 4 nafasi 30cm x 30cm.", "is_critical": true},
-        {"activity_type": "basal_fertiliser", "phase": "transplanting", "week_from_planting": 0, "day_window": 1, "description_en": "Apply 50kg DAP at transplanting.", "description_sw": "Weka kilo 50 za DAP.", "is_critical": true},
-        {"activity_type": "first_weeding", "phase": "growth", "week_from_planting": 2, "day_window": 4, "description_en": "Hand-weed and mulch.", "description_sw": "Palia na funika.", "is_critical": false},
-        {"activity_type": "top_dress", "phase": "growth", "week_from_planting": 3, "day_window": 3, "description_en": "Apply 50kg CAN. Stimulates leaf flush.", "description_sw": "Weka kilo 50 za CAN. Huongeza majani.", "is_critical": true},
-        {"activity_type": "first_harvest", "phase": "harvest", "week_from_planting": 7, "day_window": 5, "description_en": "Pluck top 2-3 leaves and tender stems. Don't strip the whole plant.", "description_sw": "Chuna majani 2-3 ya juu na shina laini. Usimaliz e mmea wote.", "tip_en": "First harvest delayed = sweeter taste, less bitter compounds.", "tip_sw": "Mavuno ya kwanza ukichelewa = ladha tamu zaidi.", "is_critical": true},
-        {"activity_type": "subsequent_harvests", "phase": "harvest", "week_from_planting": 8, "day_window": 21, "description_en": "Continue plucking every 7-10 days for 3 months.", "description_sw": "Endelea kuchuna kila siku 7-10 kwa miezi 3.", "is_critical": false}
-    ],
-    "inputs_per_acre": [
-        {"input_type": "seed", "product_name": "Managu (500g)", "quantity": 500, "unit": "g", "week_from_planting": -4, "benchmark_price_kes": 2000, "pcpb_registered": false, "alternatives": ["Olevu"]},
-        {"input_type": "fertiliser", "product_name": "DAP 50kg", "quantity": 50, "unit": "kg", "week_from_planting": 0, "benchmark_price_kes": 3500, "pcpb_registered": false},
-        {"input_type": "fertiliser", "product_name": "CAN 50kg", "quantity": 50, "unit": "kg", "week_from_planting": 3, "benchmark_price_kes": 2800, "pcpb_registered": false},
-        {"input_type": "fertiliser", "product_name": "Manure 1 ton", "quantity": 1000, "unit": "kg", "week_from_planting": -1, "benchmark_price_kes": 3000, "pcpb_registered": false}
-    ],
-    "yield_per_acre": {"expected_kg": 9000, "min_kg": 6000, "max_kg": 12000, "number_of_picks": 10, "pick_interval_days": 8},
-    "post_harvest": {"shelf_life_days": 3, "grading_criteria": "Bunched leaves + tender stems. Reject yellowed or seeded shoots.", "packaging_standard": "Tied bunches ~200g, sold same-day at market.", "storage_tips_en": "Sell same-day. Cool 5-10°C if delay forced.", "storage_tips_sw": "Uza siku hiyohiyo. 5-10°C ukilazimika kuchelewa."},
-    "diseases": ["aphids", "spider_mites", "early_blight"]
+ "slug": "black-nightshade",
+ "name_en": "Black nightshade",
+ "name_sw": "Managu",
+ "category": "leafy_green",
+ "harvest_type": "multi",
+ "jica_manual_ref": "Inspired by JICA SHEP PLUS — Indigenous leafy vegetables (Black nightshade)",
+ "kalro_guide_ref": "KALRO African leafy vegetables handbook — Solanum scabrum",
+ "ecological_requirements": {
+  "altitude_min_m": 600,
+  "altitude_max_m": 2400,
+  "rainfall_min_mm": 500,
+  "rainfall_max_mm": 1500,
+  "temperature_min_c": 15,
+  "temperature_max_c": 28,
+  "soil_types": [
+   "loam",
+   "sandy_loam"
+  ],
+  "soil_ph_min": 5.5,
+  "soil_ph_max": 6.8
+ },
+ "varieties": [
+  {
+   "name": "Managu (Solanum scabrum)",
+   "type": "OPEN_POLLINATED",
+   "days_to_maturity": 50,
+   "yield_kg_per_acre": 9000,
+   "supplier_notes": "Local Kenyan managu; broad leaves; main commercial type."
+  },
+  {
+   "name": "Olevu (S. villosum)",
+   "type": "OPEN_POLLINATED",
+   "days_to_maturity": 55,
+   "yield_kg_per_acre": 7000,
+   "supplier_notes": "Smaller leaves but tastier; village-market preferred."
+  }
+ ],
+ "timeline_template": [
+  {
+   "activity_type": "nursery_seeding",
+   "phase": "nursery",
+   "week_from_planting": -4,
+   "day_window": 3,
+   "description_en": "Sow in raised nursery bed at 1cm depth. Tiny seed — barely cover.",
+   "description_sw": "Panda kitalu kina 1cm. Mbegu ndogo — funika kidogo sana.",
+   "is_critical": true
+  },
+  {
+   "activity_type": "transplanting",
+   "phase": "transplanting",
+   "week_from_planting": 0,
+   "day_window": 2,
+   "description_en": "Transplant 4-week seedlings at 30cm x 30cm.",
+   "description_sw": "Pandikiza miche wiki 4 nafasi 30cm x 30cm.",
+   "is_critical": true
+  },
+  {
+   "activity_type": "basal_fertiliser",
+   "phase": "transplanting",
+   "week_from_planting": 0,
+   "day_window": 1,
+   "description_en": "Apply 50kg DAP at transplanting.",
+   "description_sw": "Weka kilo 50 za DAP.",
+   "is_critical": true
+  },
+  {
+   "activity_type": "first_weeding",
+   "phase": "growth",
+   "week_from_planting": 2,
+   "day_window": 4,
+   "description_en": "Hand-weed and mulch.",
+   "description_sw": "Palia na funika.",
+   "is_critical": false
+  },
+  {
+   "activity_type": "top_dress",
+   "phase": "growth",
+   "week_from_planting": 3,
+   "day_window": 3,
+   "description_en": "Apply 50kg CAN. Stimulates leaf flush.",
+   "description_sw": "Weka kilo 50 za CAN. Huongeza majani.",
+   "is_critical": true
+  },
+  {
+   "activity_type": "first_harvest",
+   "phase": "harvest",
+   "week_from_planting": 7,
+   "day_window": 5,
+   "description_en": "Pluck top 2-3 leaves and tender stems. Don't strip the whole plant.",
+   "description_sw": "Chuna majani 2-3 ya juu na shina laini. Usimaliz e mmea wote.",
+   "tip_en": "First harvest delayed = sweeter taste, less bitter compounds.",
+   "tip_sw": "Mavuno ya kwanza ukichelewa = ladha tamu zaidi.",
+   "is_critical": true
+  },
+  {
+   "activity_type": "subsequent_harvests",
+   "phase": "harvest",
+   "week_from_planting": 8,
+   "day_window": 21,
+   "description_en": "Continue plucking every 7-10 days for 3 months.",
+   "description_sw": "Endelea kuchuna kila siku 7-10 kwa miezi 3.",
+   "is_critical": false
+  }
+ ],
+ "inputs_per_acre": [
+  {
+   "input_type": "seed",
+   "product_name": "Managu (500g)",
+   "quantity": 500,
+   "unit": "g",
+   "week_from_planting": -4,
+   "benchmark_price_kes": 2000,
+   "pcpb_registered": false,
+   "alternatives": [
+    "Olevu"
+   ]
+  },
+  {
+   "input_type": "fertiliser",
+   "product_name": "DAP 50kg",
+   "quantity": 50,
+   "unit": "kg",
+   "week_from_planting": 0,
+   "benchmark_price_kes": 3500,
+   "pcpb_registered": false
+  },
+  {
+   "input_type": "fertiliser",
+   "product_name": "CAN 50kg",
+   "quantity": 50,
+   "unit": "kg",
+   "week_from_planting": 3,
+   "benchmark_price_kes": 2800,
+   "pcpb_registered": false
+  },
+  {
+   "input_type": "fertiliser",
+   "product_name": "Manure 1 ton",
+   "quantity": 1000,
+   "unit": "kg",
+   "week_from_planting": -1,
+   "benchmark_price_kes": 3000,
+   "pcpb_registered": false
+  }
+ ],
+ "yield_per_acre": {
+  "expected_kg": 9000,
+  "min_kg": 6000,
+  "max_kg": 12000,
+  "number_of_picks": 10,
+  "pick_interval_days": 8
+ },
+ "post_harvest": {
+  "shelf_life_days": 3,
+  "grading_criteria": "Bunched leaves + tender stems. Reject yellowed or seeded shoots.",
+  "packaging_standard": "Tied bunches ~200g, sold same-day at market.",
+  "storage_tips_en": "Sell same-day. Cool 5-10°C if delay forced.",
+  "storage_tips_sw": "Uza siku hiyohiyo. 5-10°C ukilazimika kuchelewa."
+ },
+ "diseases": [
+  {
+   "key": "aphids",
+   "name_en": "Aphids",
+   "name_sw": "Vidukari",
+   "type": "pest",
+   "severity_classes": "Low (colonies) · High (curled, stunted growth)",
+   "symptoms_en": "Colonies curl new growth; honeydew on leaves; check undersides of young leaves.",
+   "symptoms_sw": "Makundi yanakunja majani machanga; utomvu majani; chunguza chini ya majani.",
+   "treatment_en": "Squash early colonies; registered products only if spreading. Advisory: use PCPB-registered products only, at label rates.",
+   "treatment_sw": "Ponda makundi ya mwanzo; nyunyuza tu ikiwa yanaenea. Shauri: tumia dawa zilizoidhinishwa na PCPB tu, kwa kiwango kilichoandikwa.",
+   "prevention_en": "Weekly underside scouting, natural enemies first.",
+   "prevention_sw": "Chunguza chini ya majani kila wiki, maadui wa asili kwanza.",
+   "scanner_notes": "Underside photo with the colony visible."
+  },
+  {
+   "key": "spider_mites",
+   "name_en": "Spider mites",
+   "name_sw": "Utitiri mwekundu",
+   "type": "pest",
+   "severity_classes": "Low (stippling) · High (webbing, bronzed leaves)",
+   "symptoms_en": "Fine pale stippling, leaf bronzing, fine webbing on undersides in hot-dry spells.",
+   "symptoms_sw": "Madoa madogo ya rangi, majani kuwa shaba, utando mwembamba chini joto-kavu.",
+   "treatment_en": "Abamectin-class miticide at first webbing; repeat in 7 days. Advisory: use PCPB-registered products only, at label rates.",
+   "treatment_sw": "Dawa ya utitiri ya abamectin mara utando unapoanza; rudia baada ya siku 7. Shauri: tumia dawa zilizoidhinishwa na PCPB tu, kwa kiwango kilichoandikwa.",
+   "prevention_en": "Avoid water stress, mist leaves, natural predators first.",
+   "prevention_sw": "Epuka mkazo wa maji, nyunyizia majani, maadui wa asili kwanza.",
+   "scanner_notes": "Tap a leaf over white paper — moving specks confirm mites."
+  },
+  {
+   "key": "early_blight",
+   "name_en": "Early blight",
+   "name_sw": "Ugonjwa wa madoa ya mapema",
+   "type": "disease",
+   "severity_classes": "Low (leaf spots) · High (defoliation)",
+   "symptoms_en": "Target-ring brown spots on older leaves first, yellowing, dieback.",
+   "symptoms_sw": "Madoa ya kahawia yenye pete kwenye majani makubwa kwanza, kuwitikia.",
+   "treatment_en": "Mancozeb-class or copper alternation every 7-10 days from first sign. Advisory: use PCPB-registered products only, at label rates.",
+   "treatment_sw": "Dawa za mancozeb au copper kwa kubadilishana kila siku 7-10. Shauri: tumia dawa zilizoidhinishwa na PCPB tu, kwa kiwango kilichoandikwa.",
+   "prevention_en": "Rotation, spacing, avoid evening watering.",
+   "prevention_sw": "Zungusha, nafasi ya kutosha, epuka kumwagilia jioni.",
+   "scanner_notes": "Ringed spots on older leaves; no white fuzz (vs late blight)."
+  }
+ ],
+ "links": [
+  {
+   "kind": "pcpb",
+   "label_en": "PCPB — registered pest control products",
+   "label_sw": "PCPB — orodha ya dawa zilizoidhinishwa",
+   "url": "https://www.pcpb.go.ke/"
+  },
+  {
+   "kind": "kephis",
+   "label_en": "KEPHIS — plant health services",
+   "label_sw": "KEPHIS — huduma za afya ya mimea",
+   "url": "https://www.kephis.org/"
+  },
+  {
+   "kind": "prices",
+   "label_en": "MoALD market information (KAMIS)",
+   "label_sw": "Taarifa za soko za Wizara ya Kilimo (KAMIS)",
+   "url": "https://www.kilimo.go.ke/"
+  }
+ ],
+ "market_notes": {
+  "sell_windows_en": "Traditional staple demand is constant; weekly cuts of young shoots. Same-day selling.",
+  "sell_windows_sw": "Mahitaji ya kiasili ni ya kudumu; vuna machipukizi kila wiki. Uza siku hiyohiyo.",
+  "price_notes_en": "20–50 KES per kg retail (November 2026). The demand never pauses — the crop that pays like a salary.",
+  "price_notes_sw": "KES 20–50 kwa kilo rejareja (Novemba 2026). Mahitaji hayapumziki."
+ }
 }

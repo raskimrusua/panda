@@ -1,51 +1,347 @@
 {
-    "slug": "passion-fruit",
-    "name_en": "Passion fruit",
-    "name_sw": "Pasheni",
-    "category": "fruit",
-    "harvest_type": "multi",
-    "jica_manual_ref": "Inspired by JICA SHEP PLUS — Passion fruit (purple) manual",
-    "kalro_guide_ref": "KALRO Passion fruit production guide",
-    "ecological_requirements": {
-        "altitude_min_m": 1100,
-        "altitude_max_m": 2300,
-        "rainfall_min_mm": 900,
-        "rainfall_max_mm": 1800,
-        "temperature_min_c": 15,
-        "temperature_max_c": 28,
-        "soil_types": ["loam", "sandy_loam", "volcanic_loam"],
-        "soil_ph_min": 5.5,
-        "soil_ph_max": 7.0
-    },
-    "varieties": [
-        {"name": "Purple (KPF11)", "type": "GRAFTED_SEEDLING", "days_to_maturity": 365, "yield_kg_per_acre": 12000, "disease_resistance": ["fusarium_wilt"], "supplier_notes": "KALRO-released; main commercial purple; grafted on yellow rootstock."},
-        {"name": "Yellow", "type": "GRAFTED_SEEDLING", "days_to_maturity": 365, "yield_kg_per_acre": 10000, "supplier_notes": "Lower-altitude; juice/processor market; less sweet."}
-    ],
-    "timeline_template": [
-        {"activity_type": "trellis_setup", "phase": "land_prep", "week_from_planting": -2, "day_window": 7, "description_en": "Erect 2m trellis posts every 5m, with 3 wires at 0.6m / 1.2m / 2m. Mandatory — passion is a vine.", "description_sw": "Simika nguzo 2m kila 5m, na waya 3. Lazima — pasheni ni mzabibu.", "is_critical": true},
-        {"activity_type": "land_prep", "phase": "land_prep", "week_from_planting": -1, "day_window": 5, "description_en": "Dig 45cm holes at 3m x 2m spacing. Mix soil + manure.", "description_sw": "Chimba mashimo 45cm nafasi 3m x 2m.", "is_critical": true},
-        {"activity_type": "transplanting", "phase": "transplanting", "week_from_planting": 0, "day_window": 3, "description_en": "Plant grafted seedling. Tie main shoot to trellis as it grows.", "description_sw": "Panda mche. Funga shina kwenye trellis.", "is_critical": true},
-        {"activity_type": "basal_fertiliser", "phase": "transplanting", "week_from_planting": 0, "day_window": 1, "description_en": "Apply 100g DAP per hole.", "description_sw": "Weka gramu 100 za DAP.", "is_critical": true},
-        {"activity_type": "training", "phase": "growth", "week_from_planting": 4, "day_window": 28, "description_en": "Train single shoot up to top wire. Remove all side shoots until then.", "description_sw": "Ongoza shina moja juu hadi waya wa juu. Ondoa matawi mengine.", "is_critical": true},
-        {"activity_type": "top_wire_cut", "phase": "growth", "week_from_planting": 12, "day_window": 7, "description_en": "Cut growing tip at top wire to force 2 laterals.", "description_sw": "Kata kichwa cha shina ukifika waya wa juu kuongeza matawi 2.", "is_critical": true},
-        {"activity_type": "fertiliser_y1_1", "phase": "growth", "week_from_planting": 8, "day_window": 7, "description_en": "Apply 250g NPK 17:17:17 per plant.", "description_sw": "Weka gramu 250 za NPK kwa mmea.", "is_critical": true},
-        {"activity_type": "fertiliser_y1_2", "phase": "growth", "week_from_planting": 20, "day_window": 7, "description_en": "Second NPK dose at first flowering.", "description_sw": "NPK ya pili wakati wa maua ya kwanza.", "is_critical": true},
-        {"activity_type": "pest_spray", "phase": "growth", "week_from_planting": 24, "day_window": 30, "description_en": "Spray for fruit fly + brown spot every 4 weeks during fruiting.", "description_sw": "Nyunyuza dawa ya fruit fly + brown spot kila wiki 4.", "is_critical": true},
-        {"activity_type": "first_harvest", "phase": "harvest", "week_from_planting": 36, "day_window": 14, "description_en": "First fruits 9 months after transplant. Pick when fully purple; some drop is normal.", "description_sw": "Matunda ya kwanza miezi 9. Vuna yakiwa zambarau.", "tip_en": "Collect drops daily — they're as good as picked. Don't let them rot.", "tip_sw": "Okota yale yaliyoanguka kila siku — ni mazuri vivyo hivyo.", "is_critical": true},
-        {"activity_type": "subsequent_harvests", "phase": "harvest", "week_from_planting": 40, "day_window": 30, "description_en": "Plant peaks at month 18; produces 2-3 years total before rebuilding.", "description_sw": "Mavuno ya juu mwezi 18; mmea hutoa miaka 2-3.", "is_critical": false}
-    ],
-    "inputs_per_acre": [
-        {"input_type": "seed", "product_name": "Grafted Purple (KPF11) seedlings (550)", "quantity": 550, "unit": "pieces", "week_from_planting": 0, "benchmark_price_kes": 82500, "pcpb_registered": false, "alternatives": ["Yellow passion"]},
-        {"input_type": "fertiliser", "product_name": "DAP (55kg)", "quantity": 55, "unit": "kg", "week_from_planting": 0, "benchmark_price_kes": 3850, "pcpb_registered": false},
-        {"input_type": "fertiliser", "product_name": "Manure 3 tons", "quantity": 3000, "unit": "kg", "week_from_planting": -1, "benchmark_price_kes": 9000, "pcpb_registered": false},
-        {"input_type": "fertiliser", "product_name": "NPK 17:17:17 (140kg)", "quantity": 140, "unit": "kg", "week_from_planting": 8, "benchmark_price_kes": 11200, "pcpb_registered": false},
-        {"input_type": "fertiliser", "product_name": "NPK 17:17:17 (140kg, 2nd)", "quantity": 140, "unit": "kg", "week_from_planting": 20, "benchmark_price_kes": 11200, "pcpb_registered": false},
-        {"input_type": "equipment", "product_name": "Trellis posts 2m (treated)", "quantity": 100, "unit": "pieces", "week_from_planting": -2, "benchmark_price_kes": 25000, "pcpb_registered": false},
-        {"input_type": "equipment", "product_name": "Galvanised wire (kg)", "quantity": 60, "unit": "kg", "week_from_planting": -2, "benchmark_price_kes": 9000, "pcpb_registered": false},
-        {"input_type": "chemical", "product_name": "Bayfidan 250EC (500ml)", "quantity": 500, "unit": "ml", "week_from_planting": 24, "benchmark_price_kes": 2200, "pcpb_registered": true, "alternatives": ["Score 250EC"]},
-        {"input_type": "chemical", "product_name": "Fruit fly traps", "quantity": 30, "unit": "pieces", "week_from_planting": 24, "benchmark_price_kes": 3000, "pcpb_registered": true}
-    ],
-    "yield_per_acre": {"expected_kg": 12000, "min_kg": 8000, "max_kg": 18000, "number_of_picks": 15, "pick_interval_days": 14},
-    "post_harvest": {"shelf_life_days": 21, "grading_criteria": "Grade A: 60g+, smooth skin, fully purple. Grade B: 40-60g or shriveled.", "packaging_standard": "5kg cartons (export); 30kg crates (juice processor).", "storage_tips_en": "10-13°C extends shelf life to 3 weeks. Room temp: 1 week.", "storage_tips_sw": "10-13°C wiki 3. Joto la kawaida wiki 1."},
-    "diseases": ["fruit_fly", "brown_spot", "woodiness_virus", "fusarium_wilt", "phytophthora"]
+ "slug": "passion-fruit",
+ "name_en": "Passion fruit",
+ "name_sw": "Pasheni",
+ "category": "fruit",
+ "harvest_type": "multi",
+ "jica_manual_ref": "Inspired by JICA SHEP PLUS — Passion fruit (purple) manual",
+ "kalro_guide_ref": "KALRO Passion fruit production guide",
+ "ecological_requirements": {
+  "altitude_min_m": 1100,
+  "altitude_max_m": 2300,
+  "rainfall_min_mm": 900,
+  "rainfall_max_mm": 1800,
+  "temperature_min_c": 15,
+  "temperature_max_c": 28,
+  "soil_types": [
+   "loam",
+   "sandy_loam",
+   "volcanic_loam"
+  ],
+  "soil_ph_min": 5.5,
+  "soil_ph_max": 7.0
+ },
+ "varieties": [
+  {
+   "name": "Purple (KPF11)",
+   "type": "GRAFTED_SEEDLING",
+   "days_to_maturity": 365,
+   "yield_kg_per_acre": 12000,
+   "disease_resistance": [
+    "fusarium_wilt"
+   ],
+   "supplier_notes": "KALRO-released; main commercial purple; grafted on yellow rootstock."
+  },
+  {
+   "name": "Yellow",
+   "type": "GRAFTED_SEEDLING",
+   "days_to_maturity": 365,
+   "yield_kg_per_acre": 10000,
+   "supplier_notes": "Lower-altitude; juice/processor market; less sweet."
+  }
+ ],
+ "timeline_template": [
+  {
+   "activity_type": "trellis_setup",
+   "phase": "land_prep",
+   "week_from_planting": -2,
+   "day_window": 7,
+   "description_en": "Erect 2m trellis posts every 5m, with 3 wires at 0.6m / 1.2m / 2m. Mandatory — passion is a vine.",
+   "description_sw": "Simika nguzo 2m kila 5m, na waya 3. Lazima — pasheni ni mzabibu.",
+   "is_critical": true
+  },
+  {
+   "activity_type": "land_prep",
+   "phase": "land_prep",
+   "week_from_planting": -1,
+   "day_window": 5,
+   "description_en": "Dig 45cm holes at 3m x 2m spacing. Mix soil + manure.",
+   "description_sw": "Chimba mashimo 45cm nafasi 3m x 2m.",
+   "is_critical": true
+  },
+  {
+   "activity_type": "transplanting",
+   "phase": "transplanting",
+   "week_from_planting": 0,
+   "day_window": 3,
+   "description_en": "Plant grafted seedling. Tie main shoot to trellis as it grows.",
+   "description_sw": "Panda mche. Funga shina kwenye trellis.",
+   "is_critical": true
+  },
+  {
+   "activity_type": "basal_fertiliser",
+   "phase": "transplanting",
+   "week_from_planting": 0,
+   "day_window": 1,
+   "description_en": "Apply 100g DAP per hole.",
+   "description_sw": "Weka gramu 100 za DAP.",
+   "is_critical": true
+  },
+  {
+   "activity_type": "training",
+   "phase": "growth",
+   "week_from_planting": 4,
+   "day_window": 28,
+   "description_en": "Train single shoot up to top wire. Remove all side shoots until then.",
+   "description_sw": "Ongoza shina moja juu hadi waya wa juu. Ondoa matawi mengine.",
+   "is_critical": true
+  },
+  {
+   "activity_type": "top_wire_cut",
+   "phase": "growth",
+   "week_from_planting": 12,
+   "day_window": 7,
+   "description_en": "Cut growing tip at top wire to force 2 laterals.",
+   "description_sw": "Kata kichwa cha shina ukifika waya wa juu kuongeza matawi 2.",
+   "is_critical": true
+  },
+  {
+   "activity_type": "fertiliser_y1_1",
+   "phase": "growth",
+   "week_from_planting": 8,
+   "day_window": 7,
+   "description_en": "Apply 250g NPK 17:17:17 per plant.",
+   "description_sw": "Weka gramu 250 za NPK kwa mmea.",
+   "is_critical": true
+  },
+  {
+   "activity_type": "fertiliser_y1_2",
+   "phase": "growth",
+   "week_from_planting": 20,
+   "day_window": 7,
+   "description_en": "Second NPK dose at first flowering.",
+   "description_sw": "NPK ya pili wakati wa maua ya kwanza.",
+   "is_critical": true
+  },
+  {
+   "activity_type": "pest_spray",
+   "phase": "growth",
+   "week_from_planting": 24,
+   "day_window": 30,
+   "description_en": "Spray for fruit fly + brown spot every 4 weeks during fruiting.",
+   "description_sw": "Nyunyuza dawa ya fruit fly + brown spot kila wiki 4.",
+   "is_critical": true
+  },
+  {
+   "activity_type": "first_harvest",
+   "phase": "harvest",
+   "week_from_planting": 36,
+   "day_window": 14,
+   "description_en": "First fruits 9 months after transplant. Pick when fully purple; some drop is normal.",
+   "description_sw": "Matunda ya kwanza miezi 9. Vuna yakiwa zambarau.",
+   "tip_en": "Collect drops daily — they're as good as picked. Don't let them rot.",
+   "tip_sw": "Okota yale yaliyoanguka kila siku — ni mazuri vivyo hivyo.",
+   "is_critical": true
+  },
+  {
+   "activity_type": "subsequent_harvests",
+   "phase": "harvest",
+   "week_from_planting": 40,
+   "day_window": 30,
+   "description_en": "Plant peaks at month 18; produces 2-3 years total before rebuilding.",
+   "description_sw": "Mavuno ya juu mwezi 18; mmea hutoa miaka 2-3.",
+   "is_critical": false
+  }
+ ],
+ "inputs_per_acre": [
+  {
+   "input_type": "seed",
+   "product_name": "Grafted Purple (KPF11) seedlings (550)",
+   "quantity": 550,
+   "unit": "pieces",
+   "week_from_planting": 0,
+   "benchmark_price_kes": 82500,
+   "pcpb_registered": false,
+   "alternatives": [
+    "Yellow passion"
+   ]
+  },
+  {
+   "input_type": "fertiliser",
+   "product_name": "DAP (55kg)",
+   "quantity": 55,
+   "unit": "kg",
+   "week_from_planting": 0,
+   "benchmark_price_kes": 3850,
+   "pcpb_registered": false
+  },
+  {
+   "input_type": "fertiliser",
+   "product_name": "Manure 3 tons",
+   "quantity": 3000,
+   "unit": "kg",
+   "week_from_planting": -1,
+   "benchmark_price_kes": 9000,
+   "pcpb_registered": false
+  },
+  {
+   "input_type": "fertiliser",
+   "product_name": "NPK 17:17:17 (140kg)",
+   "quantity": 140,
+   "unit": "kg",
+   "week_from_planting": 8,
+   "benchmark_price_kes": 11200,
+   "pcpb_registered": false
+  },
+  {
+   "input_type": "fertiliser",
+   "product_name": "NPK 17:17:17 (140kg, 2nd)",
+   "quantity": 140,
+   "unit": "kg",
+   "week_from_planting": 20,
+   "benchmark_price_kes": 11200,
+   "pcpb_registered": false
+  },
+  {
+   "input_type": "equipment",
+   "product_name": "Trellis posts 2m (treated)",
+   "quantity": 100,
+   "unit": "pieces",
+   "week_from_planting": -2,
+   "benchmark_price_kes": 25000,
+   "pcpb_registered": false
+  },
+  {
+   "input_type": "equipment",
+   "product_name": "Galvanised wire (kg)",
+   "quantity": 60,
+   "unit": "kg",
+   "week_from_planting": -2,
+   "benchmark_price_kes": 9000,
+   "pcpb_registered": false
+  },
+  {
+   "input_type": "chemical",
+   "product_name": "Bayfidan 250EC (500ml)",
+   "quantity": 500,
+   "unit": "ml",
+   "week_from_planting": 24,
+   "benchmark_price_kes": 2200,
+   "pcpb_registered": true,
+   "alternatives": [
+    "Score 250EC"
+   ]
+  },
+  {
+   "input_type": "chemical",
+   "product_name": "Fruit fly traps",
+   "quantity": 30,
+   "unit": "pieces",
+   "week_from_planting": 24,
+   "benchmark_price_kes": 3000,
+   "pcpb_registered": true
+  }
+ ],
+ "yield_per_acre": {
+  "expected_kg": 12000,
+  "min_kg": 8000,
+  "max_kg": 18000,
+  "number_of_picks": 15,
+  "pick_interval_days": 14
+ },
+ "post_harvest": {
+  "shelf_life_days": 21,
+  "grading_criteria": "Grade A: 60g+, smooth skin, fully purple. Grade B: 40-60g or shriveled.",
+  "packaging_standard": "5kg cartons (export); 30kg crates (juice processor).",
+  "storage_tips_en": "10-13°C extends shelf life to 3 weeks. Room temp: 1 week.",
+  "storage_tips_sw": "10-13°C wiki 3. Joto la kawaida wiki 1."
+ },
+ "diseases": [
+  {
+   "key": "fruit_fly",
+   "name_en": "Fruit fly",
+   "name_sw": "Nzi wa matunda",
+   "type": "pest",
+   "severity_classes": "Low (stings) · High (maggots, fruit drop)",
+   "symptoms_en": "Pin-prick stings on ripening fruit, larvae inside, premature drop.",
+   "symptoms_sw": "Madoa ya kuchomwa kwenye matunda yanayoiva, viluwiluwi ndani, kuanguka mapema.",
+   "treatment_en": "Spinosad protein bait sprays; orchard sanitation. Advisory: use PCPB-registered products only, at label rates.",
+   "treatment_sw": "Dawa za chambo za spinosad; usafi wa shamba. Shauri: tumia dawa zilizoidhinishwa na PCPB tu, kwa kiwango kilichoandikwa.",
+   "prevention_en": "Remove fallen fruit, early harvest.",
+   "prevention_sw": "Ondoa matunda yaliyoanguka, vuna mapema.",
+   "scanner_notes": "Cut-open fruit shows larvae."
+  },
+  {
+   "key": "brown_spot",
+   "name_en": "Brown spot",
+   "name_sw": "Madoa ya kahawia",
+   "type": "disease",
+   "severity_classes": "Low (spots) · High (defoliation, fruit blemish)",
+   "symptoms_en": "Brown circular spots on leaves, yellow halo, leaf drop, blemished fruit in wet spells.",
+   "symptoms_sw": "Madoa ya kahawia mviringo majani, mpaka wa manjano, majani kuanguka, mvua nyingi.",
+   "treatment_en": "Mancozeb-class at first spots; prune for airflow. Advisory: use PCPB-registered products only, at label rates.",
+   "treatment_sw": "Dawa za mancozeb mara madoa yanapoanza; kata matawi kwa hewa. Shauri: tumia dawa zilizoidhinishwa na PCPB tu, kwa kiwango kilichoandikwa.",
+   "prevention_en": "Pruning, trellis airflow, remove debris.",
+   "prevention_sw": "Kata matawi, hewa kwenye trellis, ondoa mabaki.",
+   "scanner_notes": "Circular spots with halos vs powdery mildew dusting."
+  },
+  {
+   "key": "woodiness_virus",
+   "name_en": "Woodiness virus (PWV)",
+   "name_sw": "Virusi vya kukauka kwa mizabibu",
+   "type": "disease",
+   "severity_classes": "Mild (mottling) · Severe (hard, deformed fruit)",
+   "symptoms_en": "Mottled leaves, woody malformed fruit with thickened rind, stunted vines.",
+   "symptoms_sw": "Majani yenye madoa, matunda magumu yaliyopinda, mizabibu dhaifu.",
+   "treatment_en": "None — rogue infected vines immediately; aphid control only. Advisory: use PCPB-registered products only, at label rates.",
+   "treatment_sw": "Hakuna tiba — ng'oa mizabibu iliyoathirika mara moja; dhibiti vidukari tu. Shauri: tumia dawa zilizoidhinishwa na PCPB tu, kwa kiwango kilichoandikwa.",
+   "prevention_en": "Clean certified seedlings, aphid management, never take cuttings from infected vines.",
+   "prevention_sw": "Miche safi, dhibiti vidukari, usichukue vipandikizi kutoka mimea iliyoathirika.",
+   "scanner_notes": "Hard woody fruit + mottled leaves = PWV, not nutrient deficiency."
+  },
+  {
+   "key": "fusarium_wilt",
+   "name_en": "Fusarium wilt",
+   "name_sw": "Kunyauka kwa fusarium",
+   "type": "disease",
+   "severity_classes": "Early (yellowing) · Severe (death)",
+   "symptoms_en": "Yellowing from older leaves, brown vascular ring in cut stems, wilt.",
+   "symptoms_sw": "Kuwitikia kuanzia majani makubwa, pete ya kahawia kwenye shina, kunyauka.",
+   "treatment_en": "None — remove and destroy; resistant varieties where available. Advisory: use PCPB-registered products only, at label rates.",
+   "treatment_sw": "Hakuna tiba — ondoa na uteketeze; aina sugu zilizopo. Shauri: tumia dawa zilizoidhinishwa na PCPB tu, kwa kiwango kilichoandikwa.",
+   "prevention_en": "Rotation, clean planting material, solarize beds.",
+   "prevention_sw": "Zungusha, miche safi, weka jua kwenye vitanda.",
+   "scanner_notes": "Cut-stem ring + wilt = fusarium vs bacterial wilt's ooze."
+  },
+  {
+   "key": "phytophthora",
+   "name_en": "Phytophthora blight",
+   "name_sw": "Ugonjwa wa phytophthora",
+   "type": "disease",
+   "severity_classes": "Early (collar lesions) · Severe (vine death)",
+   "symptoms_en": "Dark lesions at the vine collar, wilting vines, fruit rot in wet spells.",
+   "symptoms_sw": "Vidonda vyeusi kwenye shina, mizabibu kunyauka, matunda kuoza mvua nyingi.",
+   "treatment_en": "Metalaxyl-class collar drench at first symptoms. Advisory: use PCPB-registered products only, at label rates.",
+   "treatment_sw": "Dawa za metalaxyl kwenye shina mara dalili zinapoanza. Shauri: tumia dawa zilizoidhinishwa na PCPB tu, kwa kiwango kilichoandikwa.",
+   "prevention_en": "Perfect drainage, raised beds, no collar watering.",
+   "prevention_sw": "Mifereji bora, vitanda vilivyoinuliwa, usimwagilie shina.",
+   "scanner_notes": "Photograph the vine base — collar lesions are the signature."
+  }
+ ],
+ "links": [
+  {
+   "kind": "pcpb",
+   "label_en": "PCPB — registered pest control products",
+   "label_sw": "PCPB — orodha ya dawa zilizoidhinishwa",
+   "url": "https://www.pcpb.go.ke/"
+  },
+  {
+   "kind": "kephis",
+   "label_en": "KEPHIS — plant health services",
+   "label_sw": "KEPHIS — huduma za afya ya mimea",
+   "url": "https://www.kephis.org/"
+  },
+  {
+   "kind": "prices",
+   "label_en": "MoALD market information (KAMIS)",
+   "label_sw": "Taarifa za soko za Wizara ya Kilimo (KAMIS)",
+   "url": "https://www.kilimo.go.ke/"
+  }
+ ],
+ "market_notes": {
+  "sell_windows_en": "Premium fruit, year-round bearing with peaks in dry spells. Export and juice channels pay for clean fruit.",
+  "sell_windows_sw": "Tunda la bei ya juu, huzaa mwaka mzima na kilele kiangazi. Soko la nje hulipa matunda safi.",
+  "price_notes_en": "50–150 KES per kg by grade (November 2026). Clean seedlings + the PWV plan decide the orchard.",
+  "price_notes_sw": "KES 50–150 kwa kilo kwa daraja (Novemba 2026). Miche safi + mpango wa PWV ndio huamua shamba."
+ }
 }

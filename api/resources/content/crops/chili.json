@@ -1,46 +1,296 @@
 {
-    "slug": "chili",
-    "name_en": "Chili",
-    "name_sw": "Pilipili",
-    "category": "vegetable",
-    "harvest_type": "multi",
-    "jica_manual_ref": "Inspired by JICA SHEP PLUS — Chili manual",
-    "kalro_guide_ref": "KALRO Chili (hot pepper) production guide",
-    "ecological_requirements": {
-        "altitude_min_m": 0,
-        "altitude_max_m": 2000,
-        "rainfall_min_mm": 600,
-        "rainfall_max_mm": 1400,
-        "temperature_min_c": 18,
-        "temperature_max_c": 32,
-        "soil_types": ["sandy_loam", "loam"],
-        "soil_ph_min": 5.5,
-        "soil_ph_max": 7.0
-    },
-    "varieties": [
-        {"name": "Demon F1", "type": "HYBRID", "days_to_maturity": 80, "yield_kg_per_acre": 6000, "supplier_notes": "Bird-eye type; high Scoville; strong export market."},
-        {"name": "Long Cayenne", "type": "OPEN_POLLINATED", "days_to_maturity": 90, "yield_kg_per_acre": 5000, "supplier_notes": "Local fresh market; lower input cost."}
-    ],
-    "timeline_template": [
-        {"activity_type": "nursery_seeding", "phase": "nursery", "week_from_planting": -6, "day_window": 3, "description_en": "Sow seed in nursery trays at 0.5cm depth. Slow germinator — 14-21 days.", "description_sw": "Panda mbegu trei kina 0.5cm. Inachelewa kuotesha siku 14-21.", "is_critical": true},
-        {"activity_type": "transplanting", "phase": "transplanting", "week_from_planting": 0, "day_window": 2, "description_en": "Transplant 6-week seedlings at 60cm x 45cm.", "description_sw": "Pandikiza miche wiki 6.", "is_critical": true},
-        {"activity_type": "basal_fertiliser", "phase": "transplanting", "week_from_planting": 0, "day_window": 1, "description_en": "Apply 50kg DAP in planting holes.", "description_sw": "Weka kilo 50 za DAP.", "is_critical": true},
-        {"activity_type": "first_weeding", "phase": "growth", "week_from_planting": 3, "day_window": 4, "description_en": "Hand-weed and mulch.", "description_sw": "Palia na funika.", "is_critical": false},
-        {"activity_type": "top_dress_1", "phase": "growth", "week_from_planting": 4, "day_window": 3, "description_en": "Apply 50kg CAN side-dressed.", "description_sw": "Weka kilo 50 za CAN.", "is_critical": true},
-        {"activity_type": "pest_spray", "phase": "growth", "week_from_planting": 6, "day_window": 7, "description_en": "Spray for thrips and aphids — chili attracts both heavily.", "description_sw": "Nyunyuza dawa ya thrips na vidudu.", "is_critical": true},
-        {"activity_type": "top_dress_2", "phase": "growth", "week_from_planting": 9, "day_window": 3, "description_en": "Second 50kg CAN at flowering.", "description_sw": "CAN ya pili wakati wa maua.", "is_critical": true},
-        {"activity_type": "first_harvest", "phase": "harvest", "week_from_planting": 12, "day_window": 7, "description_en": "Pick when fruits are firm and turning red. Wear gloves.", "description_sw": "Vuna pilipili zikiwa nyekundu. Vaa gloves.", "tip_en": "Pick every 5-7 days. Plant produces 6-9 months.", "tip_sw": "Vuna kila siku 5-7. Mmea hutoa miezi 6-9.", "is_critical": true}
-    ],
-    "inputs_per_acre": [
-        {"input_type": "seed", "product_name": "Demon F1 (50g)", "quantity": 50, "unit": "g", "week_from_planting": -6, "benchmark_price_kes": 4500, "pcpb_registered": false, "alternatives": ["Long Cayenne", "Habanero"]},
-        {"input_type": "fertiliser", "product_name": "DAP 50kg", "quantity": 50, "unit": "kg", "week_from_planting": 0, "benchmark_price_kes": 3500, "pcpb_registered": false},
-        {"input_type": "fertiliser", "product_name": "CAN 50kg (top-dress 1)", "quantity": 50, "unit": "kg", "week_from_planting": 4, "benchmark_price_kes": 2800, "pcpb_registered": false},
-        {"input_type": "fertiliser", "product_name": "CAN 50kg (top-dress 2)", "quantity": 50, "unit": "kg", "week_from_planting": 9, "benchmark_price_kes": 2800, "pcpb_registered": false},
-        {"input_type": "chemical", "product_name": "Karate 5EC (500ml)", "quantity": 500, "unit": "ml", "week_from_planting": 6, "benchmark_price_kes": 850, "pcpb_registered": true},
-        {"input_type": "chemical", "product_name": "Match 50EC (250ml)", "quantity": 250, "unit": "ml", "week_from_planting": 8, "benchmark_price_kes": 700, "pcpb_registered": true},
-        {"input_type": "other", "product_name": "Sacks 25kg (export)", "quantity": 240, "unit": "pieces", "week_from_planting": 12, "benchmark_price_kes": 7200, "pcpb_registered": false}
-    ],
-    "yield_per_acre": {"expected_kg": 6000, "min_kg": 4000, "max_kg": 8000, "number_of_picks": 15, "pick_interval_days": 6},
-    "post_harvest": {"shelf_life_days": 21, "grading_criteria": "Grade A: uniform color, no blemishes, 5-8cm length. Grade B: minor flaws.", "packaging_standard": "10kg crates for fresh; 25kg sacks for sun-dried export.", "storage_tips_en": "Sun-dry to 10% moisture for storage. Fresh: 5-7°C up to 3 weeks.", "storage_tips_sw": "Anika hadi 10% maji kwa kuhifadhi. Fresh: 5-7°C wiki 3."},
-    "diseases": ["thrips", "aphids", "anthracnose", "bacterial_wilt", "powdery_mildew"]
+ "slug": "chili",
+ "name_en": "Chili",
+ "name_sw": "Pilipili",
+ "category": "vegetable",
+ "harvest_type": "multi",
+ "jica_manual_ref": "Inspired by JICA SHEP PLUS — Chili manual",
+ "kalro_guide_ref": "KALRO Chili (hot pepper) production guide",
+ "ecological_requirements": {
+  "altitude_min_m": 0,
+  "altitude_max_m": 2000,
+  "rainfall_min_mm": 600,
+  "rainfall_max_mm": 1400,
+  "temperature_min_c": 18,
+  "temperature_max_c": 32,
+  "soil_types": [
+   "sandy_loam",
+   "loam"
+  ],
+  "soil_ph_min": 5.5,
+  "soil_ph_max": 7.0
+ },
+ "varieties": [
+  {
+   "name": "Demon F1",
+   "type": "HYBRID",
+   "days_to_maturity": 80,
+   "yield_kg_per_acre": 6000,
+   "supplier_notes": "Bird-eye type; high Scoville; strong export market."
+  },
+  {
+   "name": "Long Cayenne",
+   "type": "OPEN_POLLINATED",
+   "days_to_maturity": 90,
+   "yield_kg_per_acre": 5000,
+   "supplier_notes": "Local fresh market; lower input cost."
+  }
+ ],
+ "timeline_template": [
+  {
+   "activity_type": "nursery_seeding",
+   "phase": "nursery",
+   "week_from_planting": -6,
+   "day_window": 3,
+   "description_en": "Sow seed in nursery trays at 0.5cm depth. Slow germinator — 14-21 days.",
+   "description_sw": "Panda mbegu trei kina 0.5cm. Inachelewa kuotesha siku 14-21.",
+   "is_critical": true
+  },
+  {
+   "activity_type": "transplanting",
+   "phase": "transplanting",
+   "week_from_planting": 0,
+   "day_window": 2,
+   "description_en": "Transplant 6-week seedlings at 60cm x 45cm.",
+   "description_sw": "Pandikiza miche wiki 6.",
+   "is_critical": true
+  },
+  {
+   "activity_type": "basal_fertiliser",
+   "phase": "transplanting",
+   "week_from_planting": 0,
+   "day_window": 1,
+   "description_en": "Apply 50kg DAP in planting holes.",
+   "description_sw": "Weka kilo 50 za DAP.",
+   "is_critical": true
+  },
+  {
+   "activity_type": "first_weeding",
+   "phase": "growth",
+   "week_from_planting": 3,
+   "day_window": 4,
+   "description_en": "Hand-weed and mulch.",
+   "description_sw": "Palia na funika.",
+   "is_critical": false
+  },
+  {
+   "activity_type": "top_dress_1",
+   "phase": "growth",
+   "week_from_planting": 4,
+   "day_window": 3,
+   "description_en": "Apply 50kg CAN side-dressed.",
+   "description_sw": "Weka kilo 50 za CAN.",
+   "is_critical": true
+  },
+  {
+   "activity_type": "pest_spray",
+   "phase": "growth",
+   "week_from_planting": 6,
+   "day_window": 7,
+   "description_en": "Spray for thrips and aphids — chili attracts both heavily.",
+   "description_sw": "Nyunyuza dawa ya thrips na vidudu.",
+   "is_critical": true
+  },
+  {
+   "activity_type": "top_dress_2",
+   "phase": "growth",
+   "week_from_planting": 9,
+   "day_window": 3,
+   "description_en": "Second 50kg CAN at flowering.",
+   "description_sw": "CAN ya pili wakati wa maua.",
+   "is_critical": true
+  },
+  {
+   "activity_type": "first_harvest",
+   "phase": "harvest",
+   "week_from_planting": 12,
+   "day_window": 7,
+   "description_en": "Pick when fruits are firm and turning red. Wear gloves.",
+   "description_sw": "Vuna pilipili zikiwa nyekundu. Vaa gloves.",
+   "tip_en": "Pick every 5-7 days. Plant produces 6-9 months.",
+   "tip_sw": "Vuna kila siku 5-7. Mmea hutoa miezi 6-9.",
+   "is_critical": true
+  }
+ ],
+ "inputs_per_acre": [
+  {
+   "input_type": "seed",
+   "product_name": "Demon F1 (50g)",
+   "quantity": 50,
+   "unit": "g",
+   "week_from_planting": -6,
+   "benchmark_price_kes": 4500,
+   "pcpb_registered": false,
+   "alternatives": [
+    "Long Cayenne",
+    "Habanero"
+   ]
+  },
+  {
+   "input_type": "fertiliser",
+   "product_name": "DAP 50kg",
+   "quantity": 50,
+   "unit": "kg",
+   "week_from_planting": 0,
+   "benchmark_price_kes": 3500,
+   "pcpb_registered": false
+  },
+  {
+   "input_type": "fertiliser",
+   "product_name": "CAN 50kg (top-dress 1)",
+   "quantity": 50,
+   "unit": "kg",
+   "week_from_planting": 4,
+   "benchmark_price_kes": 2800,
+   "pcpb_registered": false
+  },
+  {
+   "input_type": "fertiliser",
+   "product_name": "CAN 50kg (top-dress 2)",
+   "quantity": 50,
+   "unit": "kg",
+   "week_from_planting": 9,
+   "benchmark_price_kes": 2800,
+   "pcpb_registered": false
+  },
+  {
+   "input_type": "chemical",
+   "product_name": "Karate 5EC (500ml)",
+   "quantity": 500,
+   "unit": "ml",
+   "week_from_planting": 6,
+   "benchmark_price_kes": 850,
+   "pcpb_registered": true
+  },
+  {
+   "input_type": "chemical",
+   "product_name": "Match 50EC (250ml)",
+   "quantity": 250,
+   "unit": "ml",
+   "week_from_planting": 8,
+   "benchmark_price_kes": 700,
+   "pcpb_registered": true
+  },
+  {
+   "input_type": "other",
+   "product_name": "Sacks 25kg (export)",
+   "quantity": 240,
+   "unit": "pieces",
+   "week_from_planting": 12,
+   "benchmark_price_kes": 7200,
+   "pcpb_registered": false
+  }
+ ],
+ "yield_per_acre": {
+  "expected_kg": 6000,
+  "min_kg": 4000,
+  "max_kg": 8000,
+  "number_of_picks": 15,
+  "pick_interval_days": 6
+ },
+ "post_harvest": {
+  "shelf_life_days": 21,
+  "grading_criteria": "Grade A: uniform color, no blemishes, 5-8cm length. Grade B: minor flaws.",
+  "packaging_standard": "10kg crates for fresh; 25kg sacks for sun-dried export.",
+  "storage_tips_en": "Sun-dry to 10% moisture for storage. Fresh: 5-7°C up to 3 weeks.",
+  "storage_tips_sw": "Anika hadi 10% maji kwa kuhifadhi. Fresh: 5-7°C wiki 3."
+ },
+ "diseases": [
+  {
+   "key": "thrips",
+   "name_en": "Thrips",
+   "name_sw": "Vidukari wadogo",
+   "type": "pest",
+   "severity_classes": "Low (silvering) · High (distorted leaves, flower loss)",
+   "symptoms_en": "Silvery streaked leaves, distorted new growth, flower drop, in dry spells.",
+   "symptoms_sw": "Majani yenye michirizi ya fedha, ukuaji uliopinda, maua kuanguka.",
+   "treatment_en": "Lambda-cyhalothrin-class at threshold; blue sticky traps for monitoring. Advisory: use PCPB-registered products only, at label rates.",
+   "treatment_sw": "Dawa za lambda-cyhalothrin wakati wamezidi; mitego ya bluu kwa uchunguzi. Shauri: tumia dawa zilizoidhinishwa na PCPB tu, kwa kiwango kilichoandikwa.",
+   "prevention_en": "Monitor during dry spells, preserve natural enemies.",
+   "prevention_sw": "Chunguza wakati wa kiangazi, hifadhi maadui wa asili.",
+   "scanner_notes": "Silvery streaks distinguish thrips from virus mottling."
+  },
+  {
+   "key": "aphids",
+   "name_en": "Aphids",
+   "name_sw": "Vidukari",
+   "type": "pest",
+   "severity_classes": "Low (colonies) · High (curled, stunted growth)",
+   "symptoms_en": "Colonies curl new growth; honeydew on leaves; check undersides of young leaves.",
+   "symptoms_sw": "Makundi yanakunja majani machanga; utomvu majani; chunguza chini ya majani.",
+   "treatment_en": "Squash early colonies; registered products only if spreading. Advisory: use PCPB-registered products only, at label rates.",
+   "treatment_sw": "Ponda makundi ya mwanzo; nyunyuza tu ikiwa yanaenea. Shauri: tumia dawa zilizoidhinishwa na PCPB tu, kwa kiwango kilichoandikwa.",
+   "prevention_en": "Weekly underside scouting, natural enemies first.",
+   "prevention_sw": "Chunguza chini ya majani kila wiki, maadui wa asili kwanza.",
+   "scanner_notes": "Underside photo with the colony visible."
+  },
+  {
+   "key": "anthracnose",
+   "name_en": "Anthracnose",
+   "name_sw": "Ugonjwa wa madoa meusi",
+   "type": "disease",
+   "severity_classes": "Low (specks) · High (sunken rot on fruit)",
+   "symptoms_en": "Sunken dark spots on ripening fruit, pink ooze in humidity.",
+   "symptoms_sw": "Madoa meusi yaliyozama kwenye matunda yanayoiva, ute wa pinki.",
+   "treatment_en": "Azoxystrobin-class at flowering and fruit set in wet weather. Advisory: use PCPB-registered products only, at label rates.",
+   "treatment_sw": "Dawa za azoxystrobin wakati wa maua na matunda kukaa mvua nyingi. Shauri: tumia dawa zilizoidhinishwa na PCPB tu, kwa kiwango kilichoandikwa.",
+   "prevention_en": "Dry handling, no overhead watering, remove debris.",
+   "prevention_sw": "Shika pakavu, usimwagilie kutoka juu, ondoa mabaki.",
+   "scanner_notes": "Fruit close-up at colour break; wet-season timing."
+  },
+  {
+   "key": "bacterial_wilt",
+   "name_en": "Bacterial wilt",
+   "name_sw": "Kunyauka kwa bakteria",
+   "type": "disease",
+   "severity_classes": "Early (day wilt) · Advanced (permanent wilt, ooze)",
+   "symptoms_en": "Green wilt of one side, no recovery, milky ooze from a cut stem in water.",
+   "symptoms_sw": "Kunyauka kwa kijani upande mmoja, hakuna kupona, ute mweupe kutoka shina.",
+   "treatment_en": "None — rogue and destroy; long rotation away from solanaceous crops. Advisory: use PCPB-registered products only, at label rates.",
+   "treatment_sw": "Hakuna tiba — ng'oa na uteketeze; zungusha mbali na solanaceous. Shauri: tumia dawa zilizoidhinishwa na PCPB tu, kwa kiwango kilichoandikwa.",
+   "prevention_en": "Certified seed, clean tools, avoid flooding.",
+   "prevention_sw": "Mbegu zilizothibitishwa, vifaa safi, epuka mafuriko.",
+   "scanner_notes": "Cut-stem ooze test is the verification."
+  },
+  {
+   "key": "powdery_mildew",
+   "name_en": "Powdery mildew",
+   "name_sw": "Ukungu",
+   "type": "disease",
+   "severity_classes": "Low (dusting) · High (leaf loss)",
+   "symptoms_en": "White dusting on leaves in warm-dry spells.",
+   "symptoms_sw": "Unga mweupe majani joto-kavu.",
+   "treatment_en": "Sulphur-class products at first dusting, cool morning hours. Advisory: use PCPB-registered products only, at label rates.",
+   "treatment_sw": "Dawa za salfa mara inapoanza, asubuhi baridi. Shauri: tumia dawa zilizoidhinishwa na PCPB tu, kwa kiwango kilichoandikwa.",
+   "prevention_en": "Airflow, avoid water stress.",
+   "prevention_sw": "Hewa, epuka mkazo wa maji.",
+   "scanner_notes": "White powder on leaf surfaces; warm-dry weather."
+  }
+ ],
+ "links": [
+  {
+   "kind": "pcpb",
+   "label_en": "PCPB — registered pest control products",
+   "label_sw": "PCPB — orodha ya dawa zilizoidhinishwa",
+   "url": "https://www.pcpb.go.ke/"
+  },
+  {
+   "kind": "kephis",
+   "label_en": "KEPHIS — plant health services",
+   "label_sw": "KEPHIS — huduma za afya ya mimea",
+   "url": "https://www.kephis.org/"
+  },
+  {
+   "kind": "prices",
+   "label_en": "MoALD market information (KAMIS)",
+   "label_sw": "Taarifa za soko za Wizara ya Kilimo (KAMIS)",
+   "url": "https://www.kilimo.go.ke/"
+  }
+ ],
+ "market_notes": {
+  "sell_windows_en": "Steady urban demand year-round; grade by colour and firmness. Dry-chili channel pays a premium for red mature fruit.",
+  "sell_windows_sw": "Mahitaji ya mijini mwaka mzima; panga daraja kwa rangi na uimara. Pilipili kavu hulipa zaidi.",
+  "price_notes_en": "60–150 KES per kg green, dry chili higher (November 2026). One of the steadier vegetable prices in the market.",
+  "price_notes_sw": "KES 60–150 kwa kilo mbichi, kavu zaidi (Novemba 2026). Bei thabiti zaidi sokoni."
+ }
 }
