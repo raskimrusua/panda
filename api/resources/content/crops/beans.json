@@ -1,0 +1,262 @@
+{
+ "slug": "beans",
+ "name_en": "Beans",
+ "name_sw": "Maharagwe",
+ "category": "legume",
+ "harvest_type": "single",
+ "jica_manual_ref": "Inspired by JICA SHEP PLUS — Dry bean production guide (Kenya)",
+ "kalro_guide_ref": "KALRO Grain legumes production handbook",
+ "ecological_requirements": {
+  "altitude_min_m": 900,
+  "altitude_max_m": 2200,
+  "rainfall_min_mm": 400,
+  "rainfall_max_mm": 800,
+  "temperature_min_c": 15,
+  "temperature_max_c": 28,
+  "soil_types": [
+   "loam",
+   "sandy_loam"
+  ],
+  "soil_ph_min": 6.0,
+  "soil_ph_max": 7.0
+ },
+ "varieties": [
+  {
+   "name": "Rosecoco (GLP-2)",
+   "type": "OPEN_POLLINATED",
+   "days_to_maturity": 75,
+   "yield_kg_per_acre": 900,
+   "disease_resistance": [],
+   "supplier_notes": "Market favourite: large speckled seed, top prices."
+  },
+  {
+   "name": "Mwitemania (GLP-X92)",
+   "type": "OPEN_POLLINATED",
+   "days_to_maturity": 70,
+   "yield_kg_per_acre": 800,
+   "disease_resistance": [],
+   "supplier_notes": "Round, faster-cooking; good in mixed stands."
+  },
+  {
+   "name": "KAT B1",
+   "type": "OPEN_POLLINATED",
+   "days_to_maturity": 70,
+   "yield_kg_per_acre": 850,
+   "disease_resistance": [],
+   "supplier_notes": "Biofortified (iron + zinc); institutional and school-feeding demand."
+  }
+ ],
+ "timeline_template": [
+  {
+   "activity_type": "land_prep",
+   "phase": "establishment",
+   "week_from_planting": -1,
+   "day_window": 7,
+   "description_en": "Beans follow maize in rotation — they fix nitrogen, so no heavy manure needed.",
+   "description_sw": "Maharagwe hufuata mahindi kwa zamu — yanatengeneza nitrojeni, haihitaji samadi nyingi.",
+   "is_critical": false
+  },
+  {
+   "activity_type": "seed_planting",
+   "phase": "establishment",
+   "week_from_planting": 0,
+   "day_window": 7,
+   "description_en": "Plant 25-30 kg per acre at 45cm × 10-15cm, 2-5 cm deep, at the first reliable rain.",
+   "description_sw": "Panda kilo 25-30 kwa eka kwa 45cm × 10-15cm, kina cha cm 2-5, kwa mvua za kwanza.",
+   "is_critical": true
+  },
+  {
+   "activity_type": "basal_fertiliser",
+   "phase": "establishment",
+   "week_from_planting": 0,
+   "day_window": 3,
+   "description_en": "Band 50 kg DAP per acre. Skip nitrogen top-dress entirely — it feeds weeds, not pods.",
+   "description_sw": "Weka kilo 50 za DAP. Usiweke CAN kabisa — inalisha magugu, si maganda.",
+   "is_critical": true
+  },
+  {
+   "activity_type": "first_weeding",
+   "phase": "growth",
+   "week_from_planting": 2,
+   "day_window": 4,
+   "description_en": "First weeding — beans are poor competitors in their first month.",
+   "description_sw": "Palia kwanza — maharagwe hushindwa na magugu mwezi wa kwanza.",
+   "is_critical": false
+  },
+  {
+   "activity_type": "pest_scout",
+   "phase": "growth",
+   "week_from_planting": 3,
+   "day_window": 28,
+   "description_en": "Scout bean fly in the seedling stage and angular leaf spot from flowering. Treat early — late treatment rarely pays.",
+   "description_sw": "Chunguza nzi wa maharagwe kwenye miche na madoa ya majani kuanzia maua. Tibu mapema.",
+   "is_critical": false
+  },
+  {
+   "activity_type": "harvest",
+   "phase": "harvest",
+   "week_from_planting": 9,
+   "day_window": 14,
+   "description_en": "Pull when pods turn yellow-brown and ~80% are dry — don't wait for full dry-down in the field.",
+   "description_sw": "Ng'oa wakati maganda yamegeuka manjano na ~80% yamekauka — usisubiri yakauke kabisa shambani.",
+   "tip_en": "Thresh within a week, sun-dry to 13%, and store in hermetic bags against bruchids.",
+   "tip_sw": "Pukuchua ndani ya wiki, kausha hadi 13%, hifadhi kwa magunia maalum dhidi ya wadudu wa ghala.",
+   "is_critical": true
+  }
+ ],
+ "inputs_per_acre": [
+  {
+   "input_type": "seed",
+   "product_name": "Certified bean seed (Rosecoco class)",
+   "quantity": 30,
+   "unit": "kg",
+   "week_from_planting": 0,
+   "benchmark_price_kes": 4000,
+   "pcpb_registered": false,
+   "alternatives": [
+    "Mwitemania",
+    "KAT B1"
+   ]
+  },
+  {
+   "input_type": "fertiliser",
+   "product_name": "DAP",
+   "quantity": 50,
+   "unit": "kg",
+   "week_from_planting": 0,
+   "benchmark_price_kes": 3500,
+   "pcpb_registered": false,
+   "alternatives": [
+    "SSP"
+   ]
+  },
+  {
+   "input_type": "storage",
+   "product_name": "Hermetic storage bags (90 kg)",
+   "quantity": 10,
+   "unit": "bags",
+   "week_from_planting": 12,
+   "benchmark_price_kes": 250,
+   "pcpb_registered": false,
+   "alternatives": []
+  }
+ ],
+ "yield_per_acre": {
+  "expected_kg": 700,
+  "min_kg": 450,
+  "max_kg": 1080,
+  "number_of_picks": 1,
+  "pick_interval_days": 1
+ },
+ "post_harvest": {
+  "shelf_life_days": 240,
+  "grading_criteria": "Grade by seed size, colour uniformity, and cleanliness. Reject mouldy or shrivelled seed.",
+  "packaging_standard": "90 kg bags; hermetic bags for storage against bruchid weevils.",
+  "storage_tips_en": "Sun-dry to 13%, seal in hermetic bags — oxygen depletion kills bruchids without chemicals.",
+  "storage_tips_sw": "Kausha hadi 13%, funga magunia maalum — ukosefu wa hewa unaua wadudu bila dawa."
+ },
+ "diseases": [
+  {
+   "key": "bean_fly",
+   "name_en": "Bean fly",
+   "name_sw": "Nzi wa maharagwe",
+   "type": "pest",
+   "severity_classes": "Seedling (tunnelled stems) · Established (swollen cracked stems)",
+   "symptoms_en": "Seedling death, maggot tunnels at stem base, yellowing and stunting.",
+   "symptoms_sw": "Kifo cha miche, vichuguu vya viluwiluwi chini ya shina, kuwitikia.",
+   "treatment_en": "Registered seed-dressing insecticide; early foliar only in the seedling stage. Advisory: use PCPB-registered products only, at label rates.",
+   "treatment_sw": "Dawa ya mbegu iliyoidhinishwa; nyunyuza mapema tu kipindi cha miche. Shauri: tumia dawa zilizoidhinishwa na PCPB tu, kwa kiwango kilichoandikwa.",
+   "prevention_en": "Plant early and dense so the stand outgrows it.",
+   "prevention_sw": "Panda mapema na kwa wingi.",
+   "scanner_notes": "Photograph the stem base — leaf photos miss the tunnel."
+  },
+  {
+   "key": "angular_leaf_spot",
+   "name_en": "Angular leaf spot",
+   "name_sw": "Madoa ya pembetatu",
+   "type": "disease",
+   "severity_classes": "Low (lesions) · High (defoliation)",
+   "symptoms_en": "Brown angular lesions with grey centres on leaves and pods, worst in wet weather.",
+   "symptoms_sw": "Madoa ya kahawia yenye katikati ya kijivu, zaidi mvua nyingi.",
+   "treatment_en": "Registered contact/systemic fungicide classes at first lesions. Advisory: use PCPB-registered products only, at label rates.",
+   "treatment_sw": "Dawa zilizoidhinishwa mara madoa yanapoanza. Shauri: tumia dawa zilizoidhinishwa na PCPB tu, kwa kiwango kilichoandikwa.",
+   "prevention_en": "Rotation, clean seed, open rows.",
+   "prevention_sw": "Zungusha, mbegu safi, nafasi ya kutosha.",
+   "scanner_notes": "Angular vein-bounded shape discriminates vs anthracnose."
+  },
+  {
+   "key": "anthracnose",
+   "name_en": "Anthracnose",
+   "name_sw": "Ugonjwa wa madoa meusi",
+   "type": "disease",
+   "severity_classes": "Seed (discoloured seed) · Field (lesions + pod rot)",
+   "symptoms_en": "Sunken dark lesions on pods, stems and cotyledons; black seed blotches.",
+   "symptoms_sw": "Madoa meusi yaliyozama kwenye maganda na mashina; madoa meusi kwenye mbegu.",
+   "treatment_en": "Registered fungicide at first sign; never save seed from an infected crop. Advisory: use PCPB-registered products only, at label rates.",
+   "treatment_sw": "Dawa iliyoidhinishwa mara inapoanza; usihifadhi mbegu za shamba lililoathirika. Shauri: tumia dawa zilizoidhinishwa na PCPB tu, kwa kiwango kilichoandikwa.",
+   "prevention_en": "Certified seed only; field hygiene.",
+   "prevention_sw": "Mbegu zilizothibitishwa tu; usafi shambani.",
+   "scanner_notes": "Seed-borne — the seed-source question in-app improves the advice."
+  },
+  {
+   "key": "rust",
+   "name_en": "Bean rust",
+   "name_sw": "Kutu",
+   "type": "disease",
+   "severity_classes": "Low (pustules) · High (leaf death)",
+   "symptoms_en": "Orange-brown pustules on undersides, yellow halo, defoliation in humid spells.",
+   "symptoms_sw": "Viputo vya rangi ya kutu chini ya majani, mpaka wa manjano, majani huanguka.",
+   "treatment_en": "Registered rust-active fungicide at onset. Advisory: use PCPB-registered products only, at label rates.",
+   "treatment_sw": "Dawa iliyoidhinishwa ya kutu mara inapoanza. Shauri: tumia dawa zilizoidhinishwa na PCPB tu, kwa kiwango kilichoandikwa.",
+   "prevention_en": "Resistant varieties (Nyota), avoid overhead watering.",
+   "prevention_sw": "Aina sugu (Nyota), epuka kumwagilia kutoka juu.",
+   "scanner_notes": "Pustules rub off on fingers — the field test that confirms rust."
+  },
+  {
+   "key": "root_rots",
+   "name_en": "Root rots",
+   "name_sw": "Uoza wa mizizi",
+   "type": "disease",
+   "severity_classes": "Patchy (stunted patches) · Severe (stand collapse)",
+   "symptoms_en": "Dark rotting roots, stunted yellow patches, plants pull out easily.",
+   "symptoms_sw": "Mizizi inayooza, mapande ya manjano, mimea hung'oleka kwa urahisi.",
+   "treatment_en": "No effective spray — drainage is the fix. Advisory: use PCPB-registered products only, at label rates.",
+   "treatment_sw": "Hakuna dawa mwafaka — mifereji ndio tiba. Shauri: tumia dawa zilizoidhinishwa na PCPB tu, kwa kiwango kilichoandikwa.",
+   "prevention_en": "Raised beds, rotation, avoid waterlogged fields.",
+   "prevention_sw": "Vitanda vilivyoinuliwa, zungusha, epuka maeneo ya maji.",
+   "scanner_notes": "Photograph an uprooted plant with roots washed."
+  }
+ ],
+ "links": [
+  {
+   "kind": "blog_guide",
+   "label_en": "Panda growing guide: Beans",
+   "label_sw": "Mwongozo wa Panda: Maharagwe",
+   "url": "https://panda.shira.farm/blog/beans-75-day-crop-guide"
+  },
+  {
+   "kind": "pcpb",
+   "label_en": "PCPB — registered pest control products",
+   "label_sw": "PCPB — orodha ya dawa zilizoidhinishwa",
+   "url": "https://www.pcpb.go.ke/"
+  },
+  {
+   "kind": "kephis",
+   "label_en": "KEPHIS — plant health services",
+   "label_sw": "KEPHIS — huduma za afya ya mimea",
+   "url": "https://www.kephis.org/"
+  },
+  {
+   "kind": "prices",
+   "label_en": "MoALD market information (KAMIS)",
+   "label_sw": "Taarifa za soko za Wizara ya Kilimo (KAMIS)",
+   "url": "https://www.kilimo.go.ke/"
+  }
+ ],
+ "market_notes": {
+  "sell_windows_en": "Bean prices peak in the lean months (Nov–Dec, Mar–May). The farmer who stored well sells at the top; selling at harvest leaves 20–30% on the table.",
+  "sell_windows_sw": "Bei ya maharagwe hupanda miezi ya uhaba (Nov–Des, Mar–Mei). Aliyetunza vizuri anauza bei ya juu; kuuza wakati wa mavuno kunapoteza 20–30%.",
+  "price_notes_en": "6,000–10,000 KES per 90 kg bag (November 2026) — often double maize per kilo. Input bill under 8,000 KES per acre.",
+  "price_notes_sw": "KES 6,000–10,000 kwa gunia la kilo 90 (Novemba 2026) — mara nyingi mara mbili ya mahindi kwa kilo. Gharama chini ya 8,000 KES kwa eka."
+ }
+}

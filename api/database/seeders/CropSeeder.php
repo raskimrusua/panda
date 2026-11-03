@@ -44,8 +44,10 @@ class CropSeeder extends Seeder
             ['slug' => 'banana',         'name_en' => 'Banana',         'name_sw' => 'Ndizi',        'category' => 'fruit',       'harvest_type' => 'multi',  'phase_added' => 3],
             ['slug' => 'mango',          'name_en' => 'Mango',          'name_sw' => 'Embe',         'category' => 'fruit',       'harvest_type' => 'multi',  'phase_added' => 3],
             ['slug' => 'passion-fruit',  'name_en' => 'Passion fruit',  'name_sw' => 'Pasheni',      'category' => 'fruit',       'harvest_type' => 'multi',  'phase_added' => 3],
+            // ---- Phase 4: staple expansion (S1 enrichment, 2026-11) ----
+            ['slug' => 'maize',         'name_en' => 'Maize',          'name_sw' => 'Mahindi',       'category' => 'cereal',      'harvest_type' => 'single', 'phase_added' => 4],
+            ['slug' => 'beans',         'name_en' => 'Beans',          'name_sw' => 'Maharagwe',     'category' => 'legume',      'harvest_type' => 'single', 'phase_added' => 4],
         ];
-
         foreach ($crops as $row) {
             Crop::updateOrCreate(['slug' => $row['slug']], array_merge([
                 'is_active' => true,
