@@ -8,6 +8,7 @@ import { Label } from '@/components/ui/Label';
 import { cropsApi } from '@/api/crops';
 import { seasonsApi } from '@/api/seasons';
 import { diseaseApi, type DiseaseDetection } from '@/api/disease';
+import { OfflineScanCard } from '@/components/OfflineScanCard';
 import { confidenceBand, formatDate } from '@/lib/utils';
 
 const MAX_PHOTOS = 3;
@@ -295,6 +296,8 @@ export function DiseaseScanPage() {
           </Button>
         </CardBody>
       </Card>
+
+      <OfflineScanCard />
 
       {latest && (
         <Card>

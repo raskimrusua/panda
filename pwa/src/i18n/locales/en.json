@@ -292,6 +292,11 @@
     "no": "No",
     "thanks_feedback": "Thanks — your feedback helps improve the scanner.",
     "what_did_you_see": "What did you actually see? (optional)",
-    "submit_feedback": "Send feedback"
+    "submit_feedback": "Send feedback",
+    "offline_title": "Offline guide",
+    "offline_intro": "No connection? Answer a few questions for a rough idea.",
+    "offline_queued": "Saved on your phone — it will sync when you're online.",
+    "offline_uncertain": "Not enough to tell offline. Try a photo scan when online.",
+    "offline_confidence": "Offline guide — confirm with a photo scan when online"
   }
 }
