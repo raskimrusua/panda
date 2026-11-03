@@ -7,6 +7,33 @@ export interface DiseaseTreatment {
   application_notes?: string;
 }
 
+/**
+ * Bilingual disease card snapshot matched by the API at scan time
+ * (DiseaseCardResolver). Shape mirrors resources/content/crops/*.json
+ * disease entries — keep unknown keys tolerant so content evolution
+ * doesn't break the PWA.
+ */
+export interface DiseaseCard {
+  key?: string;
+  name_en?: string;
+  name_sw?: string;
+  type?: string;
+  severity_classes?: string;
+  symptoms_en?: string;
+  symptoms_sw?: string;
+  treatment_en?: string;
+  treatment_sw?: string;
+  prevention_en?: string;
+  prevention_sw?: string;
+  scanner_notes?: string;
+  [k: string]: unknown;
+}
+
+export interface DiseaseSuggestion {
+  name: string;
+  probability: number;
+}
+
 export interface DiseaseDetection {
   id: string;
   season_id: string | null;
@@ -16,6 +43,8 @@ export interface DiseaseDetection {
   top_diagnosis: string | null;
   confidence: number | null;
   treatments: DiseaseTreatment[] | null;
+  disease_card: DiseaseCard | null;
+  suggestions: DiseaseSuggestion[] | null;
   opt_in_for_training: boolean;
   captured_at: string | null;
 }
@@ -33,6 +62,12 @@ export interface PlanTreatmentPayload {
   amount_kes: number;
   supplier_name?: string;
   incurred_at?: string;
+}
+
+export interface DiseaseFeedbackPayload {
+  verdict: 'correct' | 'incorrect';
+  correction_key?: string;
+  correction_text?: string;
 }
 
 export const diseaseApi = {
@@ -68,6 +103,11 @@ export const diseaseApi = {
       `/disease/${id}/plan-treatment`,
       payload,
     );
+    return data;
+  },
+
+  async feedback(id: string, payload: DiseaseFeedbackPayload): Promise<{ data: unknown }> {
+    const { data } = await apiClient.post<{ data: unknown }>(`/disease/${id}/feedback`, payload);
     return data;
   },
 };

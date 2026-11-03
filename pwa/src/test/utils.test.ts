@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { cn, formatDate, formatKes } from '@/lib/utils';
+import { cn, confidenceBand, formatDate, formatKes } from '@/lib/utils';
 
 describe('cn', () => {
   it('merges Tailwind classes with twMerge precedence', () => {
@@ -40,5 +40,22 @@ describe('formatDate', () => {
     expect(formatDate(null)).toBe('—');
     expect(formatDate(undefined)).toBe('—');
     expect(formatDate('')).toBe('—');
+  });
+});
+
+describe('confidenceBand', () => {
+  it('bands high / medium / low at the documented thresholds', () => {
+    expect(confidenceBand(0.92)).toBe('high');
+    expect(confidenceBand(0.85)).toBe('high');
+    expect(confidenceBand(0.84)).toBe('medium');
+    expect(confidenceBand(0.7)).toBe('medium');
+    expect(confidenceBand(0.69)).toBe('low');
+    expect(confidenceBand(0.3)).toBe('low');
+  });
+
+  it('returns null for missing or NaN confidence', () => {
+    expect(confidenceBand(null)).toBeNull();
+    expect(confidenceBand(undefined)).toBeNull();
+    expect(confidenceBand(Number.NaN)).toBeNull();
   });
 });

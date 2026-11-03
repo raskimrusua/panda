@@ -119,6 +119,7 @@ Route::prefix('v1')->group(function () {
         Route::get('disease/{diseaseDetection}', [DiseaseDetectionController::class, 'show']);
         Route::get('disease/{diseaseDetection}/report', [DiseaseDetectionController::class, 'report']);
         Route::post('disease/{diseaseDetection}/plan-treatment', [DiseaseDetectionController::class, 'planTreatment']);
+        Route::post('disease/{diseaseDetection}/feedback', [DiseaseDetectionController::class, 'feedback']);
 
         /* Dealer directory — auth required, NOT tenant-scoped */
         Route::get('dealers', [DealerController::class, 'index']);

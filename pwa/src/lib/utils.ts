@@ -25,3 +25,17 @@ export function formatDate(value: string | null | undefined): string {
     year: 'numeric',
   });
 }
+
+export type ConfidenceBand = 'high' | 'medium' | 'low';
+
+/**
+ * Coarse confidence band for scan results. Honest framing: the model
+ * emits a probability, we render it plus a plain-language label — no
+ * invented precision.
+ */
+export function confidenceBand(confidence: number | null | undefined): ConfidenceBand | null {
+  if (confidence === null || confidence === undefined || Number.isNaN(confidence)) return null;
+  if (confidence >= 0.85) return 'high';
+  if (confidence >= 0.7) return 'medium';
+  return 'low';
+}

@@ -14,6 +14,9 @@
         .diagnosis-box { border: 1px solid #a7f3d0; background: #ecfdf5; border-radius: 8px; padding: 12px 14px; margin: 8px 0 4px; }
         .diagnosis-name { font-size: 16px; font-weight: 700; color: #065f46; }
         .confidence { font-size: 12px; color: #047857; }
+        .sw-name { font-size: 12px; color: #047857; margin-top: 2px; }
+        .severity { font-size: 12px; color: #92400e; margin-top: 4px; }
+        .section-text { margin: 2px 0 4px; }
         .disclaimer { border: 1px solid #fcd34d; background: #fffbeb; color: #92400e; border-radius: 8px; padding: 10px 12px; margin: 14px 0; font-size: 10px; }
         .footer { margin-top: 18px; color: #9ca3af; font-size: 9px; text-align: center; }
     </style>
@@ -28,14 +31,28 @@
     </div>
 
     <h2>Diagnosis</h2>
+    @php
+        $card = is_array($detection->disease_card) ? $detection->disease_card : [];
+    @endphp
     <div class="diagnosis-box">
         <div class="diagnosis-name">{{ $detection->top_diagnosis ?? 'No diagnosis recorded' }}</div>
+        @if (! empty($card['name_sw']))
+            <div class="sw-name">{{ $card['name_sw'] }}</div>
+        @endif
         @if ($confidencePct !== null)
             <div class="confidence">{{ $confidencePct }}% confidence</div>
         @else
             <div class="confidence">No confidence reported</div>
         @endif
+        @if (! empty($card['severity_classes']))
+            <div class="severity">Severity: {{ $card['severity_classes'] }}</div>
+        @endif
     </div>
+
+    @if (! empty($card['symptoms_en']))
+        <h2>Symptoms</h2>
+        <p class="section-text">{{ $card['symptoms_en'] }}</p>
+    @endif
 
     <h2>Recommended treatments</h2>
     @if (empty($treatments))

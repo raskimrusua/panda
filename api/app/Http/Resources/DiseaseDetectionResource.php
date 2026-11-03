@@ -28,6 +28,8 @@ class DiseaseDetectionResource extends JsonResource
             'top_diagnosis' => $this->top_diagnosis,
             'confidence' => $this->confidence !== null ? (float) $this->confidence : null,
             'treatments' => $this->treatments,
+            'disease_card' => $this->disease_card,
+            'suggestions' => $this->suggestions,
             'opt_in_for_training' => $this->opt_in_for_training,
             'captured_at' => $this->captured_at?->toIso8601String(),
             // Advisory disclaimer rides in the payload so offline-cached + any
