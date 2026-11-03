@@ -1,0 +1,226 @@
+{
+ "slug": "spinach",
+ "name_en": "Spinach / Swiss chard",
+ "name_sw": "Spinachi / swiss chard",
+ "category": "leafy_green",
+ "harvest_type": "multi",
+ "jica_manual_ref": "Inspired by JICA SHEP PLUS — Leafy vegetables production guide (Kenya)",
+ "kalro_guide_ref": "KALRO Vegetable production handbook",
+ "ecological_requirements": {
+  "altitude_min_m": 1200,
+  "altitude_max_m": 2600,
+  "rainfall_min_mm": 500,
+  "rainfall_max_mm": 1000,
+  "temperature_min_c": 15,
+  "temperature_max_c": 24,
+  "soil_types": [
+   "loam",
+   "clay_loam"
+  ],
+  "soil_ph_min": 6.0,
+  "soil_ph_max": 7.5
+ },
+ "varieties": [
+  {
+   "name": "Fordhook Giant (Swiss chard)",
+   "type": "OPEN_POLLINATED",
+   "days_to_maturity": 60,
+   "yield_kg_per_acre": 7000,
+   "disease_resistance": [],
+   "supplier_notes": "The market's default 'spinach' — thick stalks, weekly re-harvest for months."
+  },
+  {
+   "name": "Bloomsdale Longstanding",
+   "type": "OPEN_POLLINATED",
+   "days_to_maturity": 40,
+   "yield_kg_per_acre": 5000,
+   "disease_resistance": [],
+   "supplier_notes": "True spinach: crinkly dark leaves, slower to bolt."
+  }
+ ],
+ "timeline_template": [
+  {
+   "activity_type": "land_prep",
+   "phase": "establishment",
+   "week_from_planting": -1,
+   "day_window": 7,
+   "description_en": "Work in well-rotted manure or compost — leafy crops live on soil fertility.",
+   "description_sw": "Weka samadi iliyooza — mboga za majani zinaishi kwa rutuba ya udongo.",
+   "is_critical": false
+  },
+  {
+   "activity_type": "seed_planting",
+   "phase": "establishment",
+   "week_from_planting": 0,
+   "day_window": 7,
+   "description_en": "Direct-sow 1 cm deep (2-4 kg per acre) or transplant seedlings at 30cm × 20cm. Basal: 50 kg DAP.",
+   "description_sw": "Panda moja kwa moja kina cha 1 cm (kilo 2-4 kwa eka) au pandikiza 30cm × 20cm. Weka kilo 50 za DAP.",
+   "is_critical": true
+  },
+  {
+   "activity_type": "first_weeding",
+   "phase": "growth",
+   "week_from_planting": 2,
+   "day_window": 4,
+   "description_en": "First weeding — these crops have zero patience for weed competition.",
+   "description_sw": "Palia kwanza — mboga hizi hazivumilii magugu hata kidogo.",
+   "is_critical": false
+  },
+  {
+   "activity_type": "top_dress_1",
+   "phase": "growth",
+   "week_from_planting": 3,
+   "day_window": 4,
+   "description_en": "Top-dress 50 kg CAN per acre. Leaf crops are nitrogen engines — repeat week 5 and 7.",
+   "description_sw": "Weka kilo 50 za CAN. Mboga za majani zinahitaji nitrojeni — rudia wiki 5 na 7.",
+   "is_critical": true
+  },
+  {
+   "activity_type": "first_harvest",
+   "phase": "harvest",
+   "week_from_planting": 6,
+   "day_window": 7,
+   "description_en": "Cut outer leaves at 15-20 cm, leave the crown — the plant re-grows for repeated cuts.",
+   "description_sw": "Kata majani ya nje sentimita 15-20, acha kichwa — mmea unachipua tena.",
+   "tip_en": "Sell the same day — these leaves do not wait.",
+   "tip_sw": "Uza siku hiyohiyo — majani haya hayasubiri.",
+   "is_critical": true
+  }
+ ],
+ "inputs_per_acre": [
+  {
+   "input_type": "seed",
+   "product_name": "Spinach/chard seed",
+   "quantity": 3,
+   "unit": "kg",
+   "week_from_planting": 0,
+   "benchmark_price_kes": 1500,
+   "pcpb_registered": false,
+   "alternatives": []
+  },
+  {
+   "input_type": "fertiliser",
+   "product_name": "DAP",
+   "quantity": 50,
+   "unit": "kg",
+   "week_from_planting": 0,
+   "benchmark_price_kes": 3500,
+   "pcpb_registered": false,
+   "alternatives": []
+  },
+  {
+   "input_type": "fertiliser",
+   "product_name": "CAN",
+   "quantity": 150,
+   "unit": "kg",
+   "week_from_planting": 3,
+   "benchmark_price_kes": 9000,
+   "pcpb_registered": false,
+   "alternatives": []
+  }
+ ],
+ "yield_per_acre": {
+  "expected_kg": 6000,
+  "min_kg": 4000,
+  "max_kg": 8000,
+  "number_of_picks": 12,
+  "pick_interval_days": 7
+ },
+ "post_harvest": {
+  "shelf_life_days": 1,
+  "grading_criteria": "Bunch by freshness; reject yellowed, holed, or wilted leaves.",
+  "packaging_standard": "100 g bunches for retail; crates for bulk kitchen supply.",
+  "storage_tips_en": "Sell same-day — pick in the cool morning and bunch immediately.",
+  "storage_tips_sw": "Uza siku hiyohiyo — vuna asubuhi na funga mara moja."
+ },
+ "diseases": [
+  {
+   "key": "aphids",
+   "name_en": "Aphids",
+   "name_sw": "Vidukari",
+   "type": "pest",
+   "severity_classes": "Low (colonies) · High (curled, stunted growth)",
+   "symptoms_en": "Colonies curl new growth; check undersides of young leaves.",
+   "symptoms_sw": "Makundi yanakunja majani machanga; chunguza chini ya majani.",
+   "treatment_en": "Squash early colonies; registered products only if spreading. Advisory: use PCPB-registered products only, at label rates.",
+   "treatment_sw": "Ponda makundi ya mwanzo; nyunyuza tu ikiwa yanaenea. Shauri: tumia dawa zilizoidhinishwa na PCPB tu, kwa kiwango kilichoandikwa.",
+   "prevention_en": "Natural enemies first — scout before spraying.",
+   "prevention_sw": "Maadui wa asili kwanza — chunguza kabla ya dawa.",
+   "scanner_notes": "Underside photo with the colony visible."
+  },
+  {
+   "key": "leaf_miners",
+   "name_en": "Leaf miners",
+   "name_sw": "Wachimba majani",
+   "type": "pest",
+   "severity_classes": "Low (tunnels) · High (leaf scorch, market rejection)",
+   "symptoms_en": "Silvery winding tunnels through the leaf; cosmetic but costly at market.",
+   "symptoms_sw": "Michirizi ya fedha ndani ya jani; hudhuru sura sokoni.",
+   "treatment_en": "Remove and destroy mined leaves; registered products at threshold only. Advisory: use PCPB-registered products only, at label rates.",
+   "treatment_sw": "Ondoa majani yaliyoathirika; dawa tu wakati wamezidi. Shauri: tumia dawa zilizoidhinishwa na PCPB tu, kwa kiwango kilichoandikwa.",
+   "prevention_en": "Row covers in nursery, rotation.",
+   "prevention_sw": "Vifuniko vya kitalu, zungusha.",
+   "scanner_notes": "Backlit photo shows the tunnel track."
+  },
+  {
+   "key": "downy_mildew",
+   "name_en": "Downy mildew",
+   "name_sw": "Ukungu",
+   "type": "disease",
+   "severity_classes": "Low (specks) · High (grey fuzz, leaf loss)",
+   "symptoms_en": "Yellow patches above, grey-purple fuzz below, cool humid spells.",
+   "symptoms_sw": "Madoa ya manjano juu, ukungu wa kijivu chini, baridi na unyevu.",
+   "treatment_en": "Registered downy-active fungicide at first specks. Advisory: use PCPB-registered products only, at label rates.",
+   "treatment_sw": "Dawa iliyoidhinishwa ya ukungu mara inapoanza. Shauri: tumia dawa zilizoidhinishwa na PCPB tu, kwa kiwango kilichoandikwa.",
+   "prevention_en": "Wide spacing, morning watering, resistant varieties.",
+   "prevention_sw": "Nafasi ya kutosha, mwagilia asubuhi, aina sugu.",
+   "scanner_notes": "Underside photo required — fuzz invisible from above."
+  },
+  {
+   "key": "cercospora_leaf_spot",
+   "name_en": "Cercospora leaf spot",
+   "name_sw": "Madoa ya majani",
+   "type": "disease",
+   "severity_classes": "Low (scattered spots) · High (defoliation)",
+   "symptoms_en": "Round grey-brown spots with dark borders, older leaves first.",
+   "symptoms_sw": "Madoa ya kijivu-kahawia yenye mipaka meusi, majani makubwa kwanza.",
+   "treatment_en": "Registered contact fungicide at first spots. Advisory: use PCPB-registered products only, at label rates.",
+   "treatment_sw": "Dawa iliyoidhinishwa mara madoa yanapoanza. Shauri: tumia dawa zilizoidhinishwa na PCPB tu, kwa kiwango kilichoandikwa.",
+   "prevention_en": "Clean seed, rotation, remove debris.",
+   "prevention_sw": "Mbegu safi, zungusha, ondoa mabaki.",
+   "scanner_notes": "Round spots with distinct borders vs mildew fuzz."
+  }
+ ],
+ "links": [
+  {
+   "kind": "blog_guide",
+   "label_en": "Panda growing guide: Spinach",
+   "label_sw": "Mwongozo wa Panda: Spinachi",
+   "url": "https://panda.shira.farm/blog/spinach-40-day-leaf-crop-guide"
+  },
+  {
+   "kind": "pcpb",
+   "label_en": "PCPB — registered pest control products",
+   "label_sw": "PCPB — orodha ya dawa zilizoidhinishwa",
+   "url": "https://www.pcpb.go.ke/"
+  },
+  {
+   "kind": "kephis",
+   "label_en": "KEPHIS — plant health services",
+   "label_sw": "KEPHIS — huduma za afya ya mimea",
+   "url": "https://www.kephis.org/"
+  },
+  {
+   "kind": "prices",
+   "label_en": "MoALD market information (KAMIS)",
+   "label_sw": "Taarifa za soko za Wizara ya Kilimo (KAMIS)",
+   "url": "https://www.kilimo.go.ke/"
+  }
+ ],
+ "market_notes": {
+  "sell_windows_en": "Demand never pauses — hotels, hospitals, households buy daily. One acre sold weekly is a payroll, not a harvest.",
+  "sell_windows_sw": "Mahitaji hayapumziki — hoteli na kaya hununua kila siku. Eka moja inayouzwa kila wiki ni mshahara, si mavuno.",
+  "price_notes_en": "40–80 KES per kg retail, or 20–50 KES per bunch (November 2026). Input bill 10,000–15,000 KES per acre.",
+  "price_notes_sw": "KES 40–80 kwa kilo rejareja, au 20–50 kwa fungu (Novemba 2026). Gharama 10,000–15,000 KES kwa eka."
+ }
+}
