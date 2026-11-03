@@ -21,6 +21,9 @@ use Spatie\Activitylog\Traits\LogsActivity;
  *                                                                           Normalised top-3 alternate diagnoses.
  * @property array<string, mixed>|null $disease_card Bilingual content-card
  *                                                   snapshot resolved at scan time (Phase A).
+ * @property array<string, mixed>|null $engine_response Raw provider payload;
+ *                                                      offline tree rows carry offline=true + diagnosis_key + answers.
+ * @property list<array{generic: string, pcpb: string|null, application_notes?: string}>|null $treatments
  */
 class DiseaseDetection extends Model
 {
@@ -56,6 +59,7 @@ class DiseaseDetection extends Model
         'opt_in_for_training',
         'captured_by',
         'captured_at',
+        'client_id',
     ];
 
     protected function casts(): array

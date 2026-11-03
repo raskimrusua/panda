@@ -292,6 +292,11 @@
     "no": "Hapana",
     "thanks_feedback": "Asante — maoni yako yanaboresha skana.",
     "what_did_you_see": "Umeona nini hasa? (si lazima)",
-    "submit_feedback": "Tuma maoni"
+    "submit_feedback": "Tuma maoni",
+    "offline_title": "Mwongozo bila mtandao",
+    "offline_intro": "Hakuna mtandao? Jibu maswali machache kwa wazo la jumla.",
+    "offline_queued": "Imehifadhiwa kwenye simu yako — itasawazishwa ukiwa mtandaoni.",
+    "offline_uncertain": "Haiwezekani kujua bila mtandao. Jaribu picha ukiwa mtandaoni.",
+    "offline_confidence": "Mwongozo wa nje ya mtandao — thibitisha kwa picha ukiwa mtandaoni"
   }
 }

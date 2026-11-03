@@ -7,7 +7,7 @@
 export interface QueuedMutation {
   id: string;
   client_id: string;
-  type: 'log_activity_done' | 'log_cost' | 'log_harvest';
+  type: 'log_activity_done' | 'log_cost' | 'log_harvest' | 'offline_scan';
   url: string;
   method: 'POST' | 'PATCH';
   payload: Record<string, unknown>;

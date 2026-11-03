@@ -115,6 +115,7 @@ Route::prefix('v1')->group(function () {
 
         /* Disease detection — tenant-scoped (each scan belongs to a farm) */
         Route::post('disease/detect', [DiseaseDetectionController::class, 'detect']);
+        Route::post('disease/offline-sync', [DiseaseDetectionController::class, 'offlineSync']);
         Route::get('disease/history', [DiseaseDetectionController::class, 'history']);
         Route::get('disease/{diseaseDetection}', [DiseaseDetectionController::class, 'show']);
         Route::get('disease/{diseaseDetection}/report', [DiseaseDetectionController::class, 'report']);

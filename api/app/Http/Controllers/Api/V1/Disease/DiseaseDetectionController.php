@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\V1\Disease;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Disease\DetectRequest;
 use App\Http\Requests\Disease\DiseaseFeedbackRequest;
+use App\Http\Requests\Disease\OfflineSyncRequest;
 use App\Http\Requests\Disease\PlanTreatmentRequest;
 use App\Http\Resources\CostEntryResource;
 use App\Http\Resources\DiseaseDetectionResource;
@@ -15,6 +16,7 @@ use App\Models\DiseaseDetection;
 use App\Models\DiseaseFeedback;
 use App\Services\Crops\Disease\CropHealthClient;
 use App\Services\Crops\Disease\DiseaseCardResolver;
+use App\Services\Crops\Disease\TreatmentCatalogue;
 use App\Services\Storage\ImageUploadService;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\JsonResponse;
@@ -226,5 +228,62 @@ class DiseaseDetectionController extends Controller
         return (new DiseaseFeedbackResource($feedback))
             ->response()
             ->setStatusCode($feedback->wasRecentlyCreated ? 201 : 200);
+    }
+
+    /**
+     * Offline decision-tree result upload (Phase B3 pilot). No photo — the
+     * tree answer trail is the evidence; confidence is the honest tree
+     * ceiling (0.5). `client_id` (PWA queue idempotency key) dedupes
+     * re-sends after flaky-network retries: existing row → 200.
+     */
+    public function offlineSync(OfflineSyncRequest $request): JsonResponse
+    {
+        $data = $request->validated();
+        $tenantId = $request->user()->tenant_id;
+
+        if (! empty($data['client_id'])) {
+            $existing = DiseaseDetection::query()
+                ->where('tenant_id', $tenantId)
+                ->where('client_id', $data['client_id'])
+                ->first();
+            if ($existing !== null) {
+                return (new DiseaseDetectionResource($existing))
+                    ->response()
+                    ->setStatusCode(200);
+            }
+        }
+
+        $cropSlug = null;
+        if (! empty($data['crop_id'])) {
+            $cropSlug = Crop::query()->where('id', $data['crop_id'])->value('slug');
+        }
+
+        $key = (string) $data['top_diagnosis'];
+        $card = $this->cards->resolve($key, $cropSlug);
+        $name = is_array($card) ? (string) ($card['name_en'] ?? $key) : $key;
+
+        $detection = DiseaseDetection::create([
+            'tenant_id' => $tenantId,
+            'season_id' => $data['season_id'] ?? null,
+            'crop_id' => $data['crop_id'] ?? null,
+            'image_path' => null,
+            'provider' => DiseaseDetection::PROVIDER_OFFLINE_TREE,
+            'top_diagnosis' => $name,
+            'confidence' => 0.5,
+            'engine_response' => [
+                'offline' => true,
+                'diagnosis_key' => $key,
+                'answers' => $data['answers'] ?? [],
+            ],
+            'treatments' => TreatmentCatalogue::suggest($name, $cropSlug),
+            'disease_card' => $card,
+            'captured_by' => $request->user()?->id,
+            'captured_at' => $data['captured_at'] ?? now(),
+            'client_id' => $data['client_id'] ?? null,
+        ]);
+
+        return (new DiseaseDetectionResource($detection))
+            ->response()
+            ->setStatusCode(201);
     }
 }
