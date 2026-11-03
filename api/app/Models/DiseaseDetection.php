@@ -43,6 +43,8 @@ class DiseaseDetection extends Model
         'confidence',
         'engine_response',
         'treatments',
+        'disease_card',
+        'suggestions',
         'opt_in_for_training',
         'captured_by',
         'captured_at',
