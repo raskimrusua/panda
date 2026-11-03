@@ -21,6 +21,22 @@ it('returns an empty list for unknown diagnoses', function () {
     expect(TreatmentCatalogue::suggest('Southern Bacterial Wilt', 'tomato'))->toBe([]);
 });
 
+it('suggests per-crop treatments from the extended catalogue', function () {
+    $treatments = TreatmentCatalogue::suggest('Diamondback moth', 'kale');
+
+    expect($treatments)->toHaveCount(1)
+        ->and($treatments[0]['generic'])->toBe('Lufenuron')
+        ->and($treatments[0]['pcpb'])->toBe('Match 050 EC');
+});
+
+it('extended catalogue entries carry the JSON disease keys', function () {
+    $keys = array_column(TreatmentCatalogue::catalogue('kale'), 'key');
+
+    expect($keys)->toContain(
+        'diamondback_moth', 'aphids', 'black_rot', 'downy_mildew', 'alternaria_leaf_spot'
+    );
+});
+
 it('tomato catalogue includes tomato-specific diseases', function () {
     $names = array_map(fn (array $d) => $d['name'], TreatmentCatalogue::catalogue('tomato'));
 

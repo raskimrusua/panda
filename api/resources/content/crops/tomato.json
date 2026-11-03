@@ -1,170 +1,372 @@
 {
-    "slug": "tomato",
-    "name_en": "Tomato",
-    "name_sw": "Nyanya",
-    "category": "vegetable",
-    "harvest_type": "multi",
-    "jica_manual_ref": "Inspired by JICA SHEP PLUS — Tomato production manual (Kenya, 2018 reproduction)",
-    "kalro_guide_ref": "KALRO Tomato production guide",
-    "ecological_requirements": {
-        "altitude_min_m": 600,
-        "altitude_max_m": 2100,
-        "rainfall_min_mm": 600,
-        "rainfall_max_mm": 1300,
-        "temperature_min_c": 18,
-        "temperature_max_c": 27,
-        "soil_types": ["loam", "sandy_loam", "clay_loam"],
-        "soil_ph_min": 6.0,
-        "soil_ph_max": 7.5
-    },
-    "varieties": [
-        {
-            "name": "Tylka F1",
-            "type": "INDETERMINATE",
-            "days_to_maturity": 75,
-            "yield_kg_per_acre": 18000,
-            "disease_resistance": ["TYLCV", "Verticillium", "Fusarium"],
-            "supplier_notes": "Hybrid; widely available at Elgon Kenya, ETG, Juanco SPS"
-        },
-        {
-            "name": "Cal-J",
-            "type": "DETERMINATE",
-            "days_to_maturity": 90,
-            "yield_kg_per_acre": 14000,
-            "disease_resistance": ["Fusarium", "Verticillium"],
-            "supplier_notes": "Open-pollinated; lower input cost; good for fresh-market"
-        }
-    ],
-    "timeline_template": [
-        {
-            "activity_type": "nursery_seeding",
-            "phase": "nursery",
-            "week_from_planting": -3,
-            "day_window": 3,
-            "description_en": "Sow seeds in nursery trays with sterile coco peat. Cover lightly with media.",
-            "description_sw": "Panda mbegu kwenye trei za kitalu na coco peat safi. Funika kidogo na udongo.",
-            "tip_en": "Pre-soak seed for 4 hours in warm water for faster germination.",
-            "tip_sw": "Loweka mbegu maji moto kwa saa 4 kabla ya kupanda kwa kuotesha haraka.",
-            "is_critical": true
-        },
-        {
-            "activity_type": "germination_check",
-            "phase": "nursery",
-            "week_from_planting": -2,
-            "day_window": 2,
-            "description_en": "Check germination at day 7-10. Expect 80%+ germination from quality F1 seed.",
-            "description_sw": "Angalia kuotesha siku ya 7-10. Tarajia asilimia 80+ ya mbegu kuotesha.",
-            "is_critical": false
-        },
-        {
-            "activity_type": "seedling_hardening",
-            "phase": "nursery",
-            "week_from_planting": -1,
-            "day_window": 2,
-            "description_en": "Gradually reduce watering and expose seedlings to direct sun for 5-7 days.",
-            "description_sw": "Punguza maji polepole na peleka miche jua kwa siku 5-7.",
-            "is_critical": true
-        },
-        {
-            "activity_type": "transplanting",
-            "phase": "transplanting",
-            "week_from_planting": 0,
-            "day_window": 2,
-            "description_en": "Transplant 4-6 week-old seedlings at 60cm × 60cm spacing.",
-            "description_sw": "Pandikiza miche ya wiki 4-6 kwa nafasi ya 60cm × 60cm.",
-            "tip_en": "Transplant in late afternoon to reduce transplant shock.",
-            "tip_sw": "Pandikiza alasiri kupunguza mshtuko wa kupandikizwa.",
-            "is_critical": true
-        },
-        {
-            "activity_type": "basal_fertiliser",
-            "phase": "transplanting",
-            "week_from_planting": 0,
-            "day_window": 1,
-            "description_en": "Apply 50kg DAP at planting (one tablespoon per planting hole).",
-            "description_sw": "Weka kilo 50 za DAP wakati wa kupanda (kijiko kimoja kwa shimo).",
-            "is_critical": true
-        },
-        {
-            "activity_type": "first_weeding",
-            "phase": "growth",
-            "week_from_planting": 2,
-            "day_window": 3,
-            "description_en": "Hand-weed or shallow-hoe between rows. Mulch with dry grass to suppress regrowth.",
-            "description_sw": "Palia kwa mkono au jembe la juu juu. Funika na nyasi kavu kuzuia ukuaji wa magugu.",
-            "is_critical": false
-        },
-        {
-            "activity_type": "top_dress_1",
-            "phase": "growth",
-            "week_from_planting": 3,
-            "day_window": 3,
-            "description_en": "Apply 50kg CAN as side-dressing 15cm from plant base.",
-            "description_sw": "Weka kilo 50 za CAN cm 15 kutoka kwa mmea.",
-            "is_critical": true
-        },
-        {
-            "activity_type": "staking",
-            "phase": "growth",
-            "week_from_planting": 4,
-            "day_window": 5,
-            "description_en": "Stake indeterminate varieties with 2m bamboo. Tie loosely with sisal twine.",
-            "description_sw": "Simika nguzo za mianzi mita 2 kwa aina za mizizi mirefu. Funga kwa kamba ya katani.",
-            "is_critical": false
-        },
-        {
-            "activity_type": "disease_spray",
-            "phase": "growth",
-            "week_from_planting": 5,
-            "day_window": 7,
-            "description_en": "Preventive fungicide spray (Ridomil Gold or equivalent PCPB-registered).",
-            "description_sw": "Nyunyuza dawa ya kuzuia magonjwa (Ridomil Gold au mbadala iliyosajiliwa PCPB).",
-            "is_critical": true
-        },
-        {
-            "activity_type": "top_dress_2",
-            "phase": "growth",
-            "week_from_planting": 6,
-            "day_window": 3,
-            "description_en": "Apply second 50kg CAN dose as side-dressing.",
-            "description_sw": "Weka kilo 50 za CAN tena.",
-            "is_critical": true
-        },
-        {
-            "activity_type": "harvest_pick",
-            "phase": "harvest",
-            "week_from_planting": 10,
-            "day_window": 7,
-            "description_en": "First harvest pick. Pick fruits at breaker stage (turning red) for best shelf life.",
-            "description_sw": "Mavuno ya kwanza. Chuna matunda yanayoanza kupauka kwa muda mrefu wa kuhifadhi.",
-            "tip_en": "Harvest every 7-10 days. Expect 8-12 picks per season.",
-            "tip_sw": "Vuna kila siku 7-10. Tarajia mavuno 8-12 kwa msimu.",
-            "is_critical": true
-        }
-    ],
-    "inputs_per_acre": [
-        { "input_type": "seed", "product_name": "Tylka F1 (200g)", "quantity": 200, "unit": "g", "week_from_planting": -3, "benchmark_price_kes": 4500, "pcpb_registered": false, "alternatives": ["Cal-J (open-pollinated)", "Star 9065 F1"] },
-        { "input_type": "fertiliser", "product_name": "DAP 50kg", "quantity": 50, "unit": "kg", "week_from_planting": 0, "benchmark_price_kes": 3500, "pcpb_registered": false },
-        { "input_type": "fertiliser", "product_name": "CAN 50kg (top-dress 1)", "quantity": 50, "unit": "kg", "week_from_planting": 3, "benchmark_price_kes": 2800, "pcpb_registered": false },
-        { "input_type": "fertiliser", "product_name": "CAN 50kg (top-dress 2)", "quantity": 50, "unit": "kg", "week_from_planting": 6, "benchmark_price_kes": 2800, "pcpb_registered": false },
-        { "input_type": "chemical", "product_name": "Ridomil Gold MZ 68 WG (500g)", "quantity": 500, "unit": "g", "week_from_planting": 5, "benchmark_price_kes": 1200, "pcpb_registered": true, "alternatives": ["Mancozeb 80WP"] },
-        { "input_type": "chemical", "product_name": "Ambush Super (500ml)", "quantity": 500, "unit": "ml", "week_from_planting": 4, "benchmark_price_kes": 900, "pcpb_registered": true, "alternatives": ["Karate"] },
-        { "input_type": "equipment", "product_name": "Bamboo stakes (2m)", "quantity": 1000, "unit": "pieces", "week_from_planting": 4, "benchmark_price_kes": 5000, "pcpb_registered": false },
-        { "input_type": "other", "product_name": "Crates (15kg, harvest packaging)", "quantity": 20, "unit": "crates", "week_from_planting": 10, "benchmark_price_kes": 6000, "pcpb_registered": false }
-    ],
-    "yield_per_acre": {
-        "expected_kg": 18000,
-        "min_kg": 15000,
-        "max_kg": 20000,
-        "number_of_picks": 10,
-        "pick_interval_days": 8
-    },
-    "post_harvest": {
-        "shelf_life_days": 14,
-        "grading_criteria": "Grade A: firm, no blemishes, uniform red. Grade B: minor blemishes, slight softness. Grade C: ripe with imperfections — sell same day.",
-        "packaging_standard": "15kg crates (Kenya market standard); 25kg crates for processor delivery.",
-        "storage_tips_en": "Store at room temperature 18-22°C. Avoid refrigeration above 12°C — chilling injury.",
-        "storage_tips_sw": "Hifadhi joto la kawaida la nyumba 18-22°C. Epuka friji juu ya 12°C — huharibika kwa baridi."
-    },
-    "diseases": ["early_blight", "late_blight", "bacterial_wilt", "tuta_absoluta", "tomato_yellow_leaf_curl_virus", "fusarium_wilt"]
+ "slug": "tomato",
+ "name_en": "Tomato",
+ "name_sw": "Nyanya",
+ "category": "vegetable",
+ "harvest_type": "multi",
+ "jica_manual_ref": "Inspired by JICA SHEP PLUS — Tomato production manual (Kenya, 2018 reproduction)",
+ "kalro_guide_ref": "KALRO Tomato production guide",
+ "ecological_requirements": {
+  "altitude_min_m": 600,
+  "altitude_max_m": 2100,
+  "rainfall_min_mm": 600,
+  "rainfall_max_mm": 1300,
+  "temperature_min_c": 18,
+  "temperature_max_c": 27,
+  "soil_types": [
+   "loam",
+   "sandy_loam",
+   "clay_loam"
+  ],
+  "soil_ph_min": 6.0,
+  "soil_ph_max": 7.5
+ },
+ "varieties": [
+  {
+   "name": "Tylka F1",
+   "type": "INDETERMINATE",
+   "days_to_maturity": 75,
+   "yield_kg_per_acre": 18000,
+   "disease_resistance": [
+    "TYLCV",
+    "Verticillium",
+    "Fusarium"
+   ],
+   "supplier_notes": "Hybrid; widely available at Elgon Kenya, ETG, Juanco SPS"
+  },
+  {
+   "name": "Cal-J",
+   "type": "DETERMINATE",
+   "days_to_maturity": 90,
+   "yield_kg_per_acre": 14000,
+   "disease_resistance": [
+    "Fusarium",
+    "Verticillium"
+   ],
+   "supplier_notes": "Open-pollinated; lower input cost; good for fresh-market"
+  }
+ ],
+ "timeline_template": [
+  {
+   "activity_type": "nursery_seeding",
+   "phase": "nursery",
+   "week_from_planting": -3,
+   "day_window": 3,
+   "description_en": "Sow seeds in nursery trays with sterile coco peat. Cover lightly with media.",
+   "description_sw": "Panda mbegu kwenye trei za kitalu na coco peat safi. Funika kidogo na udongo.",
+   "tip_en": "Pre-soak seed for 4 hours in warm water for faster germination.",
+   "tip_sw": "Loweka mbegu maji moto kwa saa 4 kabla ya kupanda kwa kuotesha haraka.",
+   "is_critical": true
+  },
+  {
+   "activity_type": "germination_check",
+   "phase": "nursery",
+   "week_from_planting": -2,
+   "day_window": 2,
+   "description_en": "Check germination at day 7-10. Expect 80%+ germination from quality F1 seed.",
+   "description_sw": "Angalia kuotesha siku ya 7-10. Tarajia asilimia 80+ ya mbegu kuotesha.",
+   "is_critical": false
+  },
+  {
+   "activity_type": "seedling_hardening",
+   "phase": "nursery",
+   "week_from_planting": -1,
+   "day_window": 2,
+   "description_en": "Gradually reduce watering and expose seedlings to direct sun for 5-7 days.",
+   "description_sw": "Punguza maji polepole na peleka miche jua kwa siku 5-7.",
+   "is_critical": true
+  },
+  {
+   "activity_type": "transplanting",
+   "phase": "transplanting",
+   "week_from_planting": 0,
+   "day_window": 2,
+   "description_en": "Transplant 4-6 week-old seedlings at 60cm × 60cm spacing.",
+   "description_sw": "Pandikiza miche ya wiki 4-6 kwa nafasi ya 60cm × 60cm.",
+   "tip_en": "Transplant in late afternoon to reduce transplant shock.",
+   "tip_sw": "Pandikiza alasiri kupunguza mshtuko wa kupandikizwa.",
+   "is_critical": true
+  },
+  {
+   "activity_type": "basal_fertiliser",
+   "phase": "transplanting",
+   "week_from_planting": 0,
+   "day_window": 1,
+   "description_en": "Apply 50kg DAP at planting (one tablespoon per planting hole).",
+   "description_sw": "Weka kilo 50 za DAP wakati wa kupanda (kijiko kimoja kwa shimo).",
+   "is_critical": true
+  },
+  {
+   "activity_type": "first_weeding",
+   "phase": "growth",
+   "week_from_planting": 2,
+   "day_window": 3,
+   "description_en": "Hand-weed or shallow-hoe between rows. Mulch with dry grass to suppress regrowth.",
+   "description_sw": "Palia kwa mkono au jembe la juu juu. Funika na nyasi kavu kuzuia ukuaji wa magugu.",
+   "is_critical": false
+  },
+  {
+   "activity_type": "top_dress_1",
+   "phase": "growth",
+   "week_from_planting": 3,
+   "day_window": 3,
+   "description_en": "Apply 50kg CAN as side-dressing 15cm from plant base.",
+   "description_sw": "Weka kilo 50 za CAN cm 15 kutoka kwa mmea.",
+   "is_critical": true
+  },
+  {
+   "activity_type": "staking",
+   "phase": "growth",
+   "week_from_planting": 4,
+   "day_window": 5,
+   "description_en": "Stake indeterminate varieties with 2m bamboo. Tie loosely with sisal twine.",
+   "description_sw": "Simika nguzo za mianzi mita 2 kwa aina za mizizi mirefu. Funga kwa kamba ya katani.",
+   "is_critical": false
+  },
+  {
+   "activity_type": "disease_spray",
+   "phase": "growth",
+   "week_from_planting": 5,
+   "day_window": 7,
+   "description_en": "Preventive fungicide spray (Ridomil Gold or equivalent PCPB-registered).",
+   "description_sw": "Nyunyuza dawa ya kuzuia magonjwa (Ridomil Gold au mbadala iliyosajiliwa PCPB).",
+   "is_critical": true
+  },
+  {
+   "activity_type": "top_dress_2",
+   "phase": "growth",
+   "week_from_planting": 6,
+   "day_window": 3,
+   "description_en": "Apply second 50kg CAN dose as side-dressing.",
+   "description_sw": "Weka kilo 50 za CAN tena.",
+   "is_critical": true
+  },
+  {
+   "activity_type": "harvest_pick",
+   "phase": "harvest",
+   "week_from_planting": 10,
+   "day_window": 7,
+   "description_en": "First harvest pick. Pick fruits at breaker stage (turning red) for best shelf life.",
+   "description_sw": "Mavuno ya kwanza. Chuna matunda yanayoanza kupauka kwa muda mrefu wa kuhifadhi.",
+   "tip_en": "Harvest every 7-10 days. Expect 8-12 picks per season.",
+   "tip_sw": "Vuna kila siku 7-10. Tarajia mavuno 8-12 kwa msimu.",
+   "is_critical": true
+  }
+ ],
+ "inputs_per_acre": [
+  {
+   "input_type": "seed",
+   "product_name": "Tylka F1 (200g)",
+   "quantity": 200,
+   "unit": "g",
+   "week_from_planting": -3,
+   "benchmark_price_kes": 4500,
+   "pcpb_registered": false,
+   "alternatives": [
+    "Cal-J (open-pollinated)",
+    "Star 9065 F1"
+   ]
+  },
+  {
+   "input_type": "fertiliser",
+   "product_name": "DAP 50kg",
+   "quantity": 50,
+   "unit": "kg",
+   "week_from_planting": 0,
+   "benchmark_price_kes": 3500,
+   "pcpb_registered": false
+  },
+  {
+   "input_type": "fertiliser",
+   "product_name": "CAN 50kg (top-dress 1)",
+   "quantity": 50,
+   "unit": "kg",
+   "week_from_planting": 3,
+   "benchmark_price_kes": 2800,
+   "pcpb_registered": false
+  },
+  {
+   "input_type": "fertiliser",
+   "product_name": "CAN 50kg (top-dress 2)",
+   "quantity": 50,
+   "unit": "kg",
+   "week_from_planting": 6,
+   "benchmark_price_kes": 2800,
+   "pcpb_registered": false
+  },
+  {
+   "input_type": "chemical",
+   "product_name": "Ridomil Gold MZ 68 WG (500g)",
+   "quantity": 500,
+   "unit": "g",
+   "week_from_planting": 5,
+   "benchmark_price_kes": 1200,
+   "pcpb_registered": true,
+   "alternatives": [
+    "Mancozeb 80WP"
+   ]
+  },
+  {
+   "input_type": "chemical",
+   "product_name": "Ambush Super (500ml)",
+   "quantity": 500,
+   "unit": "ml",
+   "week_from_planting": 4,
+   "benchmark_price_kes": 900,
+   "pcpb_registered": true,
+   "alternatives": [
+    "Karate"
+   ]
+  },
+  {
+   "input_type": "equipment",
+   "product_name": "Bamboo stakes (2m)",
+   "quantity": 1000,
+   "unit": "pieces",
+   "week_from_planting": 4,
+   "benchmark_price_kes": 5000,
+   "pcpb_registered": false
+  },
+  {
+   "input_type": "other",
+   "product_name": "Crates (15kg, harvest packaging)",
+   "quantity": 20,
+   "unit": "crates",
+   "week_from_planting": 10,
+   "benchmark_price_kes": 6000,
+   "pcpb_registered": false
+  }
+ ],
+ "yield_per_acre": {
+  "expected_kg": 18000,
+  "min_kg": 15000,
+  "max_kg": 20000,
+  "number_of_picks": 10,
+  "pick_interval_days": 8
+ },
+ "post_harvest": {
+  "shelf_life_days": 14,
+  "grading_criteria": "Grade A: firm, no blemishes, uniform red. Grade B: minor blemishes, slight softness. Grade C: ripe with imperfections — sell same day.",
+  "packaging_standard": "15kg crates (Kenya market standard); 25kg crates for processor delivery.",
+  "storage_tips_en": "Store at room temperature 18-22°C. Avoid refrigeration above 12°C — chilling injury.",
+  "storage_tips_sw": "Hifadhi joto la kawaida la nyumba 18-22°C. Epuka friji juu ya 12°C — huharibika kwa baridi."
+ },
+ "diseases": [
+  {
+   "key": "early_blight",
+   "name_en": "Early Blight",
+   "name_sw": "Ugonjwa wa madoa ya mapema",
+   "type": "disease",
+   "severity_classes": "Low (leaf spots) · High (defoliation, fruit lesions)",
+   "symptoms_en": "Target-ring brown spots on OLDER leaves first, yellowing, dark lesions near the fruit stem.",
+   "symptoms_sw": "Madoa ya kahawia yenye pete kwenye majani MAKUBWA kwanza, kuwitikia, vidonda karibu na shina la tunda.",
+   "treatment_en": "Mancozeb-class (e.g. Dithane M-45) or Ridomil Gold alternating with a copper product, every 7-10 days from first sign. Advisory: use PCPB-registered products only, at label rates.",
+   "treatment_sw": "Dawa za mancozeb au Ridomil Gold kwa kubadilishana na dawa ya copper, kila siku 7-10 kuanzia inapoanza. Shauri: tumia dawa zilizoidhinishwa na PCPB tu, kwa kiwango kilichoandikwa.",
+   "prevention_en": "Stake and prune for airflow, rotate away from potato/pepper, avoid evening watering.",
+   "prevention_sw": "Weka vimo na kata matawi kwa hewa, zungusha mbali na viazi/pilipili, epuka kumwagilia jioni.",
+   "scanner_notes": "Rings on OLDER leaves, no white fuzz — the discriminator vs late blight."
+  },
+  {
+   "key": "late_blight",
+   "name_en": "Late Blight",
+   "name_sw": "Ugonjwa wa madoa ya marehemu",
+   "type": "disease",
+   "severity_classes": "Low (first spots) · High (field collapse in ~10 days)",
+   "symptoms_en": "Water-soaked spots browning fast, white fuzz at lesion margins in humidity, blackened stems, fruit rot.",
+   "symptoms_sw": "Madoa yaliyolowa yanageuka kahawia haraka, ukungu mweupe kwenye kingo unyevu, mashina meusi, matunda kuoza.",
+   "treatment_en": "Metalaxyl-class (Ridomil Gold) within 24h of detection; preventive schedule in cool wet weather. Advisory: use PCPB-registered products only, at label rates.",
+   "treatment_sw": "Dawa za metalaxyl (Ridomil Gold) ndani ya saa 24; ratiba ya kinga wakati wa baridi na mvua. Shauri: tumia dawa zilizoidhinishwa na PCPB tu, kwa kiwango kilichoandikwa.",
+   "prevention_en": "Certified seed, wide spacing, preventive spraying in wet spells, no overhead irrigation.",
+   "prevention_sw": "Mbegu zilizothibitishwa, nafasi ya kutosha, dawa za kinga mvua nyingi, usimwagilie kutoka juu.",
+   "scanner_notes": "White fuzz in humidity + fast spread = late blight. The fastest killer — escalate in-app."
+  },
+  {
+   "key": "bacterial_wilt",
+   "name_en": "Bacterial wilt",
+   "name_sw": "Kunyauka kwa bakteria",
+   "type": "disease",
+   "severity_classes": "Early (day wilt) · Advanced (permanent wilt, ooze)",
+   "symptoms_en": "Green wilt of one side or branch, no recovery, milky ooze from a cut stem pressed in water.",
+   "symptoms_sw": "Kunyauka kwa kijani upande mmoja, hakuna kupona, ute mweupe kutoka shina lililokatwa.",
+   "treatment_en": "None — rogue and destroy infected plants; 3-season rotation away from solanaceous crops. Advisory: use PCPB-registered products only, at label rates.",
+   "treatment_sw": "Hakuna tiba — ng'oa na uteketeze; zungusha mashamba misimu 3 mbali na mimea ya solanaceous. Shauri: tumia dawa zilizoidhinishwa na PCPB tu, kwa kiwango kilichoandikwa.",
+   "prevention_en": "Certified seed, clean tools, avoid flooding and reused nursery soil.",
+   "prevention_sw": "Mbegu zilizothibitishwa, vifaa safi, epuka mafuriko na udongo wa kitalu uliotumiwa.",
+   "scanner_notes": "Cut-stem ooze test is the verification — photograph the cut stem."
+  },
+  {
+   "key": "tuta_absoluta",
+   "name_en": "Tuta absoluta",
+   "name_sw": "Tuta absoluta",
+   "type": "pest",
+   "severity_classes": "Low (leaf mines) · High (fruit punctures, market loss)",
+   "symptoms_en": "Silvery blotch mines on leaves, pin-prick holes on green fruit, distorted growth.",
+   "symptoms_sw": "Michirizi ya fedha kwenye majani, mashimo madogo kwenye matunda mabichi, ukuaji uliopinda.",
+   "treatment_en": "Chlorantraniliprole-class (Coragen 20 SC) at first mines; mass trapping complements sprays. Advisory: use PCPB-registered products only, at label rates.",
+   "treatment_sw": "Dawa za chlorantraniliprole (Coragen 20 SC) mara michirizi inapoanza; mitego inasaidia. Shauri: tumia dawa zilizoidhinishwa na PCPB tu, kwa kiwango kilichoandikwa.",
+   "prevention_en": "Pheromone traps, nursery netting, remove infested leaves and fallen fruit.",
+   "prevention_sw": "Mitego ya pheromone, vifuniko vya kitalu, ondoa majani yaliyoathirika na matunda yaliyoanguka.",
+   "scanner_notes": "Mines on leaves + pin-pricks on fruit together = Tuta. Leaf photo + fruit close-up."
+  },
+  {
+   "key": "tomato_yellow_leaf_curl_virus",
+   "name_en": "Tomato Yellow Leaf Curl Virus (TYLCV)",
+   "name_sw": "Virusi vya kunyauka kwa majani",
+   "type": "disease",
+   "severity_classes": "Mild (curl) · Severe (stunting, no fruit)",
+   "symptoms_en": "Upward curling yellow leaves, stunted plants, flower drop, whiteflies present.",
+   "symptoms_sw": "Majani yanayojikunja juu na kuwitikia, mimea dhaifu, maua kuanguka, nzi weupe wapo.",
+   "treatment_en": "None for the virus — Imidacloprid-class (Confidor 200 SL) targets the whitefly vector; rogue infected plants. Advisory: use PCPB-registered products only, at label rates.",
+   "treatment_sw": "Hakuna tiba ya virusi — dawa za imidacloprid (Confidor 200 SL) hudhibiti nzi weupe; ng'oa mimea iliyoathirika. Shauri: tumia dawa zilizoidhinishwa na PCPB tu, kwa kiwango kilichoandikwa.",
+   "prevention_en": "Plant TYLCV-resistant varieties (Tylka F1), whitefly control from the nursery, remove infected plants early.",
+   "prevention_sw": "Panda aina sugu (Tylka F1), dhibiti nzi weupe kuanzia kitalu, ondoa mimea iliyoathirika mapema.",
+   "scanner_notes": "Upward curl + yellowing + whiteflies = TYLCV, not nutrient deficiency (interveinal)."
+  },
+  {
+   "key": "fusarium_wilt",
+   "name_en": "Fusarium wilt",
+   "name_sw": "Kunyauka kwa fusarium",
+   "type": "disease",
+   "severity_classes": "Early (one-sided yellowing) · Severe (permanent wilt, death)",
+   "symptoms_en": "One-sided yellowing of lower leaves, brown vascular ring in a cut stem, wilt despite watering.",
+   "symptoms_sw": "Kuwitikia kwa upande mmoja wa majani ya chini, pete ya kahawia kwenye shina lililokatwa, kunyauka hata kwa kumwagilia.",
+   "treatment_en": "None — rogue and destroy; resistant varieties (F1 hybrids with VFN resistance) and long rotation. Advisory: use PCPB-registered products only, at label rates.",
+   "treatment_sw": "Hakuna tiba — ng'oa na uteketeze; aina sugu (F1 zenye upinzani wa VFN) na kuzungusha kwa muda mrefu. Shauri: tumia dawa zilizoidhinishwa na PCPB tu, kwa kiwango kilichoandikwa.",
+   "prevention_en": "Rotation away from solanaceous crops, solarize beds where present, clean seed.",
+   "prevention_sw": "Zungusha mbali na solanaceous, weka jua kwenye vitanda vilivyoathirika, mbegu safi.",
+   "scanner_notes": "Cut-stem brown ring vs bacterial wilt's ooze — the two wilts need different photos."
+  }
+ ],
+ "links": [
+  {
+   "kind": "blog_guide",
+   "label_en": "Panda growing guide: Tomato",
+   "label_sw": "Mwongozo wa Panda: Nyanya",
+   "url": "https://panda.shira.farm/blog/tomato-economics-varieties-spray"
+  },
+  {
+   "kind": "pcpb",
+   "label_en": "PCPB — registered pest control products",
+   "label_sw": "PCPB — orodha ya dawa zilizoidhinishwa",
+   "url": "https://www.pcpb.go.ke/"
+  },
+  {
+   "kind": "kephis",
+   "label_en": "KEPHIS — plant health services",
+   "label_sw": "KEPHIS — huduma za afya ya mimea",
+   "url": "https://www.kephis.org/"
+  },
+  {
+   "kind": "prices",
+   "label_en": "MoALD market information (KAMIS)",
+   "label_sw": "Taarifa za soko za Wizara ya Kilimo (KAMIS)",
+   "url": "https://www.kilimo.go.ke/"
+  }
+ ],
+ "market_notes": {
+  "sell_windows_en": "Prices peak in the dry spells when field supply thins (Jan-Mar, Aug-Oct); greenhouse growers capture the off-season premium. Grade by size, colour and blemish — the top grade sells to supermarkets and processors.",
+  "sell_windows_sw": "Bei hupanda kiangazi wakati mazao ya shambani yanapungua (Jan-Mar, Ago-Okt); wakulima wa greenhouses hunufaika na bei ya nje ya msimu. Panga daraja kwa ukubwa, rangi na usafi.",
+  "price_notes_en": "Open-field ~30-100 KES per kg by season and grade (November 2026). The tomato is the highest-volume vegetable in the Kenyan market — the disease plan, not the yield plan, decides the profit.",
+  "price_notes_sw": "Shambani ~KES 30-100 kwa kilo kwa msimu na daraja (Novemba 2026). Nyanya ni mboga yenye soko kubwa zaidi Kenya — mpango wa magonjwa, si wa mavuno, ndio unaoamua faida."
+ }
 }
