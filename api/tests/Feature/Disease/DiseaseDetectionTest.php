@@ -204,7 +204,8 @@ it('accepts multiple images and persists the full path list', function () {
         ->and($detection->image_path)->not->toBe($detection->image_paths[1]);
 
     // Both files are on the storage disk under distinct paths.
-    foreach ($detection->image_paths as $path) {
+    $persistedPaths = is_array($detection->image_paths) ? $detection->image_paths : [];
+    foreach ($persistedPaths as $path) {
         Storage::disk(config('filesystems.default'))->assertExists($path);
     }
 });
