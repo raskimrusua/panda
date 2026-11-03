@@ -1,0 +1,288 @@
+{
+ "slug": "maize",
+ "name_en": "Maize",
+ "name_sw": "Mahindi",
+ "category": "cereal",
+ "harvest_type": "single",
+ "jica_manual_ref": "Inspired by JICA SHEP PLUS — Maize production guide (Kenya)",
+ "kalro_guide_ref": "KALRO Maize production handbook",
+ "ecological_requirements": {
+  "altitude_min_m": 900,
+  "altitude_max_m": 2400,
+  "rainfall_min_mm": 500,
+  "rainfall_max_mm": 1200,
+  "temperature_min_c": 18,
+  "temperature_max_c": 30,
+  "soil_types": [
+   "loam",
+   "sandy_loam"
+  ],
+  "soil_ph_min": 5.5,
+  "soil_ph_max": 7.0
+ },
+ "varieties": [
+  {
+   "name": "H6213",
+   "type": "HYBRID",
+   "days_to_maturity": 150,
+   "yield_kg_per_acre": 3000,
+   "disease_resistance": [
+    "grey_leaf_spot"
+   ],
+   "supplier_notes": "Highland hybrid; the most-planted certified maize in Kenya."
+  },
+  {
+   "name": "H629",
+   "type": "HYBRID",
+   "days_to_maturity": 140,
+   "yield_kg_per_acre": 2800,
+   "disease_resistance": [],
+   "supplier_notes": "Medium-altitude workhorse."
+  },
+  {
+   "name": "Katumani",
+   "type": "OPEN_POLLINATED",
+   "days_to_maturity": 105,
+   "yield_kg_per_acre": 1500,
+   "disease_resistance": [],
+   "supplier_notes": "Dryland OPV; re-plantable from own seed — the choice where rains are unreliable."
+  }
+ ],
+ "timeline_template": [
+  {
+   "activity_type": "land_prep",
+   "phase": "establishment",
+   "week_from_planting": -2,
+   "day_window": 14,
+   "description_en": "Plough early so the first rain finds you ready. Incorporate manure or crop residue.",
+   "description_sw": "Lima mapema ili mvua ya kwanza ikupate tayari. Weka samadi au mabaki ya mazao.",
+   "is_critical": false
+  },
+  {
+   "activity_type": "seed_planting",
+   "phase": "establishment",
+   "week_from_planting": 0,
+   "day_window": 7,
+   "description_en": "Plant at first good rains: 1 seed per hill, 10 kg per acre at 75cm × 30cm.",
+   "description_sw": "Panda kwa mvua za kwanza: mbegu 1 kwa shimo, kilo 10 kwa eka kwa 75cm × 30cm.",
+   "tip_en": "Match seed cost to rainfall reliability — hybrid where rains are dependable, OPV in dryland.",
+   "tip_sw": "Linganisha gharama ya mbegu na uhakika wa mvua — hybrid mvua ya uhakika, OPV kanda kame.",
+   "is_critical": true
+  },
+  {
+   "activity_type": "basal_fertiliser",
+   "phase": "establishment",
+   "week_from_planting": 0,
+   "day_window": 3,
+   "description_en": "Band 50 kg DAP per acre in the planting furrow — not on top.",
+   "description_sw": "Weka kilo 50 za DAP kwenye mtaro wa kupanda — si juu.",
+   "is_critical": true
+  },
+  {
+   "activity_type": "first_weeding",
+   "phase": "growth",
+   "week_from_planting": 3,
+   "day_window": 4,
+   "description_en": "First weeding — weeds compete hardest in the first six weeks.",
+   "description_sw": "Palia kwanza — magugu hushindana zaidi wiki sita za kwanza.",
+   "is_critical": false
+  },
+  {
+   "activity_type": "top_dress",
+   "phase": "growth",
+   "week_from_planting": 5,
+   "day_window": 4,
+   "description_en": "Knee-high: top-dress 50 kg CAN per acre, 10 cm from the row. The single biggest yield lever.",
+   "description_sw": "Mmea umefikia goti: weka kilo 50 za CAN, sentimita 10 kutoka mstari. Njia kuu ya mavuno.",
+   "is_critical": true
+  },
+  {
+   "activity_type": "pest_scout",
+   "phase": "growth",
+   "week_from_planting": 6,
+   "day_window": 56,
+   "description_en": "Scout fall armyworm every 3-4 days — whorl damage is visible early, and early treatment saves the crop.",
+   "description_sw": "Chunguza fall armyworm kila siku 3-4 — uharibifu wa kitovu unaonekana mapema.",
+   "tip_en": "Late FAW detection costs 30-50% of yield.",
+   "tip_sw": "Kuchelewa kugundua FAW kunapunguza mavuno kwa 30-50%.",
+   "is_critical": true
+  },
+  {
+   "activity_type": "harvest",
+   "phase": "harvest",
+   "week_from_planting": 16,
+   "day_window": 21,
+   "description_en": "Harvest when grain tests at or below 13.5% moisture — a fingernail stops denting the kernel.",
+   "description_sw": "Vuna wakati nafaka ina unyevu 13.5% au chini — ukucha hauachi alama kwenye punje.",
+   "tip_en": "Dry to 13.5%, shell, and store in hermetic bags — post-harvest losses run 20-30% in open bags.",
+   "tip_sw": "Kausha hadi 13.5%, pukuchua, hifadhi kwa magunia maalum — hasara ni 20-30% kwa magunia wazi.",
+   "is_critical": true
+  }
+ ],
+ "inputs_per_acre": [
+  {
+   "input_type": "seed",
+   "product_name": "Hybrid maize seed (H6213/H629 class)",
+   "quantity": 10,
+   "unit": "kg",
+   "week_from_planting": 0,
+   "benchmark_price_kes": 4000,
+   "pcpb_registered": false,
+   "alternatives": [
+    "Katumani (OPV)"
+   ]
+  },
+  {
+   "input_type": "fertiliser",
+   "product_name": "DAP",
+   "quantity": 50,
+   "unit": "kg",
+   "week_from_planting": 0,
+   "benchmark_price_kes": 3500,
+   "pcpb_registered": false,
+   "alternatives": [
+    "NPK 23:23:0"
+   ]
+  },
+  {
+   "input_type": "fertiliser",
+   "product_name": "CAN",
+   "quantity": 50,
+   "unit": "kg",
+   "week_from_planting": 5,
+   "benchmark_price_kes": 3000,
+   "pcpb_registered": false,
+   "alternatives": [
+    "Urea"
+   ]
+  },
+  {
+   "input_type": "storage",
+   "product_name": "Hermetic storage bags (90 kg)",
+   "quantity": 30,
+   "unit": "bags",
+   "week_from_planting": 18,
+   "benchmark_price_kes": 250,
+   "pcpb_registered": false,
+   "alternatives": []
+  }
+ ],
+ "yield_per_acre": {
+  "expected_kg": 2700,
+  "min_kg": 1000,
+  "max_kg": 3600,
+  "number_of_picks": 1,
+  "pick_interval_days": 1
+ },
+ "post_harvest": {
+  "shelf_life_days": 240,
+  "grading_criteria": "Grade by moisture (13.5% max), cleanliness, and kernel size. Reject mouldy grain at shelling.",
+  "packaging_standard": "90 kg bags; hermetic bags for long storage, gunny bags only for immediate sale.",
+  "storage_tips_en": "Dry to 13.5%, shell, hermetic bags. Hold 8-12 weeks and sell into the lean months.",
+  "storage_tips_sw": "Kausha hadi 13.5%, pukuchua, magunia maalum. Subiri wiki 8-12 uuze miezi ya uhaba."
+ },
+ "diseases": [
+  {
+   "key": "fall_armyworm",
+   "name_en": "Fall armyworm",
+   "name_sw": "Fall armyworm",
+   "type": "pest",
+   "severity_classes": "Low (window-pane whorl feeding) · High (ragged whorl, dead heart)",
+   "symptoms_en": "Fresh frass in the whorl, transparent leaf windows, larvae with 4 dark spots on the 8th segment.",
+   "symptoms_sw": "Kinyesi kipya kwenye kitovu, madirisha ya majani, viluwiluwi vyenye madoa 4 meusi.",
+   "treatment_en": "Registered larvicide classes at label rates at first sign; hand-crush in small plots. Advisory: use PCPB-registered products only, at label rates.",
+   "treatment_sw": "Dawa zilizoidhinishwa mara inapoonekana; pondaponda kwa mkono mashamba madogo. Shauri: tumia dawa zilizoidhinishwa na PCPB tu, kwa kiwango kilichoandikwa.",
+   "prevention_en": "Scout whorls week 4-8; early planting; push-pull with Desmodium.",
+   "prevention_sw": "Chunguza vitovu wiki 4-8; panda mapema; push-pull na Desmodium.",
+   "scanner_notes": "Photograph the whorl open, not the whole plant; frass separates FAW from stalk borer."
+  },
+  {
+   "key": "stalk_borer",
+   "name_en": "Maize stalk borer",
+   "name_sw": "Kifaranga wa shina",
+   "type": "pest",
+   "severity_classes": "Low (pin-holes) · High (tunnels, stem breakage)",
+   "symptoms_en": "Entry holes with sawdust frass, wilting dead heart in young plants.",
+   "symptoms_sw": "Matundu yenye vumbi la shina, kuuawa kwa kilele cha mmea mchanga.",
+   "treatment_en": "Registered systemic granule at planting; sprays only before tunnelling starts. Advisory: use PCPB-registered products only, at label rates.",
+   "treatment_sw": "Dawa ya kikundi cha systemic wakati wa kupanda; nyunyuza kabla ya kutoboa. Shauri: tumia dawa zilizoidhinishwa na PCPB tu, kwa kiwango kilichoandikwa.",
+   "prevention_en": "Cut and destroy stalks after harvest; rotate.",
+   "prevention_sw": "Kata na teketeza mashina baada ya kuvuna; zungusha.",
+   "scanner_notes": "Holes near stem base vs FAW in whorl — two photos (whorl + stem) beat one."
+  },
+  {
+   "key": "grey_leaf_spot",
+   "name_en": "Grey leaf spot",
+   "name_sw": "Madoa ya kijivu ya jani",
+   "type": "disease",
+   "severity_classes": "Low (scattered lesions) · High (lesions to ear leaf)",
+   "symptoms_en": "Rectangular grey-brown lesions, veins limit spread, lower leaves first.",
+   "symptoms_sw": "Madoa ya kijivu yenye pembe, mishipa inazuia kuenea, majani ya chini kwanza.",
+   "treatment_en": "Registered triazole/strobilurin classes at early onset. Advisory: use PCPB-registered products only, at label rates.",
+   "treatment_sw": "Dawa za triazole/strobilurin zilizoidhinishwa mapema. Shauri: tumia dawa zilizoidhinishwa na PCPB tu, kwa kiwango kilichoandikwa.",
+   "prevention_en": "Residue management, rotation, tolerant hybrids.",
+   "prevention_sw": "Ondoa mabaki, zungusha, hybrid sugu.",
+   "scanner_notes": "Rectangular-not-round is the key discriminator vs rust."
+  },
+  {
+   "key": "maize_lethal_necrosis",
+   "name_en": "Maize lethal necrosis (MLN)",
+   "name_sw": "MLN",
+   "type": "disease",
+   "severity_classes": "Early (mottle) · Advanced (necrosis, death)",
+   "symptoms_en": "Chlorotic mottling, yellowing from leaf tip, stunted cobs, early death.",
+   "symptoms_sw": "Madoa ya manjano, kuwitikia kuanzia ncha, mishuke midogo, kifo mapema.",
+   "treatment_en": "None — rogue and destroy; MLN-tolerant hybrids where available. Advisory: use PCPB-registered products only, at label rates.",
+   "treatment_sw": "Hakuna tiba — ng'oa na uteketeze; hybrid sugu za MLN zilizopo. Shauri: tumia dawa zilizoidhinishwa na PCPB tu, kwa kiwango kilichoandikwa.",
+   "prevention_en": "Certified seed, control vectors, report to KEPHIS.",
+   "prevention_sw": "Mbegu zilizothibitishwa, dhibiti wadudu, ripoti KEPHIS.",
+   "scanner_notes": "No-cure message must be explicit in UI; escalate to extension."
+  },
+  {
+   "key": "streak_virus",
+   "name_en": "Maize streak virus",
+   "name_sw": "Virusi vya michirizi",
+   "type": "disease",
+   "severity_classes": "Mild (sparse streaks) · Severe (dense streaks, stunting)",
+   "symptoms_en": "Pale yellow streaks along veins, stunted growth, small cobs.",
+   "symptoms_sw": "Michirizi ya manjano kwenye mishipa, kudhoofika, mishuke midogo.",
+   "treatment_en": "None — leafhopper vector control early only. Advisory: use PCPB-registered products only, at label rates.",
+   "treatment_sw": "Hakuna tiba — dhibiti wadudu wabebaji mapema tu. Shauri: tumia dawa zilizoidhinishwa na PCPB tu, kwa kiwango kilichoandikwa.",
+   "prevention_en": "Tolerant varieties, early uniform planting.",
+   "prevention_sw": "Aina sugu, panda mapema kwa pamoja.",
+   "scanner_notes": "Streaks follow veins — discriminator vs nutrient deficiency (interveinal)."
+  }
+ ],
+ "links": [
+  {
+   "kind": "blog_guide",
+   "label_en": "Panda growing guide: Maize",
+   "label_sw": "Mwongozo wa Panda: Mahindi",
+   "url": "https://panda.shira.farm/blog/maize-bag-math-guide"
+  },
+  {
+   "kind": "pcpb",
+   "label_en": "PCPB — registered pest control products",
+   "label_sw": "PCPB — orodha ya dawa zilizoidhinishwa",
+   "url": "https://www.pcpb.go.ke/"
+  },
+  {
+   "kind": "kephis",
+   "label_en": "KEPHIS — plant health services",
+   "label_sw": "KEPHIS — huduma za afya ya mimea",
+   "url": "https://www.kephis.org/"
+  },
+  {
+   "kind": "prices",
+   "label_en": "MoALD market information (KAMIS)",
+   "label_sw": "Taarifa za soko za Wizara ya Kilimo (KAMIS)",
+   "url": "https://www.kilimo.go.ke/"
+  }
+ ],
+ "market_notes": {
+  "sell_windows_en": "Prices bottom at harvest (Jun–Jul, Jan–Feb) and climb through the lean months (Sep–Nov, Mar–Apr). Hermetic storage lets you hold 8–12 weeks for 20–40% more per bag.",
+  "sell_windows_sw": "Bei hupungua wakati wa mavuno (Jun–Jul, Jan–Feb) na kupanda miezi ya uhaba (Sep–Nov, Mar–Apr). Hifadhi maalum inakuruhusu kusubiri wiki 8–12 kwa 20–40% zaidi kwa gunia.",
+  "price_notes_en": "90 kg bag ~2,800–4,500 KES by season (November 2026). Planned acre: 25–40 bags; national average 8–12.",
+  "price_notes_sw": "Gunia la kilo 90 ~2,800–4,500 KES kwa msimu (Novemba 2026). Eka iliyopangwa: magunia 25–40; wastani wa kitaifa 8–12."
+ }
+}
