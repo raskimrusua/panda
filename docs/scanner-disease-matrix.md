@@ -19,9 +19,9 @@ The disease scanner's thoroughness is bounded by this matrix. Each row is a
 
 ## Crop coverage (20-crop library)
 
-Live guides (5): kale/sukuma, tomato, French beans, mango, onion.
-Staged guides (14): maize, beans, Irish potato, sweet potato, cabbage, spinach, capsicum, carrot, butternut, coriander, avocado, banana, pawpaw, watermelon.
-Queue (1): snow peas.
+Live guides (5): kale/sukuma, tomato, French beans, mango, onion (all now covered in the matrix).
+Staged guides (15): maize, beans, Irish potato, sweet potato, cabbage, spinach, capsicum, carrot, butternut, coriander, avocado, banana, pawpaw, watermelon, snow peas.
+Queue (0): **20-crop library COMPLETE** — all crops covered in guides + matrix.
 
 ---
 
@@ -176,6 +176,43 @@ Queue (1): snow peas.
 | Gummy stem blight | Early (stem canker) · High (vine death) | Brown cankers oozing gum on stems, wilting vines | Registered sprays at first cankers; clean rotation | Rotation, avoid wounding vines | Photograph the STEM canker — leaf photos miss it |
 | Anthracnose | Low (spots) · High (sunken rot on fruit) | Sunken dark spots on fruit and leaves, wet weather | Registered anthracnose-active sprays; no overhead watering | Rotation, dry handling | Fruit + leaf photo pair |
 | Fruit fly | Low (stings) · High (maggots, market rejection) | Pin-prick stings on young fruit, larvae inside, rot from within | Registered bait sprays; remove fallen fruit | Sanitation, harvest on time | Cut-open fruit photo shows the maggots |
+
+## Snow peas (Pisum sativum var. saccharatum)
+
+| Disease | Severity classes | Symptoms | Treatment (advisory) | Prevention | Scanner notes |
+|---|---|---|---|---|---|
+| Powdery mildew | Low (dusting) · High (burnt vines, shrunk pods) | White dusting on leaves, vine burn, small pods, cool-dry spells | Sulphur-class products at first dusting — prevention beats pod loss | Airflow, resistant varieties, avoid water stress | Vine-level photo; early dusting on lower leaves first |
+| Downy mildew | Low (patches) · High (grey fuzz, defoliation) | Yellow patches above, grey-purple fuzz below, cool damp spells | Registered downy-active sprays at first patches | Airflow, morning watering | Underside photo required |
+| Aphids + viruses | Low (colonies) · High (curled growth, virus) | Curled new growth, colonies on undersides, mottled virus symptoms | Early aphid control only | Weekly scouting, natural enemies first | Underside photo with colony |
+| Root rots | Patchy (yellowing patches) · Severe (stand collapse) | Yellowing patches, dying plants, rotting roots in wet soil | None — drainage is the cure | Raised beds, rotation away from legumes | Photograph an uprooted plant with washed roots |
+| Leaf miners | Low (tunnels) · High (market rejection) | Silvery tunnels through leaves, cosmetic damage | Threshold management; remove mined leaves | Row covers, rotation | Backlit photo shows the tunnel track |
+
+## French beans (Phaseolus vulgaris — fine/haricot type)
+
+| Disease | Severity classes | Symptoms | Treatment (advisory) | Prevention | Scanner notes |
+|---|---|---|---|---|---|
+| Rust | Low (pustules) · High (defoliation, rejected pods) | Orange-brown pustules on leaf undersides, yellow halo, defoliation | Registered rust-active fungicide at onset | Resistant varieties, avoid overhead watering | Pustules rub off on fingers — the field test |
+| Angular leaf spot | Low (lesions) · High (defoliation, pod blemish) | Brown angular lesions with grey centres, on leaves and pods | Registered fungicide classes at first lesions | Rotation, clean seed, open rows | Angular vein-bounded shape discriminates vs anthracnose |
+| Anthracnose | Low (specks) · High (pod rot, packhouse rejection) | Sunken dark lesions on pods, stems; black seed blotches | Registered fungicide at first sign; never save seed from infected crop | Certified seed only | Pod close-up; seed-source question in-app |
+| Root rots | Patchy · Severe (collapse) | Dark rotting roots, stunted patches | None — drainage | Raised beds, rotation | Uprooted plant photo |
+
+## Mango (Mangifera indica)
+
+| Disease | Severity classes | Symptoms | Treatment (advisory) | Prevention | Scanner notes |
+|---|---|---|---|---|---|
+| Anthracnose | Low (leaf spots) · High (flower blight, fruit rot) | Dark spots on leaves and panicles, black sunken rot on ripening fruit, wet weather | Registered anthracnose-active sprays at flowering and fruit set | Prune for airflow, remove debris, dry handling | Flower-panicle photo at bloom; fruit close-up at ripening |
+| Powdery mildew | Low (dusting) · High (flower death, no set) | White powder on panicles and young fruit, flower drop, warm-dry spells | Sulphur-class products at first dusting during bloom | Pruning, airflow | Panicle-level photo during flowering |
+| Mango fruit fly | Low (stings) · High (maggots, fruit drop) | Pin-prick stings on ripening fruit, larvae inside, premature drop | Registered bait sprays; orchard sanitation | Remove fallen fruit, early harvest | Cut-open fruit shows larvae |
+| Sooty mould | Low (film) · High (blackened fruit, market rejection) | Black film on leaves and fruit growing on insect honeydew | Control the sap-sucking insects — the mould follows them | Scale/mealybug control | Black film + insects present = honeydew source |
+
+## Onion (Allium cepa)
+
+| Disease | Severity classes | Symptoms | Treatment (advisory) | Prevention | Scanner notes |
+|---|---|---|---|---|---|
+| Downy mildew | Low (patches) · High (leaf death, small bulbs) | Pale patches on leaves, grey-purple fuzz, cool damp spells | Registered downy-active sprays at first patches | Rotation, airflow, avoid leaf wetness | Leaf close-up; fuzz on the leaf surface |
+| Purple blotch | Low (spots) · High (leaf dieback, storage rot) | Purple-brown lesions with yellow halos, leaf dieback | Registered alternaria-active sprays at first lesions | Rotation, clean debris, healthy tops | Purple-centred lesions are the signature |
+| Neck rot (Botrytis) | Storage (neck softening) · Severe (bulb rot) | Soft grey rot at the neck entering storage, bulbs collapse | None post-harvest — curing is the control | Cure necks 2-3 weeks, store dry | Post-curing bulb photo; ask about curing time in-app |
+| Thrips | Low (silvering) · High (stunted bulbs) | Silvery streaked leaves, stunted plants, dry spells | Registered products at threshold | Monitor, avoid drought stress | Silvery streaks on leaves |
 
 ## Process
 
