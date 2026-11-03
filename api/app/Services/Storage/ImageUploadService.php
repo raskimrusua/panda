@@ -22,10 +22,15 @@ use Illuminate\Support\Facades\Storage;
  */
 class ImageUploadService
 {
-    public function uploadDiseasePhoto(UploadedFile $file, string $tenantId, string $detectionId): string
+    public function uploadDiseasePhoto(UploadedFile $file, string $tenantId, string $detectionId, int $index = 0): string
     {
         $extension = strtolower($file->getClientOriginalExtension() ?: 'jpg');
-        $path = "tenants/{$tenantId}/disease/{$detectionId}.{$extension}";
+        // Primary photo keeps the legacy {detectionId}.{ext} path; extra
+        // photos (Phase B multi-image) get a -N suffix so they never
+        // collide with each other or with historical single-image paths.
+        $path = $index === 0
+            ? "tenants/{$tenantId}/disease/{$detectionId}.{$extension}"
+            : "tenants/{$tenantId}/disease/{$detectionId}-{$index}.{$extension}";
 
         $this->disk()->put(
             $path,

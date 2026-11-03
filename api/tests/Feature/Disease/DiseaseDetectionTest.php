@@ -99,8 +99,8 @@ it('rejects a season that belongs to another tenant', function () {
 it('mock diagnosis is deterministic for the same image path + crop slug', function () {
     $client = new MockCropHealthClient;
 
-    $a = $client->diagnose('disease-scans/sample.jpg', 'tomato');
-    $b = $client->diagnose('disease-scans/sample.jpg', 'tomato');
+    $a = $client->diagnose(['disease-scans/sample.jpg'], 'tomato');
+    $b = $client->diagnose(['disease-scans/sample.jpg'], 'tomato');
 
     expect($a->topDiagnosis)->toBe($b->topDiagnosis)
         ->and($a->confidence)->toBe($b->confidence)
@@ -114,7 +114,7 @@ it('mock returns tomato-specific diseases when crop_slug=tomato', function () {
     // Several attempts to collect a tomato-specific disease.
     $hits = 0;
     for ($i = 0; $i < 20; $i++) {
-        $result = $client->diagnose("scan-$i.jpg", 'tomato');
+        $result = $client->diagnose(["scan-$i.jpg"], 'tomato');
         if (in_array($result->topDiagnosis, ['Early Blight', 'Late Blight', 'Tomato Yellow Leaf Curl Virus (TYLCV)'], true)) {
             $hits++;
         }
@@ -179,4 +179,50 @@ it('resolves a bilingual card even without a crop hint (global fallback)', funct
         ->and($card['name_en'])->not->toBeEmpty()
         ->and($card['name_sw'])->not->toBeEmpty()
         ->and($card['severity_classes'])->not->toBeEmpty();
+});
+
+it('accepts multiple images and persists the full path list', function () {
+    $crop = Crop::factory()->tomato()->create();
+    $files = [
+        UploadedFile::fake()->image('leaf-a.jpg', 800, 600),
+        UploadedFile::fake()->image('leaf-b.jpg', 800, 600),
+    ];
+
+    $response = $this->postJson('/api/v1/disease/detect', [
+        'images' => $files,
+        'crop_id' => $crop->id,
+    ])
+        ->assertCreated()
+        ->assertJsonStructure(['data' => ['id', 'image_url', 'image_urls', 'provider', 'top_diagnosis', 'confidence', 'treatments', 'disease_card', 'suggestions', 'disclaimer']]);
+
+    expect($response->json('data.image_urls'))->toBeArray()->toHaveCount(2);
+
+    $detection = DiseaseDetection::withoutGlobalScopes()->sole();
+    $paths = $detection->image_paths ?? [];
+    expect($paths)->toHaveCount(2)
+        ->and($detection->image_path)->toBe($paths[0])
+        ->and($paths[1])->toEndWith('-1.jpg')
+        ->and($detection->image_path)->not->toBe($paths[1]);
+
+    // Both files are on the storage disk under distinct paths.
+    foreach ($paths as $path) {
+        Storage::disk(config('filesystems.default'))->assertExists($path);
+    }
+});
+
+it('rejects more than three images', function () {
+    $files = array_map(
+        fn ($i) => UploadedFile::fake()->image("leaf-$i.jpg", 800, 600),
+        range(1, 4)
+    );
+
+    $this->postJson('/api/v1/disease/detect', ['images' => $files])
+        ->assertUnprocessable()
+        ->assertJsonValidationErrors(['images']);
+});
+
+it('rejects a scan with no photo at all', function () {
+    $this->postJson('/api/v1/disease/detect', [])
+        ->assertUnprocessable()
+        ->assertJsonValidationErrors(['images']);
 });

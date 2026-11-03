@@ -10,12 +10,14 @@ import { seasonsApi } from '@/api/seasons';
 import { diseaseApi, type DiseaseDetection } from '@/api/disease';
 import { confidenceBand, formatDate } from '@/lib/utils';
 
+const MAX_PHOTOS = 3;
+
 export function DiseaseScanPage() {
   const { t, i18n } = useTranslation();
   const isSw = i18n.language?.toLowerCase().startsWith('sw') ?? false;
 
-  const [file, setFile] = useState<File | null>(null);
-  const [preview, setPreview] = useState<string | null>(null);
+  const [files, setFiles] = useState<File[]>([]);
+  const [previews, setPreviews] = useState<string[]>([]);
   const [cropId, setCropId] = useState<string>('');
   const [seasonId, setSeasonId] = useState<string>('');
   const [downloadingPdf, setDownloadingPdf] = useState(false);
@@ -57,17 +59,17 @@ export function DiseaseScanPage() {
 
   const detectMutation = useMutation({
     mutationFn: () => {
-      if (!file) throw new Error('Pick or capture an image first');
+      if (files.length === 0) throw new Error('Pick or capture at least one image first');
       return diseaseApi.detect({
-        image: file,
+        images: files,
         ...(cropId && { crop_id: cropId }),
         ...(seasonId && { season_id: seasonId }),
       });
     },
     onSuccess: (res) => {
       setLatest(res.data);
-      setFile(null);
-      setPreview(null);
+      setFiles([]);
+      setPreviews([]);
       setPlannedIndex(null);
       setAmounts({});
       setFeedbackVerdict(null);
@@ -151,16 +153,18 @@ export function DiseaseScanPage() {
     },
   });
 
+  // New selection replaces the previous one (cap MAX_PHOTOS). A re-scan
+  // with a better photo beats merging shots from different plants.
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
     setSubmitError(null);
-    const f = e.target.files?.[0];
-    if (!f) {
-      setFile(null);
-      setPreview(null);
+    const picked = Array.from(e.target.files ?? []).slice(0, MAX_PHOTOS);
+    if (picked.length === 0) {
+      setFiles([]);
+      setPreviews([]);
       return;
     }
-    setFile(f);
-    setPreview(URL.createObjectURL(f));
+    setFiles(picked);
+    setPreviews(picked.map((f) => URL.createObjectURL(f)));
   };
 
   const card = latest?.disease_card ?? null;
@@ -177,6 +181,7 @@ export function DiseaseScanPage() {
   const alternates = (latest?.suggestions ?? [])
     .filter((s) => s.name !== latest?.top_diagnosis)
     .slice(0, 2);
+  const resultImages = latest?.image_urls?.length ? latest.image_urls : latest?.image_url ? [latest.image_url] : [];
 
   return (
     <div className="space-y-4 max-w-2xl">
@@ -249,23 +254,31 @@ export function DiseaseScanPage() {
               </label>
               <label className="flex items-center justify-center gap-2 h-24 border-2 border-dashed border-gray-300 rounded-md cursor-pointer hover:border-brand-600 hover:bg-brand-50">
                 <Upload className="h-5 w-5" />
-                <span className="text-sm">Upload</span>
+                <span className="text-sm">Upload (up to {MAX_PHOTOS})</span>
                 <input
                   type="file"
                   accept="image/jpeg,image/png,image/webp"
+                  multiple
                   className="hidden"
                   onChange={handleFileChange}
                 />
               </label>
             </div>
-            {preview && (
+            {previews.length > 0 && (
               <div className="mt-3">
-                <img
-                  src={preview}
-                  alt="Selected leaf"
-                  className="rounded-md max-h-48 border border-gray-200"
-                />
-                <p className="text-xs text-gray-500 mt-1">{file?.name}</p>
+                <div className="grid grid-cols-3 gap-2">
+                  {previews.map((src, i) => (
+                    <img
+                      key={i}
+                      src={src}
+                      alt={`Selected leaf ${i + 1}`}
+                      className="rounded-md max-h-32 border border-gray-200 object-cover"
+                    />
+                  ))}
+                </div>
+                <p className="text-xs text-gray-500 mt-1">
+                  {files.map((f) => f.name).join(', ')}
+                </p>
               </div>
             )}
           </div>
@@ -275,7 +288,7 @@ export function DiseaseScanPage() {
           <Button
             onClick={() => detectMutation.mutate()}
             loading={detectMutation.isPending}
-            disabled={!file}
+            disabled={files.length === 0}
             className="w-full"
           >
             {t('disease.analyse_photo')}
@@ -294,6 +307,22 @@ export function DiseaseScanPage() {
             </div>
           </CardHeader>
           <CardBody className="space-y-3">
+            {resultImages.length > 0 && (
+              <div className="grid grid-cols-3 gap-2">
+                {resultImages.slice(0, 3).map((src, i) => (
+                  <img
+                    key={i}
+                    src={src}
+                    alt={`Scan photo ${i + 1}`}
+                    className="rounded-md max-h-24 border border-gray-200 object-cover"
+                    onError={(e) => {
+                      (e.currentTarget as HTMLImageElement).style.display = 'none';
+                    }}
+                  />
+                ))}
+              </div>
+            )}
+
             <div>
               <div className="text-xl font-semibold">{displayName}</div>
               <div className="text-sm text-gray-600">
@@ -457,7 +486,7 @@ export function DiseaseScanPage() {
             <Card key={d.id}>
               <CardBody className="flex items-center gap-3">
                 <img
-                  src={d.image_url}
+                  src={d.image_url ?? undefined}
                   alt={d.top_diagnosis ?? 'scan'}
                   className="h-12 w-12 rounded object-cover bg-gray-100"
                   onError={(e) => {

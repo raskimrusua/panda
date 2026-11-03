@@ -17,13 +17,20 @@ class DiseaseDetectionResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
+        $imageService = app(ImageUploadService::class);
+        $imagePaths = $this->image_paths ?? [];
+
         return [
             'id' => $this->id,
             'season_id' => $this->season_id,
             'crop_id' => $this->crop_id,
             'image_url' => $this->image_path
-                ? app(ImageUploadService::class)->temporaryUrl($this->image_path, 15)
+                ? $imageService->temporaryUrl($this->image_path, 15)
                 : null,
+            'image_urls' => array_map(
+                fn (string $path) => $imageService->temporaryUrl($path, 15),
+                $imagePaths
+            ),
             'provider' => $this->provider,
             'top_diagnosis' => $this->top_diagnosis,
             'confidence' => $this->confidence !== null ? (float) $this->confidence : null,
