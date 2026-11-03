@@ -31,7 +31,7 @@ uses(RefreshDatabase::class);
  * the known gap this test locks in so catalogue extensions are deliberate).
  */
 const SAMPLE_CROPS = ['tomato', 'kale', 'maize', 'pawpaw'];
-const ENRICHED_CROPS = ['kale', 'maize', 'pawpaw'];
+const ENRICHED_CROPS = ['tomato', 'kale', 'maize', 'pawpaw'];
 
 /**
  * @param  list<string|array<string, mixed>>  $diseases
@@ -147,15 +147,14 @@ it('documents result-suggestion coverage per sample crop', function () {
     // Post-bridge state (TreatmentCatalogue extended per crop, S1 2026-11):
     // the crop JSON disease cards and the catalogue now reference each other
     // by key. The numbers below are the real intersections — they change only
-    // when the catalogue or the JSONs deliberately change. Tomato intersects
-    // by key only (its JSON holds string keys, the catalogue holds Kindwise
-    // display names) — the tomato name-space gap remains a known follow-up.
+    // when the catalogue or the JSONs deliberately change. Tomato was converted
+    // to cards (2026-11) so it now intersects in both key AND name space.
     expect($report['tomato']['by_key'])->toBe(6);
     expect($report['kale']['by_key'])->toBe(5);
     expect($report['maize']['by_key'])->toBe(5);
     expect($report['pawpaw']['by_key'])->toBe(5);
 
-    expect($report['tomato']['by_name'])->toBe(0);
+    expect($report['tomato']['by_name'])->toBe(6);
     expect($report['kale']['by_name'])->toBe(5);
     expect($report['maize']['by_name'])->toBe(5);
     expect($report['pawpaw']['by_name'])->toBe(5);
