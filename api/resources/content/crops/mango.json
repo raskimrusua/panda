@@ -1,49 +1,354 @@
 {
-    "slug": "mango",
-    "name_en": "Mango",
-    "name_sw": "Embe",
-    "category": "fruit",
-    "harvest_type": "multi",
-    "jica_manual_ref": "Inspired by JICA SHEP PLUS — Mango production manual",
-    "kalro_guide_ref": "KALRO Mango production guide + HCD export standards",
-    "ecological_requirements": {
-        "altitude_min_m": 0,
-        "altitude_max_m": 1800,
-        "rainfall_min_mm": 500,
-        "rainfall_max_mm": 1500,
-        "temperature_min_c": 18,
-        "temperature_max_c": 36,
-        "soil_types": ["sandy_loam", "loam"],
-        "soil_ph_min": 5.5,
-        "soil_ph_max": 7.5
-    },
-    "varieties": [
-        {"name": "Apple", "type": "GRAFTED_SEEDLING", "days_to_maturity": 730, "yield_kg_per_acre": 9000, "supplier_notes": "Most-planted Kenyan mango; sweet, fibreless; local market dominant."},
-        {"name": "Tommy Atkins", "type": "GRAFTED_SEEDLING", "days_to_maturity": 730, "yield_kg_per_acre": 8000, "supplier_notes": "Main export variety; ships well; firmer flesh."},
-        {"name": "Kent", "type": "GRAFTED_SEEDLING", "days_to_maturity": 730, "yield_kg_per_acre": 8000, "supplier_notes": "Premium export; sweeter than Tommy; late season."}
-    ],
-    "timeline_template": [
-        {"activity_type": "land_prep", "phase": "land_prep", "week_from_planting": -4, "day_window": 14, "description_en": "Mark planting holes 8m x 8m for grafted trees. Dig 60cm cubed; mix soil + 2 tins manure.", "description_sw": "Weka alama 8m x 8m. Chimba mashimo 60cm.", "is_critical": true},
-        {"activity_type": "transplanting", "phase": "transplanting", "week_from_planting": 0, "day_window": 3, "description_en": "Plant grafted seedling at nursery depth. Stake to prevent wind damage.", "description_sw": "Panda mche kina sawa na kitalu. Simika nguzo.", "is_critical": true},
-        {"activity_type": "basal_fertiliser", "phase": "transplanting", "week_from_planting": 0, "day_window": 1, "description_en": "Apply 100g DAP per hole, well-mixed below the rootball.", "description_sw": "Weka gramu 100 za DAP kwa shimo.", "is_critical": true},
-        {"activity_type": "watering_y1", "phase": "growth", "week_from_planting": 1, "day_window": 25, "description_en": "Water 20L per tree every 10 days for first 6 months if no rain.", "description_sw": "Mwagilia lita 20 kila siku 10 kwa miezi 6.", "is_critical": true},
-        {"activity_type": "mulching", "phase": "growth", "week_from_planting": 4, "day_window": 14, "description_en": "Mulch the basin 50cm radius around trunk. Don't pile against bark.", "description_sw": "Funika kuzunguka mti urefu cm 50. Usigusane na gome.", "is_critical": false},
-        {"activity_type": "fertiliser_y1_1", "phase": "growth", "week_from_planting": 16, "day_window": 7, "description_en": "Apply 250g NPK 17:17:17 per tree.", "description_sw": "Weka gramu 250 za NPK kwa mti.", "is_critical": true},
-        {"activity_type": "formative_pruning", "phase": "growth", "week_from_planting": 30, "day_window": 14, "description_en": "Train to 3-4 main scaffold branches. Remove low branches < 60cm from ground.", "description_sw": "Fanya matawi 3-4 ya msingi. Ondoa matawi chini ya cm 60.", "is_critical": true},
-        {"activity_type": "fertiliser_y2", "phase": "growth", "week_from_planting": 60, "day_window": 14, "description_en": "Year 2 NPK: 500g per tree, split 2 doses.", "description_sw": "Mwaka 2: gramu 500 za NPK kwa mti, dosi 2.", "is_critical": true},
-        {"activity_type": "pest_spray", "phase": "growth", "week_from_planting": 80, "day_window": 30, "description_en": "Spray for mango fruit fly + thrips at flowering of year 2-3.", "description_sw": "Nyunyuza dawa ya mango fruit fly + thrips wakati wa maua.", "is_critical": true},
-        {"activity_type": "first_harvest", "phase": "harvest", "week_from_planting": 100, "day_window": 30, "description_en": "First commercial fruit at year 2-3 (grafted). Pick at mature-green stage for export.", "description_sw": "Matunda ya kwanza mwaka 2-3 (kupandikiza). Vuna yakiwa magumu kabla ya kuiva.", "tip_en": "Apple: pick when shoulder fills + skin lightens. Tommy: hard fruit, 12% Brix.", "tip_sw": "Apple: vuna mabega yakijaa. Tommy: tunda gumu.", "is_critical": false}
-    ],
-    "inputs_per_acre": [
-        {"input_type": "seed", "product_name": "Grafted Apple mango seedlings (75)", "quantity": 75, "unit": "pieces", "week_from_planting": 0, "benchmark_price_kes": 18750, "pcpb_registered": false, "alternatives": ["Tommy Atkins", "Kent", "Ngowe"]},
-        {"input_type": "fertiliser", "product_name": "DAP (7.5kg)", "quantity": 7.5, "unit": "kg", "week_from_planting": 0, "benchmark_price_kes": 600, "pcpb_registered": false},
-        {"input_type": "fertiliser", "product_name": "Manure 3 tons", "quantity": 3000, "unit": "kg", "week_from_planting": -4, "benchmark_price_kes": 9000, "pcpb_registered": false},
-        {"input_type": "fertiliser", "product_name": "NPK 17:17:17 (37.5kg)", "quantity": 37.5, "unit": "kg", "week_from_planting": 16, "benchmark_price_kes": 3000, "pcpb_registered": false},
-        {"input_type": "equipment", "product_name": "Stakes 1.5m", "quantity": 75, "unit": "pieces", "week_from_planting": 0, "benchmark_price_kes": 1500, "pcpb_registered": false},
-        {"input_type": "chemical", "product_name": "Karate 5EC (500ml)", "quantity": 500, "unit": "ml", "week_from_planting": 80, "benchmark_price_kes": 850, "pcpb_registered": true, "alternatives": ["Match 50EC"]},
-        {"input_type": "chemical", "product_name": "Fruit fly traps (Methyl eugenol)", "quantity": 25, "unit": "pieces", "week_from_planting": 80, "benchmark_price_kes": 2500, "pcpb_registered": true}
-    ],
-    "yield_per_acre": {"expected_kg": 9000, "min_kg": 5000, "max_kg": 15000, "number_of_picks": 3, "pick_interval_days": 14},
-    "post_harvest": {"shelf_life_days": 14, "grading_criteria": "Export A: 300-500g, no blemishes, 1 stem cm. Local B: 200-300g or minor flaws.", "packaging_standard": "4kg cartons single layer (export); 30kg crates (local).", "storage_tips_en": "13°C optimal. Refrigeration below 10°C causes chilling injury.", "storage_tips_sw": "13°C ndiyo bora. Friji chini ya 10°C huharibu."},
-    "diseases": ["mango_fruit_fly", "anthracnose", "powdery_mildew", "thrips", "mealybug"]
+ "slug": "mango",
+ "name_en": "Mango",
+ "name_sw": "Embe",
+ "category": "fruit",
+ "harvest_type": "multi",
+ "jica_manual_ref": "Inspired by JICA SHEP PLUS — Mango production manual",
+ "kalro_guide_ref": "KALRO Mango production guide + HCD export standards",
+ "ecological_requirements": {
+  "altitude_min_m": 0,
+  "altitude_max_m": 1800,
+  "rainfall_min_mm": 500,
+  "rainfall_max_mm": 1500,
+  "temperature_min_c": 18,
+  "temperature_max_c": 36,
+  "soil_types": [
+   "sandy_loam",
+   "loam"
+  ],
+  "soil_ph_min": 5.5,
+  "soil_ph_max": 7.5
+ },
+ "varieties": [
+  {
+   "name": "Apple",
+   "type": "GRAFTED_SEEDLING",
+   "days_to_maturity": 730,
+   "yield_kg_per_acre": 9000,
+   "supplier_notes": "Most-planted Kenyan mango; sweet, fibreless; local market dominant."
+  },
+  {
+   "name": "Tommy Atkins",
+   "type": "GRAFTED_SEEDLING",
+   "days_to_maturity": 730,
+   "yield_kg_per_acre": 8000,
+   "supplier_notes": "Main export variety; ships well; firmer flesh."
+  },
+  {
+   "name": "Kent",
+   "type": "GRAFTED_SEEDLING",
+   "days_to_maturity": 730,
+   "yield_kg_per_acre": 8000,
+   "supplier_notes": "Premium export; sweeter than Tommy; late season."
+  }
+ ],
+ "timeline_template": [
+  {
+   "activity_type": "land_prep",
+   "phase": "land_prep",
+   "week_from_planting": -4,
+   "day_window": 14,
+   "description_en": "Mark planting holes 8m x 8m for grafted trees. Dig 60cm cubed; mix soil + 2 tins manure.",
+   "description_sw": "Weka alama 8m x 8m. Chimba mashimo 60cm.",
+   "is_critical": true
+  },
+  {
+   "activity_type": "transplanting",
+   "phase": "transplanting",
+   "week_from_planting": 0,
+   "day_window": 3,
+   "description_en": "Plant grafted seedling at nursery depth. Stake to prevent wind damage.",
+   "description_sw": "Panda mche kina sawa na kitalu. Simika nguzo.",
+   "is_critical": true
+  },
+  {
+   "activity_type": "basal_fertiliser",
+   "phase": "transplanting",
+   "week_from_planting": 0,
+   "day_window": 1,
+   "description_en": "Apply 100g DAP per hole, well-mixed below the rootball.",
+   "description_sw": "Weka gramu 100 za DAP kwa shimo.",
+   "is_critical": true
+  },
+  {
+   "activity_type": "watering_y1",
+   "phase": "growth",
+   "week_from_planting": 1,
+   "day_window": 25,
+   "description_en": "Water 20L per tree every 10 days for first 6 months if no rain.",
+   "description_sw": "Mwagilia lita 20 kila siku 10 kwa miezi 6.",
+   "is_critical": true
+  },
+  {
+   "activity_type": "mulching",
+   "phase": "growth",
+   "week_from_planting": 4,
+   "day_window": 14,
+   "description_en": "Mulch the basin 50cm radius around trunk. Don't pile against bark.",
+   "description_sw": "Funika kuzunguka mti urefu cm 50. Usigusane na gome.",
+   "is_critical": false
+  },
+  {
+   "activity_type": "fertiliser_y1_1",
+   "phase": "growth",
+   "week_from_planting": 16,
+   "day_window": 7,
+   "description_en": "Apply 250g NPK 17:17:17 per tree.",
+   "description_sw": "Weka gramu 250 za NPK kwa mti.",
+   "is_critical": true
+  },
+  {
+   "activity_type": "formative_pruning",
+   "phase": "growth",
+   "week_from_planting": 30,
+   "day_window": 14,
+   "description_en": "Train to 3-4 main scaffold branches. Remove low branches < 60cm from ground.",
+   "description_sw": "Fanya matawi 3-4 ya msingi. Ondoa matawi chini ya cm 60.",
+   "is_critical": true
+  },
+  {
+   "activity_type": "fertiliser_y2",
+   "phase": "growth",
+   "week_from_planting": 60,
+   "day_window": 14,
+   "description_en": "Year 2 NPK: 500g per tree, split 2 doses.",
+   "description_sw": "Mwaka 2: gramu 500 za NPK kwa mti, dosi 2.",
+   "is_critical": true
+  },
+  {
+   "activity_type": "pest_spray",
+   "phase": "growth",
+   "week_from_planting": 80,
+   "day_window": 30,
+   "description_en": "Spray for mango fruit fly + thrips at flowering of year 2-3.",
+   "description_sw": "Nyunyuza dawa ya mango fruit fly + thrips wakati wa maua.",
+   "is_critical": true
+  },
+  {
+   "activity_type": "flowering_protection",
+   "phase": "growth",
+   "week_from_planting": 88,
+   "day_window": 30,
+   "description_en": "Protect the panicles at bloom — anthracnose and powdery mildew at flowering decide the whole season's crop.",
+   "description_sw": "Linda maua — anthracnose na ukungu wakati wa maua huamua mavuno ya msimu mzima.",
+   "is_critical": true
+  },
+  {
+   "activity_type": "first_harvest",
+   "phase": "harvest",
+   "week_from_planting": 100,
+   "day_window": 30,
+   "description_en": "First commercial fruit at year 2-3 (grafted). Pick at mature-green stage for export.",
+   "description_sw": "Matunda ya kwanza mwaka 2-3 (kupandikiza). Vuna yakiwa magumu kabla ya kuiva.",
+   "tip_en": "Apple: pick when shoulder fills + skin lightens. Tommy: hard fruit, 12% Brix.",
+   "tip_sw": "Apple: vuna mabega yakijaa. Tommy: tunda gumu.",
+   "is_critical": false
+  }
+ ],
+ "inputs_per_acre": [
+  {
+   "input_type": "seed",
+   "product_name": "Grafted Apple mango seedlings (75)",
+   "quantity": 75,
+   "unit": "pieces",
+   "week_from_planting": 0,
+   "benchmark_price_kes": 18750,
+   "pcpb_registered": false,
+   "alternatives": [
+    "Tommy Atkins",
+    "Kent",
+    "Ngowe"
+   ]
+  },
+  {
+   "input_type": "fertiliser",
+   "product_name": "DAP (7.5kg)",
+   "quantity": 7.5,
+   "unit": "kg",
+   "week_from_planting": 0,
+   "benchmark_price_kes": 600,
+   "pcpb_registered": false
+  },
+  {
+   "input_type": "fertiliser",
+   "product_name": "Manure 3 tons",
+   "quantity": 3000,
+   "unit": "kg",
+   "week_from_planting": -4,
+   "benchmark_price_kes": 9000,
+   "pcpb_registered": false
+  },
+  {
+   "input_type": "fertiliser",
+   "product_name": "NPK 17:17:17 (37.5kg)",
+   "quantity": 37.5,
+   "unit": "kg",
+   "week_from_planting": 16,
+   "benchmark_price_kes": 3000,
+   "pcpb_registered": false
+  },
+  {
+   "input_type": "equipment",
+   "product_name": "Stakes 1.5m",
+   "quantity": 75,
+   "unit": "pieces",
+   "week_from_planting": 0,
+   "benchmark_price_kes": 1500,
+   "pcpb_registered": false
+  },
+  {
+   "input_type": "chemical",
+   "product_name": "Karate 5EC (500ml)",
+   "quantity": 500,
+   "unit": "ml",
+   "week_from_planting": 80,
+   "benchmark_price_kes": 850,
+   "pcpb_registered": true,
+   "alternatives": [
+    "Match 50EC"
+   ]
+  },
+  {
+   "input_type": "chemical",
+   "product_name": "Fruit fly traps (Methyl eugenol)",
+   "quantity": 25,
+   "unit": "pieces",
+   "week_from_planting": 80,
+   "benchmark_price_kes": 2500,
+   "pcpb_registered": true
+  }
+ ],
+ "yield_per_acre": {
+  "expected_kg": 9000,
+  "min_kg": 5000,
+  "max_kg": 15000,
+  "number_of_picks": 3,
+  "pick_interval_days": 14
+ },
+ "post_harvest": {
+  "shelf_life_days": 14,
+  "grading_criteria": "Export A: 300-500g, no blemishes, 1 stem cm. Local B: 200-300g or minor flaws.",
+  "packaging_standard": "4kg cartons single layer (export); 30kg crates (local).",
+  "storage_tips_en": "13°C optimal. Refrigeration below 10°C causes chilling injury.",
+  "storage_tips_sw": "13°C ndiyo bora. Friji chini ya 10°C huharibu."
+ },
+ "diseases": [
+  {
+   "key": "mango_fruit_fly",
+   "name_en": "Mango fruit fly",
+   "name_sw": "Nzi wa matunda",
+   "type": "pest",
+   "severity_classes": "Low (stings) · High (maggots, fruit drop)",
+   "symptoms_en": "Pin-prick stings on ripening fruit, larvae inside, premature drop.",
+   "symptoms_sw": "Madoa ya kuchomwa kwenye matunda yanayoiva, viluwiluwi ndani, kuanguka mapema.",
+   "treatment_en": "Registered bait sprays; orchard sanitation. Advisory: use PCPB-registered products only, at label rates.",
+   "treatment_sw": "Dawa za chambo zilizoidhinishwa; usafi wa shamba. Shauri: tumia dawa zilizoidhinishwa na PCPB tu, kwa kiwango kilichoandikwa.",
+   "prevention_en": "Remove fallen fruit, early harvest.",
+   "prevention_sw": "Ondoa matunda yaliyoanguka, vuna mapema.",
+   "scanner_notes": "Cut-open fruit shows larvae."
+  },
+  {
+   "key": "anthracnose",
+   "name_en": "Anthracnose",
+   "name_sw": "Ugonjwa wa madoa meusi",
+   "type": "disease",
+   "severity_classes": "Low (leaf spots) · High (flower blight, fruit rot)",
+   "symptoms_en": "Dark spots on leaves and panicles, black sunken rot on ripening fruit, wet weather.",
+   "symptoms_sw": "Madoa meusi majani na maua, uoza mweusi kwenye matunda yanayoiva, mvua nyingi.",
+   "treatment_en": "Registered anthracnose-active sprays at flowering and fruit set. Advisory: use PCPB-registered products only, at label rates.",
+   "treatment_sw": "Dawa zilizoidhinishwa wakati wa maua na matunda kukaa. Shauri: tumia dawa zilizoidhinishwa na PCPB tu, kwa kiwango kilichoandikwa.",
+   "prevention_en": "Prune for airflow, remove debris, dry handling.",
+   "prevention_sw": "Kata matawi kwa hewa, ondoa mabaki, shika pakavu.",
+   "scanner_notes": "Flower-panicle photo at bloom; fruit close-up at ripening."
+  },
+  {
+   "key": "powdery_mildew",
+   "name_en": "Powdery mildew",
+   "name_sw": "Ukungu",
+   "type": "disease",
+   "severity_classes": "Low (dusting) · High (flower death, no set)",
+   "symptoms_en": "White powder on panicles and young fruit, flower drop, warm-dry spells.",
+   "symptoms_sw": "Unga mweupe kwenye maua na matunda machanga, maua huanguka, joto na ukavu.",
+   "treatment_en": "Sulphur-class products at first dusting during bloom. Advisory: use PCPB-registered products only, at label rates.",
+   "treatment_sw": "Dawa za salfa mara inapoanza wakati wa maua. Shauri: tumia dawa zilizoidhinishwa na PCPB tu, kwa kiwango kilichoandikwa.",
+   "prevention_en": "Pruning, airflow.",
+   "prevention_sw": "Kata matawi, hewa.",
+   "scanner_notes": "Panicle-level photo during flowering."
+  },
+  {
+   "key": "thrips",
+   "name_en": "Thrips",
+   "name_sw": "Vidukari wadogo",
+   "type": "pest",
+   "severity_classes": "Low (scarring) · High (bronzed fruit)",
+   "symptoms_en": "Silver-bronze fruit scarring, distorted young leaves.",
+   "symptoms_sw": "Matunda yenye makovu ya fedha, majani machanga yaliyopinda.",
+   "treatment_en": "Registered products at threshold. Advisory: use PCPB-registered products only, at label rates.",
+   "treatment_sw": "Dawa zilizoidhinishwa wakati wamezidi. Shauri: tumia dawa zilizoidhinishwa na PCPB tu, kwa kiwango kilichoandikwa.",
+   "prevention_en": "Monitoring, natural enemy preservation.",
+   "prevention_sw": "Chunguza, hifadhi maadui wa asili.",
+   "scanner_notes": "Fruit surface photo."
+  },
+  {
+   "key": "mealybug",
+   "name_en": "Mealybugs",
+   "name_sw": "Wadudu wa pamba",
+   "type": "pest",
+   "severity_classes": "Low (colonies) · High (sooty mould, rejected fruit)",
+   "symptoms_en": "White cottony colonies on stems and fruit, sticky honeydew, black sooty mould follows.",
+   "symptoms_sw": "Makundi meupe kama pamba kwenye mashina na matunda, utomvu unanata, ukungu mweusi hufuata.",
+   "treatment_en": "Registered products at threshold; oil sprays. Advisory: use PCPB-registered products only, at label rates.",
+   "treatment_sw": "Dawa zilizoidhinishwa wakati wamezidi; dawa za mafuta. Shauri: tumia dawa zilizoidhinishwa na PCPB tu, kwa kiwango kilichoandikwa.",
+   "prevention_en": "Prune dense growth, natural enemies.",
+   "prevention_sw": "Kata matawi mazito, maadui wa asili.",
+   "scanner_notes": "Colonies + sooty mould = honeydew source."
+  },
+  {
+   "key": "sooty_mould",
+   "name_en": "Sooty mould",
+   "name_sw": "Ukungu mweusi",
+   "type": "disease",
+   "severity_classes": "Low (film) · High (blackened fruit, market rejection)",
+   "symptoms_en": "Black film on leaves and fruit growing on insect honeydew.",
+   "symptoms_sw": "Ukungu mweusi majani na matunda unaokua kwenye utomvu wa wadudu.",
+   "treatment_en": "Control the sap-sucking insects — the mould follows them. Advisory: use PCPB-registered products only, at label rates.",
+   "treatment_sw": "Dhibiti wadudu wanaonyonya — ukungu huwafuata. Shauri: tumia dawa zilizoidhinishwa na PCPB tu, kwa kiwango kilichoandikwa.",
+   "prevention_en": "Scale/mealybug control.",
+   "prevention_sw": "Dhibiti magamba na wadudu wa pamba.",
+   "scanner_notes": "Black film + insects present = honeydew source."
+  }
+ ],
+ "links": [
+  {
+   "kind": "blog_guide",
+   "label_en": "Panda growing guide: Mango",
+   "label_sw": "Mwongozo wa Panda: Embe",
+   "url": "https://panda.shira.farm/blog/mango-meru-varieties-13c-rule"
+  },
+  {
+   "kind": "pcpb",
+   "label_en": "PCPB — registered pest control products",
+   "label_sw": "PCPB — orodha ya dawa zilizoidhinishwa",
+   "url": "https://www.pcpb.go.ke/"
+  },
+  {
+   "kind": "kephis",
+   "label_en": "KEPHIS — plant health services",
+   "label_sw": "KEPHIS — huduma za afya ya mimea",
+   "url": "https://www.kephis.org/"
+  },
+  {
+   "kind": "prices",
+   "label_en": "MoALD market information (KAMIS)",
+   "label_sw": "Taarifa za soko za Wizara ya Kilimo (KAMIS)",
+   "url": "https://www.kilimo.go.ke/"
+  }
+ ],
+ "market_notes": {
+  "sell_windows_en": "Seasonal crop — main harvest Dec–Mar depending on variety and zone. The 13°C cold-chain rule keeps export grade from field to port.",
+  "sell_windows_sw": "Zao la msimu — mavuno makuu Des–Mar kutegemea aina na eneo. Kanuni ya baridi ya 13°C hudumisha daraja la kuuza nje.",
+  "price_notes_en": "Local ~20–60 KES per fruit by size; export grades several multiples (November 2026). Apple, Tommy Atkins and Kent cover early-to-late windows.",
+  "price_notes_sw": "Soko la ndani ~20–60 KES kwa tunda; la nje mara kadhaa zaidi (Novemba 2026). Apple, Tommy Atkins na Kent hufunika misimu yote."
+ }
 }
