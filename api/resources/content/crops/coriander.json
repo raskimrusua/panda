@@ -1,0 +1,218 @@
+{
+ "slug": "coriander",
+ "name_en": "Coriander (dhania)",
+ "name_sw": "Dhania",
+ "category": "herb",
+ "harvest_type": "multi",
+ "jica_manual_ref": "Inspired by JICA SHEP PLUS — Herbs production guide (Kenya)",
+ "kalro_guide_ref": "KALRO Vegetable production handbook",
+ "ecological_requirements": {
+  "altitude_min_m": 900,
+  "altitude_max_m": 2400,
+  "rainfall_min_mm": 500,
+  "rainfall_max_mm": 900,
+  "temperature_min_c": 15,
+  "temperature_max_c": 25,
+  "soil_types": [
+   "loam"
+  ],
+  "soil_ph_min": 6.0,
+  "soil_ph_max": 7.5
+ },
+ "varieties": [
+  {
+   "name": "Local dhania strain",
+   "type": "OPEN_POLLINATED",
+   "days_to_maturity": 35,
+   "yield_kg_per_acre": 2000,
+   "disease_resistance": [],
+   "supplier_notes": "Selected for aroma; the market standard."
+  },
+  {
+   "name": "Slow-bolting line",
+   "type": "OPEN_POLLINATED",
+   "days_to_maturity": 40,
+   "yield_kg_per_acre": 2200,
+   "disease_resistance": [],
+   "supplier_notes": "The upgrade for hot seasons — bolts later."
+  }
+ ],
+ "timeline_template": [
+  {
+   "activity_type": "seed_planting",
+   "phase": "establishment",
+   "week_from_planting": 0,
+   "day_window": 7,
+   "description_en": "Sow shallow (1 cm) broadcast or 25 cm rows, 6-8 kg seed per acre. Basal 50 kg DAP.",
+   "description_sw": "Panda kina cha 1 cm kwa kutapanya au mistari 25 cm, kilo 6-8 za mbegu. Weka kilo 50 za DAP.",
+   "tip_en": "Rub or soak seed overnight to split the husk — emergence halves from 3 weeks to ~10 days.",
+   "tip_sw": "Sugua au loweka mbegu usiku — kuota kunapungua kutoka wiki 3 hadi siku ~10.",
+   "is_critical": true
+  },
+  {
+   "activity_type": "first_weeding",
+   "phase": "growth",
+   "week_from_planting": 2,
+   "day_window": 4,
+   "description_en": "First weeding — dhania seedlings hate weed shade more than any other crop.",
+   "description_sw": "Palia kwanza — miche ya dhania haivumilii kivuli cha magugu.",
+   "is_critical": false
+  },
+  {
+   "activity_type": "top_dress_1",
+   "phase": "growth",
+   "week_from_planting": 3,
+   "day_window": 4,
+   "description_en": "Top-dress 50 kg CAN per acre; repeat at week 5. Leaf crops are nitrogen engines.",
+   "description_sw": "Weka kilo 50 za CAN; rudia wiki 5. Mboga za majani zinahitaji nitrojeni.",
+   "is_critical": true
+  },
+  {
+   "activity_type": "first_harvest",
+   "phase": "harvest",
+   "week_from_planting": 5,
+   "day_window": 5,
+   "description_en": "Cut at 15-20 cm leaving 2-3 cm stubble — the plant re-grows for a second and third cut.",
+   "description_sw": "Kata sentimita 15-20 ukiacha cm 2-3 — mmea unachipua tena.",
+   "tip_en": "THE succession rule: sow a fresh strip every 2 weeks — one sowing is a flush, a strip system is a weekly harvest.",
+   "tip_sw": "Kanuni ya mfululizo: panda sehemu mpya kila wiki 2 — kupanda mara moja ni zao moja, mfululizo ni mavuno kila wiki.",
+   "is_critical": true
+  }
+ ],
+ "inputs_per_acre": [
+  {
+   "input_type": "seed",
+   "product_name": "Coriander seed",
+   "quantity": 7,
+   "unit": "kg",
+   "week_from_planting": 0,
+   "benchmark_price_kes": 2000,
+   "pcpb_registered": false,
+   "alternatives": []
+  },
+  {
+   "input_type": "fertiliser",
+   "product_name": "DAP",
+   "quantity": 50,
+   "unit": "kg",
+   "week_from_planting": 0,
+   "benchmark_price_kes": 3500,
+   "pcpb_registered": false,
+   "alternatives": []
+  },
+  {
+   "input_type": "fertiliser",
+   "product_name": "CAN",
+   "quantity": 100,
+   "unit": "kg",
+   "week_from_planting": 3,
+   "benchmark_price_kes": 6000,
+   "pcpb_registered": false,
+   "alternatives": []
+  }
+ ],
+ "yield_per_acre": {
+  "expected_kg": 2000,
+  "min_kg": 1000,
+  "max_kg": 3000,
+  "number_of_picks": 3,
+  "pick_interval_days": 14
+ },
+ "post_harvest": {
+  "shelf_life_days": 1,
+  "grading_criteria": "Bunch by freshness; reject bolted or yellowed stems.",
+  "packaging_standard": "100 g bundles; same-day selling.",
+  "storage_tips_en": "Cut in the cool morning and sell the same day — dhania wilts by afternoon.",
+  "storage_tips_sw": "Kata asubuhi na uza siku hiyohiyo — dhania hunyauka mchana."
+ },
+ "diseases": [
+  {
+   "key": "damping_off",
+   "name_en": "Damping off",
+   "name_sw": "Kufa kwa miche",
+   "type": "disease",
+   "severity_classes": "Seedling (collapse patches) · Severe (stand loss)",
+   "symptoms_en": "Seedlings collapse at the soil line, brown pinched stems, in wet spells.",
+   "symptoms_sw": "Miche huanguka kwenye uso wa udongo, mashina meusi, mvua nyingi.",
+   "treatment_en": "Seed-dressing where wet; no rescue for collapsed patches. Advisory: use PCPB-registered products only, at label rates.",
+   "treatment_sw": "Dawa ya mbegu sehemu zenye unyevu; hakuna uokozi wa mapande yaliyoanguka. Shauri: tumia dawa zilizoidhinishwa na PCPB tu, kwa kiwango kilichoandikwa.",
+   "prevention_en": "Raised beds, thin sowing, well-drained nursery.",
+   "prevention_sw": "Vitanda vilivyoinuliwa, panda kidogo, kitalu kisicho na maji.",
+   "scanner_notes": "Photograph a whole patch — the pattern is the diagnosis."
+  },
+  {
+   "key": "aphids",
+   "name_en": "Aphids",
+   "name_sw": "Vidukari",
+   "type": "pest",
+   "severity_classes": "Low (colonies) · High (curled, stunted growth)",
+   "symptoms_en": "Colonies curl new growth; honeydew on leaves.",
+   "symptoms_sw": "Makundi yanakunja majani machanga; utomvu majani.",
+   "treatment_en": "Squash early colonies; registered products if spreading. Advisory: use PCPB-registered products only, at label rates.",
+   "treatment_sw": "Ponda makundi ya mwanzo; nyunyuza ikiwa yanaenea. Shauri: tumia dawa zilizoidhinishwa na PCPB tu, kwa kiwango kilichoandikwa.",
+   "prevention_en": "Weekly underside scouting, natural enemies first.",
+   "prevention_sw": "Chunguza chini ya majani kila wiki, maadui wa asili kwanza.",
+   "scanner_notes": "Underside photo with the colony visible."
+  },
+  {
+   "key": "alternaria_leaf_spot",
+   "name_en": "Alternaria leaf spot",
+   "name_sw": "Madoa ya majani",
+   "type": "disease",
+   "severity_classes": "Low (spots) · High (leaf burn, market rejection)",
+   "symptoms_en": "Brown ringed spots on leaves, yellowing, humid weather.",
+   "symptoms_sw": "Madoa ya kahawia yenye pete, kuwitikia, unyevu.",
+   "treatment_en": "Registered alternaria-active sprays at first spots. Advisory: use PCPB-registered products only, at label rates.",
+   "treatment_sw": "Dawa za alternaria zilizoidhinishwa mara madoa yanapoanza. Shauri: tumia dawa zilizoidhinishwa na PCPB tu, kwa kiwango kilichoandikwa.",
+   "prevention_en": "Clean seed, rotation, avoid leaf wetness.",
+   "prevention_sw": "Mbegu safi, zungusha, epuka majani kuloweshwa.",
+   "scanner_notes": "Ringed spots distinguish from mildew dusting."
+  },
+  {
+   "key": "powdery_mildew",
+   "name_en": "Powdery mildew",
+   "name_sw": "Ukungu",
+   "type": "disease",
+   "severity_classes": "Low (dusting) · High (defoliation)",
+   "symptoms_en": "White dusting on leaves in warm-dry spells.",
+   "symptoms_sw": "Unga mweupe majani joto-kavu.",
+   "treatment_en": "Sulphur-class products at first dusting. Advisory: use PCPB-registered products only, at label rates.",
+   "treatment_sw": "Dawa za salfa mara inapoanza. Shauri: tumia dawa zilizoidhinishwa na PCPB tu, kwa kiwango kilichoandikwa.",
+   "prevention_en": "Airflow, avoid water stress.",
+   "prevention_sw": "Hewa, epuka mkazo wa maji.",
+   "scanner_notes": "White powder top of leaf, warm-dry weather."
+  }
+ ],
+ "links": [
+  {
+   "kind": "blog_guide",
+   "label_en": "Panda growing guide: Coriander",
+   "label_sw": "Mwongozo wa Panda: Dhania",
+   "url": "https://panda.shira.farm/blog/coriander-dhania-30-day-guide"
+  },
+  {
+   "kind": "pcpb",
+   "label_en": "PCPB — registered pest control products",
+   "label_sw": "PCPB — orodha ya dawa zilizoidhinishwa",
+   "url": "https://www.pcpb.go.ke/"
+  },
+  {
+   "kind": "kephis",
+   "label_en": "KEPHIS — plant health services",
+   "label_sw": "KEPHIS — huduma za afya ya mimea",
+   "url": "https://www.kephis.org/"
+  },
+  {
+   "kind": "prices",
+   "label_en": "MoALD market information (KAMIS)",
+   "label_sw": "Taarifa za soko za Wizara ya Kilimo (KAMIS)",
+   "url": "https://www.kilimo.go.ke/"
+  }
+ ],
+ "market_notes": {
+  "sell_windows_en": "Demand is daily and local — the steadiest price in the vegetable trade. The succession calendar matters more than any single sowing.",
+  "sell_windows_sw": "Mahitaji ni ya kila siku — bei thabiti zaidi kwenye biashara ya mboga. Mfululizo wa kupanda ni muhimu kuliko kupanda mara moja.",
+  "price_notes_en": "50–150 KES per kg retail, bundles at 10–20 KES (November 2026). Input bill under 12,000 KES per acre.",
+  "price_notes_sw": "KES 50–150 kwa kilo rejareja, mafungu kwa 10–20 (Novemba 2026). Gharama chini ya 12,000 KES kwa eka."
+ }
+}

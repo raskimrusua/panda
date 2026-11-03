@@ -1,0 +1,262 @@
+{
+ "slug": "butternut",
+ "name_en": "Butternut",
+ "name_sw": "Butternut",
+ "category": "cucurbit",
+ "harvest_type": "single",
+ "jica_manual_ref": "Inspired by JICA SHEP PLUS — Vegetable production guide (Kenya)",
+ "kalro_guide_ref": "KALRO Vegetable production handbook",
+ "ecological_requirements": {
+  "altitude_min_m": 500,
+  "altitude_max_m": 2200,
+  "rainfall_min_mm": 500,
+  "rainfall_max_mm": 1000,
+  "temperature_min_c": 18,
+  "temperature_max_c": 30,
+  "soil_types": [
+   "sandy_loam",
+   "loam"
+  ],
+  "soil_ph_min": 6.0,
+  "soil_ph_max": 7.0
+ },
+ "varieties": [
+  {
+   "name": "Waltham",
+   "type": "OPEN_POLLINATED",
+   "days_to_maturity": 110,
+   "yield_kg_per_acre": 12000,
+   "disease_resistance": [],
+   "supplier_notes": "The standard: classic pear shape, deep orange flesh, the variety exporters ask for."
+  },
+  {
+   "name": "Atlas F1",
+   "type": "HYBRID",
+   "days_to_maturity": 105,
+   "yield_kg_per_acre": 14000,
+   "disease_resistance": [
+    "powdery_mildew"
+   ],
+   "supplier_notes": "Uniform fruit, stronger mildew tolerance."
+  }
+ ],
+ "timeline_template": [
+  {
+   "activity_type": "mound_prep",
+   "phase": "establishment",
+   "week_from_planting": -1,
+   "day_window": 7,
+   "description_en": "Make mounds with well-rotted manure — butternut roots feed from the mound, not the path.",
+   "description_sw": "Tengeneza matuta yenye samadi iliyooza — mizizi ya butternut inalisha kutoka tutani.",
+   "is_critical": false
+  },
+  {
+   "activity_type": "seed_planting",
+   "phase": "establishment",
+   "week_from_planting": 0,
+   "day_window": 7,
+   "description_en": "Sow 2 seeds per mound at 1.5m × 60cm; basal 50 kg DAP per acre in the mounds.",
+   "description_sw": "Panda mbegu 2 kwa tuta kwa 1.5m × 60cm; weka kilo 50 za DAP kwenye matuta.",
+   "is_critical": true
+  },
+  {
+   "activity_type": "thinning",
+   "phase": "growth",
+   "week_from_planting": 3,
+   "day_window": 5,
+   "description_en": "Thin to the stronger seedling per mound; first weeding — weeds and vines tangle badly if left.",
+   "description_sw": "Acha mche mmoja imara kwa tuta; palia kwanza.",
+   "is_critical": false
+  },
+  {
+   "activity_type": "top_dress",
+   "phase": "growth",
+   "week_from_planting": 5,
+   "day_window": 4,
+   "description_en": "Top-dress 50 kg CAN per acre at vining; keep paths clean as vines run.",
+   "description_sw": "Weka kilo 50 za CAN wakati wa kutanua; weka njia safi.",
+   "is_critical": false
+  },
+  {
+   "activity_type": "pest_scout",
+   "phase": "growth",
+   "week_from_planting": 6,
+   "day_window": 42,
+   "description_en": "The mildew watch: powdery mildew in warm-dry spells, downy in wet — scout weekly, treat at first dusting.",
+   "description_sw": "Chunguza ukungu kila wiki — unga joto-kavu, kijivu mvua — tibu mapema.",
+   "is_critical": true
+  },
+  {
+   "activity_type": "fruit_fly_protection",
+   "phase": "growth",
+   "week_from_planting": 10,
+   "day_window": 28,
+   "description_en": "Protect young fruit from melon fly — stung fruit rots from inside. Bait sprays + remove fallen fruit.",
+   "description_sw": "Linda matunda machanga dhidi ya nzi wa matunda — lililochomwa huoza ndani.",
+   "is_critical": true
+  },
+  {
+   "activity_type": "harvest",
+   "phase": "harvest",
+   "week_from_planting": 15,
+   "day_window": 14,
+   "description_en": "Cut when the stem cork-cracks and the skin is full tan with a hard rind. Leave 5 cm of stem.",
+   "description_sw": "Vuna wakati shina limekauka na ngozi imekauka kabisa. Acha sentimita 5 za shina.",
+   "tip_en": "Cure 10-14 days in dry airy shade — cured Waltham stores 3-6 months.",
+   "tip_sw": "Kausha siku 10-14 kivulini — butternut iliyokaushwa hudumu miezi 3-6.",
+   "is_critical": true
+  }
+ ],
+ "inputs_per_acre": [
+  {
+   "input_type": "seed",
+   "product_name": "Butternut seed (Waltham class)",
+   "quantity": 1,
+   "unit": "kg",
+   "week_from_planting": 0,
+   "benchmark_price_kes": 1500,
+   "pcpb_registered": false,
+   "alternatives": [
+    "Atlas F1"
+   ]
+  },
+  {
+   "input_type": "fertiliser",
+   "product_name": "DAP",
+   "quantity": 50,
+   "unit": "kg",
+   "week_from_planting": 0,
+   "benchmark_price_kes": 3500,
+   "pcpb_registered": false,
+   "alternatives": []
+  },
+  {
+   "input_type": "fertiliser",
+   "product_name": "CAN",
+   "quantity": 50,
+   "unit": "kg",
+   "week_from_planting": 5,
+   "benchmark_price_kes": 3000,
+   "pcpb_registered": false,
+   "alternatives": []
+  }
+ ],
+ "yield_per_acre": {
+  "expected_kg": 12000,
+  "min_kg": 8000,
+  "max_kg": 15000,
+  "number_of_picks": 1,
+  "pick_interval_days": 1
+ },
+ "post_harvest": {
+  "shelf_life_days": 180,
+  "grading_criteria": "1-1.5 kg fruit is the export-supermarket sweet spot; oversized to bulk at a discount.",
+  "packaging_standard": "Loose in crates, 5 cm stem retained.",
+  "storage_tips_en": "Cure 10-14 days in dry shade, then store — the one high-value crop where harvest and selling dates can be months apart.",
+  "storage_tips_sw": "Kausha siku 10-14 kivulini kisha hifadhi — zao pekee ambapo kuvuna na kuuza kunaweza kutenganishwa kwa miezi."
+ },
+ "diseases": [
+  {
+   "key": "powdery_mildew",
+   "name_en": "Powdery mildew",
+   "name_sw": "Ukungu",
+   "type": "disease",
+   "severity_classes": "Low (dusting) · High (leaf death, sunscald fruit)",
+   "symptoms_en": "White powder on leaves, yellowing, dieback in warm-dry spells.",
+   "symptoms_sw": "Unga mweupe majani, kuwitikia, kufa kwa miti joto-kavu.",
+   "treatment_en": "Sulphur-class or registered mildew products at first dusting. Advisory: use PCPB-registered products only, at label rates.",
+   "treatment_sw": "Dawa za salfa au zilizoidhinishwa mara inapoanza. Shauri: tumia dawa zilizoidhinishwa na PCPB tu, kwa kiwango kilichoandikwa.",
+   "prevention_en": "Tolerant F1s, airflow, avoid water stress.",
+   "prevention_sw": "F1 sugu, hewa, epuka mkazo wa maji.",
+   "scanner_notes": "White powder on TOP of leaf, warm-dry weather."
+  },
+  {
+   "key": "downy_mildew",
+   "name_en": "Downy mildew",
+   "name_sw": "Ukungu wa baridi",
+   "type": "disease",
+   "severity_classes": "Low (patches) · High (grey fuzz, defoliation)",
+   "symptoms_en": "Yellow patches above, grey-purple fuzz below, cool damp spells.",
+   "symptoms_sw": "Madoa ya manjano juu, ukungu wa kijivu chini, baridi na unyevu.",
+   "treatment_en": "Registered downy-active fungicide at first patches. Advisory: use PCPB-registered products only, at label rates.",
+   "treatment_sw": "Dawa iliyoidhinishwa ya ukungu mara inapoanza. Shauri: tumia dawa zilizoidhinishwa na PCPB tu, kwa kiwango kilichoandikwa.",
+   "prevention_en": "Airflow, morning watering, no overhead irrigation.",
+   "prevention_sw": "Hewa, mwagilia asubuhi, usimwagilie kutoka juu.",
+   "scanner_notes": "Underside photo required."
+  },
+  {
+   "key": "melon_fly",
+   "name_en": "Fruit fly (melon fly)",
+   "name_sw": "Nzi wa matunda",
+   "type": "pest",
+   "severity_classes": "Low (stings) · High (maggots in fruit, rot)",
+   "symptoms_en": "Pin-prick stings on young fruit, oozing, maggots inside, fruit rots from inside.",
+   "symptoms_sw": "Madoa ya kuchomwa kwenye matunda machanga, viluwiluwi ndani, kuoza kutoka ndani.",
+   "treatment_en": "Registered bait sprays + weekly fruit inspection; destroy stung fruit. Advisory: use PCPB-registered products only, at label rates.",
+   "treatment_sw": "Dawa za chambo + chunguza matunda kila wiki; teketeza yaliyochomwa. Shauri: tumia dawa zilizoidhinishwa na PCPB tu, kwa kiwango kilichoandikwa.",
+   "prevention_en": "Early fruit protection, sanitation, remove fallen fruit.",
+   "prevention_sw": "Linda matunda mapema, usafi, ondoa yaliyoanguka.",
+   "scanner_notes": "Photograph the FRUIT surface and any cut-open fruit."
+  },
+  {
+   "key": "viruses",
+   "name_en": "Viruses (WMV/ZYMV/PRSV)",
+   "name_sw": "Virusi vya matunda",
+   "type": "disease",
+   "severity_classes": "Mild (mottle) · Severe (distorted fruit, stunting)",
+   "symptoms_en": "Mottled distorted leaves, knobbly fruit, stunted vines; aphids present.",
+   "symptoms_sw": "Majani yenye madoa yaliyopinda, matunda yenye uvimbe, miti dhaifu.",
+   "treatment_en": "None — remove infected plants, early aphid control. Advisory: use PCPB-registered products only, at label rates.",
+   "treatment_sw": "Hakuna tiba — ondoa mimea iliyoathirika, dhibiti vidukari mapema. Shauri: tumia dawa zilizoidhinishwa na PCPB tu, kwa kiwango kilichoandikwa.",
+   "prevention_en": "Aphid management, clean seed, tolerant varieties.",
+   "prevention_sw": "Dhibiti vidukari, mbegu safi, aina sugu.",
+   "scanner_notes": "Distorted leaves + aphids = virus pattern."
+  },
+  {
+   "key": "anthracnose",
+   "name_en": "Anthracnose",
+   "name_sw": "Ugonjwa wa madoa meusi",
+   "type": "disease",
+   "severity_classes": "Low (specks) · High (sunken rot on fruit)",
+   "symptoms_en": "Sunken dark spots on ripening fruit, pink ooze in humidity.",
+   "symptoms_sw": "Madoa meusi yaliyozama kwenye matunda yanayoiva, ute wa pinki.",
+   "treatment_en": "Registered anthracnose-active sprays in wet spells. Advisory: use PCPB-registered products only, at label rates.",
+   "treatment_sw": "Dawa zilizoidhinishwa za anthracnose wakati wa mvua. Shauri: tumia dawa zilizoidhinishwa na PCPB tu, kwa kiwango kilichoandikwa.",
+   "prevention_en": "No overhead watering, rotation, clean vines.",
+   "prevention_sw": "Usimwagilie kutoka juu, zungusha, miti safi.",
+   "scanner_notes": "Fruit photo needed; late-season + wet = diagnostic."
+  }
+ ],
+ "links": [
+  {
+   "kind": "blog_guide",
+   "label_en": "Panda growing guide: Butternut",
+   "label_sw": "Mwongozo wa Panda: Butternut",
+   "url": "https://panda.shira.farm/blog/butternut-self-storing-squash-guide"
+  },
+  {
+   "kind": "pcpb",
+   "label_en": "PCPB — registered pest control products",
+   "label_sw": "PCPB — orodha ya dawa zilizoidhinishwa",
+   "url": "https://www.pcpb.go.ke/"
+  },
+  {
+   "kind": "kephis",
+   "label_en": "KEPHIS — plant health services",
+   "label_sw": "KEPHIS — huduma za afya ya mimea",
+   "url": "https://www.kephis.org/"
+  },
+  {
+   "kind": "prices",
+   "label_en": "MoALD market information (KAMIS)",
+   "label_sw": "Taarifa za soko za Wizara ya Kilimo (KAMIS)",
+   "url": "https://www.kilimo.go.ke/"
+  }
+ ],
+ "market_notes": {
+  "sell_windows_en": "Cured butternut stores 3-6 months — the farmer's question is WHEN to sell, not whether. Prices firm in the dry season and ahead of export shipments.",
+  "sell_windows_sw": "Butternut iliyokaushwa hudumu miezi 3-6 — swali ni LINI kuuza, si kama. Bei hupanda kiangazi na kabla ya usafirishaji wa nje.",
+  "price_notes_en": "30–60 KES per kg farm-gate by size grade (November 2026). Input bill 20,000–35,000 KES per acre.",
+  "price_notes_sw": "KES 30–60 kwa kilo shambani kwa daraja la ukubwa (Novemba 2026). Gharama 20,000–35,000 KES kwa eka."
+ }
+}

@@ -1,0 +1,244 @@
+{
+ "slug": "pawpaw",
+ "name_en": "Pawpaw",
+ "name_sw": "Papai",
+ "category": "fruit",
+ "harvest_type": "multi",
+ "jica_manual_ref": "Inspired by JICA SHEP PLUS — Fruit production guide (Kenya)",
+ "kalro_guide_ref": "KALRO Fruit crops handbook",
+ "ecological_requirements": {
+  "altitude_min_m": 0,
+  "altitude_max_m": 1800,
+  "rainfall_min_mm": 1000,
+  "rainfall_max_mm": 1500,
+  "temperature_min_c": 22,
+  "temperature_max_c": 32,
+  "soil_types": [
+   "loam",
+   "sandy_loam"
+  ],
+  "soil_ph_min": 6.0,
+  "soil_ph_max": 7.0
+ },
+ "varieties": [
+  {
+   "name": "Sunrise Solo",
+   "type": "OPEN_POLLINATED",
+   "days_to_maturity": 300,
+   "yield_kg_per_acre": 25000,
+   "disease_resistance": [],
+   "supplier_notes": "Export standard: small 500-800 g fruit, sweet red flesh."
+  },
+  {
+   "name": "Mountain",
+   "type": "OPEN_POLLINATED",
+   "days_to_maturity": 330,
+   "yield_kg_per_acre": 25000,
+   "disease_resistance": [],
+   "supplier_notes": "Local workhorse: bigger fruit, open-market favourite."
+  },
+  {
+   "name": "Calina F1",
+   "type": "HYBRID",
+   "days_to_maturity": 300,
+   "yield_kg_per_acre": 28000,
+   "disease_resistance": [
+    "PRSV"
+   ],
+   "supplier_notes": "Hybrid vigour and ringspot tolerance."
+  }
+ ],
+ "timeline_template": [
+  {
+   "activity_type": "seed_planting",
+   "phase": "establishment",
+   "week_from_planting": 0,
+   "day_window": 14,
+   "description_en": "Sow 2-3 fresh seeds per hole at 2.5m × 2.5m (~640 plants per acre), 1 cm deep.",
+   "description_sw": "Panda mbegu 2-3 mbichi kwa shimo kwa 2.5m × 2.5m (~mimea 640 kwa eka), kina cha 1 cm.",
+   "is_critical": true
+  },
+  {
+   "activity_type": "thinning",
+   "phase": "establishment",
+   "week_from_planting": 8,
+   "day_window": 7,
+   "description_en": "Thin to the strongest seedling per hole.",
+   "description_sw": "Acha mche mmoja imara kwa shimo.",
+   "is_critical": false
+  },
+  {
+   "activity_type": "male_cull",
+   "phase": "growth",
+   "week_from_planting": 12,
+   "day_window": 14,
+   "description_en": "At first flowering, remove MALE plants (long stalks, many small flowers, no fruit). Keep females and hermaphrodites.",
+   "description_sw": "Wakati wa maua ya kwanza, ondoa mimea ya KIUME (mashina marefu, maua mengi madogo, bila matunda). Acha za kike na mbingu.",
+   "tip_en": "Left unchecked, males become half your stand and produce nothing.",
+   "tip_sw": "Bila kudhibitiwa, waume wanakuwa nusu ya shamba bila mazao.",
+   "is_critical": true
+  },
+  {
+   "activity_type": "fertiliser_round",
+   "phase": "growth",
+   "week_from_planting": 13,
+   "day_window": 120,
+   "description_en": "Top-dress manure + NPK per plant every 2 months — pawpaw is a heavy continuous feeder.",
+   "description_sw": "Weka samadi + NPK kwa kila mmea kila miezi 2 — papai linalisha sana mfululizo.",
+   "is_critical": false
+  },
+  {
+   "activity_type": "first_harvest",
+   "phase": "harvest",
+   "week_from_planting": 40,
+   "day_window": 30,
+   "description_en": "First fruit colours at the tip — pick at first colour break; pawpaw ripens off the plant.",
+   "description_sw": "Tunda la kwanza linabadilika rangi kwenye ncha — vuna rangi inapoanza; papai huiva nje ya mmea.",
+   "tip_en": "Keep a nursery strip going — pawpaw declines after 4-5 years; the replanting rhythm never stops.",
+   "tip_sw": "Dumisha kitalu — papai hudhoofika baada ya miaka 4-5; mduara wa kupanda upya hausimami.",
+   "is_critical": true
+  }
+ ],
+ "inputs_per_acre": [
+  {
+   "input_type": "seed",
+   "product_name": "Pawpaw seed (fresh, Solo class)",
+   "quantity": 1,
+   "unit": "kg",
+   "week_from_planting": 0,
+   "benchmark_price_kes": 1500,
+   "pcpb_registered": false,
+   "alternatives": [
+    "Calina F1"
+   ]
+  },
+  {
+   "input_type": "fertiliser",
+   "product_name": "Manure + NPK (per plant, bimonthly)",
+   "quantity": 12,
+   "unit": "rounds",
+   "week_from_planting": 13,
+   "benchmark_price_kes": 10000,
+   "pcpb_registered": false,
+   "alternatives": []
+  }
+ ],
+ "yield_per_acre": {
+  "expected_kg": 25000,
+  "min_kg": 15000,
+  "max_kg": 38000,
+  "number_of_picks": 24,
+  "pick_interval_days": 14
+ },
+ "post_harvest": {
+  "shelf_life_days": 7,
+  "grading_criteria": "Pick at first colour break; export-grade Solo by size and blemish.",
+  "packaging_standard": "Single-layer crates with padding.",
+  "storage_tips_en": "Ripens off the plant; cool shade extends shelf life a few days.",
+  "storage_tips_sw": "Huiva nje ya mmea; kivuli baridi huongeza siku za kuuzika."
+ },
+ "diseases": [
+  {
+   "key": "prsv",
+   "name_en": "Papaya ringspot virus (PRSV)",
+   "name_sw": "Virusi vya papai",
+   "type": "disease",
+   "severity_classes": "Early (mottle) · Severe (oily rings, production collapse)",
+   "symptoms_en": "Mottled distorted leaves, oily ring spots on fruit, dark streaks on stems, plants stop producing.",
+   "symptoms_sw": "Majani yaliyopinda yenye madoa, pete za mafuta kwenye matunda, michirizi meusi mashina.",
+   "treatment_en": "None — rogue and destroy immediately; aphid control only. Advisory: use PCPB-registered products only, at label rates.",
+   "treatment_sw": "Hakuna tiba — ng'oa na uteketeze mara moja; dhibiti vidukari tu. Shauri: tumia dawa zilizoidhinishwa na PCPB tu, kwa kiwango kilichoandikwa.",
+   "prevention_en": "Tolerant varieties (Calina), early aphid control, clean seedlings.",
+   "prevention_sw": "Aina sugu (Calina), dhibiti vidukari mapema, miche safi.",
+   "scanner_notes": "Ring spots on FRUIT are the signature — photograph fruit and leaves together."
+  },
+  {
+   "key": "powdery_mildew",
+   "name_en": "Powdery mildew",
+   "name_sw": "Ukungu",
+   "type": "disease",
+   "severity_classes": "Low (dusting) · High (leaf loss)",
+   "symptoms_en": "White dusting on leaves in warm-dry spells.",
+   "symptoms_sw": "Unga mweupe majani joto-kavu.",
+   "treatment_en": "Sulphur-class products at first dusting. Advisory: use PCPB-registered products only, at label rates.",
+   "treatment_sw": "Dawa za salfa mara inapoanza. Shauri: tumia dawa zilizoidhinishwa na PCPB tu, kwa kiwango kilichoandikwa.",
+   "prevention_en": "Airflow, avoid water stress.",
+   "prevention_sw": "Hewa, epuka mkazo wa maji.",
+   "scanner_notes": "White powder both leaf sides."
+  },
+  {
+   "key": "anthracnose",
+   "name_en": "Anthracnose",
+   "name_sw": "Ugonjwa wa madoa meusi",
+   "type": "disease",
+   "severity_classes": "Low (specks) · High (sunken rot on fruit)",
+   "symptoms_en": "Sunken dark spots on ripening fruit, pink ooze in humidity.",
+   "symptoms_sw": "Madoa meusi yaliyozama kwenye matunda yanayoiva, ute wa pinki.",
+   "treatment_en": "Registered anthracnose-active sprays; clean handling. Advisory: use PCPB-registered products only, at label rates.",
+   "treatment_sw": "Dawa zilizoidhinishwa za anthracnose; shika safi. Shauri: tumia dawa zilizoidhinishwa na PCPB tu, kwa kiwango kilichoandikwa.",
+   "prevention_en": "No overhead watering, harvest dry.",
+   "prevention_sw": "Usimwagilie kutoka juu, vuna pakavu.",
+   "scanner_notes": "Fruit close-up at colour break."
+  },
+  {
+   "key": "damping_off_root_rot",
+   "name_en": "Damping off / root rot",
+   "name_sw": "Kuoza kwa mizizi",
+   "type": "disease",
+   "severity_classes": "Seedling (collapse) · Advanced (wilting, death)",
+   "symptoms_en": "Seedlings collapse at soil line; established plants wilt and die in wet soil.",
+   "symptoms_sw": "Miche huanguka; mimea mikubwa hunyauka na kufa kwenye udongo wenye maji.",
+   "treatment_en": "None once advanced — drainage is the cure. Advisory: use PCPB-registered products only, at label rates.",
+   "treatment_sw": "Hakuna tiba ikiwa imeendelea — mifereji ndio dawa. Shauri: tumia dawa zilizoidhinishwa na PCPB tu, kwa kiwango kilichoandikwa.",
+   "prevention_en": "Raised beds, strict drainage, no collar watering.",
+   "prevention_sw": "Vitanda vilivyoinuliwa, mifereji kali, usimwagilie shina.",
+   "scanner_notes": "Photograph the plant base; ask about water pooling."
+  },
+  {
+   "key": "fruit_fly",
+   "name_en": "Fruit fly",
+   "name_sw": "Nzi wa matunda",
+   "type": "pest",
+   "severity_classes": "Low (stings) · High (maggots, fruit rot)",
+   "symptoms_en": "Pin-prick stings on ripening fruit, larvae inside, fruit rots.",
+   "symptoms_sw": "Madoa ya kuchomwa kwenye matunda yanayoiva, viluwiluwi ndani.",
+   "treatment_en": "Registered bait sprays; remove fallen fruit. Advisory: use PCPB-registered products only, at label rates.",
+   "treatment_sw": "Dawa za chambo zilizoidhinishwa; ondoa yaliyoanguka. Shauri: tumia dawa zilizoidhinishwa na PCPB tu, kwa kiwango kilichoandikwa.",
+   "prevention_en": "Sanitation, early harvest.",
+   "prevention_sw": "Usafi, vuna mapema.",
+   "scanner_notes": "Fruit surface photo + cut-open fruit."
+  }
+ ],
+ "links": [
+  {
+   "kind": "blog_guide",
+   "label_en": "Panda growing guide: Pawpaw",
+   "label_sw": "Mwongozo wa Panda: Papai",
+   "url": "https://panda.shira.farm/blog/pawpaw-fastest-fruit-guide"
+  },
+  {
+   "kind": "pcpb",
+   "label_en": "PCPB — registered pest control products",
+   "label_sw": "PCPB — orodha ya dawa zilizoidhinishwa",
+   "url": "https://www.pcpb.go.ke/"
+  },
+  {
+   "kind": "kephis",
+   "label_en": "KEPHIS — plant health services",
+   "label_sw": "KEPHIS — huduma za afya ya mimea",
+   "url": "https://www.kephis.org/"
+  },
+  {
+   "kind": "prices",
+   "label_en": "MoALD market information (KAMIS)",
+   "label_sw": "Taarifa za soko za Wizara ya Kilimo (KAMIS)",
+   "url": "https://www.kilimo.go.ke/"
+  }
+ ],
+ "market_notes": {
+  "sell_windows_en": "Year-round bearing with little seasonality — a fruiting plant is a continuous trickle of income. Solo for the exporter, Mountain for the local market.",
+  "sell_windows_sw": "Kuzaa mwaka mzima bila msimu — mmea unaozaa ni kipato cha kudumu. Solo kwa nje, Mountain kwa soko la ndani.",
+  "price_notes_en": "20–50 KES per kg local (November 2026); export-grade Solo several multiples. Establishment 20,000–35,000 KES per acre; first revenue month 8-12.",
+  "price_notes_sw": "KES 20–50 kwa kilo ndani (Novemba 2026); Solo ya nje mara kadhaa zaidi. Uanzishaji 20,000–35,000 KES; kipato cha kwanza mwezi 8-12."
+ }
+}
