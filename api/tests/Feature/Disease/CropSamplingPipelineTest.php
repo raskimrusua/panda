@@ -154,6 +154,12 @@ it('documents result-suggestion coverage per sample crop', function () {
     // guards.
     foreach (SAMPLE_CROPS as $slug) {
         expect($report[$slug]['by_key'])->toBe(0);
-        expect($report[$slug]['by_name'])->toBe(0);
     }
+    // Only pawpaw intersects the suggestion layer, and only via the generic
+    // "Powdery Mildew" entry — every crop-specific disease is outside the
+    // catalogue. The bridge work is the deliberate S1 follow-up.
+    expect($report['tomato']['by_name'])->toBe(0);
+    expect($report['kale']['by_name'])->toBe(0);
+    expect($report['maize']['by_name'])->toBe(0);
+    expect($report['pawpaw']['by_name'])->toBe(1);
 });
