@@ -1,47 +1,355 @@
 {
-    "slug": "cabbage",
-    "name_en": "Cabbage",
-    "name_sw": "Kabichi",
-    "category": "vegetable",
-    "harvest_type": "single",
-    "jica_manual_ref": "Inspired by JICA SHEP PLUS — Cabbage production manual",
-    "kalro_guide_ref": "KALRO Cabbage production guide",
-    "ecological_requirements": {
-        "altitude_min_m": 1200,
-        "altitude_max_m": 2800,
-        "rainfall_min_mm": 600,
-        "rainfall_max_mm": 1500,
-        "temperature_min_c": 12,
-        "temperature_max_c": 22,
-        "soil_types": ["loam", "clay_loam"],
-        "soil_ph_min": 6.0,
-        "soil_ph_max": 7.0
-    },
-    "varieties": [
-        {"name": "Gloria F1", "type": "HYBRID", "days_to_maturity": 85, "yield_kg_per_acre": 28000, "disease_resistance": ["black_rot", "fusarium"], "supplier_notes": "Most popular hybrid in Central + Rift; uniform 2-3kg heads."},
-        {"name": "Pruktor F1", "type": "HYBRID", "days_to_maturity": 95, "yield_kg_per_acre": 25000, "supplier_notes": "Holds in field 3+ weeks past maturity without splitting."}
-    ],
-    "timeline_template": [
-        {"activity_type": "nursery_seeding", "phase": "nursery", "week_from_planting": -5, "day_window": 3, "description_en": "Sow seed in raised nursery at 1cm depth, 5cm apart in rows 15cm.", "description_sw": "Panda mbegu kitalu chenye kuinuka kina 1cm, umbali wa 5cm na safu 15cm.", "is_critical": true},
-        {"activity_type": "seedling_hardening", "phase": "nursery", "week_from_planting": -1, "day_window": 5, "description_en": "Reduce watering and expose to sun 5 days before transplant.", "description_sw": "Punguza maji na peleka jua siku 5 kabla ya kupandikiza.", "is_critical": false},
-        {"activity_type": "transplanting", "phase": "transplanting", "week_from_planting": 0, "day_window": 2, "description_en": "Transplant 5-week seedlings at 60cm x 45cm spacing.", "description_sw": "Pandikiza miche wiki 5 nafasi ya 60cm x 45cm.", "is_critical": true},
-        {"activity_type": "basal_fertiliser", "phase": "transplanting", "week_from_planting": 0, "day_window": 1, "description_en": "Apply 100kg DAP at planting (split into holes).", "description_sw": "Weka kilo 100 za DAP wakati wa kupanda.", "is_critical": true},
-        {"activity_type": "first_weeding", "phase": "growth", "week_from_planting": 3, "day_window": 4, "description_en": "Hand-weed and earth up around base for stability.", "description_sw": "Palia kwa mkono na rundisha udongo karibu na mmea.", "is_critical": false},
-        {"activity_type": "top_dress_1", "phase": "growth", "week_from_planting": 4, "day_window": 3, "description_en": "Apply 50kg CAN side-dressed.", "description_sw": "Weka kilo 50 za CAN.", "is_critical": true},
-        {"activity_type": "pest_spray", "phase": "growth", "week_from_planting": 6, "day_window": 7, "description_en": "Spray for diamondback moth + aphids if scout threshold exceeded.", "description_sw": "Nyunyuza dawa ya wadudu ikiwa wamezidi.", "is_critical": false},
-        {"activity_type": "top_dress_2", "phase": "growth", "week_from_planting": 8, "day_window": 3, "description_en": "Second 50kg CAN dose at head-formation stage.", "description_sw": "Dosi ya pili ya CAN kilo 50 wakati kichwa kinaanza.", "is_critical": true},
-        {"activity_type": "harvest", "phase": "harvest", "week_from_planting": 12, "day_window": 14, "description_en": "Cut heads at the base with sharp knife when firm and 2kg+.", "description_sw": "Kata vichwa chini kwa kisu mkali vikishuka 2kg+.", "tip_en": "Harvest in cool morning hours to extend shelf life.", "tip_sw": "Vuna asubuhi mapema kuongeza muda wa kuhifadhi.", "is_critical": true}
-    ],
-    "inputs_per_acre": [
-        {"input_type": "seed", "product_name": "Gloria F1 (100g)", "quantity": 100, "unit": "g", "week_from_planting": -5, "benchmark_price_kes": 6500, "pcpb_registered": false, "alternatives": ["Pruktor F1", "Copenhagen Market"]},
-        {"input_type": "fertiliser", "product_name": "DAP 100kg", "quantity": 100, "unit": "kg", "week_from_planting": 0, "benchmark_price_kes": 7000, "pcpb_registered": false},
-        {"input_type": "fertiliser", "product_name": "CAN 50kg (top-dress 1)", "quantity": 50, "unit": "kg", "week_from_planting": 4, "benchmark_price_kes": 2800, "pcpb_registered": false},
-        {"input_type": "fertiliser", "product_name": "CAN 50kg (top-dress 2)", "quantity": 50, "unit": "kg", "week_from_planting": 8, "benchmark_price_kes": 2800, "pcpb_registered": false},
-        {"input_type": "chemical", "product_name": "Karate 5EC (500ml)", "quantity": 500, "unit": "ml", "week_from_planting": 6, "benchmark_price_kes": 850, "pcpb_registered": true, "alternatives": ["Match 50EC"]},
-        {"input_type": "chemical", "product_name": "Mancozeb 80WP (1kg)", "quantity": 1, "unit": "kg", "week_from_planting": 7, "benchmark_price_kes": 950, "pcpb_registered": true},
-        {"input_type": "other", "product_name": "Hessian sacks (harvest)", "quantity": 100, "unit": "pieces", "week_from_planting": 12, "benchmark_price_kes": 3000, "pcpb_registered": false}
-    ],
-    "yield_per_acre": {"expected_kg": 28000, "min_kg": 20000, "max_kg": 35000, "number_of_picks": 1, "pick_interval_days": 1},
-    "post_harvest": {"shelf_life_days": 30, "grading_criteria": "Grade A: 2kg+, tight head, no insect damage. Grade B: 1.2-2kg or minor damage.", "packaging_standard": "Stacked loose in pickup; large heads in 50kg hessian sacks.", "storage_tips_en": "Cool dark storage 0-4°C holds 3+ months. At room temp, sell within 2 weeks.", "storage_tips_sw": "Hifadhi 0-4°C miezi 3+. Joto la kawaida — uza ndani ya wiki 2."},
-    "diseases": ["black_rot", "diamondback_moth", "aphids", "fusarium_yellows", "club_root"]
+ "slug": "cabbage",
+ "name_en": "Cabbage",
+ "name_sw": "Kabichi",
+ "category": "vegetable",
+ "harvest_type": "single",
+ "jica_manual_ref": "Inspired by JICA SHEP PLUS — Cabbage production manual",
+ "kalro_guide_ref": "KALRO Cabbage production guide",
+ "ecological_requirements": {
+  "altitude_min_m": 1200,
+  "altitude_max_m": 2800,
+  "rainfall_min_mm": 600,
+  "rainfall_max_mm": 1500,
+  "temperature_min_c": 12,
+  "temperature_max_c": 22,
+  "soil_types": [
+   "loam",
+   "clay_loam"
+  ],
+  "soil_ph_min": 6.0,
+  "soil_ph_max": 7.0
+ },
+ "varieties": [
+  {
+   "name": "Gloria F1",
+   "type": "HYBRID",
+   "days_to_maturity": 85,
+   "yield_kg_per_acre": 28000,
+   "disease_resistance": [
+    "black_rot",
+    "fusarium"
+   ],
+   "supplier_notes": "Most popular hybrid in Central + Rift; uniform 2-3kg heads."
+  },
+  {
+   "name": "Pruktor F1",
+   "type": "HYBRID",
+   "days_to_maturity": 95,
+   "yield_kg_per_acre": 25000,
+   "supplier_notes": "Holds in field 3+ weeks past maturity without splitting."
+  }
+ ],
+ "timeline_template": [
+  {
+   "activity_type": "nursery_seeding",
+   "phase": "nursery",
+   "week_from_planting": -5,
+   "day_window": 3,
+   "description_en": "Sow seed in raised nursery at 1cm depth, 5cm apart in rows 15cm.",
+   "description_sw": "Panda mbegu kitalu chenye kuinuka kina 1cm, umbali wa 5cm na safu 15cm.",
+   "is_critical": true
+  },
+  {
+   "activity_type": "seedling_hardening",
+   "phase": "nursery",
+   "week_from_planting": -1,
+   "day_window": 5,
+   "description_en": "Reduce watering and expose to sun 5 days before transplant.",
+   "description_sw": "Punguza maji na peleka jua siku 5 kabla ya kupandikiza.",
+   "is_critical": false
+  },
+  {
+   "activity_type": "transplanting",
+   "phase": "transplanting",
+   "week_from_planting": 0,
+   "day_window": 2,
+   "description_en": "Transplant 5-week seedlings at 60cm x 45cm spacing.",
+   "description_sw": "Pandikiza miche wiki 5 nafasi ya 60cm x 45cm.",
+   "is_critical": true
+  },
+  {
+   "activity_type": "basal_fertiliser",
+   "phase": "transplanting",
+   "week_from_planting": 0,
+   "day_window": 1,
+   "description_en": "Apply 100kg DAP at planting (split into holes).",
+   "description_sw": "Weka kilo 100 za DAP wakati wa kupanda.",
+   "is_critical": true
+  },
+  {
+   "activity_type": "pest_scout",
+   "phase": "growth",
+   "week_from_planting": 4,
+   "day_window": 56,
+   "description_en": "Scout every 3-4 days for diamondback moth and black rot after wet spells. Early scouting is the entire defence.",
+   "description_sw": "Chunguza kila siku 3-4 nondo wa kabichi na uoza mweusi baada ya mvua. Kuchunguza mapema ndio ulinzi wote.",
+   "is_critical": false
+  },
+  {
+   "activity_type": "first_weeding",
+   "phase": "growth",
+   "week_from_planting": 3,
+   "day_window": 4,
+   "description_en": "Hand-weed and earth up around base for stability.",
+   "description_sw": "Palia kwa mkono na rundisha udongo karibu na mmea.",
+   "is_critical": false
+  },
+  {
+   "activity_type": "top_dress_1",
+   "phase": "growth",
+   "week_from_planting": 4,
+   "day_window": 3,
+   "description_en": "Apply 50kg CAN side-dressed.",
+   "description_sw": "Weka kilo 50 za CAN.",
+   "is_critical": true
+  },
+  {
+   "activity_type": "pest_spray",
+   "phase": "growth",
+   "week_from_planting": 6,
+   "day_window": 7,
+   "description_en": "Spray for diamondback moth + aphids if scout threshold exceeded.",
+   "description_sw": "Nyunyuza dawa ya wadudu ikiwa wamezidi.",
+   "is_critical": false
+  },
+  {
+   "activity_type": "top_dress_2",
+   "phase": "growth",
+   "week_from_planting": 8,
+   "day_window": 3,
+   "description_en": "Second 50kg CAN dose at head-formation stage.",
+   "description_sw": "Dosi ya pili ya CAN kilo 50 wakati kichwa kinaanza.",
+   "is_critical": true
+  },
+  {
+   "activity_type": "harvest",
+   "phase": "harvest",
+   "week_from_planting": 12,
+   "day_window": 14,
+   "description_en": "Cut heads at the base with sharp knife when firm and 2kg+.",
+   "description_sw": "Kata vichwa chini kwa kisu mkali vikishuka 2kg+.",
+   "tip_en": "Harvest in cool morning hours to extend shelf life.",
+   "tip_sw": "Vuna asubuhi mapema kuongeza muda wa kuhifadhi.",
+   "is_critical": true
+  }
+ ],
+ "inputs_per_acre": [
+  {
+   "input_type": "seed",
+   "product_name": "Gloria F1 (100g)",
+   "quantity": 100,
+   "unit": "g",
+   "week_from_planting": -5,
+   "benchmark_price_kes": 6500,
+   "pcpb_registered": false,
+   "alternatives": [
+    "Pruktor F1",
+    "Copenhagen Market"
+   ]
+  },
+  {
+   "input_type": "fertiliser",
+   "product_name": "DAP 100kg",
+   "quantity": 100,
+   "unit": "kg",
+   "week_from_planting": 0,
+   "benchmark_price_kes": 7000,
+   "pcpb_registered": false
+  },
+  {
+   "input_type": "fertiliser",
+   "product_name": "CAN 50kg (top-dress 1)",
+   "quantity": 50,
+   "unit": "kg",
+   "week_from_planting": 4,
+   "benchmark_price_kes": 2800,
+   "pcpb_registered": false
+  },
+  {
+   "input_type": "fertiliser",
+   "product_name": "CAN 50kg (top-dress 2)",
+   "quantity": 50,
+   "unit": "kg",
+   "week_from_planting": 8,
+   "benchmark_price_kes": 2800,
+   "pcpb_registered": false
+  },
+  {
+   "input_type": "chemical",
+   "product_name": "Karate 5EC (500ml)",
+   "quantity": 500,
+   "unit": "ml",
+   "week_from_planting": 6,
+   "benchmark_price_kes": 850,
+   "pcpb_registered": true,
+   "alternatives": [
+    "Match 50EC"
+   ]
+  },
+  {
+   "input_type": "chemical",
+   "product_name": "Mancozeb 80WP (1kg)",
+   "quantity": 1,
+   "unit": "kg",
+   "week_from_planting": 7,
+   "benchmark_price_kes": 950,
+   "pcpb_registered": true
+  },
+  {
+   "input_type": "other",
+   "product_name": "Hessian sacks (harvest)",
+   "quantity": 100,
+   "unit": "pieces",
+   "week_from_planting": 12,
+   "benchmark_price_kes": 3000,
+   "pcpb_registered": false
+  }
+ ],
+ "yield_per_acre": {
+  "expected_kg": 28000,
+  "min_kg": 20000,
+  "max_kg": 35000,
+  "number_of_picks": 1,
+  "pick_interval_days": 1
+ },
+ "post_harvest": {
+  "shelf_life_days": 30,
+  "grading_criteria": "Grade A: 2kg+, tight head, no insect damage. Grade B: 1.2-2kg or minor damage.",
+  "packaging_standard": "Stacked loose in pickup; large heads in 50kg hessian sacks.",
+  "storage_tips_en": "Cool dark storage 0-4°C holds 3+ months. At room temp, sell within 2 weeks.",
+  "storage_tips_sw": "Hifadhi 0-4°C miezi 3+. Joto la kawaida — uza ndani ya wiki 2."
+ },
+ "diseases": [
+  {
+   "key": "diamondback_moth",
+   "name_en": "Diamondback moth",
+   "name_sw": "Nondo wa kabichi",
+   "type": "pest",
+   "severity_classes": "Low (leaf windows) · High (head damage)",
+   "symptoms_en": "Caterpillars window the leaves and burrow into young heads.",
+   "symptoms_sw": "Viwavi wanatoboa majani na kuingia vichwa vichanga.",
+   "treatment_en": "Spray registered larvicides only at threshold; ROTATE chemical classes — DBM builds resistance fast. Advisory: use PCPB-registered products only, at label rates.",
+   "treatment_sw": "Nyunyuza dawa iliyoidhinishwa tu wakati wamezidi; BADILISHA aina za dawa — DBM huzoea haraka. Shauri: tumia dawa zilizoidhinishwa na PCPB tu, kwa kiwango kilichoandikwa.",
+   "prevention_en": "Scout week 4-12; row covers in the nursery.",
+   "prevention_sw": "Chunguza wiki 4-12; funika kitalu kwa wavu.",
+   "scanner_notes": "Photo the leaf underside + inside a young head; frass separates DBM from aphids."
+  },
+  {
+   "key": "aphids",
+   "name_en": "Aphids",
+   "name_sw": "Vidukari",
+   "type": "pest",
+   "severity_classes": "Low (colonies) · High (curled, stunted head-forming leaves)",
+   "symptoms_en": "Colonies curl and stunt the head-forming leaves; honeydew on leaves.",
+   "symptoms_sw": "Makundi yanakunja na kudhoofisha majani ya kichwa; utomvu unanata majani.",
+   "treatment_en": "Natural enemies often control them early — check before spraying; registered products only if spreading. Advisory: use PCPB-registered products only, at label rates.",
+   "treatment_sw": "Maadui wa asili mara nyingi huwadhibiti mapema — angalia kabla ya dawa; nyunyuza tu ikiwa wanaenea. Shauri: tumia dawa zilizoidhinishwa na PCPB tu, kwa kiwango kilichoandikwa.",
+   "prevention_en": "Avoid spraying early; monitor weekly.",
+   "prevention_sw": "Epuka dawa mapema; chunguza kila wiki.",
+   "scanner_notes": "Underside photo with the colony visible."
+  },
+  {
+   "key": "black_rot",
+   "name_en": "Black rot",
+   "name_sw": "Uoza mweusi",
+   "type": "disease",
+   "severity_classes": "Low (V-lesions) · High (systemic, head loss)",
+   "symptoms_en": "Yellow V-shaped lesions at leaf margins, blackened veins; spreads in wet spells.",
+   "symptoms_sw": "Madoa ya manjano yenye umbo la V kwenye kingo, mishipa meusi; husambaa mvua nyingi.",
+   "treatment_en": "No cure — remove plants; copper-class products suppress spread. Advisory: use PCPB-registered products only, at label rates.",
+   "treatment_sw": "Hakuna tiba — ng'oa mimea; dawa za copper zinazuia kuenea tu. Shauri: tumia dawa zilizoidhinishwa na PCPB tu, kwa kiwango kilichoandikwa.",
+   "prevention_en": "2-3 year brassica rotation, clean seed, no overhead irrigation.",
+   "prevention_sw": "Zungusha mashamba miaka 2-3, mbegu safi, usimwagilie kutoka juu.",
+   "scanner_notes": "V-margin lesions are the signature."
+  },
+  {
+   "key": "downy_mildew",
+   "name_en": "Downy mildew",
+   "name_sw": "Ukungu",
+   "type": "disease",
+   "severity_classes": "Low (specks) · High (grey fuzz, leaf loss)",
+   "symptoms_en": "Yellow specks above, grey-purple fuzz below, cool damp spells.",
+   "symptoms_sw": "Madoa ya manjano juu, ukungu wa kijivu chini, wakati wa baridi na unyevu.",
+   "treatment_en": "Registered downy-active fungicide at first specks. Advisory: use PCPB-registered products only, at label rates.",
+   "treatment_sw": "Dawa iliyoidhinishwa ya ukungu mara madoa yanapoanza. Shauri: tumia dawa zilizoidhinishwa na PCPB tu, kwa kiwango kilichoandikwa.",
+   "prevention_en": "Spacing and airflow; morning watering.",
+   "prevention_sw": "Nafasi ya kutosha na hewa; mwagilia asubuhi.",
+   "scanner_notes": "Photograph the UNDERSIDE — the fuzz is invisible from above."
+  },
+  {
+   "key": "head_rot_soft_rot",
+   "name_en": "Head rot (soft rot)",
+   "name_sw": "Uoza laini wa kichwa",
+   "type": "disease",
+   "severity_classes": "Early (water-soaked spots) · High (collapsed heads)",
+   "symptoms_en": "Water-soaked heads that collapse in the field, foul smell; follows insect damage.",
+   "symptoms_sw": "Vichwa vinalowana na kuoza shambani, harufu mbaya; hufuata uharibifu wa wadudu.",
+   "treatment_en": "No cure — remove and destroy; manage the insect damage that opens the door. Advisory: use PCPB-registered products only, at label rates.",
+   "treatment_sw": "Hakuna tiba — ng'oa na uteketeze; dhibiti wadudu wanaofungua mlango. Shauri: tumia dawa zilizoidhinishwa na PCPB tu, kwa kiwango kilichoandikwa.",
+   "prevention_en": "DBM/aphid management, drainage, dry harvest handling.",
+   "prevention_sw": "Dhibiti DBM na vidukari, mifereji ya maji, shika kwa usafi wakati wa kuvuna.",
+   "scanner_notes": "Ask about insect damage in-app — rot follows damage."
+  },
+  {
+   "key": "fusarium_yellows",
+   "name_en": "Fusarium yellows",
+   "name_sw": "Kunyauka kwa fusarium",
+   "type": "disease",
+   "severity_classes": "Early (one-sided yellowing) · High (stunted, wilting plants)",
+   "symptoms_en": "One-sided yellowing of lower leaves, brown vascular discoloration in the stem, stunting.",
+   "symptoms_sw": "Kuning'inia kwa upande mmoja wa majani ya chini, rangi ya kahawia ndani ya shina, kudhoofika.",
+   "treatment_en": "No cure — remove and destroy; resistant varieties where available. Advisory: use PCPB-registered products only, at label rates.",
+   "treatment_sw": "Hakuna tiba — ng'oa na uteketeze; tumia aina sugu zilizopo. Shauri: tumia dawa zilizoidhinishwa na PCPB tu, kwa kiwango kilichoandikwa.",
+   "prevention_en": "Rotation away from brassicas; clean seed.",
+   "prevention_sw": "Zungusha mashamba; mbegu safi.",
+   "scanner_notes": "One-sided yellowing is the discriminator vs black rot."
+  },
+  {
+   "key": "club_root",
+   "name_en": "Club root",
+   "name_sw": "Mizizi kuvimba",
+   "type": "disease",
+   "severity_classes": "Patchy (stunted patches) · Severe (galled roots, stand loss)",
+   "symptoms_en": "Swollen, distorted galled roots; stunted plants that wilt in heat; favours acid soils.",
+   "symptoms_sw": "Mizizi iliyovimba na kupinda; mimea dhaifu inayonyauka jua; hupenda udongo wa tindikali.",
+   "treatment_en": "No cure — lime to raise pH above 7 where present; rotate long away from brassicas. Advisory: use PCPB-registered products only, at label rates.",
+   "treatment_sw": "Hakuna tiba — weka chokaa kuinua pH juu ya 7; zungusha mashamba mbali na kabichi. Shauri: tumia dawa zilizoidhinishwa na PCPB tu, kwa kiwango kilichoandikwa.",
+   "prevention_en": "Use clean transplants, avoid moving soil between fields.",
+   "prevention_sw": "Tumia miche safi, epuka kuhamisha udongo kati ya mashamba.",
+   "scanner_notes": "Photograph washed roots — galls are the diagnosis."
+  }
+ ],
+ "links": [
+  {
+   "kind": "blog_guide",
+   "label_en": "Panda growing guide: Cabbage",
+   "label_sw": "Mwongozo wa Panda: Kabichi",
+   "url": "https://panda.shira.farm/blog/cabbage-100-day-cash-crop-guide"
+  },
+  {
+   "kind": "pcpb",
+   "label_en": "PCPB — registered pest control products",
+   "label_sw": "PCPB — orodha ya dawa zilizoidhinishwa",
+   "url": "https://www.pcpb.go.ke/"
+  },
+  {
+   "kind": "kephis",
+   "label_en": "KEPHIS — plant health services",
+   "label_sw": "KEPHIS — huduma za afya ya mimea",
+   "url": "https://www.kephis.org/"
+  },
+  {
+   "kind": "prices",
+   "label_en": "MoALD market information (KAMIS)",
+   "label_sw": "Taarifa za soko za Wizara ya Kilimo (KAMIS)",
+   "url": "https://www.kilimo.go.ke/"
+  }
+ ],
+ "market_notes": {
+  "sell_windows_en": "Two price peaks: dry season (Jan–Mar) and the festive run-up (Nov–Dec). Cabbage does NOT store — sell within 3–4 days of cutting; harvest to order when a buyer exists.",
+  "sell_windows_sw": "Bei hupanda mara mbili: kiangazi (Jan–Mar) na kabla ya sikukuu (Nov–Des). Kabichi haitunzwi — uza ndani ya siku 3–4 baada ya kukata; vuna ukiwa na mnunuzi.",
+  "price_notes_en": "Farm-gate ~15–40 KES per head (November 2026). Plant backwards: mid-Sep transplant harvests into the December window; mid-Oct hits January. Planned acre: 12,000–15,000 heads.",
+  "price_notes_sw": "Bei ya shambani ~15–40 KES kwa kichwa (Novemba 2026). Panga kupanda kinyume: pandikiza katikati ya Septemba uvune Desemba; katikati ya Oktoba uvune Januari. Eka iliyopangwa: vichwa 12,000–15,000."
+ }
 }

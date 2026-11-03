@@ -1,58 +1,302 @@
 {
-    "slug": "kale",
-    "name_en": "Kale",
-    "name_sw": "Sukuma wiki",
-    "category": "leafy_green",
-    "harvest_type": "multi",
-    "jica_manual_ref": "Inspired by JICA SHEP PLUS — Kale (Sukuma wiki) production guide",
-    "kalro_guide_ref": "KALRO Vegetable production handbook — Kale",
-    "ecological_requirements": {
-        "altitude_min_m": 800,
-        "altitude_max_m": 2400,
-        "rainfall_min_mm": 500,
-        "rainfall_max_mm": 1500,
-        "temperature_min_c": 12,
-        "temperature_max_c": 25,
-        "soil_types": ["loam", "sandy_loam", "clay_loam"],
-        "soil_ph_min": 5.5,
-        "soil_ph_max": 6.8
-    },
-    "varieties": [
-        {
-            "name": "Collard Mfalme",
-            "type": "OPEN_POLLINATED",
-            "days_to_maturity": 55,
-            "yield_kg_per_acre": 12000,
-            "disease_resistance": ["downy_mildew"],
-            "supplier_notes": "Most-planted Kenyan kale variety; bred for repeated pluck-harvest."
-        },
-        {
-            "name": "Thousand Headed",
-            "type": "OPEN_POLLINATED",
-            "days_to_maturity": 60,
-            "yield_kg_per_acre": 10000,
-            "supplier_notes": "Tall stem, slow bolting; good for upland Rift Valley."
-        }
-    ],
-    "timeline_template": [
-        {"activity_type": "nursery_seeding", "phase": "nursery", "week_from_planting": -4, "day_window": 3, "description_en": "Sow seed in seedbed at 1cm depth. Water lightly twice daily.", "description_sw": "Panda mbegu kitaluni kina 1cm. Mwagilia maji kidogo mara mbili kwa siku.", "is_critical": true},
-        {"activity_type": "transplanting", "phase": "transplanting", "week_from_planting": 0, "day_window": 2, "description_en": "Transplant 4-week-old seedlings at 60cm x 45cm. Water immediately.", "description_sw": "Pandikiza miche wiki 4 nafasi ya 60cm x 45cm. Mwagilia mara moja.", "is_critical": true},
-        {"activity_type": "basal_fertiliser", "phase": "transplanting", "week_from_planting": 0, "day_window": 1, "description_en": "Apply 50kg DAP at transplanting (one tablespoon per hole).", "description_sw": "Weka kilo 50 za DAP wakati wa kupandikiza (kijiko kwa shimo).", "is_critical": true},
-        {"activity_type": "first_weeding", "phase": "growth", "week_from_planting": 3, "day_window": 4, "description_en": "Shallow-hoe between rows; mulch with dry grass.", "description_sw": "Palia kwa jembe la juu juu; weka nyasi kavu.", "is_critical": false},
-        {"activity_type": "top_dress_1", "phase": "growth", "week_from_planting": 4, "day_window": 3, "description_en": "Apply 50kg CAN as side-dress 10cm from plant base.", "description_sw": "Weka kilo 50 za CAN 10cm kutoka mmea.", "is_critical": true},
-        {"activity_type": "pest_monitoring", "phase": "growth", "week_from_planting": 5, "day_window": 14, "description_en": "Scout for diamondback moth and aphids. Spray only if pest threshold exceeded.", "description_sw": "Tafuta wadudu (diamondback na kunguru). Nyunyuza dawa ikiwa wamezidi.", "tip_en": "Hand-pick caterpillars at low density to avoid spray costs.", "tip_sw": "Chukua viwavi kwa mkono ikiwa wachache, ili kuepuka gharama ya dawa.", "is_critical": false},
-        {"activity_type": "first_harvest", "phase": "harvest", "week_from_planting": 8, "day_window": 7, "description_en": "Pluck 2-3 outer leaves per plant. Leave the crown intact for regrowth.", "description_sw": "Chuna majani 2-3 ya nje kwa kila mmea. Acha kichwa cha mmea.", "tip_en": "Harvest every 7-10 days. A well-tended crop yields 6+ months.", "tip_sw": "Vuna kila siku 7-10. Mmea ulio na uangalifu mzuri unaweza kuvuna miezi 6+.", "is_critical": true},
-        {"activity_type": "top_dress_2", "phase": "growth", "week_from_planting": 10, "day_window": 3, "description_en": "Second 50kg CAN dose to sustain leaf production.", "description_sw": "Dosi ya pili ya CAN kilo 50 kuendeleza majani.", "is_critical": false}
-    ],
-    "inputs_per_acre": [
-        {"input_type": "seed", "product_name": "Collard Mfalme (250g)", "quantity": 250, "unit": "g", "week_from_planting": -4, "benchmark_price_kes": 800, "pcpb_registered": false, "alternatives": ["Thousand Headed", "Marrowstem"]},
-        {"input_type": "fertiliser", "product_name": "DAP 50kg", "quantity": 50, "unit": "kg", "week_from_planting": 0, "benchmark_price_kes": 3500, "pcpb_registered": false},
-        {"input_type": "fertiliser", "product_name": "CAN 50kg (top-dress 1)", "quantity": 50, "unit": "kg", "week_from_planting": 4, "benchmark_price_kes": 2800, "pcpb_registered": false},
-        {"input_type": "fertiliser", "product_name": "CAN 50kg (top-dress 2)", "quantity": 50, "unit": "kg", "week_from_planting": 10, "benchmark_price_kes": 2800, "pcpb_registered": false},
-        {"input_type": "chemical", "product_name": "Karate 5EC (500ml)", "quantity": 500, "unit": "ml", "week_from_planting": 6, "benchmark_price_kes": 850, "pcpb_registered": true, "alternatives": ["Decis 2.5EC"]},
-        {"input_type": "other", "product_name": "Twine bundles (harvest)", "quantity": 10, "unit": "pieces", "week_from_planting": 8, "benchmark_price_kes": 300, "pcpb_registered": false}
-    ],
-    "yield_per_acre": {"expected_kg": 12000, "min_kg": 9000, "max_kg": 15000, "number_of_picks": 20, "pick_interval_days": 7},
-    "post_harvest": {"shelf_life_days": 3, "grading_criteria": "Bunch by stem length. Reject yellowed or holed leaves.", "packaging_standard": "Tied bunches of 8-10 leaves; loaded loose in pickup beds.", "storage_tips_en": "Sell same-day; refrigerate at 4°C only if overnight delay.", "storage_tips_sw": "Uza siku hiyohiyo; hifadhi friji 4°C ikiwa lazima kuchelewa usiku."},
-    "diseases": ["diamondback_moth", "aphids", "black_rot", "downy_mildew"]
+ "slug": "kale",
+ "name_en": "Kale",
+ "name_sw": "Sukuma wiki",
+ "category": "leafy_green",
+ "harvest_type": "multi",
+ "jica_manual_ref": "Inspired by JICA SHEP PLUS — Kale (Sukuma wiki) production guide",
+ "kalro_guide_ref": "KALRO Vegetable production handbook — Kale",
+ "ecological_requirements": {
+  "altitude_min_m": 800,
+  "altitude_max_m": 2400,
+  "rainfall_min_mm": 500,
+  "rainfall_max_mm": 1500,
+  "temperature_min_c": 12,
+  "temperature_max_c": 25,
+  "soil_types": [
+   "loam",
+   "sandy_loam",
+   "clay_loam"
+  ],
+  "soil_ph_min": 5.5,
+  "soil_ph_max": 6.8
+ },
+ "varieties": [
+  {
+   "name": "Collard Mfalme",
+   "type": "OPEN_POLLINATED",
+   "days_to_maturity": 55,
+   "yield_kg_per_acre": 12000,
+   "disease_resistance": [
+    "downy_mildew"
+   ],
+   "supplier_notes": "Most-planted Kenyan kale variety; bred for repeated pluck-harvest."
+  },
+  {
+   "name": "Thousand Headed",
+   "type": "OPEN_POLLINATED",
+   "days_to_maturity": 60,
+   "yield_kg_per_acre": 10000,
+   "supplier_notes": "Tall stem, slow bolting; good for upland Rift Valley."
+  }
+ ],
+ "timeline_template": [
+  {
+   "activity_type": "nursery_seeding",
+   "phase": "nursery",
+   "week_from_planting": -4,
+   "day_window": 3,
+   "description_en": "Sow seed in seedbed at 1cm depth. Water lightly twice daily.",
+   "description_sw": "Panda mbegu kitaluni kina 1cm. Mwagilia maji kidogo mara mbili kwa siku.",
+   "is_critical": true
+  },
+  {
+   "activity_type": "transplanting",
+   "phase": "transplanting",
+   "week_from_planting": 0,
+   "day_window": 2,
+   "description_en": "Transplant 4-week-old seedlings at 60cm x 45cm. Water immediately.",
+   "description_sw": "Pandikiza miche wiki 4 nafasi ya 60cm x 45cm. Mwagilia mara moja.",
+   "is_critical": true
+  },
+  {
+   "activity_type": "basal_fertiliser",
+   "phase": "transplanting",
+   "week_from_planting": 0,
+   "day_window": 1,
+   "description_en": "Apply 50kg DAP at transplanting (one tablespoon per hole).",
+   "description_sw": "Weka kilo 50 za DAP wakati wa kupandikiza (kijiko kwa shimo).",
+   "is_critical": true
+  },
+  {
+   "activity_type": "first_weeding",
+   "phase": "growth",
+   "week_from_planting": 3,
+   "day_window": 4,
+   "description_en": "Shallow-hoe between rows; mulch with dry grass.",
+   "description_sw": "Palia kwa jembe la juu juu; weka nyasi kavu.",
+   "is_critical": false
+  },
+  {
+   "activity_type": "top_dress_1",
+   "phase": "growth",
+   "week_from_planting": 4,
+   "day_window": 3,
+   "description_en": "Apply 50kg CAN as side-dress 10cm from plant base.",
+   "description_sw": "Weka kilo 50 za CAN 10cm kutoka mmea.",
+   "is_critical": true
+  },
+  {
+   "activity_type": "pest_monitoring",
+   "phase": "growth",
+   "week_from_planting": 5,
+   "day_window": 14,
+   "description_en": "Scout for diamondback moth and aphids. Spray only if pest threshold exceeded.",
+   "description_sw": "Tafuta wadudu (diamondback na kunguru). Nyunyuza dawa ikiwa wamezidi.",
+   "tip_en": "Hand-pick caterpillars at low density to avoid spray costs.",
+   "tip_sw": "Chukua viwavi kwa mkono ikiwa wachache, ili kuepuka gharama ya dawa.",
+   "is_critical": false
+  },
+  {
+   "activity_type": "first_harvest",
+   "phase": "harvest",
+   "week_from_planting": 8,
+   "day_window": 7,
+   "description_en": "Pluck 2-3 outer leaves per plant. Leave the crown intact for regrowth.",
+   "description_sw": "Chuna majani 2-3 ya nje kwa kila mmea. Acha kichwa cha mmea.",
+   "tip_en": "Harvest every 7-10 days. A well-tended crop yields 6+ months.",
+   "tip_sw": "Vuna kila siku 7-10. Mmea ulio na uangalifu mzuri unaweza kuvuna miezi 6+.",
+   "is_critical": true
+  },
+  {
+   "activity_type": "top_dress_2",
+   "phase": "growth",
+   "week_from_planting": 10,
+   "day_window": 3,
+   "description_en": "Second 50kg CAN dose to sustain leaf production.",
+   "description_sw": "Dosi ya pili ya CAN kilo 50 kuendeleza majani.",
+   "is_critical": false
+  }
+ ],
+ "inputs_per_acre": [
+  {
+   "input_type": "seed",
+   "product_name": "Collard Mfalme (250g)",
+   "quantity": 250,
+   "unit": "g",
+   "week_from_planting": -4,
+   "benchmark_price_kes": 800,
+   "pcpb_registered": false,
+   "alternatives": [
+    "Thousand Headed",
+    "Marrowstem"
+   ]
+  },
+  {
+   "input_type": "fertiliser",
+   "product_name": "DAP 50kg",
+   "quantity": 50,
+   "unit": "kg",
+   "week_from_planting": 0,
+   "benchmark_price_kes": 3500,
+   "pcpb_registered": false
+  },
+  {
+   "input_type": "fertiliser",
+   "product_name": "CAN 50kg (top-dress 1)",
+   "quantity": 50,
+   "unit": "kg",
+   "week_from_planting": 4,
+   "benchmark_price_kes": 2800,
+   "pcpb_registered": false
+  },
+  {
+   "input_type": "fertiliser",
+   "product_name": "CAN 50kg (top-dress 2)",
+   "quantity": 50,
+   "unit": "kg",
+   "week_from_planting": 10,
+   "benchmark_price_kes": 2800,
+   "pcpb_registered": false
+  },
+  {
+   "input_type": "chemical",
+   "product_name": "Karate 5EC (500ml)",
+   "quantity": 500,
+   "unit": "ml",
+   "week_from_planting": 6,
+   "benchmark_price_kes": 850,
+   "pcpb_registered": true,
+   "alternatives": [
+    "Decis 2.5EC"
+   ]
+  },
+  {
+   "input_type": "other",
+   "product_name": "Twine bundles (harvest)",
+   "quantity": 10,
+   "unit": "pieces",
+   "week_from_planting": 8,
+   "benchmark_price_kes": 300,
+   "pcpb_registered": false
+  }
+ ],
+ "yield_per_acre": {
+  "expected_kg": 12000,
+  "min_kg": 9000,
+  "max_kg": 15000,
+  "number_of_picks": 20,
+  "pick_interval_days": 7
+ },
+ "post_harvest": {
+  "shelf_life_days": 3,
+  "grading_criteria": "Bunch by stem length. Reject yellowed or holed leaves.",
+  "packaging_standard": "Tied bunches of 8-10 leaves; loaded loose in pickup beds.",
+  "storage_tips_en": "Sell same-day; refrigerate at 4°C only if overnight delay.",
+  "storage_tips_sw": "Uza siku hiyohiyo; hifadhi friji 4°C ikiwa lazima kuchelewa usiku."
+ },
+ "diseases": [
+  {
+   "key": "diamondback_moth",
+   "name_en": "Diamondback moth",
+   "name_sw": "Nondo wa kabichi",
+   "type": "pest",
+   "severity_classes": "Low (leaf windows) · High (skeletonised leaves)",
+   "symptoms_en": "Caterpillars skeletonise leaves from week 5 onward; small holes that join into windows.",
+   "symptoms_sw": "Viwavi wanalia majani kuanzia wiki 5; matundu madogo yanakuwa mapana.",
+   "treatment_en": "Hand-pick caterpillars at low density — cheaper than spraying. Spray a registered larvicide only when the threshold is exceeded. Advisory: use PCPB-registered products only, at label rates.",
+   "treatment_sw": "Chukua viwavi kwa mkono ikiwa wachache — ni nafuu kuliko dawa. Nyunyuza dawa iliyoidhinishwa tu wakati wamezidi. Shauri: tumia dawa zilizoidhinishwa na PCPB tu, kwa kiwango kilichoandikwa.",
+   "prevention_en": "Scout every 3-4 days from week 5; keep the stand clean.",
+   "prevention_sw": "Chunguza kila siku 3-4 kuanzia wiki 5; weka shamba safi.",
+   "scanner_notes": "Photograph the leaf underside; frass presence separates DBM from aphids."
+  },
+  {
+   "key": "aphids",
+   "name_en": "Aphids",
+   "name_sw": "Vidukari",
+   "type": "pest",
+   "severity_classes": "Low (colonies) · High (curled new growth)",
+   "symptoms_en": "Sap-suckers that curl new growth; colonies on leaf undersides.",
+   "symptoms_sw": "Wanyonya utomvu na kukunja majani machanga; makundi chini ya majani.",
+   "treatment_en": "Squash early colonies by hand before they spread; spray registered products only if spreading. Advisory: use PCPB-registered products only, at label rates.",
+   "treatment_sw": "Ponda makundi ya mwanzo kwa mkono kabla ya kuenea; nyunyuza tu ikiwa yanaenea. Shauri: tumia dawa zilizoidhinishwa na PCPB tu, kwa kiwango kilichoandikwa.",
+   "prevention_en": "Check undersides of young leaves weekly.",
+   "prevention_sw": "Chunguza chini ya majani machanga kila wiki.",
+   "scanner_notes": "Underside photo with the colony visible."
+  },
+  {
+   "key": "black_rot",
+   "name_en": "Black rot",
+   "name_sw": "Uoza mweusi",
+   "type": "disease",
+   "severity_classes": "Low (V-lesions) · High (systemic, leaf loss)",
+   "symptoms_en": "Yellow V-shaped lesions at leaf margins, blackened veins, stunting; spreads fast in wet weather.",
+   "symptoms_sw": "Madoa ya manjano yenye umbo la V kwenye kingo za majani, mishipa meusi, mmea dhaifu; husambaa kwa kasi mvua nyingi.",
+   "treatment_en": "No cure — remove and destroy infected plants; copper-class products only suppress spread. Advisory: use PCPB-registered products only, at label rates.",
+   "treatment_sw": "Hakuna tiba — ng'oa na uteketeze mimea iliyoathirika; dawa za kikundi cha copper zinazuia kuenea tu. Shauri: tumia dawa zilizoidhinishwa na PCPB tu, kwa kiwango kilichoandikwa.",
+   "prevention_en": "Clean seed, 2-3 year rotation away from brassicas, no overhead irrigation.",
+   "prevention_sw": "Mbegu safi, zungusha mashamba miaka 2-3 bila kabichi, usimwagilie majani kutoka juu.",
+   "scanner_notes": "V-shaped margin lesions are the signature; photograph the leaf flat."
+  },
+  {
+   "key": "downy_mildew",
+   "name_en": "Downy mildew",
+   "name_sw": "Ukungu",
+   "type": "disease",
+   "severity_classes": "Low (specks) · High (grey fuzz, leaf loss)",
+   "symptoms_en": "Yellow specks on the upper leaf, grey-purple fuzz below, in cool damp spells.",
+   "symptoms_sw": "Madoa ya manjano juu ya jani, ukungu wa kijivu chini, wakati wa baridi na unyevu.",
+   "treatment_en": "Spray a registered downy-active fungicide at first specks. Advisory: use PCPB-registered products only, at label rates.",
+   "treatment_sw": "Nyunyuza dawa iliyoidhinishwa ya ukungu mara madoa yanapoanza. Shauri: tumia dawa zilizoidhinishwa na PCPB tu, kwa kiwango kilichoandikwa.",
+   "prevention_en": "Open spacing for airflow; resistant varieties (Mfalme); water in the morning.",
+   "prevention_sw": "Nafasi ya kutosha kwa hewa; aina sugu (Mfalme); mwagilia asubuhi.",
+   "scanner_notes": "Photograph the UNDERSIDE — the fuzz is invisible from above."
+  },
+  {
+   "key": "alternaria_leaf_spot",
+   "name_en": "Alternaria leaf spot",
+   "name_sw": "Madoa ya majani",
+   "type": "disease",
+   "severity_classes": "Low (spots) · High (shot-holes, defoliation)",
+   "symptoms_en": "Dark brown spots with rings; centres fall out leaving shot-holes.",
+   "symptoms_sw": "Madoa ya kahawia yenye pete; katikati huanguka na kuacha matundu.",
+   "treatment_en": "Spray a registered alternaria-active fungicide at first spots. Advisory: use PCPB-registered products only, at label rates.",
+   "treatment_sw": "Nyunyuza dawa iliyoidhinishwa ya alternaria mara madoa yanapoanza. Shauri: tumia dawa zilizoidhinishwa na PCPB tu, kwa kiwango kilichoandikwa.",
+   "prevention_en": "Rotate crops, remove debris, avoid leaf wetness at night.",
+   "prevention_sw": "Zungusha mazao, ondoa mabaki, epuka majani kuloweshwa usiku.",
+   "scanner_notes": "Ringed spots (target pattern) separate it from downy mildew."
+  }
+ ],
+ "links": [
+  {
+   "kind": "blog_guide",
+   "label_en": "Panda growing guide: Sukuma wiki",
+   "label_sw": "Mwongozo wa Panda: Sukuma wiki",
+   "url": "https://panda.shira.farm/blog/sukuma-wiki-kale-growing-guide"
+  },
+  {
+   "kind": "pcpb",
+   "label_en": "PCPB — registered pest control products",
+   "label_sw": "PCPB — orodha ya dawa zilizoidhinishwa",
+   "url": "https://www.pcpb.go.ke/"
+  },
+  {
+   "kind": "kephis",
+   "label_en": "KEPHIS — plant health services",
+   "label_sw": "KEPHIS — huduma za afya ya mimea",
+   "url": "https://www.kephis.org/"
+  },
+  {
+   "kind": "prices",
+   "label_en": "MoALD market information (KAMIS)",
+   "label_sw": "Taarifa za soko za Wizara ya Kilimo (KAMIS)",
+   "url": "https://www.kilimo.go.ke/"
+  }
+ ],
+ "market_notes": {
+  "sell_windows_en": "Sell same-day, every week. Kale is the closest thing to weekly income in horticulture — demand never pauses.",
+  "sell_windows_sw": "Uza siku hiyohiyo, kila wiki. Sukuma wiki ni karibu na mshahara wa kila wiki — soko halipumziki.",
+  "price_notes_en": "Retail ~40–80 KES per kg (Meru/Kirinyaga, November 2026). A planned acre: 9,000–15,000 kg across ~20 picks, sold weekly rather than in one glut.",
+  "price_notes_sw": "Rejareja ~40–80 KES kwa kilo (Meru/Kirinyaga, Novemba 2026). Eka moja iliyopangwa: kilo 9,000–15,000 kwa vivuno ~20, vinauzwa kila wiki."
+ }
 }
