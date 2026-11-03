@@ -40,7 +40,11 @@
     "leafy_green",
     "legume",
     "staple",
-    "tuber"
+    "tuber",
+    "cereal",
+    "root",
+    "herb",
+    "cucurbit"
    ]
   },
   "harvest_type": {
@@ -247,7 +251,9 @@
        "fertiliser",
        "chemical",
        "equipment",
-       "other"
+       "other",
+       "storage",
+       "structure"
       ]
      },
      "product_name": {
@@ -267,7 +273,11 @@
        "l",
        "ml",
        "pieces",
-       "crates"
+       "crates",
+       "bags",
+       "cuttings",
+       "rounds",
+       "set"
       ]
      },
      "week_from_planting": {

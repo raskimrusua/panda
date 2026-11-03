@@ -33,6 +33,10 @@ uses(RefreshDatabase::class);
 const SAMPLE_CROPS = ['tomato', 'kale', 'maize', 'pawpaw'];
 const ENRICHED_CROPS = ['kale', 'maize', 'pawpaw'];
 
+/**
+ * @param  list<string|array<string, mixed>>  $diseases
+ * @return list<string>
+ */
 function diseaseNames(array $diseases): array
 {
     return array_map(
