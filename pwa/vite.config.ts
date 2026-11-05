@@ -12,13 +12,13 @@ export default defineConfig({
     tailwindcss(),
     VitePWA({
       registerType: 'autoUpdate',
-      includeAssets: ['favicon.svg'],
+      includeAssets: ['favicon-32.png', 'apple-touch-icon.png'],
       manifest: {
         name: 'Panda — Farm Planner',
         short_name: 'Panda',
         description: 'Plan your tomato season. Log every cost. Get diagnoses from a photo.',
-        theme_color: '#047857',
-        background_color: '#ffffff',
+        theme_color: '#1B4332',
+        background_color: '#FFF8F0',
         display: 'standalone',
         scope: '/',
         start_url: '/',
