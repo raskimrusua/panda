@@ -1,6 +1,6 @@
 # Panda Scanner — Crop × Disease Matrix (Phase A knowledge base)
 
-Status: DRAFT · started 2026-11-02 · feeds scanner Phase A (more crops × more diseases ×
+Status: DRAFT · started 2026-11-02 · 26 crops covered (2026-11-05) · feeds scanner Phase A (more crops × more diseases ×
 severity classes × treatment guidance × confidence) and the crop-guide content library.
 
 ## Purpose
@@ -213,6 +213,60 @@ Queue (0): **20-crop library COMPLETE** — all crops covered in guides + matrix
 | Purple blotch | Low (spots) · High (leaf dieback, storage rot) | Purple-brown lesions with yellow halos, leaf dieback | Registered alternaria-active sprays at first lesions | Rotation, clean debris, healthy tops | Purple-centred lesions are the signature |
 | Neck rot (Botrytis) | Storage (neck softening) · Severe (bulb rot) | Soft grey rot at the neck entering storage, bulbs collapse | None post-harvest — curing is the control | Cure necks 2-3 weeks, store dry | Post-curing bulb photo; ask about curing time in-app |
 | Thrips | Low (silvering) · High (stunted bulbs) | Silvery streaked leaves, stunted plants, dry spells | Registered products at threshold | Monitor, avoid drought stress | Silvery streaks on leaves |
+
+## Amaranthus (Amaranthus spp. — mchicha)
+
+| Disease | Severity classes | Symptoms | Treatment (advisory) | Prevention | Scanner notes |
+|---|---|---|---|---|---|
+| Aphids | Low (colonies) · High (curled, stunted growth) | Colonies curl new growth; honeydew; check undersides of young leaves | Squash early colonies; registered products only if spreading | Weekly underside scouting, natural enemies first | Underside photo with the colony visible |
+| Leaf miners | Low (tunnels) · High (leaf scorch, market rejection) | Silvery winding tunnels through the leaf; cosmetic but costly at market | Remove mined leaves; registered products at threshold only | Row covers in nursery, rotation | Backlit photo shows the tunnel track |
+| Damping off | Seedling (collapse patches) · Severe (stand loss) | Seedlings collapse at the soil line, brown pinched stems, in wet spells | Seed-dressing where wet; no rescue for collapsed patches | Raised beds, thin sowing, well-drained nursery | Photograph a whole patch — the pattern is the diagnosis |
+
+## Black nightshade (Solanum nigrum — managu)
+
+| Disease | Severity classes | Symptoms | Treatment (advisory) | Prevention | Scanner notes |
+|---|---|---|---|---|---|
+| Aphids | Low (colonies) · High (curled, stunted growth) | Colonies curl new growth; honeydew on leaves | Squash early colonies; registered products only if spreading | Weekly underside scouting, natural enemies first | Underside photo with the colony visible |
+| Spider mites | Low (stippling) · High (webbing, bronzed leaves) | Fine pale stippling, leaf bronzing, fine webbing on undersides in hot-dry spells | Abamectin-class miticide at first webbing; repeat in 7 days | Avoid water stress, mist leaves, natural predators first | Tap a leaf over white paper — moving specks confirm mites |
+| Early blight | Low (leaf spots) · High (defoliation) | Target-ring brown spots on older leaves first, yellowing, dieback | Mancozeb-class or copper alternation every 7-10 days from first sign | Rotation, spacing, avoid evening watering | Ringed spots on older leaves; no white fuzz (vs late blight) |
+
+## Chili (Capsicum frutescens — pilipili)
+
+| Disease | Severity classes | Symptoms | Treatment (advisory) | Prevention | Scanner notes |
+|---|---|---|---|---|---|
+| Thrips | Low (silvering) · High (distorted leaves, flower loss) | Silvery streaked leaves, distorted new growth, flower drop, in dry spells | Lambda-cyhalothrin-class at threshold; blue sticky traps for monitoring | Monitor during dry spells, preserve natural enemies | Silvery streaks distinguish thrips from virus mottling |
+| Aphids | Low (colonies) · High (curled, stunted growth) | Colonies curl new growth; honeydew on leaves | Squash early colonies; registered products only if spreading | Weekly underside scouting, natural enemies first | Underside photo with the colony visible |
+| Anthracnose | Low (specks) · High (sunken rot on fruit) | Sunken dark spots on ripening fruit, pink ooze in humidity | Azoxystrobin-class at flowering and fruit set in wet weather | Dry handling, no overhead watering, remove debris | Fruit close-up at colour break; wet-season timing |
+| Bacterial wilt | Early (day wilt) · Advanced (permanent wilt, ooze) | Green wilt of one side, no recovery, milky ooze from a cut stem in water | None — rogue and destroy; long rotation away from solanaceous crops | Certified seed, clean tools, avoid flooding | Cut-stem ooze test is the verification |
+| Powdery mildew | Low (dusting) · High (leaf loss) | White dusting on leaves in warm-dry spells | Sulphur-class products at first dusting, cool morning hours | Airflow, avoid water stress | White powder on leaf surfaces; warm-dry weather |
+
+## Cowpea leaves (Vigna unguiculata — kunde)
+
+| Disease | Severity classes | Symptoms | Treatment (advisory) | Prevention | Scanner notes |
+|---|---|---|---|---|---|
+| Aphids | Low (colonies) · High (curled, stunted growth) | Colonies curl new growth; honeydew on leaves | Squash early colonies; registered products only if spreading | Weekly underside scouting, natural enemies first | Underside photo with the colony visible |
+| Thrips | Low (silvering) · High (distorted leaves) | Silvery streaked leaves, distorted new growth, in dry spells | Lambda-cyhalothrin-class at threshold | Monitor during dry spells, preserve natural enemies | Silvery streaks distinguish thrips from virus mottling |
+| Powdery mildew | Low (dusting) · High (leaf loss) | White dusting on leaves in warm-dry spells | Sulphur-class products at first dusting | Airflow, avoid water stress | White powder on leaf surfaces; warm-dry weather |
+| Bacterial blight | Low (water-soaked spots) · High (leaf death) | Water-soaked angular spots that brown and merge, leaf death in wet spells | Copper-class suppression only — no cure | Clean certified seed, rotation, avoid working the crop when wet | Angular water-soaked spots vs fungal rings |
+
+## Eggplant (Solanum melongena — biringanya)
+
+| Disease | Severity classes | Symptoms | Treatment (advisory) | Prevention | Scanner notes |
+|---|---|---|---|---|---|
+| Shoot and fruit borer | Low (tip damage) · High (bored fruit, market loss) | Wilting shoot tips with bore holes, frass at entry, bored fruit with exit holes | Emamectin-benzoate-class at first tip damage; remove bored shoots | Rogue infested shoots weekly, crop rotation | Photograph the bored shoot tip — the entry hole is the diagnosis |
+| Fruit borer | Low (punctures) · High (maggots in fruit, rejection) | Pin-prick holes on young fruit, frass at entry, larvae inside | Emamectin-benzoate-class at first punctures; remove infested fruit | Weekly fruit inspection, sanitation | Cut-open fruit shows the larva — fruit photo + cut-open |
+| Bacterial wilt | Early (day wilt) · Advanced (permanent wilt, ooze) | Green wilt of one side, milky ooze from a cut stem | None — rogue and destroy; long rotation away from solanaceous crops | Certified seed, clean tools, avoid flooding | Cut-stem ooze test is the verification |
+| Verticillium wilt | Early (one-sided yellowing) · Severe (permanent wilt) | One-sided yellowing, V-shaped leaf lesions, wilt despite watering | None — remove plants; rotation away from solanaceous crops | Solarize beds, resistant rootstocks where available | V-shaped lesions + one-sided wilt = verticillium |
+
+## Passion fruit (Passiflora edulis — pasheni)
+
+| Disease | Severity classes | Symptoms | Treatment (advisory) | Prevention | Scanner notes |
+|---|---|---|---|---|---|
+| Fruit fly | Low (stings) · High (maggots, fruit drop) | Pin-prick stings on ripening fruit, larvae inside, premature drop | Spinosad protein bait sprays; orchard sanitation | Remove fallen fruit, early harvest | Cut-open fruit shows larvae |
+| Brown spot | Low (spots) · High (defoliation, fruit blemish) | Brown circular spots on leaves, yellow halo, leaf drop, blemished fruit in wet spells | Mancozeb-class at first spots; prune for airflow | Pruning, trellis airflow, remove debris | Circular spots with halos vs powdery mildew dusting |
+| Woodiness virus (PWV) | Mild (mottling) · Severe (hard, deformed fruit) | Mottled leaves, woody malformed fruit with thickened rind, stunted vines | None — rogue infected vines immediately; aphid control only | Clean certified seedlings, never take cuttings from infected vines | Hard woody fruit + mottled leaves = PWV, not nutrient deficiency |
+| Fusarium wilt | Early (yellowing) · Severe (death) | Yellowing from older leaves, brown vascular ring in cut stems, wilt | None — remove and destroy; resistant varieties where available | Rotation, clean planting material, solarize beds | Cut-stem ring + wilt = fusarium vs bacterial wilt's ooze |
+| Phytophthora blight | Early (collar lesions) · Severe (vine death) | Dark lesions at the vine collar, wilting vines, fruit rot in wet spells | Metalaxyl-class collar drench at first symptoms | Perfect drainage, raised beds, no collar watering | Photograph the vine base — collar lesions are the signature |
 
 ## Process
 
