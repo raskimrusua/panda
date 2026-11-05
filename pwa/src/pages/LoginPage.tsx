@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
+import { GoogleLogin, GoogleOAuthProvider } from '@react-oauth/google';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useTranslation } from 'react-i18next';
 import { useAuth } from '@/auth/useAuth';
@@ -11,8 +12,9 @@ import { LanguageSwitcher } from '@/components/LanguageSwitcher';
 import { loginSchema, type LoginValues } from '@/lib/zodSchemas';
 
 export function LoginPage() {
-  const { login } = useAuth();
-  const { t } = useTranslation();
+  const { login, loginWithGoogle } = useAuth();
+  const googleClientId = import.meta.env.VITE_GOOGLE_CLIENT_ID as string | undefined;
+  const { t, i18n } = useTranslation();
   const navigate = useNavigate();
   const [submitError, setSubmitError] = useState<string | null>(null);
 
@@ -85,6 +87,30 @@ export function LoginPage() {
             </p>
           )}
 
+          {googleClientId && (
+            <>
+              <div className="flex items-center gap-3">
+                <div className="h-px flex-1 bg-gray-200" />
+                <span className="text-xs text-gray-500">{t('auth.or')}</span>
+                <div className="h-px flex-1 bg-gray-200" />
+              </div>
+              <GoogleOAuthProvider clientId={googleClientId}>
+                <GoogleLogin
+                  onSuccess={(res) => {
+                    loginWithGoogle(res.credential ?? '')
+                      .then(() => navigate('/', { replace: true }))
+                      .catch(() => setSubmitError(t('auth.google_failed')));
+                  }}
+                  onError={() => setSubmitError(t('auth.google_failed'))}
+                  theme="outline"
+                  size="large"
+                  shape="rectangular"
+                  width="100%"
+                  locale={i18n.resolvedLanguage ?? 'en'}
+                />
+              </GoogleOAuthProvider>
+            </>
+          )}
           <Button type="submit" loading={isSubmitting} className="w-full">
             {t('auth.sign_in')}
           </Button>

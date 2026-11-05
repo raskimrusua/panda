@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\V1\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\ChangePasswordRequest;
 use App\Http\Requests\Auth\ForgotPasswordRequest;
+use App\Http\Requests\Auth\GoogleLoginRequest;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Http\Requests\Auth\RegisterRequest;
 use App\Http\Requests\Auth\ResetPasswordRequest;
@@ -20,6 +21,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
@@ -118,6 +120,69 @@ class AuthController extends Controller
         }
 
         $token = $user->createToken($data['device_name'] ?? 'api')->plainTextToken;
+
+        return response()->json([
+            'user' => new UserResource($user->load('tenant')),
+            'token' => $token,
+        ]);
+    }
+
+/**
+     * Google sign-in credential exchange — the same flow the marketing site
+     * and the Shira app use: the PWA gets an ID token from
+     * @react-oauth/google, we verify it against Google's tokeninfo endpoint,
+     * enforce the audience (this app's client id) + email_verified, then
+     * issue a Sanctum token for the matching account.
+     *
+     * Match-only: a Google email with no Panda account returns 404 — the
+     * farmer registers first (that's where the farm/tenant is created).
+     */
+    public function googleLogin(GoogleLoginRequest $request): JsonResponse
+    {
+        $clientId = (string) config('google.oauth_client_id');
+        if ($clientId === '') {
+            return response()->json([
+                'message' => 'Google sign-in is not configured.',
+            ], Response::HTTP_SERVICE_UNAVAILABLE);
+        }
+
+        $response = Http::timeout(10)
+            ->get('https://oauth2.googleapis.com/tokeninfo', [
+                'id_token' => $request->validated('credential'),
+            ]);
+
+        if (! $response->successful()) {
+            return response()->json([
+                'message' => 'The Google credential is invalid or expired.',
+            ], Response::HTTP_UNAUTHORIZED);
+        }
+
+        $payload = $response->json();
+
+        if (($payload['aud'] ?? null) !== $clientId) {
+            report(new \RuntimeException('Google credential audience mismatch.'));
+            return response()->json([
+                'message' => 'The Google credential is invalid or expired.',
+            ], Response::HTTP_UNAUTHORIZED);
+        }
+
+        if (($payload['email_verified'] ?? 'false') !== 'true') {
+            throw ValidationException::withMessages([
+                'credential' => ['This Google email is not verified.'],
+            ]);
+        }
+
+        $email = (string) ($payload['email'] ?? '');
+        /** @var User|null $user */
+        $user = User::where('email', $email)->first();
+
+        if (! $user) {
+            return response()->json([
+                'message' => 'No Panda account found for this Google email. Register first.',
+            ], Response::HTTP_NOT_FOUND);
+        }
+
+        $token = $user->createToken($request->validated('device_name') ?? 'pwa')->plainTextToken;
 
         return response()->json([
             'user' => new UserResource($user->load('tenant')),

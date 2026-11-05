@@ -43,6 +43,14 @@ export interface AuthResponse {
 }
 
 export const authApi = {
+  async googleLogin(credential: string, deviceName?: string): Promise<AuthResponse> {
+    const { data } = await apiClient.post<AuthResponse>('/auth/google', {
+      credential,
+      device_name: deviceName ?? 'pwa',
+    });
+    return data;
+  },
+
   async login(payload: LoginPayload): Promise<AuthResponse> {
     const { data } = await apiClient.post<AuthResponse>('/auth/login', payload);
     return data;
