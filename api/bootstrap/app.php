@@ -5,6 +5,7 @@ use App\Http\Middleware\SetTenantFromUser;
 use Illuminate\Auth\Middleware\Authenticate;
 use Illuminate\Auth\Middleware\AuthenticateWithBasicAuth;
 use Illuminate\Auth\Middleware\Authorize;
+use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Contracts\Auth\Middleware\AuthenticatesRequests;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
 use Illuminate\Cookie\Middleware\EncryptCookies;
@@ -70,4 +71,11 @@ return Application::configure(basePath: dirname(__DIR__))
         // in local dev / CI without DSN). Won't double-report — Laravel's
         // default reporter handles the local log; Sentry handles the wire.
         SentryIntegration::handles($exceptions);
+    })
+    ->withSchedule(function (Schedule $schedule) {
+        // Daily price ingestion. Inert until PRICE_FEED_ENABLED=true — the
+        // command itself exits "not configured" when the flags are off.
+        $schedule->command('panda:import-prices')
+            ->dailyAt((string) config('prices.feed_time'))
+            ->withoutOverlapping();
     })->create();
