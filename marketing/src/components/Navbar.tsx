@@ -18,7 +18,8 @@ export default function Navbar() {
       aria-label="Primary"
     >
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 md:px-6">
-        <a href="/" className="text-xl font-semibold text-highland-green">
+        <a href="/" className="flex items-center gap-2 text-xl font-semibold text-highland-green">
+          <img src="/panda-mark.png" alt="Panda" className="h-9 w-9" />
           Panda<span className="text-panda-leaf">.</span>
         </a>
 
